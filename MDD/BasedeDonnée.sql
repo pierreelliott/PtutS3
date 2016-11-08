@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     07/11/2016 22:31:10                          */
+/* Created on:     08/11/2016 13:30:17                          */
 /*==============================================================*/
 
 
@@ -34,7 +34,7 @@ create table AVIS
    NOTE                 int not null default 5,
    AVIS                 varchar(1024),
    DATE                 date not null,
-   DATE_DERNIER_VOTE    date,
+   DATEDERNIERVOTE      date,
    NUMUSER              int not null,
    primary key (NUMUSER)
 );
@@ -45,7 +45,6 @@ create table AVIS
 create table COMMANDE
 (
    NUMCOMMANDE          int not null,
-   PRIX_COMMANDE        numeric(8,0) not null,
    RUE                  varchar(250),
    DATE                 date,
    VILLE                varchar(200),
@@ -140,14 +139,16 @@ create table UTILISATEUR
    NUMUSER              int not null,
    NOM                  varchar(20) not null,
    PRENOM               varchar(20) not null,
-   ADRESSE_MAIL         varchar(50) not null,
+   MAIL                 varchar(50) not null,
    VILLE                varchar(200),
    RUE                  varchar(250),
-   CODE_POSTAL          varchar(6),
-   TELEPHONE            varchar(11) not null,
+   CODEPOSTAL           varchar(6),
+   TELEPHONE            varchar(11),
    TYPEUSER             varchar(20) not null,
    PSEUDO               varchar(25) not null,
    MDP                  varchar(1024) not null,
+   NUMRUE               varchar(100),
+   DATEINSCRIPTION      date,
    primary key (NUMUSER)
 );
 
