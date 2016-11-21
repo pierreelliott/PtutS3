@@ -1,8 +1,8 @@
 /* Table Utilisateur */
-insert into utilisateur(NumUser, Nom, Prenom,Mail, Ville, Rue, CodePostal, Telephone, TypeUser, Pseudo, MDP, NumRue)
-values(1,"Menvu","Gérard","adr@mail.fr",null,null,null,"0404040404","ADMIN","gmenvu","1234", null),
-(2,"Atan","Charles","addmail.en",null,null,null,"0505050505","USER","catan","2345", null), (3,"Doeuf","John","ddd@mail.us",null,null,null,"0202020202","USER","jdoeuf","3456",null),
-(4,"Pietrac","Nicolas","aha@mail.net","Ploubelec","rue des Alouettes","14100","0606060606","USER","npietrac","4567", "42");
+insert into utilisateur(Nom, Prenom,Mail, Ville, Rue, CodePostal, Telephone, TypeUser, Pseudo, MDP, NumRue)
+values("Menvu","Gérard","adr@mail.fr",null,null,null,"0404040404","ADMIN","gmenvu","1234", null),
+("Atan","Charles","addmail.en",null,null,null,"0505050505","USER","catan","2345", null), ("Doeuf","John","ddd@mail.us",null,null,null,"0202020202","USER","jdoeuf","3456",null),
+("Pietrac","Nicolas","aha@mail.net","Ploubelec","rue des Alouettes","14100","0606060606","USER","npietrac","4567", "42");
 
 
 
@@ -27,9 +27,9 @@ insert into vote(NumAvis, NumUser, Vote)  values(2, 4, false),
 
 
 /* Table Commande (numcommande,date,codepostal,ville,rue,numrue,typecommande)*/
-insert into commande(NumCommande, Date, CodePostal, Ville, Rue, NumRue, TypeCommande) values(1,"2015-10-02",null,null,null,null,"A emporter"),
-(2, "2015-11-04", null,null, null,null, "A Emporter"),
-(3, "2015-12-07", "07100", "Pietache", "Rue de l honneur", "35", "Livraison");
+insert into commande(Date, CodePostal, Ville, Rue, NumRue, TypeCommande) values("2015-10-02",null,null,null,null,"A emporter"),
+("2015-11-04", null,null, null,null, "A Emporter"),
+("2015-12-07", "07100", "Pietache", "Rue de l honneur", "35", "Livraison");
 
 
 
@@ -50,11 +50,11 @@ insert into CommandeEnregistrees(NumCommande, NumUser) values (1,4),(2,3),(3,2);
 
 
 /* Table Produit (numproduit,libelle,prix,description,typeproduit,numimage)*/
-insert into produit(NumProduit, Libelle, Prix,Description, TypeProduit, NumImage) values(1,"Sushi noss",10,"Sushi au saumon","Sushi",2),
-(2,"Ketchup",0.5,"Sauce de base","Sauce",3),
-(3,"Rix titi",3,"Riz au lait","Accompagnement",4),
-(4,"Makizu chichi",6,"Maki au poulet","Maki",5),
-(5,"Sushi rah",5,"Sushi au cabillaud","Sushi",6), (6,"Alges à gogo",9,"Boîte d algues rouges","Accompagnement",7);
+insert into produit(Libelle, Prix,Description, TypeProduit, NumImage) values("Sushi noss",10,"Sushi au saumon","Sushi",2),
+("Ketchup",0.5,"Sauce de base","Sauce",3),
+("Rix titi",3,"Riz au lait","Accompagnement",4),
+("Makizu chichi",6,"Maki au poulet","Maki",5),
+("Sushi rah",5,"Sushi au cabillaud","Sushi",6), ("Alges à gogo",9,"Boîte d algues rouges","Accompagnement",7);
 
 
 
@@ -78,7 +78,7 @@ insert into TypeProduit values("Sushi"), ("Sauce"), ("Accompagnement"), ("Maki")
 
 
 /* Table Image */
-insert into Image values(1,"src/img/img001","src/img/img002","src/img/img003"), (2,"src/img/img101","src/img/img102","src/img/img103"), (3,"src/img/img201","src/img/img202","src/img/img203"), (4,"src/img/img301","src/img/img302","src/img/img303"), (5,"src/img/img401","src/img/img402","src/img/img403"), (6,"src/img/img501","src/img/img502","src/img/img503"), (7,"src/img/img601","src/img/img602","src/img/img603");
+insert into Image values("src/img/img001","src/img/img002","src/img/img003"), ("src/img/img101","src/img/img102","src/img/img103"), ("src/img/img201","src/img/img202","src/img/img203"), ("src/img/img301","src/img/img302","src/img/img303"), ("src/img/img401","src/img/img402","src/img/img403"), ("src/img/img501","src/img/img502","src/img/img503"), ("src/img/img601","src/img/img602","src/img/img603");
 
 
 
