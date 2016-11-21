@@ -44,7 +44,7 @@ create table AVIS
 /*==============================================================*/
 create table COMMANDE
 (
-   NUMCOMMANDE          int not null,
+   NUMCOMMANDE          int not null AUTO_INCREMENT,
    RUE                  varchar(250),
    DATE                 date,
    VILLE                varchar(200),
@@ -79,7 +79,7 @@ create table COMPATIBILITE
 /*==============================================================*/
 create table IMAGE
 (
-   NUMIMAGE             int not null,
+   NUMIMAGE             int not null AUTO_INCREMENT,
    SOURCEMOYEN          varchar(1024) not null,
    SOURCEPETIT          varchar(1024),
    SOURCEGRAND          varchar(1024),
@@ -102,7 +102,7 @@ create table PREFERENCE
 /*==============================================================*/
 create table PRODUIT
 (
-   NUMPRODUIT           int not null,
+   NUMPRODUIT           int not null AUTO_INCREMENT,
    NUMIMAGE             int not null,
    DESCRIPTION          varchar(512) not null,
    PRIX                 numeric(8,0) not null,
@@ -136,7 +136,7 @@ create table TYPEPRODUIT
 /*==============================================================*/
 create table UTILISATEUR
 (
-   NUMUSER              int not null,
+   NUMUSER              int not null AUTO_INCREMENT,
    NOM                  varchar(20) not null,
    PRENOM               varchar(20) not null,
    MAIL                 varchar(50) not null,
