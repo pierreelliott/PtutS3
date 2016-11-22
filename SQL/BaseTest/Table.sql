@@ -3,33 +3,36 @@
 /* Created on:     08/11/2016 13:30:17                          */
 /*==============================================================*/
 
+SET foreign_key_checks = 0;
 
-drop table if exists AVIS;
+drop table if exists avis;
 
-drop table if exists COMMANDE;
+drop table if exists commande;
 
-drop table if exists COMMANDEENREGISTREES;
+drop table if exists commandeEnregistree;
 
-drop table if exists COMPATIBILITE;
+drop table if exists compatibilite;
 
-drop table if exists IMAGE;
+drop table if exists image;
 
-drop table if exists PREFERENCE;
+drop table if exists preference;
 
-drop table if exists PRODUIT;
+drop table if exists produit;
 
-drop table if exists QUANTITEPRODUIT;
+drop table if exists quantiteProduit;
 
-drop table if exists TYPEPRODUIT;
+drop table if exists typeProduit;
 
-drop table if exists UTILISATEUR;
+drop table if exists utilisateur;
 
-drop table if exists VOTE;
+drop table if exists vote;
+
+SET foreign_key_checks = 1;
 
 /*==============================================================*/
-/* Table: AVIS                                                  */
+/* Table: avis                                                  */
 /*==============================================================*/
-create table AVIS
+create table avis
 (
    NOTE                 int not null default 5,
    AVIS                 varchar(1024),
@@ -40,9 +43,9 @@ create table AVIS
 );
 
 /*==============================================================*/
-/* Table: COMMANDE                                              */
+/* Table: commande                                              */
 /*==============================================================*/
-create table COMMANDE
+create table commande
 (
    NUMCOMMANDE          int not null AUTO_INCREMENT,
    RUE                  varchar(250),
@@ -55,9 +58,9 @@ create table COMMANDE
 );
 
 /*==============================================================*/
-/* Table: COMMANDEENREGISTREES                                  */
+/* Table: commandeEnregistree                                  */
 /*==============================================================*/
-create table COMMANDEENREGISTREES
+create table commandeEnregistree
 (
    NUMCOMMANDE          int not null,
    NUMUSER              int not null,
@@ -65,9 +68,9 @@ create table COMMANDEENREGISTREES
 );
 
 /*==============================================================*/
-/* Table: COMPATIBILITE                                         */
+/* Table: compatibilite                                         */
 /*==============================================================*/
-create table COMPATIBILITE
+create table compatibilite
 (
    NUMPRODUIT           int not null,
    NUMPRODUIT2          int not null,
@@ -75,9 +78,9 @@ create table COMPATIBILITE
 );
 
 /*==============================================================*/
-/* Table: IMAGE                                                 */
+/* Table: image                                                 */
 /*==============================================================*/
-create table IMAGE
+create table image
 (
    NUMIMAGE             int not null AUTO_INCREMENT,
    SOURCEMOYEN          varchar(1024) not null,
@@ -87,9 +90,9 @@ create table IMAGE
 );
 
 /*==============================================================*/
-/* Table: PREFERENCE                                            */
+/* Table: preference                                            */
 /*==============================================================*/
-create table PREFERENCE
+create table preference
 (
    NUMUSER              int not null,
    NUMPRODUIT           int not null,
@@ -98,9 +101,9 @@ create table PREFERENCE
 );
 
 /*==============================================================*/
-/* Table: PRODUIT                                               */
+/* Table: produit                                               */
 /*==============================================================*/
-create table PRODUIT
+create table produit
 (
    NUMPRODUIT           int not null AUTO_INCREMENT,
    NUMIMAGE             int not null,
@@ -112,9 +115,9 @@ create table PRODUIT
 );
 
 /*==============================================================*/
-/* Table: QUANTITEPRODUIT                                       */
+/* Table: quantiteProduit                                       */
 /*==============================================================*/
-create table QUANTITEPRODUIT
+create table quantiteProduit
 (
    NUMCOMMANDE          int not null,
    NUMPRODUIT           int not null,
@@ -123,18 +126,18 @@ create table QUANTITEPRODUIT
 );
 
 /*==============================================================*/
-/* Table: TYPEPRODUIT                                           */
+/* Table: typeProduit                                           */
 /*==============================================================*/
-create table TYPEPRODUIT
+create table typeProduit
 (
    LIBELLE              varchar(50) not null,
    primary key (LIBELLE)
 );
 
 /*==============================================================*/
-/* Table: UTILISATEUR                                           */
+/* Table: utilisateur                                           */
 /*==============================================================*/
-create table UTILISATEUR
+create table utilisateur
 (
    NUMUSER              int not null AUTO_INCREMENT,
    NOM                  varchar(20) not null,
@@ -153,9 +156,9 @@ create table UTILISATEUR
 );
 
 /*==============================================================*/
-/* Table: VOTE                                                  */
+/* Table: vote                                                  */
 /*==============================================================*/
-create table VOTE
+create table vote
 (
    NUMAVIS              int not null,
    NUMUSER              int not null,
@@ -163,42 +166,42 @@ create table VOTE
    primary key (NUMAVIS, NUMUSER)
 );
 
-alter table AVIS add constraint FK_POSTE_UN2 foreign key (NUMUSER)
-      references UTILISATEUR (NUMUSER) on delete restrict on update restrict;
+alter table avis add constraint FK_POSTE_UN2 foreign key (NUMUSER)
+      references utilisateur (NUMUSER) on delete restrict on update restrict;
 
-alter table COMMANDEENREGISTREES add constraint FK_PASSE_UNE foreign key (NUMCOMMANDE)
-      references COMMANDE (NUMCOMMANDE) on delete restrict on update restrict;
+alter table commandeEnregistree add constraint FK_PASSE_UNE foreign key (NUMCOMMANDE)
+      references commande (NUMCOMMANDE) on delete restrict on update restrict;
 
-alter table COMMANDEENREGISTREES add constraint FK_PASSE_UNE2 foreign key (NUMUSER)
-      references UTILISATEUR (NUMUSER) on delete restrict on update restrict;
+alter table commandeEnregistree add constraint FK_PASSE_UNE2 foreign key (NUMUSER)
+      references utilisateur (NUMUSER) on delete restrict on update restrict;
 
-alter table COMPATIBILITE add constraint FK_EST_COMPATIBLE foreign key (NUMPRODUIT2)
-      references PRODUIT (NUMPRODUIT) on delete restrict on update restrict;
+alter table compatibilite add constraint FK_EST_COMPATIBLE foreign key (NUMPRODUIT2)
+      references produit (NUMPRODUIT) on delete restrict on update restrict;
 
-alter table COMPATIBILITE add constraint FK_EST_COMPATIBLE2 foreign key (NUMPRODUIT)
-      references PRODUIT (NUMPRODUIT) on delete restrict on update restrict;
+alter table compatibilite add constraint FK_EST_COMPATIBLE2 foreign key (NUMPRODUIT)
+      references produit (NUMPRODUIT) on delete restrict on update restrict;
 
-alter table PREFERENCE add constraint FK_PREFERE foreign key (NUMPRODUIT)
-      references PRODUIT (NUMPRODUIT) on delete restrict on update restrict;
+alter table preference add constraint FK_PREFERE foreign key (NUMPRODUIT)
+      references produit (NUMPRODUIT) on delete restrict on update restrict;
 
-alter table PREFERENCE add constraint FK_PREFERE2 foreign key (NUMUSER)
-      references UTILISATEUR (NUMUSER) on delete restrict on update restrict;
+alter table preference add constraint FK_PREFERE2 foreign key (NUMUSER)
+      references utilisateur (NUMUSER) on delete restrict on update restrict;
 
-alter table PRODUIT add constraint FK_APPARTIENT foreign key (LIBELLE)
-      references TYPEPRODUIT (LIBELLE) on delete restrict on update restrict;
+alter table produit add constraint FK_APPARTIENT foreign key (TYPEPRODUIT)
+      references typeProduit (LIBELLE) on delete restrict on update restrict;
 
-alter table PRODUIT add constraint FK_POSSEDE3 foreign key (NUMIMAGE)
-      references IMAGE (NUMIMAGE) on delete restrict on update restrict;
+alter table produit add constraint FK_POSSEDE3 foreign key (NUMIMAGE)
+      references image (NUMIMAGE) on delete restrict on update restrict;
 
-alter table QUANTITEPRODUIT add constraint FK_CONTIENT foreign key (NUMPRODUIT)
-      references PRODUIT (NUMPRODUIT) on delete restrict on update restrict;
+alter table quantiteProduit add constraint FK_CONTIENT foreign key (NUMPRODUIT)
+      references produit (NUMPRODUIT) on delete restrict on update restrict;
 
-alter table QUANTITEPRODUIT add constraint FK_CONTIENT2 foreign key (NUMCOMMANDE)
-      references COMMANDE (NUMCOMMANDE) on delete restrict on update restrict;
+alter table quantiteProduit add constraint FK_CONTIENT2 foreign key (NUMCOMMANDE)
+      references commande (NUMCOMMANDE) on delete restrict on update restrict;
 
-alter table VOTE add constraint FK_VOTE foreign key (NUMAVIS)
-      references AVIS (NUMUSER) on delete restrict on update restrict;
+alter table vote add constraint FK_VOTE foreign key (NUMAVIS)
+      references avis (NUMUSER) on delete restrict on update restrict;
 
-alter table VOTE add constraint FK_VOTE2 foreign key (NUMUSER)
-      references UTILISATEUR (NUMUSER) on delete restrict on update restrict;
+alter table vote add constraint FK_VOTE2 foreign key (NUMUSER)
+      references utilisateur (NUMUSER) on delete restrict on update restrict;
 
