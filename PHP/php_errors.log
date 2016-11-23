@@ -1,0 +1,18 @@
+[09-Nov-2016 09:57:57 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[09-Nov-2016 10:00:13 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[09-Nov-2016 10:01:32 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[10-Nov-2016 10:03:51 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[10-Nov-2016 10:06:53 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[10-Nov-2016 10:08:42 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[10-Nov-2016 10:27:52 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 16
+[22-Nov-2016 13:49:43 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/connexion/ConnexionModel.php on line 7
+[22-Nov-2016 13:50:48 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 7
+[22-Nov-2016 13:51:23 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 7
+[22-Nov-2016 13:51:35 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 7
+[23-Nov-2016 09:37:43 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 7
+[23-Nov-2016 09:44:04 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 7
+[23-Nov-2016 09:44:14 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 7
+[23-Nov-2016 09:45:25 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 9
+[23-Nov-2016 09:45:27 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 9
+[23-Nov-2016 09:45:27 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 9
+[23-Nov-2016 09:45:27 Europe/Paris] PHP Fatal error:  Call to undefined function executerRequete() in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/carte/CarteModel.php on line 9
