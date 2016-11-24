@@ -3,8 +3,14 @@
     {
         public function connexion($pseudo, $mdpHash)
         {
-            $requete = "select numUser from utilisateur where pseudo = '?' and mdp = '?';";
-            $resultat = $this->executerRequete($requete, array($pseudo, $mdpHash));
+            $requete = "select numUser from utilisateur where pseudo = :pseudo and mdp = :mdpHash;";
+            
+            $params = array(
+                'pseudo' => $pseudo,
+                'mdpHash' => $mdpHash
+                );
+            
+            $resultat = $this->executerRequete($requete, $params);
 
             return $resultat;
         }

@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp64/www/ptut/vue/connexion/index.php</file>
+            <file>file:/C:/wamp64/www/ptut/vue/inscription/index.php</file>
             <file>file:/C:/wamp64/www/ptut/css/style.css</file>
-            <file>file:/C:/wamp64/www/ptut/index.php</file>
-            <file>file:/C:/wamp64/www/ptut/controleur/connexion/index.php</file>
+            <file>file:/C:/wamp64/www/ptut/vue/carte/index.php</file>
+            <file>file:/C:/wamp64/www/ptut/include/header.php</file>
         </group>
     </open-files>
 </project-private>

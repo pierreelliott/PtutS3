@@ -16,9 +16,17 @@ body
     font-family: 'Open Sans';
     color: white;
     font-size: 24px;
-    color: #fff;
-    text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+h1
+{
+    text-align: center;
+}
+
+p
+{
+    text-align: center;
 }
 
 a
@@ -39,11 +47,24 @@ nav
     border-radius: 0px 0px 15px 15px;
     padding-top: 15px;
     padding-bottom: 15px;
+    text-align: center;
 }
 
 form
 {
     padding: 20px;
+}
+
+legend
+{
+    text-align: left;
+    color: white;
+}
+
+label
+{
+    font-weight: normal;
+    font-size: 16px;
 }
 
 footer
@@ -83,14 +104,16 @@ footer
    
 }
 
+.help-block
+{
+    color: white;
+}
+
 .btn
 {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.form-control
-{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
 }

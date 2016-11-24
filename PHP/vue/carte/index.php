@@ -41,21 +41,23 @@
                     <div class="site-wrapper-inner">
                         <div class="inner cover">
                             <table class='table table-bordered'>
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Description</th>
+                                    <th>Image</th>
+                                    <th>Ajout panier</th>
+                                </tr>
                                 <?php
-                                    echo "<tr>
-                                            <th>Produit</th>
-                                            <th>Description</th>
-                                            <th>Image</th>
-                                            <th>Ajout panier</th>
-                                          </tr>";
                                     foreach($tabRows as $key => $row)
                                     {
-                                        echo "<tr>
-                                                  <td>".$row["libelle"]."</td>
-                                                  <td>".$row["description"]."</td>
-                                                  <td><img src=".$row["sourceMoyen"]." alt='Image du produit'></td>
-                                                  <td><a href='index.php'><img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'></a></td>
-                                              </tr>";
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $row["libelle"]; ?></td>
+                                            <td><?php echo $row["description"]; ?></td>
+                                            <td><img src='<?php echo $row["sourceMoyen"]; ?>' alt='Image du produit'></td>
+                                            <td><a href='index.php'><img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'></a></td>
+                                        </tr>
+                                        <?php
                                     }
                                 ?>
                             </table>

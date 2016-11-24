@@ -36,16 +36,18 @@
             <?php include("include/header.php"); ?>
  
             <div class="row">
-                <div class="col-lg-offset-2 col-lg-8 site-wrapper">
+                <div class="col-lg-12 site-wrapper">
                     <div class="col-lg-12">
                         <div class="row">
-                            <h1 class="col-lg-offset-2 col-lg-8">Bienvenue chez Sushinos <?php if(isset($_SESSION["pseudo"])) echo $_SESSION["pseudo"] ?> !</h1>
+                            <h1 class="col-lg-offset-2 col-lg-8">Bienvenue chez Sushinos !</h1>
                         </div>
                         <div class="row">
                             <p class="lead">Tous nos produits sont 100% naturels, composés avec les meilleurs ingrédients. Nous vous offrons une large gamme de produits, menus, desserts.</p>
                         </div>
                         <div class="row">
-                            <p><a href="carte.php" class="btn btn-lg btn-default">Découvrir</a></p>
+                            <div class="col-lg-offset-4 col-lg-4">
+                                <a href="carte.php" class="btn btn-lg btn-default">Découvrir</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +62,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-        <script src="/js/bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>

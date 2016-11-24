@@ -19,8 +19,8 @@
         <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
         <!-- For "index", Mathis you have to create another css for the rest of the website -->
-        <link href="css/index.css" rel="stylesheet">
-        <link href="css/connexion.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <!--<link href="css/connexion.css" rel="stylesheet">-->
 
 
 
@@ -33,66 +33,109 @@
     </head>
 
     <body>
-    <!-- NAVBAR -->
-	<div class="cover-container">
+        <div class="container">
 
-	<!-- EN TETE AVEC MENU ET IMAGE -->		
-            <div id="menu">				
-                <div class="dropdown" style="float:right;">
-                    <div class="dropbtn">
-                        <p><img src="images/burger_menu.png" alt="dropbtn"/></p>
-                    </div>
-
-                    <div class="dropdown-content" style="right:0;">				
-                        <a href="index.php">Accueil</a>
-                        <a href="carte.html">Carte</a>
-                        <!--<a href=".html" id="active">Connexion</a>-->
-                    </div>
-                </div>
-            </div>
-        </div>
- 
-        <!-- NAVBAR END -->
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                <div class="inner cover"> 
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="main">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-6 <!-- col-sm-offset-1 -->">
-                                            <h1>Inscription à Sushinos</h1>
-
-                                            <form action="inscription.php" name="inscription" role="form" class="form-horizontal" method="post" accept-charset="utf-8">
-                                                <div class="form-group">
-                                                    <div class="col-md-8"><input name="pseudo" type="text" id="pseudo" placeholder="Pseudo"></div>
-                                                </div> 
-
-                                                <div class="form-group">
-                                                    <div class="col-md-8"><input name="mdp" type="password" id="mdp" placeholder="Mot de passe"></div>
-                                                </div> 
-                                                
-                                                <div class="form-group">
-                                                    <div class="col-md-8"><input name="mdpConfirm" type="password" id="mdpConfirm" placeholder="Confirmer mot de passe"></div>
-                                                </div> 
-                                                
-                                                <div class="form-group">
-                                                    <div class="col-md-8"><input name="email" type="text" id="email" placeholder="Adresse e-mail"></div>
-                                                </div> 
-
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-0 col-md-8"><input  class="btn btn-success btn btn-success" type="submit" value="Inscription"/></div>
-                                                </div>
-                                            </form>
+            <?php include("include/header.php"); ?>
+                   
+            <div class="row">
+                <div class="col-lg-12 site-wrapper">
+                    <div class="row">
+                        <form action="inscription.php" method="post" name="inscription" role="form" accept-charset="utf-8">
+                            <legend>Inscription à Sushinos</legend>
+                            <span class="help-block lead">Les champs avec * sont obligatoires</span>
+                            <fieldset>
+                                <div class="form-group has-error">
+                                    <?php if(isset($message)) echo "<span class='help-block'>".$message."</span>"; ?>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="pseudo" class="control-label">Pseudo *</label>
+                                            <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="mdp" class="control-label">Mot de passe *</label>
+                                            <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="mdpConfirm" class="control-label">Confirmer mot de passe *</label>
+                                            <input type="password" id="mdpConfirm" name="mdpConfirm" placeholder="Confirmer mot de passe" class="form-control"/>
+                                        </div>
+                                    </div>                                 
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="nom" class="control-label">Nom *</label>
+                                            <input type="text" id="nom" name="nom" placeholder="Nom" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="prenom" class="control-label">Prénom *</label>
+                                            <input type="text" id="prenom" name="prenom" placeholder="Prénom" class="form-control"/>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="email" class="control-label">Adresse mail *</label>
+                                            <input type="text" id="email" name="email" placeholder="Adresse e-mail" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tel" class="control-label">Téléphone</label>
+                                            <input type="text" id="tel" name="tel" placeholder="Téléphone" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <div class="form-group">
+                                            <label for="numRue" class="control-label">N°rue</label>
+                                            <input type="text" id="numRue" name="numRue" placeholder="N°rue" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="rue" class="control-label">Rue</label>
+                                            <input type="text" id="rue" name="rue" placeholder="Nom de rue" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="ville" class="control-label">Ville</label>
+                                            <input type="text" id="ville" name="ville" placeholder="Ville" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="codePostal" class="control-label">Code postal</label>
+                                            <input type="text" id="codePostal" name="codePostal" placeholder="Code postal" class="form-control"/>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-offset-8 col-lg-4">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success btn btn-success pull-right">Inscription</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
             </div>
+            
+            <?php include("include/footer.php"); ?>
+            
         </div>
     </body>
 </html>
