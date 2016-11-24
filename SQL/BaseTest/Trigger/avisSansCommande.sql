@@ -7,7 +7,7 @@ select count(numcommande) into v_nbCommande from commandeEnregistree where new.n
 
 if v_nbCommande = 0 THEN
 	SIGNAL NO_AVIS
-	SET MESSAGE_TEXT = 'Impossible de poster un avis sans avoir acheter';
+	SET MESSAGE_TEXT = 'Impossible de poster un avis sans avoir acheté';
 
 end if;
 
