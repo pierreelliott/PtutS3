@@ -11,4 +11,8 @@ if v_nb > 10 THEN
 
 end if;
 
-End;/
+End;
+
+/* End;/ 
+Fonctionne sans le slash à la fin,
+il suffit de changer le délimiteur dans la console sql de phpmyadmin */

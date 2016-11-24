@@ -12,3 +12,7 @@ if v_comm = NULL THEN
 end if;
 
 End;
+
+/* Retourne une erreur sur alwaysdata.com
+=>  #1235 - This version of MariaDB doesn't yet support 
+'multiple triggers with the same action time and event for one table' */
