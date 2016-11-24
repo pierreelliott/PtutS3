@@ -1,4 +1,4 @@
-CREATE TRIGGER `avisSansCommentaire` BEFORE INSERT ON `avis`
+CREATE TRIGGER `avisSansCommande` BEFORE INSERT ON `avis`
 FOR EACH ROW Begin 
 
 DECLARE v_nbCommande int;
