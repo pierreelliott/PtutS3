@@ -43,7 +43,7 @@
                                 <td>Quantité</td> 
                                 <td>Prix unitaire (€)</td>
                                 <td>Prix total (€)</td>
-                                <td>Retirer du panier</a> </td>
+                                <td>Retirer du panier</td>
                             </tr>
                             <tr> 
                                 <td>Le Maki Sushi</td> 
@@ -68,16 +68,16 @@
                             </tr> 
                             <tr> 
                                 <td>Chips de creuvette</td>
-                                <td>1 paquet</ts>
+                                <td>1 paquet</td>
                                 <td>3.60</td>
-                                <td>3.60</ts>
+                                <td>3.60</td>
                                 <td><a href=""><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a> </td>
                             </tr> 
                             <tr> 
                                 <td>Total</td>
-                                <td>10</ts>
+                                <td>10</td>
                                 <td></td>
-                                <td>26.60</ts>
+                                <td>26.60</td>
                                 <td></td>
                             </tr> 
                         </tbody> 

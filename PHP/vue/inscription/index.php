@@ -40,10 +40,10 @@
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <div class="row">
-                        <form action="inscription.php" method="post" name="inscription" role="form" accept-charset="utf-8">
-                            <legend>Inscription à Sushinos</legend>
-                            <span class="help-block lead">Les champs avec * sont obligatoires</span>
+                        <form action="inscription.php" method="post" name="inscription" accept-charset="utf-8">
                             <fieldset>
+                                <legend>Inscription à Sushinos</legend>
+                                <span class="help-block lead">Les champs avec * sont obligatoires</span>
                                 <div class="form-group has-error">
                                     <?php if(isset($message)) echo "<span class='help-block'>".$message."</span>"; ?>
                                 </div>
