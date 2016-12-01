@@ -32,39 +32,34 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
             
             <?php include("include/header.php"); ?>
 
-            <div class="cover-container">
-                <div class="site-wrapper">
-                    <div class="site-wrapper-inner">
-                        <div class="inner cover">
-                            <table class='table table-bordered'>
-                                <tr>
-                                    <th>Produit</th>
-                                    <th>Description</th>
-                                    <th>Image</th>
-                                    <th>Ajout panier</th>
-                                </tr>
-                                <?php
-                                    foreach($tabRows as $key => $row)
-                                    {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $row["libelle"]; ?></td>
-                                            <td><?php echo $row["description"]; ?></td>
-                                            <td><img src='<?php echo $row["sourceMoyen"]; ?>' alt='Image du produit'></td>
-                                            <td><a href='index.php'><img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'></a></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>
-                            </table>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-6 site-wrapper">
+                    <table class='table table-hover'>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Ajout panier</th>
+                        </tr>
+                        <?php
+                            foreach($tabRows as $key => $row) {
+                        ?>
+                        <tr>
+                            <td><?php echo $row["libelle"]; ?></td>
+                            <td><?php echo $row["description"]; ?></td>
+                            <td><img src='<?php echo $row["sourceMoyen"]; ?>' alt='Image du produit'></td>
+                            <td><a href='index.php'><img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'></a></td>
+                        </tr>
+                        <?php
+                            }
+                        ?>
+                    </table>
                 </div>
-            </div>
+            </div>    
             
             <?php include("include/footer.php"); ?>
             

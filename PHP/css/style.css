@@ -98,7 +98,7 @@ footer
     
     /*min-height: 80%;*/
     
-    
+    padding : 15px;
     margin-top: 30vh;
     margin-bottom: 30vh;
    
@@ -116,4 +116,9 @@ footer
     padding-top: 10px;
     padding-bottom: 10px;
     width: 100%;
+}
+
+.navbar-right
+{
+    margin-right: 0;
 }

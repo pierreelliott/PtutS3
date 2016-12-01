@@ -18,7 +18,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" href="#"><?php echo $_SESSION["pseudo"]; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Item</a></li>
+                        <li><a href="#">Mon compte</a></li>
                         <li><a href="#">Item</a></li>
                         <li><a href="#">Item</a></li>
                         <li class="divider"></li>
@@ -33,7 +33,7 @@
             }
         ?>
 
-        <li><a href="#"><img src="images/panier.png" alt="Panier"></a></li>
+        <li><a href="panier.php"><img src="images/panier.png" alt="Panier"></a></li>
     </ul>
 </nav>
 <!-- NAVBAR END -->

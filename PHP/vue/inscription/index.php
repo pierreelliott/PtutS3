@@ -33,12 +33,12 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
 
             <?php include("include/header.php"); ?>
                    
             <div class="row">
-                <div class="col-lg-12 site-wrapper">
+                <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <div class="row">
                         <form action="inscription.php" method="post" name="inscription" role="form" accept-charset="utf-8">
                             <legend>Inscription à Sushinos</legend>
@@ -68,13 +68,13 @@
                                     </div>                                 
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="nom" class="control-label">Nom *</label>
                                             <input type="text" id="nom" name="nom" placeholder="Nom" class="form-control"/>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="prenom" class="control-label">Prénom *</label>
                                             <input type="text" id="prenom" name="prenom" placeholder="Prénom" class="form-control"/>
@@ -82,13 +82,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="email" class="control-label">Adresse mail *</label>
                                             <input type="text" id="email" name="email" placeholder="Adresse e-mail" class="form-control"/>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="tel" class="control-label">Téléphone</label>
                                             <input type="text" id="tel" name="tel" placeholder="Téléphone" class="form-control"/>
@@ -96,7 +96,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-1">
+                                    <div class="col-lg-2">
                                         <div class="form-group">
                                             <label for="numRue" class="control-label">N°rue</label>
                                             <input type="text" id="numRue" name="numRue" placeholder="N°rue" class="form-control"/>
@@ -114,7 +114,7 @@
                                             <input type="text" id="ville" name="ville" placeholder="Ville" class="form-control"/>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                         <div class="form-group">
                                             <label for="codePostal" class="control-label">Code postal</label>
                                             <input type="text" id="codePostal" name="codePostal" placeholder="Code postal" class="form-control"/>

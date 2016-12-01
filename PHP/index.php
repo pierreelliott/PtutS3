@@ -31,12 +31,12 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
 
             <?php include("include/header.php"); ?>
  
             <div class="row">
-                <div class="col-lg-12 site-wrapper">
+                <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <div class="col-lg-12">
                         <div class="row">
                             <h1 class="col-lg-offset-2 col-lg-8">Bienvenue chez Sushinos !</h1>

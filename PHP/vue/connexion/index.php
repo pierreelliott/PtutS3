@@ -33,12 +33,12 @@
     </head>
 
     <body>
-	<div class="container">
+	<div class="container-fluid">
 
             <?php include("include/header.php"); ?>
                    
             <div class="row">
-                <div class="col-lg-12 site-wrapper">
+                <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <div class="row">
                         <form action="connexion.php" method="post" name="login" role="form" accept-charset="utf-8">
                             <legend>Connexion à Sushinos</legend>
@@ -75,7 +75,7 @@
                         </form>
                     </div>
                     <div class="row">
-                        <p class="lead">Pas encore inscrit ? Inscription par <a href="inscription.php">ici</a> !</p>
+                        <p class="lead">Pas encore inscrit ? <a href="inscription.php">Inscription par ici</a> !</p>
                     </div>
                 </div>
             </div>
