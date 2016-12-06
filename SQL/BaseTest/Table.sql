@@ -9,8 +9,6 @@ drop table if exists avis;
 
 drop table if exists commande;
 
-drop table if exists commandeEnregistree;
-
 drop table if exists compatibilite;
 
 drop table if exists image;
@@ -54,17 +52,8 @@ create table commande
    NUMRUE               numeric(8,0),
    CODEPOSTAL           varchar(6),
    TYPECOMMANDE         varchar(200) not null,
+   NUMUSER              integer,
    primary key (NUMCOMMANDE)
-);
-
-/*==============================================================*/
-/* Table: commandeEnregistree                                  */
-/*==============================================================*/
-create table commandeEnregistree
-(
-   NUMCOMMANDE          int not null,
-   NUMUSER              int not null,
-   primary key (NUMCOMMANDE, NUMUSER)
 );
 
 /*==============================================================*/
@@ -169,10 +158,7 @@ create table vote
 alter table avis add constraint FK_POSTE_UN2 foreign key (NUMUSER)
       references utilisateur (NUMUSER) on delete restrict on update restrict;
 
-alter table commandeEnregistree add constraint FK_PASSE_UNE foreign key (NUMCOMMANDE)
-      references commande (NUMCOMMANDE) on delete restrict on update restrict;
-
-alter table commandeEnregistree add constraint FK_PASSE_UNE2 foreign key (NUMUSER)
+alter table commande add constraint FK_REFERENCE_12 foreign key (NUMUSER)
       references utilisateur (NUMUSER) on delete restrict on update restrict;
 
 alter table compatibilite add constraint FK_EST_COMPATIBLE foreign key (NUMPRODUIT2)
