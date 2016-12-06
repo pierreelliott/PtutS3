@@ -52,7 +52,7 @@
                             <td><?php echo $row["libelle"]; ?></td>
                             <td><?php echo $row["description"]; ?></td>
                             <td><img src='<?php echo $row["sourceMoyen"]; ?>' alt='Image du produit'></td>
-                            <td><a href='index.php'><img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'></a></td>
+                            <td><a href='<?php echo 'panier.php?action=ajout&produit='.implode(',', $row); ?>'><img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'></a></td>
                         </tr>
                         <?php
                             }
@@ -64,5 +64,15 @@
             <?php include("include/footer.php"); ?>
             
         </div>
+        
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>');</script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

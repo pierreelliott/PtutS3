@@ -1,6 +1,8 @@
 <?php
     include_once('modele/inscription/InscriptionModel.php');
 
+    session_start();
+    
     $bdd = new InscriptionModel();
     
     if(

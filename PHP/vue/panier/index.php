@@ -37,49 +37,38 @@
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <table class="table table-hover"> 
-                        <tbody> 
+                        <tbody>
                             <tr> 
-                                <td>Produit</td> 
-                                <td>Quantité</td> 
-                                <td>Prix unitaire (€)</td>
-                                <td>Prix total (€)</td>
-                                <td>Retirer du panier</td>
+                                <th>Produit</th> 
+                                <th>Quantité</th> 
+                                <th>Prix unitaire (€)</th>
+                                <th>Prix total (€)</th>
+                                <th>Retirer du panier</th>
                             </tr>
-                            <tr> 
-                                <td>Le Maki Sushi</td> 
-                                <td>5</td> 
-                                <td>3.10</td>
-                                <td>15.50</td>
-                                <td><a href=""><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a> </td>
+                            <?php
+                                $montantTotal = 0;
+                                $montantTotalProduit = 0;
+                                for($i = 0; $i < count($_SESSION["panier"]["libelle"]); $i++) {
+                                    $montantTotalProduit = $_SESSION["panier"]["quantite"][$i] * $_SESSION["panier"]["prix"][$i];
+                                    $montantTotal += $montantTotalProduit;
+                            ?>
+                            <tr>
+                                <td><?php echo $_SESSION["panier"]["libelle"][$i]; ?></td>
+                                <td><?php echo $_SESSION["panier"]["quantite"][$i]; ?></td>
+                                <td><?php echo $_SESSION["panier"]["prix"][$i]; ?></td>
+                                <td><?php echo  $montantTotalProduit; ?></td>
+                                <td><a href='<?php echo 'panier.php?action=suppression&produit='.'?'; ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
                             </tr>
-                            <tr> 
-                                <td>Les sashimis</td> 
-                                <td>2</td> 
-                                <td>2.00</td>
-                                <td>4.00</td>
-                                <td><a href=""><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a> </td>
-                            </tr> 
-                            <tr> 
-                                <td>Les nigiri-sushis</td> 
-                                <td>2</td> 
-                                <td>1.50</td>
-                                <td>3.00</td> 				 
-                                <td><a href=""><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a> </td>
-                            </tr> 
-                            <tr> 
-                                <td>Chips de creuvette</td>
-                                <td>1 paquet</td>
-                                <td>3.60</td>
-                                <td>3.60</td>
-                                <td><a href=""><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a> </td>
-                            </tr> 
-                            <tr> 
+                            <?php
+                                }
+                            ?>
+                            <tr>
                                 <td>Total</td>
-                                <td>10</td>
+                                <td><?php echo array_sum($_SESSION["panier"]["quantite"]); ?></td>
                                 <td></td>
-                                <td>26.60</td>
+                                <td><?php echo $montantTotal; ?></td>
                                 <td></td>
-                            </tr> 
+                            </tr>
                         </tbody> 
                     </table> 
                 </div>
@@ -92,16 +81,14 @@
 
                 
 
-      <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-                  <script src="/js/lightbox.js"></script>
-
-      <script src="/js/bootstrap.min.js"></script>
-          <script src="/js/lightbox.js"></script>
-      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>');</script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

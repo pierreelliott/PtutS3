@@ -1,6 +1,8 @@
 <?php
     require_once('modele/connexion/ConnexionModel.php');
     
+    session_start();
+    
     $bdd = new ConnexionModel();
     
     if(isset($_POST["mdp"]) and isset($_POST["pseudo"]))

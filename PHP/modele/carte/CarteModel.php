@@ -5,7 +5,7 @@
     {
         public function recupererCarte()
         {
-            $requete = "select libelle, description, sourceMoyen, prix from produit p join image i on p.numImage = i.numImage;";
+            $requete = "select numProduit, libelle, description, sourceMoyen, prix from produit p join image i on p.numImage = i.numImage;";
             $resultat = $this->executerRequete($requete);
 
             return $resultat;
