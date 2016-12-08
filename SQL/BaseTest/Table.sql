@@ -52,7 +52,7 @@ create table commande
    NUMRUE               numeric(8,0),
    CODEPOSTAL           varchar(6),
    TYPECOMMANDE         varchar(200) not null,
-   NUMUSER              integer,
+   NUMUSER              integer not null,
    primary key (NUMCOMMANDE)
 );
 
@@ -190,4 +190,3 @@ alter table vote add constraint FK_VOTE foreign key (NUMAVIS)
 
 alter table vote add constraint FK_VOTE2 foreign key (NUMUSER)
       references utilisateur (NUMUSER) on delete restrict on update restrict;
-
