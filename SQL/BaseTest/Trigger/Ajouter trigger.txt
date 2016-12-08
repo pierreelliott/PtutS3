@@ -1,7 +1,7 @@
 Dans PhpMyAdmin specifier un autre delimiteur que le ; par exemple /
 
-Erreur rencontrée pour certains triggers :
-#1235 - This version of MariaDB doesn't yet support 
+Erreur rencontrÃ©e pour certains triggers :
+#1235 - This version of MariaDB doesn't yet support
 'multiple triggers with the same action time and event for one table'
 
 Version de MariaDB de alwaysdata.com : 10.1.13
