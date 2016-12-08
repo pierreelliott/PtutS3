@@ -31,6 +31,7 @@
     </head>
 
     <body>
+        <?php unset($_SESSION["panier"]); ?>
         <div class="container-fluid">
 
             <?php include("include/header.php"); ?>

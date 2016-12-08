@@ -46,27 +46,30 @@
                                 <th>Retirer du panier</th>
                             </tr>
                             <?php
-                                $montantTotal = 0;
+                                $sommeMontantTotal = 0;
                                 $montantTotalProduit = 0;
-                                for($i = 0; $i < count($_SESSION["panier"]["libelle"]); $i++) {
-                                    $montantTotalProduit = $_SESSION["panier"]["quantite"][$i] * $_SESSION["panier"]["prix"][$i];
-                                    $montantTotal += $montantTotalProduit;
+                                $sommeQuantite = 0;
+                                foreach($_SESSION["panier"] as $key => $produit)
+                                {
+                                    $sommeQuantite += $produit["quantite"];
+                                    $montantTotalProduit = $produit["quantite"] * $produit["prix"];
+                                    $sommeMontantTotal += $montantTotalProduit;
                             ?>
                             <tr>
-                                <td><?php echo $_SESSION["panier"]["libelle"][$i]; ?></td>
-                                <td><?php echo $_SESSION["panier"]["quantite"][$i]; ?></td>
-                                <td><?php echo $_SESSION["panier"]["prix"][$i]; ?></td>
+                                <td><?php echo $produit["libelle"]; ?></td>
+                                <td><?php echo $produit["quantite"]; ?></td>
+                                <td><?php echo $produit["prix"]; ?></td>
                                 <td><?php echo  $montantTotalProduit; ?></td>
-                                <td><a href='<?php echo 'panier.php?action=suppression&produit='.'?'; ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
+                                <td><a href='<?php echo 'panier.php?action=suppression&produit='.$key.','.implode(',', $produit); ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
                             </tr>
                             <?php
                                 }
                             ?>
                             <tr>
                                 <td>Total</td>
-                                <td><?php echo array_sum($_SESSION["panier"]["quantite"]); ?></td>
+                                <td><?php echo $sommeQuantite; ?></td>
                                 <td></td>
-                                <td><?php echo $montantTotal; ?></td>
+                                <td><?php echo $sommeMontantTotal; ?></td>
                                 <td></td>
                             </tr>
                         </tbody> 
