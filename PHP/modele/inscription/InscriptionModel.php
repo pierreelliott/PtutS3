@@ -24,8 +24,8 @@
 
         public function getPseudo($pseudo)
         {
-            $requete = "select pseudo from utilisateur where pseudo = '?';";
-            $resultat = $this->executerRequete($requete, array($pseudo));
+            $requete = "select pseudo from utilisateur where pseudo = :pseudo;";
+            $resultat = $this->executerRequete($requete, array('pseudo' => $pseudo));
 
             return $resultat;
         }

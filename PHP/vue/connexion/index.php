@@ -55,7 +55,7 @@
                                     <div class="col-lg-offset-4 col-lg-4">
                                         <div class="form-group">
                                             <label for="pseudo" class="control-label">Pseudo ou Adresse e-mail</label>
-                                            <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo ou Adresse e-mail" class="form-control"/>
+                                            <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo ou Adresse e-mail" class="form-control" autofocus/>
                                         </div>
                                     </div>
                                 </div>
