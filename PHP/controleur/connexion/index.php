@@ -12,14 +12,16 @@
         
         $resultat = $bdd->connexion($pseudo, $mdpHash);
 
+        // Si la connexion a réussi (la requête renvoie une ligne)
         if($resultat->rowCount() > 0)
         {
+            // tabRows contient un tableau dont chaque élément est une ligne renvoyée sous forme de tableau
+            // tabRows est donc une matrice ne contenant qu'une ligne
             $tabRows = $resultat->fetchAll(PDO::FETCH_ASSOC);
+            
+            $_SESSION["utilisateur"] = $tabRows[0];
 
-            session_start();
-            $_SESSION["numClient"] = $tabRows["numClient"];
-            $_SESSION["pseudo"] = $pseudo;
-
+            // Si l'utilisateur coche la case de connexion automatique
             if(isset($_POST["connAuto"]))
             {
                 setcookie("pseudo", $pseudo);

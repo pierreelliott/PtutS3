@@ -17,7 +17,8 @@
         // On vérifie que l'utilisateur a entré quelque chose
         if(
             $_POST["pseudo"] == "" and $_POST["mdp"] == "" and $_POST["mdpConfirm"] == "" and
-            $_POST["nom"] == "" and $_POST["prenom"] == "" and $_POST["email"] == ""
+            $_POST["nom"] == "" and $_POST["prenom"] == "" and
+            $_POST["email"] == "" and $_POST["tel"] == ""
           )
         {
             $message = "Un ou plusieurs champs obligatoires ne sont pas remplis.<br>";
@@ -28,12 +29,14 @@
         $nom = htmlspecialchars($_POST["nom"]);
         $prenom = htmlspecialchars($_POST["prenom"]);
         $email = htmlspecialchars($_POST["email"]);
+        $tel = htmlspecialchars($_POST["tel"]);
         $rue = htmlspecialchars($_POST["rue"]);
         $ville = htmlspecialchars($_POST["ville"]);
+        $codePostal = htmlspecialchars($_POST["codePostal"]);
         
         $resultat = $bdd->getPseudo($pseudo);
         
-        // On vérifie que la requête renvoie un résultat (le pseudo n'est pas libre)
+        // On vérifie que le pseudo est libre (la requête ne renvoie pas de résultat)
         if($resultat->rowCount() != 0)
         {
             $message = "Ce pseudo n'est pas libre.<br>";
@@ -51,6 +54,13 @@
         if($email != "" and !preg_match("#[a-zA-Z0-9]+@[a-zA-Z]{2,}.[a-z]{2,4}#", $email))
         {
             $message = "L'adresse email doit avoir une forme valide.<br>";
+            $inscriptionValide = false;
+        }
+        
+        // On vérifie que le téléphone contient bien 10 chiffres
+        if($tel != "" and ! preg_match("#^0[1-9]([-. ]?[0-9]{2}){4}$#", $tel))
+        {
+            $message = "Le numéro de téléphone doit avoir une forme valide.<br>";
             $inscriptionValide = false;
         }
         

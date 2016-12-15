@@ -1,10 +1,10 @@
-<!-- NAVBAR -->		
-<nav class="navbar navbar-inverse">
+<!-- NAVBAR -->	
+<nav class="navbar navbar-static-top navbar-inverse">
     <ul class="nav navbar-nav">
         <li><a href="index.php" id="active">Accueil</a></li>
         <li><a href="carte.php">Carte</a></li>
         <li>
-            <form class="navbar-form form-inline navbar-left"">
+            <form class="navbar-form form-inline navbar-left">
                 <div class="input-group"> 
                     <input type="search" class="form-control" placeholder="Rechercher">
                     <span class="input-group-btn">
@@ -17,15 +17,24 @@
 
     <ul class="nav navbar-nav navbar-right">
         <?php
-            if(isset($_SESSION["pseudo"])) // L'utilsateur est connecté
+            // Si l'utilsateur est connecté
+            if(isset($_SESSION["utilisateur"]))
             {
                 ?>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" href="#"><?php echo $_SESSION["pseudo"]; ?> <b class="caret"></b></a>
+                    <a data-toggle="dropdown" href="#"><?php echo $_SESSION["utilisateur"]["pseudo"]; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Mon compte</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li><a href="#">Item</a></li>
+                        <li><a href="utilisateur.php">Mon compte</a></li>
+                        <li><a href="#">Consulter panier</a></li>
+                        <li><a href="#">Recherche avancée</a></li>
+                        <?php
+                            if($_SESSION["utilisateur"]["typeUser"] == "ADMIN")
+                            {
+                                echo "<li><a href='administration.php?action=ajout'>Ajouter produit</a></li>\n";
+                                echo "<li><a href='administration.php?action=modification'>Modifier produit</a></li>\n";
+                                echo "<li><a href='administration.php?action=suppression'>Supprimer produit</a></li>\n";
+                            }
+                        ?>
                         <li class="divider"></li>
                         <li><a href="deconnexion.php">Déconnexion</a></li>
                     </ul>
