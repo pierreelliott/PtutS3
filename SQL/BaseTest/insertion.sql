@@ -1,7 +1,7 @@
 /* Table Utilisateur */
 insert into utilisateur(Nom, Prenom,Mail, Ville, Rue, CodePostal, Telephone, TypeUser, Pseudo, MDP, NumRue)
 values
-("Menvu","G�rard","adr@mail.fr",null,null,null,"0404040404","ADMIN","gmenvu","1234", null),
+("Menvu","Gérard","adr@mail.fr",null,null,null,"0404040404","ADMIN","gmenvu","1234", null),
 ("Atan","Charles","addmail.en",null,null,null,"0505050505","USER","catan","2345", null),
 ("Doeuf","John","ddd@mail.us",null,null,null,"0202020202","USER","jdoeuf","3456",null),
 ("Pietrac","Nicolas","aha@mail.net","Ploubelec","rue des Alouettes","14100","0606060606","USER","npietrac","4567", "42");
@@ -52,7 +52,7 @@ insert into produit(Libelle, Prix,Description, TypeProduit, NumImage) values
 ("Rix titi",3,"Riz au lait","Accompagnement",4),
 ("Makizu chichi",6,"Maki au poulet","Maki",5),
 ("Sushi rah",5,"Sushi au cabillaud","Sushi",6),
-("Alges � gogo",9,"Bo�te d algues rouges","Accompagnement",7);
+("Alges à gogo",9,"Boîte d algues rouges","Accompagnement",7);
 
 /* Table Commande (numcommande,date,codepostal,ville,rue,numrue,typecommande)*/
 insert into commande(Date, CodePostal, Ville, Rue, NumRue, TypeCommande, NumUser) values
@@ -73,4 +73,8 @@ values
 insert into compatibilite (NumProduit, NumProduit2) values(1,2), (5,2), (3,2), (1,3), (4,6), (5,6);
 
 /* Table Preference (numuser,numproduit,classement)*/
-insert into preference (NumUser,NumProduit,Classement) values(4,1,1), (4,3,2), (3,3,1);
+insert into preference (NumUser,NumProduit,Classement)
+values
+(4,1,1),
+(4,3,2),
+(3,3,1);

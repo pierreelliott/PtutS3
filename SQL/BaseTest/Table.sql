@@ -135,7 +135,7 @@ create table utilisateur
    VILLE                varchar(200),
    RUE                  varchar(250),
    CODEPOSTAL           varchar(6),
-   TELEPHONE            varchar(11),
+   TELEPHONE            varchar(11) not null,
    TYPEUSER             varchar(20) not null,
    PSEUDO               varchar(25) not null,
    MDP                  varchar(1024) not null,
