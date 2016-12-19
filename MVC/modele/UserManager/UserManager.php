@@ -1,6 +1,6 @@
 <?php
     require("../Model.php");
-    public class UserManager extends Model
+    public class userManager extends Model
     {
 
         public function connexion($pseudo, $mdpHash)
@@ -19,29 +19,41 @@
 
         public function inscription($pseudo, $mdpHash, $nom, $prenom, $email, $tel, $numRue, $rue, $ville, $codePostal)
         {
-            $requete = "insert into utilisateur(pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription)"
-                    . "values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, 'USER', CURDATE())";
+            $doublon = $this->executerRequete("select pseudo from utilisateur where pseudo = ?", array($pseudo));
+            $doublon = $doublon->fetchAll(PDO::FETCH_ASSOC);
 
-            $params = array(
-                'pseudo' => $pseudo,
-                'mdp' => $mdpHash,
-                'nom' => $nom,
-                'prenom' => $prenom,
-                'mail' => $email,
-                'tel' => $tel,
-                'numRue' => $numRue,
-                'rue' => $rue,
-                'ville' => $ville,
-                'codePostal' => $codePostal
-                );
+            //Si fetch renvoit rien il est égal a false
+            if($doublon == false)
+            {
+                $requete = "insert into utilisateur(pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription)"
+                        . "values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, 'USER', CURDATE())";
 
-            $this->executerRequete($requete, $params);
+                $params = array(
+                    'pseudo' => $pseudo,
+                    'mdp' => $mdpHash,
+                    'nom' => $nom,
+                    'prenom' => $prenom,
+                    'mail' => $email,
+                    'tel' => $tel,
+                    'numRue' => $numRue,
+                    'rue' => $rue,
+                    'ville' => $ville,
+                    'codePostal' => $codePostal
+                    );
+
+                $this->executerRequete($requete, $params);
+                return true;
+            }
+            return false;
+
         }
 
         public function getPseudo($pseudo)
         {
             $requete = "select pseudo from utilisateur where pseudo = '?';";
             $resultat = $this->executerRequete($requete, array($pseudo));
+
+            $resultat->fetch();
 
             return $resultat;
         }
