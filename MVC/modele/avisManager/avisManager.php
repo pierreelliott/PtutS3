@@ -88,6 +88,16 @@
             return $resultat;
         }
 
+        //Recupere l'avis en fonction du pseudo de l'utilisateur
+        public function getAvis($pseudo)
+        {
+            $user = $this->getNumUser($pseudo);
+
+            $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user))
+            $resultat = $resultat->fetch();
+
+            return $resultat;
+        }
 
     }
  ?>
