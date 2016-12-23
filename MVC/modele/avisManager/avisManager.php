@@ -1,8 +1,10 @@
 <?php
     require("../Model.php");
+    require("../userManager/userManager.php");
 
     public class avisManager extends Model
     {
+        public userManager $um = new userManager();
         //Ajouter un avis
         public function addAvis($commentaire, $pseudo, $note)
         {
@@ -19,7 +21,7 @@
                     $commentaire == null;
                 }
                 //On recupere le NumUser associé
-                $user = $this->getNumUser($pseudo);
+                $user = $um->getNumUser($pseudo);
 
                 $resultat = $this->executerRequete('insert into avis (Numuser, avis, note, date, dateDernierVote)
                                         values(?, ?, ?, CURRENT_DATE(), null)', array($user['NumUser'], $commentaire, $note));
@@ -37,7 +39,7 @@
         public function modifAvis($commentaire, $pseudo, $note)
         {
             //On recupere le NumUser associé
-            $user = $this->getNumUser($pseudo);
+            $user = $um->getNumUser($pseudo);
 
             //Si que des espaces on mets a null
             if($commentaire == " ")
@@ -56,7 +58,7 @@
         public function addVote($numAvis, $vote, $pseudo)
         {
             //On recupere le NumUser associé
-            $user = $this->getNumUser($pseudo);
+            $user = $um->getNumUser($pseudo);
 
             $resultat = $this->executerRequete('insert into vote(numAvis, numUser, vote)
                                                values(?, ?, ?)', array($numAvis, $user, $vote));
@@ -79,19 +81,12 @@
             return true;
         }
 
-        //Permet de recuperer le NumUser à partir du pseudo
-        public function getNumUser($pseudo)
-        {
-            $resultat = $this->executerRequete('select numUser from utilisateur where pseudo = ?', array($pseudo));
-            $resultat->fetch();
 
-            return $resultat;
-        }
 
         //Recupere l'avis en fonction du pseudo de l'utilisateur
         public function getAvis($pseudo)
         {
-            $user = $this->getNumUser($pseudo);
+            $user = $um->getNumUser($pseudo);
 
             $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user))
             $resultat = $resultat->fetch();

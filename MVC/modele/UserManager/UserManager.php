@@ -2,7 +2,7 @@
     require("../Model.php");
     public class userManager extends Model
     {
-
+        //Teste les logs de connexion à la BD
         public function connexion($pseudo, $mdpHash)
         {
             $requete = "select numUser from utilisateur where pseudo = :pseudo and mdp = :mdpHash;";
@@ -17,6 +17,7 @@
             return $resultat;
         }
 
+        //Ajoute le nouveau utilisateur à la BD
         public function inscription($pseudo, $mdpHash, $nom, $prenom, $email, $tel, $numRue, $rue, $ville, $codePostal)
         {
             $doublon = $this->executerRequete("select pseudo from utilisateur where pseudo = ?", array($pseudo));
@@ -56,6 +57,39 @@
             $resultat->fetch();
 
             return $resultat;
+        }
+
+        //Permet de recuperer le NumUser à partir du pseudo
+        public function getNumUser($pseudo)
+        {
+            $resultat = $this->executerRequete('select numUser from utilisateur where pseudo = ?', array($pseudo));
+            $resultat->fetch();
+
+            return $resultat;
+        }
+
+        //Recupere les informations de l'user
+        public function getInfo($pseudo)
+        {
+            $requete = $this->executerRequete('select nom, prenom, mail, ville, rue, codePostal, telephone, pseudo, numRue, dateInscription
+                                            from utilisateur
+                                            where pseudo= ?', array($pseudo));
+            $date = $requete->fetch();
+            return $data;
+        }
+
+        //Recupere les produits favoris de l'utilisateur
+        public function getProduitsFavoris($pseudo)
+        {
+            $user = $this->getNumUser($pseudo);
+            $resultat = $this->executerRequete('select numImage, description, prix, libelle, typeProduit
+                                                from produit p1 join preference p2
+                                                on p1.NUMPRODUIT = p2.NUMPRODUIT
+                                                where numUser= ?
+                                                order by CLASSEMENT', array($user));
+
+            $data = $resultat->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
         }
     }
 ?>
