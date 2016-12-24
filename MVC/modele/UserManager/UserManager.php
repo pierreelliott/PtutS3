@@ -91,5 +91,35 @@
             $data = $resultat->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         }
+
+        //Ajoute le produit aux favioris de l'utilisateur
+        public function addProduitFavoris($pseudo, $NUMPRODUIT)
+        {
+            $user = $this->getNumUser($pseudo);
+
+            $classement = $this->executerRequete('select max(classement) from preference where numUser = ?', array($user));
+            $classement = $classement['CLASSEMENT'] + 1;
+
+            $requete = $this->executerRequete('insert into preference(numUser, NUMPRODUIT, CLASSEMENT)
+                                            values(?, ?, ?)', array($user, $NUMPRODUIT, $classement));
+            return $requete;
+
+        }
+
+        //Passer un utilisateur en admin
+        public function addAdmin($pseudo)
+        {
+            $user = $this->getNumUser($pseudo);
+
+            $requete = $this->executerRequete("update utilisateur set typeUser='ADMIN' where numUser=? ", array($user));
+        }
+
+        //Passer un admin en Utilisateur
+        public function deleteAdmin($pseudo)
+        {
+            $user = $this->getNumUser($pseudo);
+
+            $requete = $this->executerRequete("update utilisateur set typeUser='USER' where numUser=? ", array($user));
+        }
     }
 ?>
