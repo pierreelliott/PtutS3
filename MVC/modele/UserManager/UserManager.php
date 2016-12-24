@@ -74,7 +74,7 @@
             $requete = $this->executerRequete('select nom, prenom, mail, ville, rue, codePostal, telephone, pseudo, numRue, dateInscription
                                             from utilisateur
                                             where pseudo= ?', array($pseudo));
-            $date = $requete->fetch();
+            $data = $requete->fetch();
             return $data;
         }
 
