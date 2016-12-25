@@ -1,7 +1,5 @@
 <?php
     include_once('modele/UserManager.php');
-
-    session_start();
     
     $bdd = new UserManager();
     
@@ -64,4 +62,4 @@
         }  
     }
 
-    include_once('vue/inscription/inscription.php');
+    include_once('vue/inscription.php');

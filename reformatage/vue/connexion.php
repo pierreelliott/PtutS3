@@ -1,5 +1,5 @@
 <?php
-	$title = "Se connecter";
+	$title = "Se connecter - Sushinos";
 		ob_start();
 		echo '<div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">

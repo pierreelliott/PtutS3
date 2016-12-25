@@ -16,17 +16,16 @@
 	</head>
 
 	<body>
-		<?php
-		require("../include/header.php");
-		?>
-
-		<div>
+	
+		<?php require("../include/header.php"); ?>
+		
+		<div class="container-fluid">
+		
 			<?php echo $contenu ?>
+			
 		</div>
-
-
-		<?php
-			require("../include/footer.php");
-		?>
+		
+		<?php require("../include/footer.php"); ?>
+		
 	</body>
 </html>
