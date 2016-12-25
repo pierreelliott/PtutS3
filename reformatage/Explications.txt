@@ -1,0 +1,14 @@
+J'ai modifié le modèle et le contrôleur du Panier.
+
+J'ai pas encore touché (pas beaucoup tout du moins) aux autres contrôleurs.
+
+J'ai viré les dossiers inutiles (dans les dossiers vue, modele et controleur).
+
+
+Pour les modèles :
+j'ai essayé un mode "pur objet", càd : j'ai séparé les fonctions de chaque classe dans des fichiers simples.
+(Ex: UserManager -> inclut "UserManager/fonctions.php" -> inclut toutes les fonctions [connexion, inscription,...])
+
+Les classes conservent (en commentaire) les déclarations des fonctions ainsi que les valeurs de retour (et pourquoi).
+L'idée c'est de pouvoir modifier une fonction sans forcément toucher à la classe.
+Et on a pas besoin de savoir comment la fonction fonctionne juste, ce qu'elle prend en paramètre(s) et ce qu'elle retourne.

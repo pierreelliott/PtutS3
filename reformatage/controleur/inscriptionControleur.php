@@ -1,5 +1,5 @@
 <?php
-    include_once('modele/userManager/UserManager.php');
+    include_once('modele/UserManager.php');
 
     session_start();
     

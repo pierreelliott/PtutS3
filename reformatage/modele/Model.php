@@ -25,7 +25,7 @@
         {
             if(self::$bdd == null)
             {
-                require "modele/login.php";
+                require("BD.php");
 
                 try
                 {
@@ -35,10 +35,10 @@
                 {
                     echo $ex->getMessage();
                 }
-                
+
                 self::$bdd->exec('SET NAMES utf8');
                 self::$bdd->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            }   
+            }
             return self::$bdd;
         }
     }
