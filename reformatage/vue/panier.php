@@ -1,6 +1,6 @@
 <?php
 
-	$title = "Panier";
+	$title = "Panier - Sushinos";
 
 	ob_start();
 

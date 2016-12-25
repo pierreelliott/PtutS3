@@ -1,5 +1,5 @@
 <?php
-	$title = "S'inscrire";
+	$title = "Inscription - Sushinos";
 	ob_start();
 
 	echo '<div class="row">

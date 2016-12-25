@@ -1,7 +1,5 @@
 <?php
-    include_once('modele/carte/CarteModel.php');
-    
-    session_start();
+    include_once('modele/ProduitManager.php');
 	
 	function carte()
     {
@@ -11,5 +9,5 @@
 		$tabRows = $resultat->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-    include_once('vue/carte/index.php');
+    include_once('vue/carte.php');
 ?>

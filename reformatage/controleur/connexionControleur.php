@@ -1,8 +1,6 @@
 <?php
     require_once('modele/UserManager.php');
     
-    session_start();
-    
     $bdd = new UserManager();
     
     if(isset($_POST["mdp"]) and isset($_POST["pseudo"]))
@@ -36,4 +34,4 @@
         }
     }
 
-    include_once('vue/connexion/index.php');
+    include_once('vue/connexion.php');
