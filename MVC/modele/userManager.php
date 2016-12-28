@@ -1,6 +1,6 @@
 <?php
     require("Model.php");
-    public class userManager extends Model
+    public class UserManager extends Model
     {
         //Teste les logs de connexion à la BD
         public function connexion($pseudo, $mdpHash)
@@ -92,7 +92,7 @@
             return $data;
         }
 
-        //Ajoute le produit aux favioris de l'utilisateur
+        //Ajoute le produit aux favoris de l'utilisateur
         public function addProduitFavoris($pseudo, $NUMPRODUIT)
         {
             $user = $this->getNumUser($pseudo);

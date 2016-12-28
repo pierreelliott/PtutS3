@@ -1,5 +1,5 @@
 <?php
-    include_once('modele/carteModel.php');
+    include_once('modele/ProduitManager.php');
 
     session_start();
 

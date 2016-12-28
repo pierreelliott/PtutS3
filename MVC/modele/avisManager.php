@@ -1,8 +1,8 @@
 <?php
     require("Model.php");
-    require("userManager.php");
+    require("UserManager.php");
 
-    public class avisManager extends Model
+    public class AvisManager extends Model
     {
         public userManager $um = new userManager();
         //Ajouter un avis
