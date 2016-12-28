@@ -1,5 +1,5 @@
 <?php
-    require_once("modele/Model.php");
+    require_once("Model.php");
 
     class PanierModel extends Model
     {

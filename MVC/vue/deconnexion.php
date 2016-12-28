@@ -16,4 +16,6 @@
 
 		ob_end_clean();
 
+		require("layout/site.php");
+
 ?>

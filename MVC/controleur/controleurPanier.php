@@ -1,8 +1,8 @@
 <?php
-    include_once('modele/panier/PanierModel.php');
-    
+    include_once('modele/panierModel.php');
+
     session_start();
-    
+
     if(!isset($_SESSION["panier"]))
     {
         $_SESSION["panier"] = array();
@@ -12,12 +12,12 @@
         $_SESSION["panier"]["quantite"] = array();
         $_SESSION["panier"]["prix"] = array();
     }
-    
+
     if(isset($_GET["action"]) && isset($_GET["produit"]))
     {
         $tabParams = explode(',', $_GET["produit"]);
         $positionProduit = array_search($tabParams[1],  $_SESSION["panier"]["libelle"]);
-        
+
         switch ($_GET["action"])
         {
             case "ajout":
@@ -32,11 +32,11 @@
                     array_push($_SESSION["panier"]["sourceMoyen"], $tabParams[3]);
                     array_push($_SESSION["panier"]["quantite"], 1);
                     array_push($_SESSION["panier"]["prix"], $tabParams[4]);
-                } 
+                }
             break;
-			
-			
-			
+
+
+
             case "suppression":
                 $tmp = array();
                 $tmp["libelle"] = array();
@@ -57,12 +57,11 @@
                 //On efface notre panier temporaire
                 unset($tmp);
             break;
-			
-			
-			
-            default : echo 'L\'action demandée n\'est pas reconnue';
-        }      
-    }
-    
-    include_once('vue/panier/index.php');
 
+
+
+            default : echo 'L\'action demandée n\'est pas reconnue';
+        }
+    }
+
+    include_once('vue/panier.php');

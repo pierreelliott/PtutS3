@@ -1,7 +1,7 @@
 <?php
 
 	$title = "";
-	
+
 	echo '<div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <form method="post" action="administration.php?action=suppression" name="ajoutProduit" accept-charset="utf-8">
@@ -10,7 +10,7 @@
                             <table class="table table-hover">
                                 <tbody>
                                     <tr>
-                                        <th>Libellé</th>
+                                        <th>LibellÃ©</th>
                                         <th>Description</th>
                                         <th>Image</th>
                                         <th>Prix</th>
@@ -25,10 +25,12 @@
                             </div>
                         </fieldset>
                     </form>
-                            
+
                 </div>
             </div>';
-	
+
 	$contenu = ob_get_contents();
 	ob_end_clean();
+
+	require("layout/site.php");
 ?>

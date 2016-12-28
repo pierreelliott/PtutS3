@@ -1,15 +1,15 @@
 <?php
-    require_once('modele/connexion/ConnexionModel.php');
-    
+    require_once('modele/userManager.php');
+
     session_start();
-    
-    $bdd = new ConnexionModel();
-    
+
+    $bdd = new UserManager();
+
     if(isset($_POST["mdp"]) and isset($_POST["pseudo"]))
     {
         $pseudo = htmlspecialchars($_POST["pseudo"]);
         $mdpHash = sha1($_POST["mdp"]);
-        
+
         $resultat = $bdd->connexion($pseudo, $mdpHash);
 
         if($resultat->rowCount() > 0)
@@ -34,4 +34,4 @@
         }
     }
 
-    include_once('vue/connexion/index.php');
+    include_once('vue/connexion.php');

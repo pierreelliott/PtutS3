@@ -1,5 +1,5 @@
 <?php
-    require("../Model.php");
+    require("Model.php");
     public class userManager extends Model
     {
         //Teste les logs de connexion à la BD

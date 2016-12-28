@@ -1,7 +1,7 @@
 <?php
 
 	$title = "";
-	
+
 	echo '<div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">
                     <form method="post" action="administration.php?action=modification" name="ajoutProduit" accept-charset="utf-8">
@@ -19,17 +19,17 @@
                                             <div class="form-group">
                                                 <label for="image" class="control-label"></label>
                                                 <input type="file" id="image" name="image">
-                                            </div>   
+                                            </div>
                                         </div>
-                                    </div>         
+                                    </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="libelle" class="control-label">Libellé :</label>
-                                                <input type="text" id="libelle" name="libelle" placeholder="Libellé" class="form-control" autofocus>
-                                            </div>    
+                                                <label for="libelle" class="control-label">LibellÃ© :</label>
+                                                <input type="text" id="libelle" name="libelle" placeholder="LibellÃ©" class="form-control" autofocus>
+                                            </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
@@ -47,7 +47,7 @@
                                                 <input type="number" id="prix" name="prix" class="form-control">
                                             </div>
                                         </div>
-                                    </div>      
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label for="description" class="control-label">Description</label>
                                         <textarea type="textarea" class="form-control">Ecrivez une courte decription du produit</textarea>
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -65,11 +65,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </fieldset> 
+                        </fieldset>
                     </form>
                 </div>
             </div>';
-	
+
 	$contenu = ob_get_contents();
 	ob_end_clean();
+
+	require("layout/site.php");
 ?>

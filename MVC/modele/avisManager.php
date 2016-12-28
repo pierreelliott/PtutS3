@@ -1,6 +1,6 @@
 <?php
-    require("../Model.php");
-    require("../userManager/userManager.php");
+    require("Model.php");
+    require("userManager.php");
 
     public class avisManager extends Model
     {
