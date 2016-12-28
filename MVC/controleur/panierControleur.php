@@ -1,7 +1,7 @@
 <?php
     include_once('modele/PanierManager.php');
     
-    session_start();
+    //session_start();
 	
 	$panier = new PanierModel();
     

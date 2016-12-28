@@ -17,7 +17,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <?php
-            if(isset($_SESSION["pseudo"])) // L'utilsateur est connecté
+            if(isset($_SESSION["pseudo"])) // L'utilisateur est connecté
             {
                 ?>
                 <li class="dropdown">

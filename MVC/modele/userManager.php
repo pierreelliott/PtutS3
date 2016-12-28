@@ -1,6 +1,6 @@
 <?php
-    require("Model.php");
-    public class UserManager extends Model
+    //require("Model.php");
+    class UserManager extends Model
     {
         //Teste les logs de connexion à la BD
         public function connexion($pseudo, $mdpHash)

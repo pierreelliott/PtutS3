@@ -1,6 +1,6 @@
 <?php
 
-	$title = "";
+	$title = "Administration - Supprimer produit";
 
 	echo '<div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">

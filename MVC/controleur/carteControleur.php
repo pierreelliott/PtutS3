@@ -1,7 +1,7 @@
 <?php
     include_once('modele/ProduitManager.php');
 
-    session_start();
+    //session_start();
 
 	function carte()
     {

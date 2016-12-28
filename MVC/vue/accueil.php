@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 	$title = "Accueil - Sushinos";
 	
 	ob_start();
@@ -10,11 +10,11 @@
                             <h1 class="col-lg-offset-2 col-lg-8">Bienvenue chez Sushinos !</h1>
                         </div>
                         <div class="row">
-                            <p class="lead">Tous nos produits sont 100% naturels, composés avec les meilleurs ingrédients. Nous vous offrons une large gamme de produits, menus, desserts.</p>
+                            <p class="lead">Tous nos produits sont 100% naturels, composÃ©s avec les meilleurs ingrÃ©dients. Nous vous offrons une large gamme de produits, menus, desserts.</p>
                         </div>
                         <div class="row">
                             <div class="col-lg-offset-4 col-lg-4">
-                                <a href="carte.php" class="btn btn-lg btn-default">Découvrir</a>
+                                <a href="carte.php" class="btn btn-lg btn-default">DÃ©couvrir</a>
                             </div>
                         </div>
                     </div>
@@ -23,4 +23,6 @@
 	
 	$contenu = ob_get_contents();
 	ob_end_clean();
+	
+	require("layout/site.php");
 ?>

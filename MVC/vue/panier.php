@@ -1,6 +1,6 @@
 <?php
 
-	$title = "Panier";
+	$title = "Mon panier";
 
 	ob_start();
 

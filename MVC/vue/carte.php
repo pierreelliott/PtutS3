@@ -5,7 +5,7 @@
 
 		echo '<div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">
-                    <table class='table table-hover'>
+                    <table class="table table-hover">
                         <tr>
                             <th>Produit</th>
                             <th>Description</th>
