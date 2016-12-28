@@ -94,5 +94,44 @@
             return $resultat;
         }
 
+
+
+        //Recupere le nombre de votes positif
+        public function getVotePositif($numAvis)
+        {
+            $requete = $this->executerRequete("select nvl(count(vote), 0)
+                                            from vote
+                                            where vote ='true' and
+                                            numAvis= ?", array($numAvis));
+            $vote = $requete->fetch();
+
+            return $vote;
+        }
+
+        //Recupere le nombre de votes négatif
+        public function getVoteNegatif($numAvis)
+        {
+            $requete = $this->executerRequete("select nvl(count(vote), 0)
+                                            from vote
+                                            where vote ='false' and
+                                            numAvis= ?", array($numAvis));
+            $vote = $requete->fetch();
+
+            return $vote;
+        }
+
+        //Recupere l'avis avec le plus de vote positif
+        public function getAvisLePlusAime()
+        {
+
+            $requete= $this->executerRequete("select numAvis
+                                            from vote
+                                            where vote = 'true' and
+                                            max(count(vote))");
+            $numAvis = $requete->fetch();
+            $avis = $this->getAvis($numAvis['NUMAVIS']);
+            return $avis;
+        }
+
     }
  ?>
