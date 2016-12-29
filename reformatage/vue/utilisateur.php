@@ -1,7 +1,7 @@
 <?php
 
 	$title = "Profil utilisateur";
-	
+
 	ob_start();
 
 	echo '<div class="row">
@@ -12,7 +12,7 @@
 				<dd>'.$_SESSION["utilisateur"]["pseudo"].'</dd>
 				<dt>@ Adresse mail :</dt>
 				<dd>'.$_SESSION["utilisateur"]["mail"].'</dd>
-				<dt><span class="glyphicon glyphicon glyphicon-phone"></span> Téléphone :</dt>
+				<dt><span class="glyphicon glyphicon glyphicon-phone"></span> Tï¿½lï¿½phone :</dt>
 				<dd>'.$_SESSION["utilisateur"]["telephone"].'</dd>
 				<dt><span class="glyphicon glyphicon-map-marker"></span> Adresse :</dt>
 				<dd>'.
@@ -24,7 +24,9 @@
 			</dl>
 		</div>
 	</div>';
-	
+
 	$contenu = ob_get_contents();
 	ob_end_clean();
+
+	require("layout/site.php");
 ?>

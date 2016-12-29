@@ -11,7 +11,9 @@ and open the template in the editor.
 body
 {
     height: 100%;
-    background-image: url("../images/fond_index.jpg") ; 
+    background-image: url("../images/fond_index.jpg") ;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
     background-size: cover; /* version standardisée */
     font-family: 'Open Sans';
     color: white;
@@ -38,7 +40,7 @@ a
 a:hover, a:focus
 {
     color: gray;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 nav

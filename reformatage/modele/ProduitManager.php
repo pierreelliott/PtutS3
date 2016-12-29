@@ -1,5 +1,5 @@
 <?php
-    require_once("modele/Model.php");
+    require_once("Model.php");
 
     class ProduitModel extends Model
     {
@@ -63,7 +63,7 @@
 		
 		/* ============= Fonctions sur la carte des produits ============= */
 		
-		public function recupererCarte($tailleImage)
+		public function recupererCarte($tailleImage="moyen")
 		{
 			switch($tailleImage)
 			{

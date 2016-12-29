@@ -1,5 +1,5 @@
 <?php
-	$title = "Se connecter - Sushinos";
+	$title = "Se connecter";
 		ob_start();
 		echo '<div class="row">
                 <div class="col-lg-offset-3 col-lg-6 site-wrapper">
@@ -50,4 +50,6 @@
             </div>';
 		$contenu = ob_get_contents();
 		ob_end_clean();
+
+		require("layout/site.php");
 ?>

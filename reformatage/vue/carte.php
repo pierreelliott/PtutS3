@@ -1,5 +1,5 @@
 <?php
-    $title = "Carte - Sushinos";
+    $title = "Carte";
 
     ob_start();
 
@@ -31,4 +31,6 @@
 
 	$contenu = ob_get_contents();
     ob_end_clean();
+
+    require("layout/site.php");
 ?>

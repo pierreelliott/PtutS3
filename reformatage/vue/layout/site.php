@@ -9,23 +9,27 @@
 		<meta name="author" content="PIETRAC Nicolas - Mathis SLIMANI - PE Thiboud - Axel BERTRAND - Thomas BROUTIER">
 		<link rel="icon" href="images/logo_onglet.png">';
 
-		<title><?php echo $titre; ?></title>
+		<title><?php echo $title; ?></title>
 
-		<?php  include("bootstrapCss.php"); ?>
+		<?php include("bootstrapCss.php"); ?>
 
 	</head>
 
 	<body>
-	
-		<?php require("../include/header.php"); ?>
-		
-		<div class="container-fluid">
-		
-			<?php echo $contenu ?>
-			
+		<?php
+		require("header.php");
+		?>
+
+		<div>
+			<?php echo $contenu; ?>
 		</div>
 		
-		<?php require("../include/footer.php"); ?>
-		
+		<?php
+			#require("appelPages.php");
+		?>
+
+		<?php
+			require("footer.php");
+		?>
 	</body>
 </html>

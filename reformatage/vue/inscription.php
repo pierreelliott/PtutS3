@@ -1,5 +1,5 @@
 <?php
-	$title = "Inscription - Sushinos";
+	$title = "S'inscrire";
 	ob_start();
 
 	echo '<div class="row">
@@ -104,5 +104,7 @@
 	$contenu = ob_get_contents();
 
 	ob_end_clean();
+
+	require("layout/site.php");
 
 ?>

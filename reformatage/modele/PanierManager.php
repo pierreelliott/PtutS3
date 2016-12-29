@@ -1,7 +1,7 @@
 <?php
-    require_once("modele/Model.php");
+    require_once("Model.php");
 
-    class PanierModel extends Model
+    class PanierManager extends Model
     {
 		# Constructeur du panier
 		# Fonctionne comme n'importe quel constructeur (mais pas d'appel implicite au constructeur parent)
