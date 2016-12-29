@@ -94,12 +94,19 @@
             return $resultat;
         }
 
+        //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
+        public function getTousAvis($critere = "NUMAVIS")
+        {
+            $requete= $this->executerRequete('select avis, note, date from avis order by'.$critere);
+
+            $resultat = requete->fetchAll(PDO::FETCH_ASSOC);
+        }
 
 
         //Recupere le nombre de votes positif
         public function getVotePositif($numAvis)
         {
-            $requete = $this->executerRequete("select nvl(count(vote), 0)
+            $requete = $this->executerRequete("select IFNULL(count(vote), 0)
                                             from vote
                                             where vote ='true' and
                                             numAvis= ?", array($numAvis));
@@ -111,7 +118,7 @@
         //Recupere le nombre de votes négatif
         public function getVoteNegatif($numAvis)
         {
-            $requete = $this->executerRequete("select nvl(count(vote), 0)
+            $requete = $this->executerRequete("select IFNULL(count(vote), 0)
                                             from vote
                                             where vote ='false' and
                                             numAvis= ?", array($numAvis));
@@ -126,8 +133,22 @@
 
             $requete= $this->executerRequete("select numAvis
                                             from vote
-                                            where vote = 'true' and
-                                            max(count(vote))");
+                                            where vote = '1'
+                                            group by numAvis having count(vote) >= (select count(vote) from vote
+                                                                                    where vote = '1')");
+            $numAvis = $requete->fetch();
+            $avis = $this->getAvis($numAvis['NUMAVIS']);
+            return $avis;
+        }
+
+        //Recupere l'avis avec le plus vote negatif
+        public function getAvisLePlusDeteste()
+        {
+            $requete= $this->executerRequete("select numAvis
+                                            from vote
+                                            where vote = '0'
+                                            group by numAvis having count(vote) >= (select count(vote) from vote
+                                                                                    where vote = '0')");
             $numAvis = $requete->fetch();
             $avis = $this->getAvis($numAvis['NUMAVIS']);
             return $avis;
