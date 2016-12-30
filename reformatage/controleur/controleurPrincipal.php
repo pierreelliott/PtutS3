@@ -59,5 +59,5 @@
 		default:
 			include_once("vue/404.php");
 			break;
-	}	
+	}
 ?>

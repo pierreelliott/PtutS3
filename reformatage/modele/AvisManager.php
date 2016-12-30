@@ -4,14 +4,20 @@
 
     class AvisManager extends Model
     {
-        public UserManager $um = new UserManager();
+        public $um;
+        
+        public function __construct()
+        {
+            $this->$um = new UserManager();
+        }
+        
         //Ajouter un avis
         public function addAvis($commentaire, $pseudo, $note)
         {
             //Test si l'utilisateur n'a pas deja donné un avis
             $doublon = $this->executerRequete("select numUser from avis where numUser in (select pseudo
                                                                                            from utilisateur
-                                                                                           where pseudo = ?)", $array($pseudo);)
+                                                                                           where pseudo = ?)", $array($pseudo));
             $doublon = $doublon->fetchAll(PDO::FETCH_ASSOC);
             if($doublon == false)
             {
@@ -44,7 +50,7 @@
             //Si que des espaces on mets a null
             if($commentaire == " ")
             {
-                $commentaire == null;
+                $commentaire = null;
             }
 
             $resultat = $this->executerRequete('update avis
@@ -88,7 +94,7 @@
         {
             $user = $um->getNumUser($pseudo);
 
-            $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user))
+            $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user));
             $resultat = $resultat->fetch();
 
             return $resultat;
