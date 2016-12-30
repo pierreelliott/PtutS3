@@ -1,8 +1,8 @@
 <!-- NAVBAR -->	
 <nav class="navbar navbar-static-top navbar-inverse">
     <ul class="nav navbar-nav">
-        <li><a href="index.php" id="active">Accueil</a></li>
-        <li><a href="?page=carte">Carte</a></li>
+        <li><a href="index.php?page=accueil" id="active">Accueil</a></li>
+        <li><a href="index.php?page=carte">Carte</a></li>
         <li>
             <form class="navbar-form form-inline navbar-left">
                 <div class="input-group"> 
@@ -24,30 +24,30 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" href="#"><?php echo $_SESSION["utilisateur"]["pseudo"]; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="?page=utilisateur">Mon compte</a></li>
+                        <li><a href="index.php?page=utilisateur">Mon compte</a></li>
                         <li><a href="#">Consulter panier</a></li>
                         <li><a href="#">Recherche avancée</a></li>
                         <?php
                             if($_SESSION["utilisateur"]["typeUser"] == "ADMIN")
                             {
-                                echo "<li><a href='administration.php?action=ajout'>Ajouter produit</a></li>\n";
-                                echo "<li><a href='administration.php?action=modification'>Modifier produit</a></li>\n";
-                                echo "<li><a href='administration.php?action=suppression'>Supprimer produit</a></li>\n";
+                                echo "<li><a href='index.php?page=administration&action=ajout'>Ajouter produit</a></li>\n";
+                                echo "<li><a href='index.php?page=administration&action=modification'>Modifier produit</a></li>\n";
+                                echo "<li><a href='index.php?page=administration&action=suppression'>Supprimer produit</a></li>\n";
                             }
                         ?>
                         <li class="divider"></li>
-                        <li><a href="?page=deconnexion">Déconnexion</a></li>
+                        <li><a href="index.php?page=deconnexion">Déconnexion</a></li>
                     </ul>
                 </li>
                 <?php
             }
             else
             {
-                echo '<li><a href="?page=connexion">Connexion</a></li>';
+                echo '<li><a href="index.php?page=connexion">Connexion</a></li>';
             }
         ?>
 
-        <li><a href="?page=panier"><span class="glyphicon glyphicon-shopping-cart"></a></li>
+        <li><a href="index.php?page=panier"><span class="glyphicon glyphicon-shopping-cart"></a></li>
     </ul>
         
     
@@ -58,4 +58,3 @@
     -->
 </nav>
 <!-- NAVBAR END -->
-

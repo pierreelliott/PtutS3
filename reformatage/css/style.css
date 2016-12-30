@@ -11,9 +11,9 @@ and open the template in the editor.
 body
 {
     height: 100%;
-    background-image: url("../images/fond_index.jpg") ;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-image: url("../images/fond_index.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover; /* version standardisée */
     font-family: 'Open Sans';
     color: white;
@@ -45,10 +45,6 @@ a:hover, a:focus
 
 nav
 {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 0px 0px 15px 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
     text-align: center;
 }
 
@@ -71,12 +67,16 @@ label
 
 footer
 {
-    background-color: rgba(0, 0, 0, 0.75);
-    border-radius: 15px 15px 0px 0px;
-    /*position: absolute;*/
-    bottom: 0px;
-    overflow: hidden;
     text-align: center;
+    margin-top: 20px;
+    background-color: #222;
+    border: 1px solid;
+    border-width: 1px 0 0 0;
+    border-color: #080808;
+    border-radius: 0;
+    z-index: 1000;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
 .container
@@ -101,8 +101,8 @@ footer
     /*min-height: 80%;*/
     
     padding : 15px;
-    margin-top: 30vh;
-    margin-bottom: 30vh;
+/*    margin-top: 30vh;
+    margin-bottom: 30vh;*/
    
 }
 

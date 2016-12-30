@@ -7,7 +7,7 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="sushis en ligne restauration rapide emporter livraison">
 		<meta name="author" content="PIETRAC Nicolas - Mathis SLIMANI - PE Thiboud - Axel BERTRAND - Thomas BROUTIER">
-		<link rel="icon" href="images/logo_onglet.png">';
+		<link rel="icon" href="images/logo_onglet.png">
 
 		<title><?php echo $title; ?></title>
 
@@ -20,7 +20,7 @@
 		require("header.php");
 		?>
 
-		<div>
+		<div class="container-fluid">
 			<?php echo $contenu; ?>
 		</div>
 		

@@ -21,7 +21,7 @@
 			
 		case "connexion":
 			include_once("connexionControleur.php");
-			$connexion = new connexionControleur();
+			$connexion = new connexionControleur;
 			$connexion->connexion();
 			break;
 		
@@ -48,12 +48,5 @@
 		default:
 			include_once("vue/404.php");
 			break;
-	}
-	
-	
-	
-	
-	
-	
-	
+	}	
 ?>
