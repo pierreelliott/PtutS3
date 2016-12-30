@@ -7,23 +7,34 @@
 
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<h1><?php echo $_SESSION["utilisateur"]["nom"].' '.$_SESSION["utilisateur"]["prenom"]; ?></h1>
+			<h1>Vos informations - <?php echo $nom.' '.$prenom; ?></h1>
 			<dl class="dl-horizontal">
 				<dt><span class="glyphicon glyphicon-user"></span> Pseudo :</dt>
-				<dd><?php echo $_SESSION["utilisateur"]["pseudo"]; ?></dd>
+				<dd><?php echo $pseudo; ?></dd>
 				<dt>@ Adresse mail :</dt>
-				<dd><?php echo $_SESSION["utilisateur"]["mail"]; ?></dd>
-				<dt><span class="glyphicon glyphicon glyphicon-phone"></span> T�l�phone :</dt>
-				<dd><?php $_SESSION["utilisateur"]["telephone"]; ?></dd>
+				<dd><?php echo $mail; ?></dd>
+				<dt><span class="glyphicon glyphicon glyphicon-phone"></span> Téléphone :</dt>
+				<dd><?php echo $telephone; ?></dd>
 				<dt><span class="glyphicon glyphicon-map-marker"></span> Adresse :</dt>
 				<dd>
-					<?php echo
-						$_SESSION["utilisateur"]["numRue"].' '.
-						$_SESSION["utilisateur"]["rue"].'<br>'.
-						$_SESSION["utilisateur"]["codePostal"].' '.
-						$_SESSION["utilisateur"]["ville"];
+					<?php
+						if(isset($numRue) and
+						isset($rue) and
+						isset($codePostal) and
+						isset($ville))
+						{
+							echo
+							$numRue.' '.
+							$rue.'<br>'.
+							$codePostal.' '.
+							$ville;
+						}
+						else echo "Vous n'avez pas renseigné d'adresse";
+						
 					?>
 				</dd>
+				<dt><span class="glyphicon glyphicon-map-marker"></span> Date d'inscription :</dt>
+				<dd><?php echo $dateInscription; ?></dd>
 			</dl>
 		</div>
 	</div>

@@ -25,6 +25,17 @@
 			$connexion->connexion();
 			break;
 		
+		case "utilisateur":
+			include_once("controleurUtilisateur.php");
+			$utilisateur = new controleurUtilisateur;
+			$utilisateur->afficherInfos();
+			break;
+		
+		case "administration":
+			//include_once("controleurAdministration.php");
+			include_once("vue/404.php");
+			break;
+		
 		case "deconnexion":
 			include_once("deconnexionControleur.php");
 			break;

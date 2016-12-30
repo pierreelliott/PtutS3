@@ -25,11 +25,12 @@
                     <a data-toggle="dropdown" href="#"><?php echo $_SESSION["utilisateur"]["pseudo"]; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="index.php?page=utilisateur">Mon compte</a></li>
-                        <li><a href="#">Consulter panier</a></li>
+                        <li><a href="index.php?page=panier">Consulter panier</a></li>
                         <li><a href="#">Recherche avancée</a></li>
                         <?php
                             if($_SESSION["utilisateur"]["typeUser"] == "ADMIN")
                             {
+								echo '<li class="divider"></li>';
                                 echo "<li><a href='index.php?page=administration&action=ajout'>Ajouter produit</a></li>\n";
                                 echo "<li><a href='index.php?page=administration&action=modification'>Modifier produit</a></li>\n";
                                 echo "<li><a href='index.php?page=administration&action=suppression'>Supprimer produit</a></li>\n";
