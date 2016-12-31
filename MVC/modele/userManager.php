@@ -1,18 +1,20 @@
 <?php
-    //require("Model.php");
+    require("Model.php");
+	
     class UserManager extends Model
     {
         //Teste les logs de connexion à la BD
         public function connexion($pseudo, $mdpHash)
         {
-            $requete = "select numUser from utilisateur where pseudo = :pseudo and mdp = :mdpHash;";
-
+            $requete = "select numUser, pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription from utilisateur where pseudo = :pseudo and mdp = :mdpHash;";
+			// Je ne sais pas si c'est vraiment utile de tout retourner (demander à Axel)
             $params = array(
                 'pseudo' => $pseudo,
                 'mdpHash' => $mdpHash
                 );
 
             $resultat = $this->executerRequete($requete, $params);
+			$resultat = $resultat->fetch();
 
             return $resultat;
         }
@@ -28,7 +30,12 @@
             {
                 $requete = "insert into utilisateur(pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription)"
                         . "values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, 'USER', CURDATE())";
-
+				
+				if($numRue == "") $numRue = null;
+				if($rue == "") $rue = null;
+				if($ville == "") $ville = null;
+				if($codePostal == "") $codePostal = null;
+				
                 $params = array(
                     'pseudo' => $pseudo,
                     'mdp' => $mdpHash,

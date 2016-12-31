@@ -12,7 +12,7 @@
 			return $resultat;
 		}
 
-		# Pas terminée
+		# Normalement, le principal devrait fonctionner (à voir !)
 		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $compatibilite = null)
 		{
 			/*$resultat = $this->executerRequete('insert into image values(?, ?, ?)', array($sourcePetit, $sourceMoyen, $sourceGrand));
@@ -20,7 +20,15 @@
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 			/* !!!!! Comment ajouter les images pour un produit (contraintes clefs étrangères) ? !!!!! */
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
+			
+			/* ===== J'ai une idée ===== */
+			# À voir, parce que c'est très moche...
+			$imagefactice = array($libelle."allo1",$libelle."allo2",$libelle."allo3");
+			$image = $this->executerRequete('insert into image (sourcePetit, sourceMoyen, sourceGrand) values (?,?,?)', $imagefactice);
+			$image = $this->executerRequete('select numImage from image where sourcePetit = ? and sourceMoyen = ? and sourceGrand = ?', $imagefactice);
+			$numImage = $image->fetch();
+			
+			
             //Si le produit est gratuit (Contrainte)
             if($prix == null)
             {
@@ -30,7 +38,7 @@
     								values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
             }
 
-			if($compatibilite == null)
+			if($compatibilite == null) // Je sais plus du tout à quoi ça sert....
 			{
 
 			}
@@ -39,7 +47,7 @@
 		public function supprimerProduit($numProduit)
 		{
 			$produit = self::getInformationsProduit($numProduit);
-			$produit = $produit->fetch();
+			# $produit = $produit->fetch();		//Pas besoin normalement
 			$prix = floatval((-1)*floatval($produit["prix"]));
 
 			$requete = "update produit set prix = :prix where numProduit = :numProduit";

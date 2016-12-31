@@ -2,7 +2,7 @@
 
     require("UserManager.php");
 
-    class CommandeManager extends Model
+    class commandeManager extends Model
     {
         public $um;
 
@@ -11,15 +11,15 @@
             $this->$um = new UserManager();
         }
 
-        //Creer une commande: $Produits est un tableau indexé 2 dimension [i][numProduit] et [i][quantiteProduit]
+        //Creer une commande: Produit est un tableau indexé 2 dimension [i][numProduit] et [i][quantiteProduit]
         public function addCommande($pseudo, $produits, $typeCommande)
         {
             $numUser = $um->getNumUser($pseudo);
 
             $user = $um->getInfo($pseudo);
 
-            if($typeComande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or rue['telephone'] == null or
-                $user['numRue'] == null or $user['codePostal'] == null))
+            if($typeComande == "Livraison" and $user['ville'] == null and $user['rue'] and rue['telephone'] and
+                $user['numRue'] and $user['codePostal'] )
             {
                 return false;
             }
@@ -37,7 +37,7 @@
             $numCommande = $this->executerRequete('select max(numCommande) numCommande from commande');
             $numCommande = $numCommande->fetch();
 
-            foreach($produits as $prod)
+            foreach ($produit as $prod)
             {
                 $requete = $this->executerRequete('insert into quantiteProduit(numCommande, numProduit, quantite)
                                                 values(?, ?, ?)',
@@ -48,7 +48,7 @@
             return true;
         }
 
-        //Calculer le prix d'une commande ($Produits est un tableau a 2 dimension [numProduit][quantiteProduit])
+        //Calculer le prix d'une commande (Produit est un tableau a 2 dimension [numProduit][quantiteProduit])
         public function calcCommande($produits)
         {
             $prixTotal = 0;

@@ -10,6 +10,7 @@
         {
             $this->$um = new UserManager();
         }
+		
         //Ajouter un avis
         public function addAvis($commentaire, $pseudo, $note)
         {
@@ -38,6 +39,7 @@
                 }
                 return true;
             }
+			return false;
         }
 
         //Modifier avis
@@ -108,7 +110,7 @@
         }
 
 
-        //Recupere le nombre de votes positif
+        //Recupere le nombre de votes positif sur un avis
         public function getVotePositif($numAvis)
         {
             $requete = $this->executerRequete("select IFNULL(count(vote), 0)
@@ -120,7 +122,7 @@
             return $vote;
         }
 
-        //Recupere le nombre de votes négatif
+        //Recupere le nombre de votes négatif sur un avis
         public function getVoteNegatif($numAvis)
         {
             $requete = $this->executerRequete("select IFNULL(count(vote), 0)

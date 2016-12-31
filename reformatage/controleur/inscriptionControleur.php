@@ -80,6 +80,8 @@
                     $mdpHash = sha1($_POST["mdp"]);	
                     $this->bdd->inscription($pseudo, $mdpHash, $nom, $prenom, $email, $_POST["tel"], $_POST["numRue"], $rue, $ville, $_POST["codePostal"]);
 
+					// Rediriger vers connexionControleur avec les paramètres adéquats
+					
                     header("Location: index.php");
                 }  
             }
