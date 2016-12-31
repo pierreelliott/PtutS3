@@ -1,12 +1,15 @@
 <?php
-    //session_start();
+	
+	function deconnexion()
+	{
+		// Suppression des variables de session et de la session
+		$_SESSION = array();
+		session_destroy();
 
-    // Suppression des variables de session et de la session
-    $_SESSION = array();
-    session_destroy();
+		// Suppression des cookies de connexion automatique
+		setcookie("pseudo", "");
+		setcookie("mdpHash", "");
 
-    // Suppression des cookies de connexion automatique
-    setcookie("pseudo", "");
-    setcookie("mdpHash", "");
-
-    header("Location: index.php");
+		header("Location: index.php");
+	}
+    

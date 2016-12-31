@@ -1,37 +1,48 @@
 <?php
     require_once('modele/UserManager.php');
-
-    //session_start();
-
-    $bdd = new UserManager();
-
-    if(isset($_POST["mdp"]) and isset($_POST["pseudo"]))
+	
+    class connexionControleur
     {
-        $pseudo = htmlspecialchars($_POST["pseudo"]);
-        $mdpHash = sha1($_POST["mdp"]);
+        protected $bdd;
 
-        $resultat = $bdd->connexion($pseudo, $mdpHash);
-
-        if($resultat->rowCount() > 0)
+        public function __construct()
         {
-            $tabRows = $resultat->fetchAll(PDO::FETCH_ASSOC);
+            $this->bdd = new UserManager;
+        }
 
-            session_start();
-            $_SESSION["numClient"] = $tabRows["numClient"];
-            $_SESSION["pseudo"] = $pseudo;
-
-            if(isset($_POST["connAuto"]))
+        public function connexion()
+        {
+            if(isset($_POST["mdp"]) and isset($_POST["pseudo"]))
             {
-                setcookie("pseudo", $pseudo);
-                setcookie("mdpHash", $mdpHash);
+                $pseudo = htmlspecialchars($_POST["pseudo"]);
+                $mdpHash = sha1($_POST["mdp"]);
+
+                $resultat = $this->bdd->connexion($pseudo, $mdpHash);
+
+                // Si la connexion a réussi (la requête renvoie une ligne)
+                if($resultat->rowCount() > 0)
+                {
+                    // tabRows contient un tableau dont chaque élément est une ligne renvoyée sous forme de tableau
+                    // tabRows est donc une matrice ne contenant qu'une ligne
+                    $tabRows = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+                    $_SESSION["utilisateur"] = $tabRows[0];
+
+                    // Si l'utilisateur coche la case de connexion automatique
+                    if(isset($_POST["connAuto"]))
+                    {
+                            setcookie("pseudo", $pseudo);
+                            setcookie("mdpHash", $mdpHash);
+                    }
+
+                    header("Location: index.php");
+                }
+                else
+                {
+                    $message = "Pseudo ou mot de passe incorrects.";
+                }
             }
 
-            header("Location: index.php");
-        }
-        else
-        {
-            $message = "Pseudo ou mot de passe incorrects.";
+            include_once('vue/connexion.php');
         }
     }
-
-    include_once('vue/connexion.php');

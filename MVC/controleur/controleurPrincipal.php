@@ -2,41 +2,67 @@
 	session_start();
 	/* Son but rediriger en fonction de la page où l'on se trouve vers le bon controleur */
 
-	$page = "accueil";
+	
 	# On crée un formulaire invisible pour demander l'appel d'une page
-	//$page = $_POST["page"];
+	/*if(isset($_POST["page"])) $page = $_POST["page"];
+	else $page = "accueil";*/
+	# Pas utilisé mais je le laisse ici parce que je pense que ça pourrait être intéressant de le mettre en place
+	
+	if(isset($_GET["page"])) $page = $_GET["page"];
+	else $page = "accueil";
+	
+	# Inclusion des différents contrôleurs
+	include_once("carteControleur.php");
+	include_once("connexionControleur.php");
+	include_once("controleurUtilisateur.php");
+	//include_once("controleurAdministration.php");
+	include_once("deconnexionControleur.php");
+	include_once("inscriptionControleur.php");
+	include_once("panierControleur.php");
+	
+	# Instanciation des contrôleurs
+	$carte = new carteControleur();
+	$connexion = new connexionControleur();
+	$utilisateur = new controleurUtilisateur();
+	$inscription = new inscriptionControleur();
+	$panier = new panierControleur();
+	
 	
 	switch($page)
 	{
 		case "carte":
-			include_once("carteControleur.php");
+			$carte->carte();
 			break;
 			
 		case "connexion":
-			include_once("connexionControleur.php");
+			$connexion->connexion();
+			break;
+		
+		case "utilisateur":
+			$utilisateur->afficherInfos();
 			break;
 		
 		case "deconnexion":
-			include_once("deconnexionControleur.php");
+			deconnexion();
 			break;
 		
-		case "inscription":
-			include_once("inscriptionControleur.php");
+		case "inscription":			
+			$inscription->inscription();
+			# Pour se connecter automatiquement après s'être inscrit
+			//$statut = $inscription->inscription();
 			break;
 		
 		case "panier":
-			include_once("panierControleur.php");
+			$panier->afficherPanier();
 			break;
 		
 		case "accueil":
-		default:
 			include_once("vue/accueil.php");
+			break;
+		
+		case "administration":
+		default:
+			include_once("vue/404.php");
+			break;
 	}
-	
-	
-	
-	
-	
-	
-	
 ?>
