@@ -9,5 +9,6 @@
         <p>Copyright Sushinos - Tous droits réservés - Contact.</p>
     </div>
 </footer>
-    <?php require("bootstrapJavascript.php"); ?>
+
+<?php require("bootstrapJavascript.php"); ?>
 <!-- FOOTER END -->

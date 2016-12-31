@@ -17,7 +17,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <?php
-            // Si l'utilsateur est connecté
+            // Si l'utilisateur est connecté
             if(isset($_SESSION["utilisateur"]))
             {
                 ?>

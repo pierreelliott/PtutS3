@@ -11,13 +11,13 @@
 
 		<title><?php echo $title; ?></title>
 
-		<?php include("bootstrapCss.php"); ?>
+		<?php require("bootstrapCss.php"); ?>
 
 	</head>
 
 	<body>
 		<?php
-		require("header.php");
+			require("header.php");
 		?>
 
 		<div>

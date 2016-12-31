@@ -1,32 +1,48 @@
 <?php
 
-	$title = "Profil utilisateur";
+	$title = "Mon compte";
 
 	ob_start();
+?>
+<!-- ======== Début Code HTML ======== -->
 
-	echo '<div class="row">
+	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<h1>'.$_SESSION["utilisateur"]["nom"].' '.$_SESSION["utilisateur"]["prenom"].'</h1>
+			<h1>Vos informations - <?php echo $nom.' '.$prenom; ?></h1>
 			<dl class="dl-horizontal">
 				<dt><span class="glyphicon glyphicon-user"></span> Pseudo :</dt>
-				<dd>'.$_SESSION["utilisateur"]["pseudo"].'</dd>
+				<dd><?php echo $pseudo; ?></dd>
 				<dt>@ Adresse mail :</dt>
-				<dd>'.$_SESSION["utilisateur"]["mail"].'</dd>
-				<dt><span class="glyphicon glyphicon glyphicon-phone"></span> T�l�phone :</dt>
-				<dd>'.$_SESSION["utilisateur"]["telephone"].'</dd>
+				<dd><?php echo $mail; ?></dd>
+				<dt><span class="glyphicon glyphicon glyphicon-phone"></span> Téléphone :</dt>
+				<dd><?php echo $telephone; ?></dd>
 				<dt><span class="glyphicon glyphicon-map-marker"></span> Adresse :</dt>
-				<dd>'.
-					$_SESSION["utilisateur"]["numRue"].' '.
-					$_SESSION["utilisateur"]["rue"].'<br>'.
-					$_SESSION["utilisateur"]["codePostal"].' '.
-					$_SESSION["utilisateur"]["ville"].
-				'</dd>
+				<dd>
+					<?php
+						if(isset($numRue) and
+						isset($rue) and
+						isset($codePostal) and
+						isset($ville))
+						{
+							echo
+							$numRue.' '.
+							$rue.'<br>'.
+							$codePostal.' '.
+							$ville;
+						}
+						else echo "Vous n'avez pas renseigné d'adresse";
+						
+					?>
+				</dd>
+				<dt><span class="glyphicon glyphicon-map-marker"></span> Date d'inscription :</dt>
+				<dd><?php echo $dateInscription; ?></dd>
 			</dl>
 		</div>
-	</div>';
-
-	$contenu = ob_get_contents();
-	ob_end_clean();
+	</div>
+	
+<!-- ======== Fin Code HTML ======== -->
+<?php
+	$contenu = ob_get_clean();
 
 	require("layout/site.php");
 ?>
