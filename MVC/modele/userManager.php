@@ -78,6 +78,8 @@
             return $data;
         }
 
+        /* ============= Fonctions sur les produits favoris ============= */
+
         //Recupere les produits favoris de l'utilisateur
         public function getProduitsFavoris($pseudo)
         {
@@ -86,7 +88,7 @@
                                                 from produit p1 join preference p2
                                                 on p1.NUMPRODUIT = p2.NUMPRODUIT
                                                 where numUser= ?
-                                                order by CLASSEMENT', array($user));
+                                                order by CLASSEMENT', array($user['numUser']));
 
             $data = $resultat->fetchAll(PDO::FETCH_ASSOC);
             return $data;
@@ -97,21 +99,46 @@
         {
             $user = $this->getNumUser($pseudo);
 
-            $classement = $this->executerRequete('select max(classement) from preference where numUser = ?', array($user));
+            $classement = $this->executerRequete('select max(classement) from preference where numUser = ?', array($user['numUser']));
             $classement = $classement['CLASSEMENT'] + 1;
 
             $requete = $this->executerRequete('insert into preference(numUser, NUMPRODUIT, CLASSEMENT)
-                                            values(?, ?, ?)', array($user, $NUMPRODUIT, $classement));
+                                            values(?, ?, ?)', array($user['numUser'], $NUMPRODUIT, $classement));
             return $requete;
 
         }
+
+        //Supprime un produit des favoris
+        public function deleteProduitFavoris($pseudo, $NUMPRODUIT)
+        {
+            $user = $this->getNumUser($pseudo);
+
+            $requete = $this->executerRequete('delete from preference where numUser = ? and NumProduit= ?',
+                                            array($user['numUser'], $NUMPRODUIT, $classement));
+            return $requete;
+        }
+
+        //Recupere les produits favoris en fin de vie
+        public function getProduitsFavorisMort($pseudo)
+        {
+            $user = $this->getNumUser($pseudo);
+
+            $produitMort = $this->executerRequete('select NumProduit from produit
+                                                where prix < 0 and NumProduit in (select NumProduit from preference
+                                                                                where numUser = ?)', array($user['numUser']));
+            $produitMort = $produitMort->fetchAll(PDO::FETCH_ASSOC);
+
+            return $produitMort;
+        }
+
+        /* ============= Fonctions sur les types User ============= */
 
         //Passer un utilisateur en admin
         public function addAdmin($pseudo)
         {
             $user = $this->getNumUser($pseudo);
 
-            $requete = $this->executerRequete("update utilisateur set typeUser='ADMIN' where numUser=? ", array($user));
+            $requete = $this->executerRequete("update utilisateur set typeUser='ADMIN' where numUser=? ", array($user['numUser']));
         }
 
         //Passer un admin en Utilisateur
@@ -119,7 +146,9 @@
         {
             $user = $this->getNumUser($pseudo);
 
-            $requete = $this->executerRequete("update utilisateur set typeUser='USER' where numUser=? ", array($user));
+            $requete = $this->executerRequete("update utilisateur set typeUser='USER' where numUser=? ", array($user['numUser']));
         }
+
+
     }
 ?>

@@ -4,7 +4,12 @@
 
     class AvisManager extends Model
     {
-        public userManager $um = new userManager();
+        public $um;
+
+        public function __construct()
+        {
+            $this->$um = new UserManager();
+        }
         //Ajouter un avis
         public function addAvis($commentaire, $pseudo, $note)
         {

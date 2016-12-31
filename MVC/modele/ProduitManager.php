@@ -8,10 +8,10 @@
 			$requete = "select numProduit, libelle, description, prix, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
 			$resultat = $this->executerRequete($requete);
 			$resultat = $resultat->fetch();
-			
+
 			return $resultat;
 		}
-		
+
 		# Pas terminée
 		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $compatibilite = null)
 		{
@@ -20,24 +20,28 @@
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 			/* !!!!! Comment ajouter les images pour un produit (contraintes clefs étrangères) ? !!!!! */
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-			
-			# On considère qu'on a le $numImage
-			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
-								values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
-			
-			
+
+            //Si le produit est gratuit (Contrainte)
+            if($prix == null)
+            {
+                $prix = 0;
+                # On considère qu'on a le $numImage
+    			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
+    								values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
+            }
+
 			if($compatibilite == null)
 			{
-				
+
 			}
 		}
-		
+
 		public function supprimerProduit($numProduit)
 		{
 			$produit = self::getInformationsProduit($numProduit);
 			$produit = $produit->fetch();
 			$prix = floatval((-1)*floatval($produit["prix"]));
-			
+
 			$requete = "update produit set prix = :prix where numProduit = :numProduit";
 			$params = array(
 					'prix' => $prix,
@@ -45,24 +49,24 @@
 					);
 			$resultat = $this->executerRequete($requete, $params);
 			$resultat = $resultat->fetch();
-			
+
 			# Si on supprime plus d'1 produit, on dit qu'il y a eu une erreur
 			if($resultat == 1) return true;
 			else return false;
 		}
-		
+
 		public function modifierProduit($numProduit)
 		{
-			
+
 		}
-		
+
 		public function ajouterCompatibilite()
 		{
-			
+
 		}
-		
+
 		/* ============= Fonctions sur la carte des produits ============= */
-		
+
 		public function recupererCarte($tailleImage)
 		{
 			switch($tailleImage)
@@ -73,11 +77,11 @@
 				case "grande":
 					$requete = "select numProduit, libelle, description, sourceGrand, prix from produit p join image i on p.numImage = i.numImage;";
 				break;
-			
+
 				case "petit":
 				case "petite":
 				$requete = "select numProduit, libelle, description, sourcePetit, prix from produit p join image i on p.numImage = i.numImage;";
-			
+
 				case "moyen":
 				case "moyenne":
 				default:
