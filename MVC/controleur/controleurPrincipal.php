@@ -8,8 +8,14 @@
 	else $page = "accueil";*/
 	# Pas utilisé mais je le laisse ici parce que je pense que ça pourrait être intéressant de le mettre en place
 	
-	if(isset($_GET["page"])) $page = $_GET["page"];
-	else $page = "accueil";
+	if(isset($_GET["page"]))
+	{
+		$page = $_GET["page"];
+	}
+	else
+	{
+		$page = "accueil";
+	}
 	
 	# Inclusion des différents contrôleurs
 	include_once("carteControleur.php");
