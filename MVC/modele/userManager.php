@@ -1,5 +1,5 @@
 <?php
-    require("Model.php");
+    //require("Model.php");
 	
     class UserManager extends Model
     {
@@ -14,7 +14,7 @@
                 );
 
             $resultat = $this->executerRequete($requete, $params);
-			$resultat = $resultat->fetch();
+			//$resultat = $resultat->fetch();
 
             return $resultat;
         }

@@ -75,7 +75,7 @@
 
 		/* ============= Fonctions sur la carte des produits ============= */
 
-		public function recupererCarte($tailleImage)
+		public function recupererCarte($tailleImage=null)
 		{
 			switch($tailleImage)
 			{

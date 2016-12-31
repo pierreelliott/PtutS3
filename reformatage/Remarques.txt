@@ -1,3 +1,0 @@
-inscriptionControleur
-- vérification des informations en double (?)
-- changer valeur de la variable inscriptionValide -> pour savoir ce qui a planté => géré avec la variable message

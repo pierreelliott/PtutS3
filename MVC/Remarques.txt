@@ -1,5 +1,0 @@
-inscriptionControleur
-- vérification des informations en double (?)
-- (2e if) -> condition devrait être avec des "or"
-- changer valeur de la variable inscriptionValide -> pour savoir ce qui a planté
-- 
