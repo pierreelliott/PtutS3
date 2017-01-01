@@ -10,7 +10,7 @@
         {
             $this->$um = new UserManager();
         }
-		
+
         //Ajouter un avis
         public function addAvis($commentaire, $pseudo, $note)
         {
@@ -102,11 +102,13 @@
         }
 
         //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
-        public function getTousAvis($critere = "NUMAVIS")
+        public function getTousAvis($critere = "NUMAVIS", $ordre = "asc")
         {
-            $requete= $this->executerRequete('select avis, note, date from avis order by'.$critere);
+            $requete= $this->executerRequete('select avis, note, date from avis order by'.$critere.' '.$ordre.);
 
             $resultat = requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultat;
         }
 
 
