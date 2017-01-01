@@ -54,8 +54,7 @@
 		
 		case "inscription":			
 			$inscription->inscription();
-			# Pour se connecter automatiquement après s'être inscrit
-			//$statut = $inscription->inscription();
+			$connexion->connexion();
 			break;
 		
 		case "panier":

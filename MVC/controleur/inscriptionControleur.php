@@ -79,10 +79,6 @@
                     $this->bdd->inscription($pseudo, $mdpHash, $nom, $prenom, $email, $_POST["tel"], $_POST["numRue"], $rue, $ville, $_POST["codePostal"]);
 
                     header("Location: index.php");
-					
-					# Rediriger vers connexionControleur avec les paramètres adéquats
-					//return true;
-					// Pour laisser le controleurPrincipal s'occuper de tout
                 }  
             }
 
