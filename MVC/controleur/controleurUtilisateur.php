@@ -31,8 +31,7 @@
 			}
 			else
 			{
-				//include_once('demandeConnexion.php');
-				include_once('404.php');
+				include_once('vue/demandeConnexion.php');
 			}
 		}
 	}

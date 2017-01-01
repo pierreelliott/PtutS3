@@ -1,7 +1,7 @@
 <!-- NAVBAR -->	
 <nav class="navbar navbar-static-top navbar-inverse">
     <ul class="nav navbar-nav">
-        <li><a href="index.php?page=accueil" id="active">Accueil</a></li>
+        <li><a href="index.php" id="active">Accueil</a></li>
         <li><a href="index.php?page=carte">Carte</a></li>
         <li>
             <form class="navbar-form form-inline navbar-left">

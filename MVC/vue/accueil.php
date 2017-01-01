@@ -39,7 +39,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-4">
-                                <a href="carte.php" class="btn btn-md btn-default">Découvrir</a>
+                                <a href="index.php?page=carte" class="btn btn-md btn-default">Découvrir</a>
                             </div>
                         </div>
                     </div>
