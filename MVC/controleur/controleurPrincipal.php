@@ -53,8 +53,8 @@
 			break;
 		
 		case "inscription":			
-			$inscription->inscription();
-			$connexion->connexion();
+			$statut = $inscription->inscription();
+			if($statut)	$connexion->connexion();
 			break;
 		
 		case "panier":

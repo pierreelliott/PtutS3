@@ -78,7 +78,7 @@
                     $mdpHash = sha1($_POST["mdp"]);	
                     $this->bdd->inscription($pseudo, $mdpHash, $nom, $prenom, $email, $_POST["tel"], $_POST["numRue"], $rue, $ville, $_POST["codePostal"]);
 
-                    header("Location: index.php");
+					return true;
                 }  
             }
 
