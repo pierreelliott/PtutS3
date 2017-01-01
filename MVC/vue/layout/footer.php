@@ -7,7 +7,7 @@
     </div>
     <div class="col-lg-offset-2 col-lg-6 lead">
         <p>Copyright Sushinos - Tous droits réservés.</p>
-		<p><a href="index.html?page=contact">Contactez-nous !</a></p>
+		<p><a href="index.php?page=contact">Contactez-nous !</a></p>
     </div>
 </footer>
 
