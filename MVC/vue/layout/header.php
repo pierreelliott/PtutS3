@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav">
         <li><a href="index.php" id="active">Accueil</a></li>
         <li><a href="index.php?page=carte">Carte</a></li>
-        <li>
+        <!--<li>
             <form class="navbar-form form-inline navbar-left">
                 <div class="input-group"> 
                     <input type="search" class="form-control" placeholder="Rechercher">
@@ -12,7 +12,7 @@
                     </span>
                 </div>
             </form> 
-        </li>
+        </li>-->
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -26,7 +26,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="index.php?page=utilisateur">Mon compte</a></li>
                         <li><a href="index.php?page=panier">Consulter panier</a></li>
-                        <li><a href="#">Recherche avancée</a></li>
+                        <!--<li><a href="#">Recherche avancée</a></li>-->
                         <?php
                             if($_SESSION["utilisateur"]["typeUser"] == "ADMIN")
                             {
