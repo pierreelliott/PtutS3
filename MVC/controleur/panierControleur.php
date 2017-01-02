@@ -32,7 +32,7 @@
                         break;
 
                         case "modification":
-                            $this->panier->changerQuantiteProduit($tabParams[1], 1);
+                            $this->panier->changerQuantiteProduit($tabParams, 1);
                             # Nécessite une modification supérieure (ajouter la quantité en paramètre)
 
                         default : echo 'L\'action demandée n\'est pas reconnue';

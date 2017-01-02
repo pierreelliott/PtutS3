@@ -76,13 +76,11 @@
             unset($_SESSION["panier"][$produit[0]]);
         }
 		
-		public function changerQuantiteProduit($libelleProduit, $quantite)
+		public function changerQuantiteProduit(array $produit, $quantite)
 		{
-			$positionProduit = array_search($libelleProduit,  $_SESSION["panier"]["libelle"]);
-			
-			if($positionProduit != false)
+			if(isset($_SESSION["panier"][$produit[0]]))
 			{
-				$_SESSION["panier"]["quantite"][$positionProduit] == $quantite;
+				$_SESSION["panier"][$produit[0]]["quantite"] = $quantite;
 			}
 			else
 			{
