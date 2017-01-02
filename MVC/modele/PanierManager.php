@@ -8,6 +8,8 @@
 		
 		/* Description variables du panier */
 		#Ce serait bien que tu décrives un peu les variables du panier Axel, parce que j'ai pas tout suivi ^^'
+                # ==> en gros on a un champ "panier" dans $_SESSION puis les numéros de produit dans $_SESSION["panier"]
+                #     et dans chaque case $_SESSION["panier"][$numproduit] on a les données du produits (libellé, prix, image, qte...)
 		
 		public function __construct()
 		{
