@@ -20,7 +20,7 @@
 			require("header.php");
 		?>
 
-		<div>
+		<div class="container-fluid">
 			<?php echo $contenu; ?>
 		</div>
 
