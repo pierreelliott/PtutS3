@@ -42,7 +42,7 @@
 			return false;
         }
 
-        //Modifier avis
+        //Modifier avis, si les valeurs ne sont modifiés ont renvoi les valeurs déja présente
         public function modifAvis($commentaire, $pseudo, $note)
         {
             //On recupere le NumUser associé

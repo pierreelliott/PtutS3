@@ -5,7 +5,7 @@
     {
 		public function getInformationsProduit($numProduit)
 		{
-			$requete = "select numProduit, libelle, description, prix, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
+			$requete = "select numProduit, libelle, description, typeProduit, prix, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
 			$resultat = $this->executerRequete($requete, array($numProduit));
 			$resultat = $resultat->fetch();
 
@@ -62,9 +62,14 @@
 			else return false;
 		}
 
-		public function modifierProduit($numProduit)
+        //Si les valeurs ne sont modifiés ont renvoi les valeurs déja presente
+		public function modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand)
 		{
-
+            $requete = $this->executerRequete('update produit
+                                            set libelle= ?, description= ?, typeProduit= ?, prix= ?, sourcePetit=?,
+                                            sourceMoyen= ?, sourceGrand= ? where numProduit= ?',
+                                            array($libelle, $description , $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $numProduit));
+            return $requete;
 		}
 
 		public function ajouterCompatibilite()
