@@ -20,15 +20,15 @@
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 			/* !!!!! Comment ajouter les images pour un produit (contraintes clefs étrangères) ? !!!!! */
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-			
+
 			/* ===== J'ai une idée ===== */
 			# À voir, parce que c'est très moche...
 			$imagefactice = array($libelle."allo1",$libelle."allo2",$libelle."allo3");
 			$image = $this->executerRequete('insert into image (sourcePetit, sourceMoyen, sourceGrand) values (?,?,?)', $imagefactice);
 			$image = $this->executerRequete('select numImage from image where sourcePetit = ? and sourceMoyen = ? and sourceGrand = ?', $imagefactice);
 			$numImage = $image->fetch();
-			
-			
+
+
             //Si le produit est gratuit (Contrainte)
             if($prix == null)
             {
@@ -46,8 +46,7 @@
 
 		public function supprimerProduit($numProduit)
 		{
-			$produit = self::getInformationsProduit($numProduit);
-			# $produit = $produit->fetch();		//Pas besoin normalement
+			$produit = $this->getInformationsProduit($numProduit);
 			$prix = floatval((-1)*floatval($produit["prix"]));
 
 			$requete = "update produit set prix = :prix where numProduit = :numProduit";
