@@ -6,7 +6,7 @@
 		public function getInformationsProduit($numProduit)
 		{
 			$requete = "select numProduit, libelle, description, prix, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
-			$resultat = $this->executerRequete($requete);
+			$resultat = $this->executerRequete($requete, array($numProduit));
 			$resultat = $resultat->fetch();
 
 			return $resultat;
@@ -96,6 +96,7 @@
 				$requete = "select numProduit, libelle, description, sourceMoyen, prix from produit p join image i on p.numImage = i.numImage;";
 			}
 			$resultat = $this->executerRequete($requete);
+			$resultat = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
 			return $resultat;
 		}

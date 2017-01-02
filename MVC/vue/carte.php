@@ -18,7 +18,8 @@
 					foreach($tabRows as $key => $row) {
 				?>
 				<tr>
-					<td><?php echo $row["libelle"]; ?></td>
+					<td><a href="index.php?page=produit&produit=<?php echo $row["numProduit"]; ?>">
+						<?php echo $row["libelle"]; ?></a></td>
 					<td><?php echo $row["description"]; ?></td>
 					<td><img src='<?php echo $row["sourceMoyen"]; ?>' alt='Image du produit'></td>
 					<td>
