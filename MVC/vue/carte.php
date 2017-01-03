@@ -23,9 +23,9 @@
 					<td><?php echo $row["description"]; ?></td>
 					<td><img src='<?php echo $row["sourceMoyen"]; ?>' alt='Image du produit'></td>
 					<td>
-						<a href='index.php?page=panier&action=ajout&produit=<?php echo implode(',', $row); ?>'>
+						<button type="button" data-action="ajout" data-produit="<?php echo implode(',', $row); ?>" class="btn btn-primary">
 							<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-						</a>
+						</button>
 					</td>
 				</tr>
 				<?php
@@ -37,7 +37,35 @@
 
 <!-- ======== Fin Code HTML ======== -->
 <?php
-	$contenu = ob_get_clean();
+	  $contenu = ob_get_clean();
+?>
+<!-- ======== Début Code Javascript ======== -->
+<script>
+    $(function()
+    {
+        $('button').click(function(e) {
+            console.log('test');
+            var produit = $(this).data('produit');
+            var action = $(this).data('action');
+						var qte = $(this).data('qte');
+            $.post('index.php?page=panier',
+            {
+								action: action,
+                produit: produit,
+								qte: qte
+            },
+            function(data, status)
+            {
+                // Faire une popup pour indiquer que le produit à bien été ajouté
+                location.reload(true);
+                console.log('Data : ' + data + ', Status : ' + status);
+            });
+        });
+    });
+</script>
+<!-- ======== Fin Code Javascript ======== -->
+<?php
+    $script = ob_get_clean();
 
     require("layout/site.php");
 ?>
