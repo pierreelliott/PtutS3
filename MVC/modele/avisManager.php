@@ -30,7 +30,7 @@
                 $user = $um->getNumUser($pseudo);
 
                 $resultat = $this->executerRequete('insert into avis (Numuser, avis, note, date, dateDernierVote)
-                                        values(?, ?, ?, CURRENT_DATE(), null)', array($user['NumUser'], $commentaire, $note));
+                                        values(?, ?, ?, CURRENT_DATE(), null)', array($user, $commentaire, $note));
 
                 //Correspond a l'erreur du trigger: avisSansCommande
                 if($resultat->errorCode() == '12000')
@@ -60,6 +60,44 @@
 
             return $resultat;
         }
+
+        //Seulement supprimé par l'admin
+        public function deleteAvis($numAvis)
+        {
+            $requete = $this->executerRequete('delete from avis where numUser= ?', array($numAvis));
+
+            //Renvoit nb ligne effacé sinon une erreur
+            if($requete == 1)
+                return true;
+            else
+                return false;
+        }
+
+        //Signaler l'avis le pseudo correspond à la personne qui signale
+        public function signalerAvis($numAvis, $pseudo, $remarque)
+        {
+            $user = $um->getNumUser($pseudo);
+
+            //On teste si un signalement a deja été fait
+            $doublon = $this->executerRequete('select numAvis from signalAvis where numUser= ? and numAvis= ?', array($user,$numAvis));
+            $doublon->fetch();
+
+            if($doublon == false)
+            {
+                //Si il n'y a que des espaces dans la remarque
+                if($remarque == " ") $remarque = null;
+
+                $requete = $this->executerRequete('insert into signalAvis(numAvis, numUser, remarque)
+                                                values(?,?,?)',array($numAvis, $numUser, $remarque));
+
+                return true;
+            }
+            else {
+                //L'user a déja deposé un signalement sur cette avis
+                return false;
+            }
+        }
+
 
         //L'utilisateur vote
         public function addVote($numAvis, $vote, $pseudo)

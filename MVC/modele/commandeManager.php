@@ -17,7 +17,7 @@
             $numUser = $um->getNumUser($pseudo);
 
             $user = $um->getInfo($pseudo);
-
+            //A gerer en dehors du modele juste avant de valider commande
             if($typeComande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or rue['telephone'] == null or
                 $user['numRue'] == null or $user['codePostal'] == null))
             {
@@ -55,10 +55,10 @@
             foreach($produits as $prod)
             {
                 $prix = $this->executerRequete('select prix from produit
-                                            where numProduit = ?', array($produits['numProduit']));
+                                            where numProduit = ?', array($prod['numProduit']));
                 $prix = $prix->fetch();
 
-                $prixTotal += $prix[prix] * prod['quantiteProduit'];
+                $prixTotal += $prix[prix] * $prod['quantiteProduit'];
             }
 
             return $prixTotal;
