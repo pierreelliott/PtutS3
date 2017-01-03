@@ -8,6 +8,8 @@
 		
 		/* Description variables du panier */
 		#Ce serait bien que tu décrives un peu les variables du panier Axel, parce que j'ai pas tout suivi ^^'
+                # ==> en gros on a un champ "panier" dans $_SESSION puis les numéros de produit dans $_SESSION["panier"]
+                #     et dans chaque case $_SESSION["panier"][$numproduit] on a les données du produits (libellé, prix, image, qte...)
 		
 		public function __construct()
 		{
@@ -76,13 +78,11 @@
             unset($_SESSION["panier"][$produit[0]]);
         }
 		
-		public function changerQuantiteProduit($libelleProduit, $quantite)
+		public function changerQuantiteProduit(array $produit, $quantite)
 		{
-			$positionProduit = array_search($libelleProduit,  $_SESSION["panier"]["libelle"]);
-			
-			if($positionProduit != false)
+			if(isset($_SESSION["panier"][$produit[0]]))
 			{
-				$_SESSION["panier"]["quantite"][$positionProduit] == $quantite;
+				$_SESSION["panier"][$produit[0]]["quantite"] = $quantite;
 			}
 			else
 			{

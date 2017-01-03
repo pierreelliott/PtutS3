@@ -5,7 +5,7 @@
 	<link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- For "index", Mathis you have to create another css for the rest of the website -->
-	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style.css?v=<?php echo filemtime('css/style.css'); ?>" rel="stylesheet">
 	<!--<link href="css/lightbox.css" rel="stylesheet">-->
 
 
