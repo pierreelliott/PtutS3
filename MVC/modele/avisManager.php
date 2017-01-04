@@ -22,10 +22,7 @@
             if($doublon == false)
             {
                 //Si que des espaces on mets a null
-                if($commentaire == " ")
-                {
-                    $commentaire == null;
-                }
+                $commentaire = $this->convertChaine($commentaire, 0);
                 //On recupere le NumUser associé
                 $user = $um->getNumUser($pseudo);
 
@@ -49,10 +46,8 @@
             $user = $um->getNumUser($pseudo);
 
             //Si que des espaces on mets a null
-            if($commentaire == " ")
-            {
-                $commentaire == null;
-            }
+            $commentaire = $this->convertChaine($commentaire, 0);
+
 
             $resultat = $this->executerRequete('update avis
                                                 set commentaire= ?, note = ?
@@ -85,7 +80,7 @@
             if($doublon == false)
             {
                 //Si il n'y a que des espaces dans la remarque
-                if($remarque == " ") $remarque = null;
+                $remarque = $this->convertChaine($remarque, 0);
 
                 $requete = $this->executerRequete('insert into signalAvis(numAvis, numUser, remarque)
                                                 values(?,?,?)',array($numAvis, $numUser, $remarque));

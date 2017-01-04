@@ -31,10 +31,10 @@
                 $requete = "insert into utilisateur(pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription)"
                         . "values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, 'USER', CURDATE())";
 
-				if($numRue == "") $numRue = null;
-				if($rue == "") $rue = null;
-				if($ville == "") $ville = null;
-				if($codePostal == "") $codePostal = null;
+				$numRue = $this->convertChaine($numRue, 0);
+				$rue = $this->convertChaine($rue, 0);
+				$ville = $this->convertChaine($ville, 0);
+				$codePostal = $this->convertChaine($codePostal, 0);
 
                 $params = array(
                     'pseudo' => $pseudo,
