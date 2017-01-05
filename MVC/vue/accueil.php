@@ -1,6 +1,6 @@
 ﻿<?php
 	$title = "Accueil - Sushinos";
-	
+
 	ob_start();
 ?>
 <!-- ======== Début Code HTML ======== -->
@@ -28,7 +28,7 @@
                             <div class="item"><img src="images/fond_index.jpg" alt=""></div>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-md-12">
                     <div class="site-wrapper">
                         <div class="row">
@@ -39,12 +39,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-4">
-                                <a href="index.php?page=carte" class="btn btn-md btn-default">Découvrir</a>
+                                <a href="javascript:go('carte')"  class="btn btn-md btn-default">Découvrir</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>     
+            </div>
         </div>
         <div class="col-md-2 hidden-sm hidden-xs">
             <div class="row">
@@ -54,10 +54,10 @@
             </div>
         </div>
     </div>
-	
+
 <!-- ======== Fin Code HTML ======== -->
 <?php
 	$contenu = ob_get_clean();
-	
+
 	require("layout/site.php");
 ?>

@@ -27,7 +27,7 @@
 
 		<?php
 			require("footer.php");
-                        if(isset($script)) echo $script;
+      if(isset($script)) echo $script;
 		?>
 	</body>
 </html>

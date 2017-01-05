@@ -3,11 +3,11 @@
 	ob_start();
 ?>
 <!-- ======== Début Code HTML ======== -->
-	
+
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="index.php?page=connexion" method="post" name="login" accept-charset="utf-8">
+				<form action="javascript:go('connexion')" method="post" name="login" accept-charset="utf-8">
 					<fieldset>
 						<legend>Connexion à Sushinos</legend>
 						<div class="row">
@@ -42,7 +42,7 @@
 				</form>
 			</div>
 			<div class="row">
-				<p class="lead">Pas encore inscrit ? <a href="index.php?page=inscription">Inscrivez-vous par ici !</a></p>
+				<p class="lead">Pas encore inscrit ? <a href="javascript:go('inscription')">Inscrivez-vous par ici !</a></p>
 			</div>
 		</div>
 	</div>

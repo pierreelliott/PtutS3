@@ -1,46 +1,60 @@
-﻿<!-- Formulaires 'invisibles' pour l'appel des pages -->
+<!-- Formulaires 'invisibles' pour l'appel des pages -->
 
-<script language="javascript">
-function go(page)
-{
-	switch(page)
-	{
-		case "connexion":
-			document.getElementById("connexion").submit();
-			break;
-		case "inscription":
-			document.getElementById("inscription").submit();
-			break;
-		case "panier":
-			document.getElementById("panier").submit();
-			break;
-		case "utilisateur":
-			document.getElementById("utilisateur").submit();
-			break;
-		default:
-		case "404":
-			document.getElementById("404").submit();
-			break;
-		case "accueil":
-			document.getElementById("accueil").submit();
-			break;
-		case "carte":
-			document.getElementById("carte").submit();
-			break;
-		case "ADMINAjoutProduit":
-			document.getElementById("ADMINAjoutProduit").submit();
-			break;
-		case "ADMINModificationProduit":
-			document.getElementById("ADMINModificationProduit").submit();
-			break;
-		case "ADMINSuppressionProduit":
-			document.getElementById("ADMINSuppressionProduit").submit();
-			break;
-	}
-}
+<script>
+		function go(page)
+		{
+				switch(page)
+				{
+					case "connexion":
+						document.getElementById("connexion").submit();
+						break;
+					case "inscription":
+						document.getElementById("inscription").submit();
+						break;
+					case "panier":
+						document.getElementById("panier").submit();
+						break;
+					case "utilisateur":
+						document.getElementById("utilisateur").submit();
+						break;
+					case "accueil":
+						document.getElementById("accueil").submit();
+						break;
+					case "carte":
+						document.getElementById("carte").submit();
+						break;
+					case "administration":
+						document.getElementById("ADMINAjoutProduit").submit();
+						break;
+					default:
+						document.getElementById("404").submit();
+				}
+		}
 </script>
+<div class="hidden">
+	<?php
+			// Liste des pages
+			$pages = [
+				"connexion",
+				"inscription",
+				"carte",
+				"panier",
+				"utilisateur",
+				"404",
+				"accueil",
+				"administration"
+			];
 
-
+			// On crée les formulaires cachés
+			foreach($pages as $page)
+			{
+				echo "<form type='hidden' id='".$page."' method='post' action='index.php'>\n".
+				"<input type='hidden' name='page' value='".$page."'>\n".
+				"</form>\n\n";
+			}
+	?>
+</div>
+<!--
 <form type="hidden" id="connexion" method="post" action="index.php">
 <input type="hidden" name="page" value="connexion">
 </form>
@@ -77,6 +91,6 @@ function go(page)
 <input type="hidden" name="page" value="ADMINModificationProduit">
 </form>
 
-<form type="hidden" id="carte" method="post" action="index.php">
+<form type="hidden" id="carte" method="post" action="/">
 <input type="hidden" name="page" value="carte">
-</form>
+</form>-->

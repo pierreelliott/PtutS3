@@ -1,6 +1,6 @@
 ﻿<?php
 	$title = "Connexion nécessaire";
-	
+
 	ob_start();
 ?>
 <!-- ======== Début Code HTML ======== -->
@@ -16,16 +16,16 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-offset-4 col-lg-4">
-						<a href="index.php?page=connexion" class="btn btn-md btn-default btn-info">Se connecter</a>
+						<a href="javascript:go('connexion')" class="btn btn-md btn-default btn-info">Se connecter</a>
 					</div>
 				</div>
-			</div>    
+			</div>
         </div>
     </div>
-	
+
 <!-- ======== Fin Code HTML ======== -->
 <?php
 	$contenu = ob_get_clean();
-	
+
 	require("layout/site.php");
 ?>

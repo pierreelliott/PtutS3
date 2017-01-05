@@ -6,6 +6,6 @@
     Copyright Sushinos - Tous droits réservés.<br>
 	<a href="index.php?page=contact">Contactez-nous !</a>
 </footer>
+<!-- FOOTER END -->
 
 <?php require("bootstrapJavascript.php"); ?>
-<!-- FOOTER END -->

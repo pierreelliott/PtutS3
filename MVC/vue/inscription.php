@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="index.php?page=inscription" method="post" name="inscription" accept-charset="utf-8">
+				<form action="javascript:go('inscription')" method="post" name="inscription" accept-charset="utf-8">
 					<fieldset>
 						<legend>Inscription à Sushinos</legend>
 						<span class="help-block lead">Les champs avec * sont obligatoires</span>
@@ -32,7 +32,7 @@
 									<label for="mdpConfirm" class="control-label">Confirmer mot de passe *</label>
 									<input type="password" id="mdpConfirm" name="mdpConfirm" placeholder="Confirmer mot de passe" class="form-control" required/>
 								</div>
-							</div>                                 
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-6">
@@ -86,7 +86,7 @@
 									<label for="codePostal" class="control-label">Code postal</label>
 									<input type="text" id="codePostal" name="codePostal" placeholder="Code postal" class="form-control"/>
 								</div>
-							</div> 
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-offset-8 col-lg-4">

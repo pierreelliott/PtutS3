@@ -10,7 +10,7 @@
 			<div class="col-lg-12">
 				<div class="row">
 					<div class="col-lg-4">
-						<a href="index.php?page=carte" class="btn btn-md btn-default btn-info">Retour à la carte</a>
+						<a href="javascript:go('carte')" class="btn btn-md btn-default btn-info">Retour à la carte</a>
 					</div>
 				</div>
 				<div class="row">
