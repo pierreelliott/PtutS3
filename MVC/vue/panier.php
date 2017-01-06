@@ -4,7 +4,7 @@
 
 	ob_start();
 
-	if($this->panier->estVide())
+	if($estVide)
 	{
 ?>
 <!-- ======== Début Code HTML ======== -->
@@ -18,7 +18,8 @@
 
 <!-- ======== Fin Code HTML ======== -->
 <?php
-	} else {
+	}
+	else {
 ?>
 <!-- ======== Début Code HTML ======== -->
 <!-- Panier rempli -->

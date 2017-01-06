@@ -42,7 +42,10 @@
                     }
                 }
             }
-
+            if($this->estVide())
+            {
+                $estVide == true;
+            }
             include_once('vue/panier.php');
         }
     }

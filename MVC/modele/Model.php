@@ -49,7 +49,7 @@
             if($mode == 0)
             {
                 //ctype_space teste si y a que des espaces ou tabulation dans une chainne
-                if(ctype_space($chaine == true))
+                if(ctype_space($chaine ) == true)
                 {
                     return null;
                 }
