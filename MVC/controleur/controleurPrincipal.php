@@ -69,6 +69,10 @@
 		case "accueil":
 			include_once("vue/accueil.php");
 			break;
+		
+		case "contact":
+			include_once("vue/contact.php");
+			break;
 
 		case "administration":
 		default:

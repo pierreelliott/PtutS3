@@ -1,7 +1,7 @@
 <?php
     require_once("Model.php");
 
-    class ProduitModel extends Model
+    class ProduitManager extends Model
     {
 		public function getInformationsProduit($numProduit)
 		{

@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<h1>Vos informations - <?php echo $nom.' '.$prenom; ?></h1>
-			<dl class="dl-horizontal">
+			<dl>
 				<dt><span class="glyphicon glyphicon-user"></span> Pseudo :</dt>
 				<dd><?php echo $pseudo; ?></dd>
 				<dt>@ Adresse mail :</dt>

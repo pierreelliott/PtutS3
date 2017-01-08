@@ -37,24 +37,24 @@
 					</tr>
 
 					<?php
-						foreach($_SESSION["panier"] as $numProduit => $produit) {
+						//foreach($_SESSION["panier"] as $numProduit => $produit) {
 					?>
 					<tr>
-						<td><?php echo $produit["libelle"]; ?></td>
-						<td><?php echo $produit["quantite"]; ?></td>
-						<td><?php echo $produit["prix"]; ?></td>
-						<td><?php echo $this->panier->getPrixTotalProduit($numProduit); ?></td>
-						<td><a href='<?php echo 'index.php?page=panier&action=suppression&produit='.$numProduit.','.implode(',', $produit); ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
+						<td><?php //echo $produit["libelle"]; ?></td>
+						<td><?php //echo $produit["quantite"]; ?></td>
+						<td><?php //echo $produit["prix"]; ?></td>
+						<td><?php //echo $produit["prixTotal"]; ?></td>
+						<td><a href='<?php //echo 'index.php?page=panier&action=suppression&produit='.$numProduit.','.implode(',', $produit); ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
 					</tr>
 					<?php
-						}
+						//}
 					?>
 
 					<tr>
 						<td>Total</td>
-						<td><?php echo $this->panier->getQteTotale(); ?></td>
+						<td><?php //echo $this->panier->getQteTotale(); ?></td>
 						<td></td>
-						<td><?php echo $this->panier->getPrixPanier(); ?></td>
+						<td><?php //echo $this->panier->getPrixPanier(); ?></td>
 						<td></td>
 					</tr>
 				</tbody>
@@ -73,37 +73,37 @@
 				<legend>Votre panier</legend>
 				<div class="row">
 					<?php
-						foreach($_SESSION["panier"] as $numProduit => $produit) {
+						foreach($produits as $numProduit => $produit) {
 					?>
 					<!--<tr>
 						<td><?php echo $produit["libelle"]; ?></td>
 						<td><?php echo $produit["quantite"]; ?></td>
 						<td><?php echo $produit["prix"]; ?></td>
-						<td><?php echo $this->panier->getPrixTotalProduit($numProduit); ?></td>
+						<td><?php echo $produit["prixTotal"]; ?></td>
 						<td><a href='<?php echo 'index.php?page=panier&action=suppression&produit='.$numProduit.','.implode(',', $produit); ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
 					</tr>-->
 					<div class="col-xs-12 produit">
 						<div class="row">
 							<div class="col-xs-2">
-								<img src="<?php echo $produit["source"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
+								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
 							</div>
 							<div class="col-xs-3">
 								<p><?php echo $produit["libelle"]; ?></p>
 							</div>
-							<div class="col-xs-1">
-								<button type="button" data-action="modification" data-produit="<?php echo $numProduit.','.implode(',', $produit); ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
+							<div class="col-xs-1"> <!-- Enlever une occurrence -->
+								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
 							</div>
 							<div class="col-xs-1">
 								<p><?php echo $produit["quantite"]; ?></p>
 							</div>
-							<div class="col-xs-1">
-								<button type="button" data-action="modification" data-produit="<?php echo $numProduit.','.implode(',', $produit); ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
+							<div class="col-xs-1"> <!-- Ajouter une occurrence -->
+								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
 							</div>
 							<div class="col-xs-3">
 								<p><?php echo $produit["prix"]; ?> €</p>
 							</div>
 							<div class="col-xs-1">
-								<button type="button" data-action="suppression" data-produit="<?php echo $numProduit.','.implode(',', $produit); ?>" class="btn btn-xs btn-danger btn-qte-produit">&times;</button>
+								<button type="button" data-action="suppression" data-produit="<?php echo $numProduit; ?>" class="btn btn-xs btn-danger btn-qte-produit">&times;</button>
 							</div>
 						</div>
 					</div>
@@ -112,7 +112,7 @@
 					?>
 				</div>
 				<div class="row">
-					<p>Prix du panier : <?php echo $this->panier->getPrixTotalProduit($numProduit); ?> €</p>
+					<p>Prix du panier : <?php echo $prixTotal; ?> €</p>
 				</div>
 			</div>
 		</div>
@@ -131,13 +131,13 @@
             console.log('test');
             var produit = $(this).data('produit');
             var action = $(this).data('action');
-						var qte = $(this).data('qte');
+			var qte = $(this).data('qte');
             $.post('index.php',
             {
-								page: 'panier',
-								action: action,
+				page: 'panier',
+				action: action,
                 produit: produit,
-								qte: qte
+				qte: qte
             },
             function(data, status)
             {

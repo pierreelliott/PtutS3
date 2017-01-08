@@ -5,7 +5,7 @@
     {
   		public function __construct()
       {
-          $this->bdd = new ProduitModel();
+          $this->bdd = new ProduitManager();
       }
 
       public function carte()
