@@ -44,6 +44,7 @@
 			}
 		}
 
+        //Supression d'un produit (Admin): Passage du prix en négatif
 		public function supprimerProduit($numProduit)
 		{
 			$produit = $this->getInformationsProduit($numProduit);

@@ -3,7 +3,8 @@
 	$title = "Mon panier";
 
 	ob_start();
-
+	
+	//Si le panier est vide
 	if($estVide)
 	{
 ?>

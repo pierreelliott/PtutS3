@@ -49,7 +49,7 @@
             $commentaire = $this->convertChaine($commentaire, 0);
 
 
-            $resultat = $this->executerRequete('update avis
+            $resultat= $this->executerRequete('update avis
                                                 set commentaire= ?, note = ?
                                                 where numUser= ?', array($commentaire, $note, $user));
 
@@ -66,6 +66,27 @@
                 return true;
             else
                 return false;
+        }
+
+        //Recupere l'avis en fonction du pseudo de l'utilisateur
+        public function getAvis($pseudo)
+        {
+            $user = $um->getNumUser($pseudo);
+
+            $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user));
+            $resultat = $resultat->fetch();
+
+            return $resultat;
+        }
+
+        //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
+        public function getTousAvis($critere = "NUMAVIS", $ordre = "asc")
+        {
+            $requete= $this->executerRequete('select avis, note, date from avis order by'.$critere.' '.$ordre);
+
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultat;
         }
 
         //Signaler l'avis le pseudo correspond à la personne qui signale
@@ -93,6 +114,30 @@
             }
         }
 
+        //Recupere tous les avis signalé: Numuser correspond a la personne qui signale
+        public function getTousAvisSignaler()
+        {
+            $requete = $this->executerRequete('select avis, note, date, s.numUser, remarque
+                                            from avis a join signalAvis s
+                                            on a.NumUser= s.numAvis
+                                            where numSignal is NOT null; ');
+
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultat
+        }
+
+        public function getSignalements($numAvis)
+        {
+            $requete = $this->executerRequete('select numAvis, numUser, remarque
+                                               from signalAvis
+                                               where numAvis = ?', array($numAvis));
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultat;
+        }
+
+//===========================  Fonctions sur les votes   ==============================================
 
         //L'utilisateur vote
         public function addVote($numAvis, $vote, $pseudo)
@@ -123,26 +168,6 @@
 
 
 
-        //Recupere l'avis en fonction du pseudo de l'utilisateur
-        public function getAvis($pseudo)
-        {
-            $user = $um->getNumUser($pseudo);
-
-            $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user));
-            $resultat = $resultat->fetch();
-
-            return $resultat;
-        }
-
-        //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
-        public function getTousAvis($critere = "NUMAVIS", $ordre = "asc")
-        {
-            $requete= $this->executerRequete('select avis, note, date from avis order by'.$critere.' '.$ordre);
-
-            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-            return $resultat;
-        }
 
 
         //Recupere le nombre de votes positif sur un avis

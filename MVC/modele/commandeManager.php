@@ -64,6 +64,33 @@
             return $prixTotal;
         }
 
+        //Recupere l'historique des commandes de l'utilisateur choisi
+        public function getHistoriqueCommande($pseudo)
+        {
+            $user = $um->getNumUser($pseudo);
+
+            //On recupere la liste N° des commandes
+            $requete = $this->executerRequete('select numCommande from commande
+                                                where NumUser= ?', array($user));
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+            //Appel de afficheCommande
+        }
+
+        //Affiche le detail d'une commande: Produit, quantite, prix commande, type commande, date
+        public function afficherCommande($numCommande)
+        {
+            /* IDEE :
+            select c.numcommande, typeCommande, quantite, libelle, p.PRIX, date
+                from produit p join quantiteproduit q
+                on p.NUMPRODUIT = q.NUMPRODUIT
+                join commande c
+                on c.NUMCOMMANDE= q.NUMCOMMANDE
+                where c.NUMCOMMANDE = 1;
+
+                Renvoit une ligne par produit
+                */
+        }
+
     }
 
 
