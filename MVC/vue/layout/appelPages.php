@@ -8,6 +8,9 @@
 					case "connexion":
 						document.getElementById("connexion").submit();
 						break;
+					case "deconnexion":
+						document.getElementById("deconnexion").submit();
+						break;
 					case "contact":
 						document.getElementById("contact").submit();
 						break;
@@ -39,6 +42,7 @@
 			// Liste des pages
 			$pages = [
 				"connexion",
+				"deconnexion",
 				"contact",
 				"inscription",
 				"carte",

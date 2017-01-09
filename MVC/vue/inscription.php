@@ -7,9 +7,10 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="javascript:go('inscription')" method="post" name="inscription" accept-charset="utf-8">
+				<form action="index.php" method="post" name="inscription" accept-charset="utf-8">
 					<fieldset>
 						<legend>Inscription à Sushinos</legend>
+						<input type="hidden" name="page" value="inscription"/>
 						<span class="help-block lead">Les champs avec <span class="text-danger">*</span> sont obligatoires</span>
 						<div class="form-group has-error">
 							<?php if(isset($message)) echo "<span class='help-block'>".$message."</span>"; ?>

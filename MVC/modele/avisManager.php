@@ -166,10 +166,6 @@
             return true;
         }
 
-
-
-
-
         //Recupere le nombre de votes positif sur un avis
         public function getVotePositif($numAvis)
         {

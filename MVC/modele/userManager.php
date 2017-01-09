@@ -53,7 +53,6 @@
                 return true;
             }
             return false;
-
         }
 
         public function getPseudo($pseudo)

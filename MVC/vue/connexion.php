@@ -7,9 +7,10 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="javascript:go('connexion')" method="post" name="login" accept-charset="utf-8">
+				<form action="index.php" method="post" name="login" accept-charset="utf-8">
 					<fieldset>
 						<legend>Connexion à Sushinos</legend>
+						<input type="hidden" name="page" value="connexion"/>
 						<div class="row">
 							<div class="form-group has-error">
 								<?php if(isset($message)) echo "<span class='help-block'>" . $message . "</span>"; ?>

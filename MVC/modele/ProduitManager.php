@@ -75,7 +75,10 @@
 
 		public function ajouterCompatibilite()
 		{
-
+            /* Exemple Un produit avec une sauce ou assaisonnement
+                    Plusieurs produits pour un menu une table Menu
+                    Plusieurs produits donnent des reductions
+                    Depends aussi de la categorie du produit par exempls accompagnement*/
 		}
 
 		/* ============= Fonctions sur la carte des produits ============= */

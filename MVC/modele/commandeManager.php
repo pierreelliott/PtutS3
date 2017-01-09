@@ -79,13 +79,19 @@
         //Affiche le detail d'une commande: Produit, quantite, prix commande, type commande, date
         public function afficherCommande($numCommande)
         {
+            $requete = $this->executerRequete('', array($numCommande));
+
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultat;
+
             /* IDEE :
             select c.numcommande, typeCommande, quantite, libelle, p.PRIX, date
                 from produit p join quantiteproduit q
                 on p.NUMPRODUIT = q.NUMPRODUIT
                 join commande c
                 on c.NUMCOMMANDE= q.NUMCOMMANDE
-                where c.NUMCOMMANDE = 1;
+                where c.numCommande = ?;
 
                 Renvoit une ligne par produit
                 */
