@@ -48,6 +48,15 @@
             return true;
         }
 
+        public function modifTypeCommande($numCommande, $type)
+        {
+            $requete = $this->executerRequete('update commande
+                                                set TYPECOMMANDE= ?
+                                                where numCommande= ?', array($type, $numCommande));
+            return $requete;
+
+        }
+
         //Calculer le prix d'une commande ($Produits est un tableau a 2 dimension [numProduit][quantiteProduit])
         public function calcCommande($produits)
         {
@@ -69,32 +78,25 @@
         {
             $user = $um->getNumUser($pseudo);
 
-            //On recupere la liste N° des commandes
-            $requete = $this->executerRequete('select numCommande from commande
+            $requete = $this->executerRequete('select numCommande, date, prix, typeCommande from commande
                                                 where NumUser= ?', array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
-            //Appel de afficheCommande
+
         }
 
         //Affiche le detail d'une commande: Produit, quantite, prix commande, type commande, date
         public function afficherCommande($numCommande)
         {
-            $requete = $this->executerRequete('', array($numCommande));
+            $requete = $this->executerRequete('select c.numcommande, typeCommande, quantite, libelle, p.PRIX, date
+                                            from produit p join quantiteproduit q
+                                            on p.NUMPRODUIT = q.NUMPRODUIT
+                                            join commande c
+                                            on c.NUMCOMMANDE= q.NUMCOMMANDE
+                                            where c.numCommande = ?;', array($numCommande));
 
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultat;
-
-            /* IDEE :
-            select c.numcommande, typeCommande, quantite, libelle, p.PRIX, date
-                from produit p join quantiteproduit q
-                on p.NUMPRODUIT = q.NUMPRODUIT
-                join commande c
-                on c.NUMCOMMANDE= q.NUMCOMMANDE
-                where c.numCommande = ?;
-
-                Renvoit une ligne par produit
-                */
         }
 
     }
