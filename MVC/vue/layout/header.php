@@ -3,6 +3,7 @@
     <ul class="nav navbar-nav">
         <li><a href="javascript:go('accueil')" id="active">Accueil</a></li>
         <li><a href="javascript:go('carte')">Carte</a></li>
+		<li><a href="javascript:go('avis')">Avis des utilisateurs</a></li>
         <!--<li>
             <form class="navbar-form form-inline navbar-left">
                 <div class="input-group">

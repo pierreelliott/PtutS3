@@ -40,7 +40,7 @@
 						<td><a href='<?php echo 'index.php?page=panier&action=suppression&produit='.$numProduit.','.implode(',', $produit); ?>'><img src="images/mooins2.png" alt="Retirer du panier" title="Retirer du panier"/></a></td>
 					</tr>-->
 					<div class="col-xs-12 produit">
-						<div class="row">
+						<div class="row produit-ligne-separateurs">
 							<div class="col-xs-2">
 								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
 							</div>

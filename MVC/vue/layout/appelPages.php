@@ -8,6 +8,9 @@
 					case "connexion":
 						document.getElementById("connexion").submit();
 						break;
+					case "avis":
+						document.getElementById("avis").submit();
+						break;
 					case "deconnexion":
 						document.getElementById("deconnexion").submit();
 						break;
@@ -41,6 +44,7 @@
 	<?php
 			// Liste des pages
 			$pages = [
+				"avis",
 				"connexion",
 				"deconnexion",
 				"contact",

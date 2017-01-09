@@ -135,3 +135,18 @@ footer
 	background-color: rgba(150, 150, 150, 0.5);
 	margin-top: 15px;
 }
+
+.produit-ligne-separateurs > *
+{
+	border-right: 1px solid black;
+}
+.produit-ligne-separateurs:last-child
+{
+	border-right: 0px solid black;
+}
+
+.carousel img
+{
+	width: 10vw;
+	height: auto;
+}

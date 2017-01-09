@@ -7,13 +7,15 @@
 
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<table class="table table-hover">
-				<tr>
-					<th>Produit</th>
-					<th>Description</th>
-					<th>Image</th>
-					<th>Ajout panier</th>
-				</tr>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Description</th>
+						<th>Image</th>
+						<th>Ajout panier</th>
+					</tr>
+				</thead>
 				<?php
 					foreach($tabRows as $key => $row) {
 				?>

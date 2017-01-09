@@ -8,7 +8,7 @@
 
 	<div class='row'>
 		<div class='col-lg-offset-3 col-lg-6 site-wrapper'>
-			<p class='jumbotron'>Erreur 404 : la page n'a pas été trouvée ou n'existe pas</p>
+			<div class='jumbotron'><h1>Erreur 404 : la page n'a pas été trouvée ou n'existe pas</h1></div>
 		</div>
 	</div>
 

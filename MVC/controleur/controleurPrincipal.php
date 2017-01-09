@@ -73,7 +73,13 @@
 		case "contact":
 			include_once("vue/contact.php");
 			break;
-
+			
+		case "avis":
+			include_once("vue/avis.php");
+			break;
+		
+		case "commande":
+		case "historiqueCommandes":
 		case "administration":
 		default:
 			include_once("vue/404.php");
