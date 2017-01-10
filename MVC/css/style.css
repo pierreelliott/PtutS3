@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 21 nov. 2016, 21:50:53
     Author     : Axel
 */
@@ -101,13 +101,13 @@ footer
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background-color: rgba(52, 52, 52, 0.5);
-    
+
     /*min-height: 80%;*/
-    
+
     padding : 15px;
     margin-top: 30vh;
     margin-bottom: 30vh;
-   
+
 }
 
 .help-block
@@ -149,4 +149,9 @@ footer
 {
 	width: 10vw;
 	height: auto;
+}
+
+.modal
+{
+  color: black;
 }

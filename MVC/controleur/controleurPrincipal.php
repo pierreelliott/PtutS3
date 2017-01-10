@@ -41,8 +41,8 @@
 			break;
 
 		case "produit":
-			if(isset($_GET["produit"])) $carte->afficherProduit($_GET["produit"]);
-			else include_once("vue/404.php");
+	/*if(isset($_GET["produit"]))*/ $carte->afficherProduit(1/*$_GET["produit"]*/);
+			/*else include_once("vue/404.php");*/
 			break;
 
 		case "connexion":
@@ -69,15 +69,15 @@
 		case "accueil":
 			include_once("vue/accueil.php");
 			break;
-		
+
 		case "contact":
 			include_once("vue/contact.php");
 			break;
-			
+
 		case "avis":
 			include_once("vue/avis.php");
 			break;
-		
+
 		case "commande":
 		case "historiqueCommandes":
 		case "administration":
