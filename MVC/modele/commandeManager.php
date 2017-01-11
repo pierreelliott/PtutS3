@@ -24,6 +24,7 @@
                 return false;
             }
 
+            //Pas utilisé
             $prixCommande = $this->calcCommande($produits);
 
             //Insertion dans la table Commande
@@ -33,7 +34,7 @@
                                             array($user['rue'], $user['ville'], $user['numRue'], $user['codePostal'],
                                             $typeCommande, $numUser['numUser']));
 
-            //Recpere le numCommande de la commande insérer
+            //Recupere le numCommande de la commande insérer
             $numCommande = $this->executerRequete('select max(numCommande) numCommande from commande');
             $numCommande = $numCommande->fetch();
 
@@ -57,7 +58,8 @@
 
         }
 
-        //Calculer le prix d'une commande ($Produits est un tableau a 2 dimension [numProduit][quantiteProduit])
+        /*Calculer le prix d'une commande ($Produits est un tableau a 2 dimension [numProduit][quantiteProduit])*/
+          //Inutile
         public function calcCommande($produits)
         {
             $prixTotal = 0;
@@ -78,16 +80,17 @@
         {
             $user = $um->getNumUser($pseudo);
 
-            $requete = $this->executerRequete('select numCommande, date, prix, typeCommande from commande
+            $requete = $this->executerRequete('select date, typeCommande from commande
                                                 where NumUser= ?', array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+            $resultat["prix"] = $this->getPrixTotalCommande($numCommande);
 
         }
 
         //Affiche le detail d'une commande: Produit, quantite, prix commande, type commande, date
-        public function afficherCommande($numCommande)
+        public function getInfosCommande($numCommande)
         {
-            $requete = $this->executerRequete('select c.numcommande, typeCommande, quantite, libelle, p.PRIX, date
+            $requete = $this->executerRequete('select typeCommande, date, numProduit, description, quantite
                                             from produit p join quantiteproduit q
                                             on p.NUMPRODUIT = q.NUMPRODUIT
                                             join commande c
@@ -99,15 +102,30 @@
             return $resultat;
         }
 
+        //Calcule prix total d'une commande
+        public function getPrixTotalCommande($numCommande)
+        {
+            $requete = $this->executerRequete('select quantiteproduit, prix, from produit join quantite q
+                                                on p.NUMPRODUIT = q.NUMPRODUIT
+                                                where numCommande = ?', array($numCommande));
+
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            // Si la requete renvoit des données
+            if($resultat != false)
+            {
+                $prixTotal = 0;
+                foreach ($resultat as $produit) {
+                    $prixTotal += $produit["quantiteproduit"] * $produit["prix"];
+                }
+                return $prixTotal;
+            }
+
+            //Gerer erreur
+            $return false;
+        }
+
     }
-
-
-
-
-
-
-
-
 
 
 

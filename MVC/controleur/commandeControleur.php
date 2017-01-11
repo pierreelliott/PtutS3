@@ -11,34 +11,35 @@
 		public function afficherHistorique($pseudo)
 		{
 			$commandes = $this->bdd->getHistoriqueCommande($pseudo);
-			
+
 			include_once('vue/historiqueCommandes.php');
 		}
 
 		public function afficherCommande($numCommande)
 		{
-			$resultat = $this->bdd->afficherCommande($numCommande);
-			
+			$resultat = $this->bdd->getInfosCommande($numCommande);
+
 			$dateCommande = $resultat["date"];
-			$prixCommande = $resultat["prix"];
+			$prixCommande = $this->bdd->getPrixTotalCommande($numCommande);
 
 			if(true) //Si la commande n'existe pas => comment faire ?
 			{
-				foreach($resultat["numProduit"] => $numProduit)
+                //Pour chaque produit dans la commande
+				foreach($resultat => $prod)
 				{
-					$p = $this->bdd->getInfosProduit($numProduit);
+					$p = $this->bdd->getInfosProduit($prod["numProduit"]);
 					$produit = array(
-						"numProduit" = $p["numProduit"];
+						"numProduit" => $p["numProduit"];
 						"libelle" => $p["libelle"],
 						"description" => $p["description"],
-						"quantite" => $qte,
+						"quantite" => $prod["quantite"],
 						"prix" => $p["prix"],
-						"prixTotal" => $p["prix"]*$qte,
+						"prixTotal" => $p["prix"]* $prod["quantite"],
 						"sourcePetit" => $p["sourcePetit"],
 						"sourceMoyen" => $p["sourceMoyen"],
 						"sourceGrand" => $p["sourceGrand"]
 					);
-					
+
 					$produits[$numProduit] = $produit;
 				}
 

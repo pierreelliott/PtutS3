@@ -4,9 +4,6 @@
 
 
 	# On crée un formulaire invisible pour demander l'appel d'une page
-	/*if(isset($_POST["page"])) $page = $_POST["page"];
-	else $page = "accueil";*/
-	# Pas utilisé mais je le laisse ici parce que je pense que ça pourrait être intéressant de le mettre en place
 
 	if(isset($_POST["page"]))
 	{
