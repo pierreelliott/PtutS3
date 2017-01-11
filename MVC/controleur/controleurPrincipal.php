@@ -37,11 +37,6 @@
 			$carte->carte();
 			break;
 
-		case "produit":
-	/*if(isset($_GET["produit"]))*/ $carte->afficherProduit(1/*$_GET["produit"]*/);
-			/*else include_once("vue/404.php");*/
-			break;
-
 		case "connexion":
 			$connexion->connexion();
 			break;

@@ -155,3 +155,10 @@ footer
 {
   color: black;
 }
+
+.alert
+{
+  position: fixed;
+  right: 0;
+  margin-right: 15px;
+}

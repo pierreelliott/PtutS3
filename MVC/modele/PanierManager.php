@@ -5,7 +5,7 @@
     class PanierManager extends Model
     {
 		public $produit;
-		
+
 		# Constructeur du panier
 		# Fonctionne comme n'importe quel constructeur (mais pas d'appel implicite au constructeur parent)
 
@@ -17,7 +17,7 @@
 		public function __construct()
 		{
 			$this->produit = new ProduitManager;
-			
+
 			if(!isset($_SESSION["panier"]))
 			{
 				$_SESSION["panier"] = array();
@@ -26,7 +26,14 @@
 
 		public function estVide()
         {
-            return empty($_SESSION["panier"]);
+            if(empty($_SESSION["panier"]))
+            {
+              return 1;
+            }
+            else
+            {
+              return 0;
+            }
         }
 
 		public function getQteTotale()

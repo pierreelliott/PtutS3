@@ -51,7 +51,7 @@
             }
         ?>
 
-        <li><a href="javascript:go('panier')"><span class="glyphicon glyphicon-shopping-cart"></a></li>
+        <li><a href="javascript:go('panier')"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">0</span></a></li>
     </ul>
 
 

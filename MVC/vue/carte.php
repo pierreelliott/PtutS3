@@ -4,7 +4,11 @@
     ob_start();
 ?>
 <!-- ======== Début Code HTML ======== -->
-
+  <!-- Popup d'information succès ajout produit -->
+  <div class="alert alert-success hidden">
+    Produit correctement ajouté !
+  </div>
+  <!-- fin popup -->
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
       <ul class="nav nav-tabs">
@@ -23,7 +27,7 @@
     					</tr>
     				</thead>
     				<?php
-    					foreach($tabRows as $numProduit => $produit) {
+    					foreach($tabRows as $produit) {
     				?>
     				<tr>
     					<td>
@@ -39,7 +43,7 @@
     					<td><?php echo $produit["description"]; ?></td>
     					<td><img src='<?php echo $produit["sourceMoyen"]; ?>' alt='Image du produit'></td>
     					<td>
-    						<button type="button" data-action="ajout" data-produit="<?php echo $numProduit; ?>" class="btn btn-primary">
+    						<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
     							<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
     						</button>
     					</td>
@@ -99,8 +103,9 @@
 <script>
     $(function()
     {
+
+
         $('button').click(function(e) {
-            console.log('test');
             var produit = $(this).data('produit');
             var action = $(this).data('action');
 						var qte = $(this).data('qte');
@@ -114,8 +119,12 @@
             function(data, status)
             {
                 // Faire une popup pour indiquer que le produit à bien été ajouté
-                location.reload(true);
-                console.log('Data : ' + data + ', Status : ' + status);
+                var fenAlert = $('.alert');
+                fenAlert.removeClass('hidden')
+                setTimeout(function()
+                {
+                    fenAlert.addClass('hidden');
+                }, 2500);
             });
         });
 
