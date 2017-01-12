@@ -19,4 +19,11 @@
         $mdp = "";
         $base = "ptut";
     }
+    else
+	{
+			$serveur = "iutdoua-web.univ-lyon1.fr";
+            $utilisateur = "p1402690";
+            $mdp = "212340";
+            $base = "p1402690";
+	}
 ?>
