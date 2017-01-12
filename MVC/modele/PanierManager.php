@@ -21,6 +21,7 @@
 			if(!isset($_SESSION["panier"]))
 			{
 				$_SESSION["panier"] = array();
+				$_SESSION["nbProduit"] = 0;
 			}
 		}
 
@@ -73,22 +74,16 @@
             else
             {
 				$_SESSION["panier"][$numProduit] = array("quantite" => $quantite);
-                /*$tmp = array(
-                    "libelle" => $produit[1],
-                    "description" => $produit[2],
-                    "source" => $produit[3],
-                    "quantite" => 1,
-                    "prix" => $produit[4]
-                );
-
-                $_SESSION["panier"][$produit[0]] = $tmp;*/
             }
+			
+			$_SESSION["nbProduit"] += 1;
 
             header('Location: index.php?page=carte');
         }
 
 		public function supprimerProduit($numProduit)
         {
+			$_SESSION["nbProduit"] -= $_SESSION["panier"][$numProduit]["quantite"];
             unset($_SESSION["panier"][$numProduit]);
         }
 
@@ -107,5 +102,7 @@
 				if($quantite < 0) $quantite = 1;
 				$this->ajouterProduit($numProduit, $quantite);
 			}
+			
+			$_SESSION["nbProduit"] += $quantite;
 		}
     }
