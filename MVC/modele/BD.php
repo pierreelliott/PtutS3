@@ -1,5 +1,5 @@
 <?php
-    if($_SERVER["SERVER_NAME"] == "localhost")
+    if($_SERVER["SERVER_NAME"] == "localhost" ||)
     {
             $serveur = "localhost";
             $utilisateur = "root";
@@ -12,5 +12,11 @@
             $utilisateur = "sushinoss";
             $mdp = "sushinos";
             $base = "sushinoss_bd";
+    }
+    elseif ( $_SERVER["SERVER_NAME"] == "ptut") {
+        $serveur = "localhost";
+        $utilisateur = "root";
+        $mdp = "";
+        $base = "ptut";
     }
 ?>
