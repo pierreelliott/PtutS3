@@ -11,6 +11,11 @@
 			<div class='jumbotron'><h1>Erreur 404 : la page n'a pas été trouvée ou n'existe pas</h1></div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-offset-4 col-md-4">
+			<a href="index.php"  class="btn btn-md btn-default">Revenir à l'accueil</a>
+		</div>
+	</div>
 
 <!-- ======== Fin Code HTML ======== -->
 <?php

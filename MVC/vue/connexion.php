@@ -43,7 +43,7 @@
 				</form>
 			</div>
 			<div class="row">
-				<p class="lead">Pas encore inscrit ? <a href="javascript:go('inscription')" class="text-info">Inscrivez-vous par ici</a> !</p>
+				<p class="lead">Pas encore inscrit ? <a href="index.php?page=inscription" class="text-info">Inscrivez-vous par ici</a> !</p>
 			</div>
 		</div>
 	</div>
