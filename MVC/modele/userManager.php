@@ -1,5 +1,5 @@
 <?php
-    //require("Model.php");
+    require_once("Model.php");
 
     class UserManager extends Model
     {
@@ -68,8 +68,8 @@
         //Permet de recuperer le NumUser à partir du pseudo
         public function getNumUser($pseudo)
         {
-            $resultat = $this->executerRequete('select numUser from utilisateur where pseudo = ?', array($pseudo));
-            $resultat->fetch();
+            $requete= $this->executerRequete('select numUser from utilisateur where pseudo = ?', array($pseudo));
+            $resultat = $requete->fetch();
 
             return $resultat['numUser'];
         }
@@ -157,4 +157,3 @@
 
 
     }
-?>

@@ -22,6 +22,7 @@
 	include_once("deconnexionControleur.php");
 	include_once("inscriptionControleur.php");
 	include_once("panierControleur.php");
+	include_once("CommandeControleur.php");
 
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();
@@ -29,6 +30,7 @@
 	$utilisateur = new controleurUtilisateur();
 	$inscription = new inscriptionControleur();
 	$panier = new panierControleur();
+	$commande = new CommandeControleur();
 
 
 	switch($page)
@@ -70,9 +72,13 @@
 			include_once("vue/avis.php");
 			break;
 
-		case "commande":
 		case "historiqueCommandes":
+			$commande->afficherHistorique($_SESSION["utilisateur"]["pseudo"]);
+			include_once("vue/historiqueCommandes.php");
+			break;
+
 		case "administration":
+		case "commande":
 		default:
 			include_once("vue/404.php");
 			break;
