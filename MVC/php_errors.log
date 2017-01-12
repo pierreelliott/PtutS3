@@ -49,3 +49,14 @@ Stack trace:
 [24-Nov-2016 11:18:48 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1503940/public_html/ptut/modele/Model.php on line 38
 [24-Nov-2016 11:20:31 Europe/Paris] PHP Parse error:  syntax error, unexpected '<' in /home/UNIV-LYON1/p1503940/public_html/ptut/index.php on line 35
 [24-Nov-2016 11:21:27 Europe/Paris] PHP Notice:  Undefined index: numClient in /home/UNIV-LYON1/p1503940/public_html/ptut/controleur/connexion/index.php on line 18
+[12-Jan-2017 14:08:55 Europe/Paris] PHP Warning:  require_once(modele/UserManager.php): failed to open stream: No such file or directory in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/connexionControleur.php on line 2
+[12-Jan-2017 14:08:55 Europe/Paris] PHP Fatal error:  require_once(): Failed opening required 'modele/UserManager.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/connexionControleur.php on line 2
+[12-Jan-2017 14:09:44 Europe/Paris] PHP Warning:  require_once(modele/UserManager.php): failed to open stream: No such file or directory in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/connexionControleur.php on line 2
+[12-Jan-2017 14:09:44 Europe/Paris] PHP Fatal error:  require_once(): Failed opening required 'modele/UserManager.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/connexionControleur.php on line 2
+[12-Jan-2017 14:14:49 Europe/Paris] PHP Warning:  include_once(deconnexionControleur.php): failed to open stream: No such file or directory in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/controleurPrincipal.php on line 22
+[12-Jan-2017 14:14:49 Europe/Paris] PHP Warning:  include_once(): Failed opening 'deconnexionControleur.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/controleurPrincipal.php on line 22
+[12-Jan-2017 14:18:55 Europe/Paris] PHP Notice:  Undefined variable: serveur in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 32
+[12-Jan-2017 14:18:55 Europe/Paris] PHP Notice:  Undefined variable: base in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 32
+[12-Jan-2017 14:18:55 Europe/Paris] PHP Notice:  Undefined variable: utilisateur in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 32
+[12-Jan-2017 14:18:55 Europe/Paris] PHP Notice:  Undefined variable: mdp in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 32
+[12-Jan-2017 14:18:55 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39
