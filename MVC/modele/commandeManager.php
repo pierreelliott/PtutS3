@@ -1,6 +1,6 @@
 <?php
 
-    require("UserManager.php");
+    require_once("UserManager.php");
 
     class CommandeManager extends Model
     {
@@ -8,7 +8,7 @@
 
         public function __construct()
         {
-            $this->$um = new UserManager();
+            $this->um = new UserManager();
         }
 
         //Creer une commande: $Produits est un tableau indexé 2 dimension [i][numProduit] et [i][quantiteProduit]
@@ -78,13 +78,16 @@
         //Recupere l'historique des commandes de l'utilisateur choisi
         public function getHistoriqueCommande($pseudo)
         {
-            $user = $um->getNumUser($pseudo);
-
+            $user = $this->um->getNumUser($pseudo);
             $requete = $this->executerRequete('select date, typeCommande, numCommande from commande
                                                 where NumUser= ?', array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
-            $resultat["prix"] = $this->getPrixTotalCommande($numCommande);
 
+            foreach ($resultat as $res) {
+                 $res["prix"] = $this->getPrixTotalCommande($res['numCommande']);
+            }
+
+            return $resultat;
         }
 
         //Affiche le detail d'une commande: Produit, quantite, prix commande, type commande, date
@@ -122,7 +125,7 @@
             }
 
             //Gerer erreur
-            $return false;
+            return false;
         }
 
         public function getNbProduit($numCommande)

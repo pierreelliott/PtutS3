@@ -35,6 +35,9 @@
 					case "administration":
 						document.getElementById("ADMINAjoutProduit").submit();
 						break;
+					case "historiqueCommandes":
+						document.getElementById("historiqueCommandes").submit();
+						break;
 					default:
 						document.getElementById("404").submit();
 				}
@@ -54,7 +57,8 @@
 				"utilisateur",
 				"404",
 				"accueil",
-				"administration"
+				"administration",
+				"historiqueCommandes"
 			];
 
 			// On crée les formulaires cachés
