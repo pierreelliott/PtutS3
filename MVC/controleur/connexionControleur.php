@@ -1,5 +1,5 @@
 <?php
-    require_once('modele/UserManager.php');
+    require_once('modele/userManager.php');
 	
     class connexionControleur
     {

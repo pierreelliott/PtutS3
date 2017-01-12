@@ -5,9 +5,9 @@
 
 	# On crée un formulaire invisible pour demander l'appel d'une page
 
-	if(isset($_POST["page"]))
+	if(isset($_GET["page"]))
 	{
-		$page = $_POST["page"];
+		$page = $_GET["page"];
 	}
 	else
 	{
@@ -22,7 +22,7 @@
 	include_once("deconnexionControleur.php");
 	include_once("inscriptionControleur.php");
 	include_once("panierControleur.php");
-	include_once("CommandeControleur.php");
+	include_once("commandeControleur.php");
 
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();

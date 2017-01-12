@@ -1,6 +1,6 @@
 <?php
 
-    require_once("UserManager.php");
+    require_once("userManager.php");
 
     class CommandeManager extends Model
     {
@@ -18,7 +18,7 @@
 
             $user = $um->getInfo($pseudo);
             //A gerer en dehors du modele juste avant de valider commande
-            if($typeComande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or rue['telephone'] == null or
+            if($typeComande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or $user['telephone'] == null or
                 $user['numRue'] == null or $user['codePostal'] == null))
             {
                 return false;

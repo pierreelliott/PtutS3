@@ -1,5 +1,5 @@
 <?php
-    include_once('modele/UserManager.php');
+    include_once('modele/userManager.php');
 	
     class inscriptionControleur
     {
