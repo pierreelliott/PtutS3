@@ -80,7 +80,7 @@
         {
             $user = $um->getNumUser($pseudo);
 
-            $requete = $this->executerRequete('select date, typeCommande from commande
+            $requete = $this->executerRequete('select date, typeCommande, numCommande from commande
                                                 where NumUser= ?', array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
             $resultat["prix"] = $this->getPrixTotalCommande($numCommande);
@@ -123,6 +123,16 @@
 
             //Gerer erreur
             $return false;
+        }
+
+        public function getNbProduit($numCommande)
+        {
+            $requete = $this->executerRequete('select count(numProduit) nombreProduit from quantiteproduit
+                                            where numCommande= ?', array($numCommande));
+
+            $resultat = $requete->fetch();
+
+            return $resultat['nombreProduit'];
         }
 
     }
