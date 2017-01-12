@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav">
         <li><a href="index.php" id="active">Accueil</a></li>
         <li><a href="index.php?page=carte">Carte</a></li>
-		<li><a href="index?page=avis">Avis des utilisateurs</a></li>
+		<li><a href="index.php?page=avis">Avis des utilisateurs</a></li>
         <!--<li>
             <form class="navbar-form form-inline navbar-left">
                 <div class="input-group">
