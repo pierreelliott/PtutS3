@@ -49,7 +49,21 @@
             }
         ?>
 
-        <li><a href="index.php?page=panier"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><?php $_SESSION["nbProduit"]; ?></span></a></li>
+        <li>
+            <a href="index.php?page=panier">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span class="badge">
+                <?php if(isset($_SESSION["nbProduit"]))
+                        {
+                            echo $_SESSION["nbProduit"];
+                        }
+                        else {
+                            echo "0";
+                        }
+                         ?>
+            </span>
+            </a>
+        </li>
     </ul>
 
 

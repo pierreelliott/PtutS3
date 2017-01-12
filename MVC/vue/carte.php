@@ -109,12 +109,11 @@
             var produit = $(this).data('produit');
             var action = $(this).data('action');
 						var qte = $(this).data('qte');
-            $.post('index.php',
+            $.post('index.php?page=panier',
             {
-                page: 'panier',
-								action: action,
+				action: action,
                 produit: produit,
-								qte: qte
+				qte: qte
             },
             function(data, status)
             {
