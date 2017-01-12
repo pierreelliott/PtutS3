@@ -22,7 +22,40 @@
 
 					<?php foreach($produits as $numProduit => $produit) { ?>
 
-					<div id="<?php echo $numProduit; ?>" class="col-xs-12 produit">
+					<div id="<?php echo $numProduit; ?>" class="panel panel-default">
+						<div class="media">
+							<div class="media-left media-top">
+								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object" style="width:80px">
+							</div>
+							<div class="media-body">
+								<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
+								<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
+								<p class="text-muted">Prix : <?php echo $produit["prix"]; ?>€</p>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-xs-1"> <!-- Enlever une occurrence -->
+									<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
+								</div>
+								<div class="col-xs-3">
+									<p class="qte">Quantité : <?php echo $produit["quantite"]; ?></p>
+								</div>
+								<div class="col-xs-1"> <!-- Ajouter une occurrence -->
+									<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
+								</div>
+								<div class="col-xs-2">
+									<p><?php echo $produit["prix"]*$produit["quantite"]; ?> €</p>
+									<!-- À gérer -->
+								</div>
+								<div class="col-xs-1">
+									<button type="button" data-action="suppression" data-produit="<?php echo $numProduit; ?>" class="btn btn-xs btn-danger btn-qte-produit">&times;</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!--<div id="<?php echo $numProduit; ?>" class="col-xs-12 produit">
 						<div class="row produit-ligne-separateurs">
 							<div class="col-xs-2">
 								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
@@ -30,13 +63,13 @@
 							<div class="col-xs-3">
 								<p><?php echo $produit["libelle"]; ?></p>
 							</div>
-							<div class="col-xs-1"> <!-- Enlever une occurrence -->
+							<div class="col-xs-1"> <!-- Enlever une occurrence 
 								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
 							</div>
 							<div class="col-xs-1">
 								<p class="qte"><?php echo $produit["quantite"]; ?></p>
 							</div>
-							<div class="col-xs-1"> <!-- Ajouter une occurrence -->
+							<div class="col-xs-1"> <!-- Ajouter une occurrence 
 								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
 							</div>
 							<div class="col-xs-3">
@@ -46,13 +79,19 @@
 								<button type="button" data-action="suppression" data-produit="<?php echo $numProduit; ?>" class="btn btn-xs btn-danger btn-qte-produit">&times;</button>
 							</div>
 						</div>
-					</div>
+					</div>-->
 
 					<?php } ?>
 
 				</div>
 				<div class="row">
 					<p class="prix">Prix du panier : <?php echo $prixTotal; ?> €</p>
+				</div>
+				<hr/>
+				<div class="row">
+					<div class="col-lg-4 col-lg-offset-8">
+						<a class="btn btn-success btn btn-success">Payer ma commande</a>
+					</div>
 				</div>
 			</div>
 

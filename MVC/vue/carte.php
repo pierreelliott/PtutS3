@@ -78,17 +78,34 @@
         </div>
         <div class="tab-pane" id="menus">
           <!-- Je sais pas commment sont gérés les menus donc voilà je mets ça en attendant -->
-          <table class="table table-striped table-hover">
-    				<thead>
-    					<tr>
-    						<th>Produit</th>
-    						<th>Description</th>
-    						<th>Image</th>
-    						<th>Ajout panier</th>
-    					</tr>
-    				</thead>
-    				<tr><td>Test</td></tr>
-    			</table>
+          <?php
+			for($i = 1; $i <= 4; $i++)
+			{
+			?>
+				<div class="panel panel-default">
+					<div class="media">
+						<div class="media-left media-top">
+							<img src="images/maki1,1.png" class="media-object" style="width:80px">
+						</div>
+						<div class="media-body">
+							<h2 class="media-heading text-muted">Menu <?php echo $i;?></h2>
+							<p class="text-muted pull-left">Description [...........]</p>
+							<p class="text-muted">Prix : 2€</p>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-lg-offset-8 col-lg-4">
+								<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
+									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php
+			}
+			?>
         </div>
       </div>
 

@@ -79,3 +79,4 @@ Stack trace:
 [12-Jan-2017 15:39:48 Europe/Paris] PHP Warning:  require_once(UserManager.php): failed to open stream: No such file or directory in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/commandeManager.php on line 3
 [12-Jan-2017 15:39:48 Europe/Paris] PHP Fatal error:  require_once(): Failed opening required 'UserManager.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/commandeManager.php on line 3
 [12-Jan-2017 15:40:03 Europe/Paris] PHP Parse error:  syntax error, unexpected ')' in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/BD.php on line 2
+[12-Jan-2017 16:07:13 Europe/Paris] PHP Notice:  Undefined index: nbProduit in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/PanierManager.php on line 79

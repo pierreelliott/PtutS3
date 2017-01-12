@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="index.php" method="post" name="login" accept-charset="utf-8">
+				<form action="index.php?page=connexion" method="post" name="login" accept-charset="utf-8">
 					<fieldset>
 						<legend>Connexion à Sushinos</legend>
 						<input type="hidden" name="page" value="connexion"/>
