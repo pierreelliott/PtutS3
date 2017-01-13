@@ -15,7 +15,7 @@
 						</div>
 						<div class="panel-body">
 							<?php
-							foreach($produits as $numProduit => $produit) {
+							foreach($produits as  $produit) {
 							?>
 								<div class="col-xs-12 produit">
 									<div class="row produit-ligne-separateurs">
@@ -45,7 +45,7 @@
 								<h1>Prix total : <?php echo $prixCommande;?> €</h1>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -55,6 +55,6 @@
 <?php
 
 	$contenu = ob_get_clean();
-	
+
 	require("layout/site.php");
 ?>

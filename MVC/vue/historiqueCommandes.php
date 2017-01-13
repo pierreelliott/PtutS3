@@ -13,12 +13,15 @@
 				?>
 					<div class="media">
 						<div class="media-left">
-							<h1>Commande du <?php echo $commande["date"]; ?></h1>
+							<h1>Commande du <?php echo $commande['date']; ?></h1>
 						</div>
 						<div class="media-body">
 							<p class="lead">Nombre de produits : <?php echo $commande["nbProduits"];?> €</p>
 							<p class="lead">Prix de la commande : <?php echo $commande["prix"];?> €</p>
                             <p class="lead">Type de la commande : <?php echo $commande["typeCommande"];?> €</p>
+                            <p class="lead">
+                                <?php echo "<a href='index.php?page=commande&amp;numCommande={$commande['numCommande']}'> Afficher la commande</a>"?>
+                            </p>
 						</div>
 					</div>
 				<?php

@@ -87,13 +87,15 @@
                  $res["prix"] = $this->getPrixTotalCommande($res['numCommande']);
             }
 
+
+
             return $resultat;
         }
 
         //Affiche le detail d'une commande: Produit, quantite, prix commande, type commande, date
         public function getInfosCommande($numCommande)
         {
-            $requete = $this->executerRequete('select typeCommande, date, numProduit, description, quantite
+            $requete = $this->executerRequete('select typeCommande, date, p.numProduit numProduit, description, quantite
                                             from produit p join quantiteproduit q
                                             on p.NUMPRODUIT = q.NUMPRODUIT
                                             join commande c
@@ -108,7 +110,7 @@
         //Calcule prix total d'une commande
         public function getPrixTotalCommande($numCommande)
         {
-            $requete = $this->executerRequete('select quantiteproduit, prix, from produit join quantite q
+            $requete = $this->executerRequete('select quantite, prix from produit p join quantiteproduit q
                                                 on p.NUMPRODUIT = q.NUMPRODUIT
                                                 where numCommande = ?', array($numCommande));
 
@@ -119,7 +121,7 @@
             {
                 $prixTotal = 0;
                 foreach ($resultat as $produit) {
-                    $prixTotal += $produit["quantiteproduit"] * $produit["prix"];
+                    $prixTotal += $produit["quantite"] * $produit["prix"];
                 }
                 return $prixTotal;
             }

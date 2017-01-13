@@ -1,40 +1,70 @@
 <?php
     include_once('modele/commandeManager.php');
+    include_once('modele/ProduitManager.php');
 
     class CommandeControleur
     {
-        public $bdd;
+        public $bdCommande, $bdProduit;
 		public function __construct()
 		{
-			$this->bdd = new CommandeManager();
+			$this->bdCommande = new CommandeManager();
+            $this->bdProduit = new ProduitManager();
 		}
 
 		public function afficherHistorique($pseudo)
 		{
-			$commandes = $this->bdd->getHistoriqueCommande($pseudo);
+            /*Creation d'un tableau 2 dimension contenant
+            toutes les commandes avec 2 colonnes en plus: prix et
+            nbProduits
+            1er dimension contient le nombre de ligne
+            2ème les differentes colonne de la requete sql*/
+            $commandes = array('ligne' => array('date' => 'NULL',
+                            'typeCommande' => 'NULL',
+                            'numCommande'  => 'NULL',
+                            'prix' =>  0,
+                            'nbProduits' => 0));
 
-            foreach ($commandes as $com) {
-                $com["prix"] = $this->$bdd->getPrixTotalCommande($com['numCommande']);
-                $com["nbProduits"] = $this->bdd->getNbProduit($com['numCommande']);
+            //On recupere les commandes dans la base de données
+			$data = $this->bdCommande->getHistoriqueCommande($pseudo);
+
+            /*on reference la valeur pour pouvoir modifier le tableau
+            dans la boucle*/
+            foreach ($commandes as &$com)
+            {
+                foreach ($data as $d) {
+                    $com['date'] = $d['date'];
+                    $com['typeCommande'] = $d['typeCommande'];
+                    $com['numCommande'] = $d['numCommande'];
+                }
+                $com["prix"] = $this->bdCommande->getPrixTotalCommande($com['numCommande']);
+                $com["nbProduits"] = $this->bdCommande->getNbProduit($com['numCommande']);
+
             }
-
 			include_once('vue/historiqueCommandes.php');
 		}
 
 		public function afficherCommande($numCommande)
 		{
-			$resultat = $this->bdd->getInfosCommande($numCommande);
+			$resultat = $this->bdCommande->getInfosCommande($numCommande);
 
-			$dateCommande = $resultat["date"];
-			$prixCommande = $this->bdd->getPrixTotalCommande($numCommande);
-
-			if(true) //Si la commande n'existe pas => comment faire ?
+            //Tester la valeur de retour de la fonction getInfos Commande
+			if($resultat != false)
 			{
+                //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
+                $dateCommande = "null";
+
+                foreach ($resultat as $res) {
+                    $dateCommande = $res["date"];
+                }
+
+    			$prixCommande = $this->bdCommande->getPrixTotalCommande($numCommande);
+                //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
+                $produits = array();
 
                 //Pour chaque produit dans la commande
 				foreach($resultat as $prod)
 				{
-					$p = $this->bdd->getInfosProduit($prod["numProduit"]);
+					$p = $this->bdProduit->getInformationsProduit($prod["numProduit"]);
 					$produit = array(
 						"numProduit" => $p["numProduit"],
 						"libelle" => $p["libelle"],

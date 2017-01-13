@@ -74,11 +74,12 @@
 
 		case "historiqueCommandes":
 			$commande->afficherHistorique($_SESSION["utilisateur"]["pseudo"]);
-			include_once("vue/historiqueCommandes.php");
 			break;
-
-		case "administration":
 		case "commande":
+			$commande->afficherCommande($_GET['numCommande']);
+			break;
+		case "administration":
+
 		default:
 			include_once("vue/404.php");
 			break;
