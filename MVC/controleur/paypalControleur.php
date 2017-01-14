@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,7 +18,7 @@
         {
             $this->paypal = new PaypalManager;
         }
-        
+
         public function paiementPaypal()
         {
             include("fonction_api.php");
@@ -38,10 +38,14 @@
 
             $resultat_paypal = curl_exec($ch);
 
+            //On test si c'est bien paypal qui veut acceder a la page
+
+            //Si non erruer
             if (!$resultat_paypal)
             {
                 echo "<p>Erreur</p><p>".curl_error($ch)."</p>";
             }
+            //Si c'est paypal
             else
             {
                 $liste_param_paypal = $this->paypal->recupParams($resultat_paypal); // Lance notre fonction qui dispatche le résultat obtenu en un array
@@ -60,7 +64,7 @@
             }
             curl_close($ch);
         }
-        
+
         public function retourPaypal()
         {
             $requete = $this->paypal->construitURL(); // Construit les options de base
@@ -77,9 +81,9 @@
             // Initialise notre session cURL. On lui donne la requête à exécuter.
             $ch = curl_init($requete);
 
-            // Modifie l'option CURLOPT_SSL_VERIFYPEER afin d'ignorer la vérification du certificat SSL. Si cette option est à 1, une erreur affichera que la vérification du certificat SSL a échoué, et rien ne sera retourné. 
+            // Modifie l'option CURLOPT_SSL_VERIFYPEER afin d'ignorer la vérification du certificat SSL. Si cette option est à 1, une erreur affichera que la vérification du certificat SSL a échoué, et rien ne sera retourné.
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            // Retourne directement le transfert sous forme de chaîne de la valeur retournée par curl_exec() au lieu de l'afficher directement. 
+            // Retourne directement le transfert sous forme de chaîne de la valeur retournée par curl_exec() au lieu de l'afficher directement.
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             // On lance l'exécution de la requête URL et on récupère le résultat dans une variable
@@ -115,7 +119,7 @@
             // On ferme notre session cURL.
             curl_close($ch);
         }
-        
+
         public function traitementPaypal()
         {
             include("fonction_api.php");
