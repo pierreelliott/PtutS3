@@ -80,7 +80,7 @@
         {
             $user = $this->um->getNumUser($pseudo);
             $requete = $this->executerRequete('select date, typeCommande, numCommande from commande
-                                                where NumUser= ?', array($user));
+                                                where numUser= ?', array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($resultat as $res) {
