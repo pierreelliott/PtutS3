@@ -12,7 +12,7 @@
 					foreach($commandes as $commande) {
 				?>
 					<div class="media">
-						<div class="media-left">
+						<div class="media-left texte-commande">
 							<h1>Commande du <?php echo $commande['date']; ?></h1>
 						</div>
 						<div class="media-body">

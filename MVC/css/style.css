@@ -231,9 +231,19 @@ footer
     border-color: #909090;
     margin-left: 1vw;
     margin-right: 1vw;
-
 }
 
+/* Mise en forme d'une Image dans un panel */
 .img-produit{
-       padding: 0.5vw;
+    padding: 0.5vw;
+}
+
+/* Premeire Panel qui affiche les colonnes dans l'historiqueCommande */
+.colonne-produit{
+    padding-bottom: : 0;
+}
+
+/* Texte media-left dans historique Commande */
+.texte-commande{
+    padding-left: 2vh;
 }
