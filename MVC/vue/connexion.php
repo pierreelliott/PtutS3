@@ -35,7 +35,7 @@
 						<div class="row">
 							<div class="col-lg-offset-4 col-lg-4">
 								<div class="form-group">
-									<button type="submit" class="btn btn-success btn btn-success">Connexion</button>
+									<button type="submit" class="btn btn-success btn-block">Connexion</button>
 								</div>
 							</div>
 						</div>

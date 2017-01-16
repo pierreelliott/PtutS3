@@ -23,6 +23,7 @@
 	include_once("inscriptionControleur.php");
 	include_once("panierControleur.php");
 	include_once("commandeControleur.php");
+	include_once("adminControleur.php");
 
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();
@@ -31,6 +32,7 @@
 	$inscription = new inscriptionControleur();
 	$panier = new panierControleur();
 	$commande = new CommandeControleur();
+	$administration = new AdminControleur();
 
 
 	switch($page)
@@ -79,7 +81,8 @@
 			$commande->afficherCommande($_GET['numCommande']);
 			break;
 		case "administration":
-
+			$administration->administrer();
+			break;
 		default:
 			include_once("vue/404.php");
 			break;

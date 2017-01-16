@@ -26,7 +26,7 @@
 								</div>
 								<div class="col-lg-4">
 									<div class="form-group">
-										<button type="submit" class="btn btn-success btn btn-success">Poster mon avis</button>
+										<button type="submit" class="btn btn-success btn-block">Poster mon avis</button>
 									</div>
 								</div>
 							</div>
@@ -62,6 +62,6 @@
 <?php
 
 	$contenu = ob_get_clean();
-	
+
 	require("layout/site.php");
 ?>

@@ -126,7 +126,6 @@ footer
     margin-bottom: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 100%;
 }
 
 .navbar-right
@@ -246,4 +245,10 @@ footer
 /* Texte media-left dans historique Commande */
 .texte-commande{
     padding-left: 2vh;
+}
+
+.site-wrapper .btn-admin
+{
+    margin-top: 5vw;
+    margin-bottom: 5vw;
 }
