@@ -13,6 +13,29 @@
 						<div class="panel-heading">
 							<h1>Commande du <?php echo $dateCommande;?></h1>
 						</div>
+                        <!-- Affiche les colonnes du panel -->
+                        <div class="panel-body">
+							<div class="col-xs-12 produit">
+								<div class="row produit-ligne-separateurs">
+									<div class="col-xs-2">
+										<p>Image Produit</p>
+									</div>
+									<div class="col-xs-3">
+										<p>Nom Produit</p>
+									</div>
+									<div class="col-xs-3">
+										<p>Prix Unitaire</p>
+									</div>
+									<div class="col-xs-offset-2 col-xs-1">
+										<p>Quantite</p>
+									</div>
+									<div class="col-xs-1">
+										<p>Prix total</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <!-- Affichage du produit -->
 						<div class="panel-body">
 							<?php
 							foreach($produits as  $produit) {

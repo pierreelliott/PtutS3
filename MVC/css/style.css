@@ -221,3 +221,19 @@ footer
   color: #333;
   border: 1px solid #ddd;
 }
+
+.panel-footer{
+    background-color: #909090;
+}
+
+.panel-default{
+    border-top: solid 2vh;
+    border-color: #909090;
+    margin-left: 1vw;
+    margin-right: 1vw;
+
+}
+
+.img-produit{
+       padding: 0.5vw;
+}

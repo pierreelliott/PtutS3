@@ -23,9 +23,10 @@
 					<?php foreach($produits as $numProduit => $produit) { ?>
 
 					<div id="<?php echo $numProduit; ?>" class="panel panel-default">
-						<div class="media">
+
+						<div class="media img-produit">
 							<div class="media-left media-top">
-								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object" style="width:80px">
+								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail" style="width:80px">
 							</div>
 							<div class="media-body">
 								<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
@@ -54,7 +55,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!--<div id="<?php echo $numProduit; ?>" class="col-xs-12 produit">
 						<div class="row produit-ligne-separateurs">
 							<div class="col-xs-2">
@@ -63,13 +64,13 @@
 							<div class="col-xs-3">
 								<p><?php echo $produit["libelle"]; ?></p>
 							</div>
-							<div class="col-xs-1"> <!-- Enlever une occurrence 
+							<div class="col-xs-1"> <!-- Enlever une occurrence
 								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
 							</div>
 							<div class="col-xs-1">
 								<p class="qte"><?php echo $produit["quantite"]; ?></p>
 							</div>
-							<div class="col-xs-1"> <!-- Ajouter une occurrence 
+							<div class="col-xs-1"> <!-- Ajouter une occurrence
 								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
 							</div>
 							<div class="col-xs-3">
