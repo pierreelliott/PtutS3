@@ -19,26 +19,37 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="produits">
-              <table class="table table-striped table-hover">
-        				<thead>
-        					<tr>
-        						<th>Produit</th>
-        						<th>Description</th>
-        						<th>Image</th>
-        					</tr>
-        				</thead>
+              <ul class="nav nav-pills">
         				<?php
-        					foreach($tabRows as $produit) {
+        					foreach($produits as $key => $produit) {
         				?>
-        				<tr>
-        					<td><?php echo $produit["libelle"]; ?></td>
-        					<td><?php echo $produit["description"]; ?></td>
-        					<td><img src='<?php echo $produit["sourceMoyen"]; ?>' alt='Image du produit'></td>
-        				</tr>
+                <li<?php echo ($key == 0) ? ' class="active"' : ''; ?>><a href="#" data-toggle="tab" data-numProduit="<?php echo $produit["numProduit"]; ?>">
+          				<div class="panel panel-default">
+          					<div class="media">
+          						<div class="media-left media-top">
+          							<img src="<?php echo $produit["sourceMoyen"]; ?>" class="media-object" style="width:80px">
+          						</div>
+          						<div class="media-body">
+          							<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
+          							<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
+          							<p class="text-muted">Prix : <?php echo $produit["prix"]; ?>€</p>
+          						</div>
+          					</div>
+          					<div class="panel-footer">
+          						<div class="row">
+          							<div class="col-lg-offset-8 col-lg-4">
+          								<!--<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
+          									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+          								</button>-->
+          							</div>
+          						</div>
+          					</div>
+          				</div>
+                </a></li>
         				<?php
         				}
         				?>
-        			</table>
+        			</ul>
             </div>
             <div class="tab-pane" id="menus">
               <!-- Je sais pas commment sont gérés les menus donc voilà je mets ça en attendant -->
@@ -79,58 +90,33 @@
           </div>
         </div>
         <div class="col-xs-6">
-          <button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal"
-                                                                                   data-target="#admin"
-                                                                                   data-action="ajouter">Ajout un produit</button>
-          <button type="button" class="btn btn-primary btn-lg btn-block btn-admin" data-toggle="modal"
-                                                                                   data-target="#admin"
-                                                                                   data-action="modifier">Modifier un produit</button>
-          <button type="button" class="btn btn-danger btn-lg btn-block btn-admin" data-toggle="modal"
-                                                                                  data-target="#admin"
-                                                                                  data-action="supprimer">Supprimer un produit</button>
+          <button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajout un produit</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminModif">Modifier un produit</button>
+          <button type="button" class="btn btn-danger btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminSuppr">Supprimer un produit</button>
         </div>
       </div>
 		</div>
 	</div>
 
-  <!-- Début fenête modale -->
-  <div class="modal fade" id="admin">
+  <!-- Début fenête modales -->
+  <div class="modal fade" id="adminAjout">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-          <h4 class="modal-title"></h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="libelle" class="label-form">Libellé :</label>
-              <input type="text" name="libelle" id="libelle" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="description" class="label-form">Description :</label>
-              <input type="text" name="description" id="description" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="typeProduit" class="label-form">Type de produit :</label>
-              <input type="text" name="typeProduit" id="typeProduit" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="prix" class="label-form">Prix :</label>
-              <input type="text" name="prix" id="prix" class="form-control">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Valider</button>
-        </div>
-      </div>
+      <?php include("vue/ADMINAjoutProduit.php"); ?>
     </div>
   </div>
 
+  <div class="modal fade" id="adminModif">
+    <div class="modal-dialog">
+      <?php include("vue/ADMINModificationProduit.php"); ?>
+    </div>
+  </div>
 
-  <!-- Fin fenêtre modale -->
+  <div class="modal fade" id="adminSuppr">
+    <div class="modal-dialog">
+      <?php include("vue/ADMINSuppressionProduit.php"); ?>
+    </div>
+  </div>
+  <!-- Fin fenêtres modales -->
 
 <!-- ======== Fin Code HTML ======== -->
 <?php
@@ -140,13 +126,21 @@
 <script>
     $(function()
     {
-        $('.btn-admin').click(function(e)
-        {
-            var action = $(this).data('action');
-            console.log(action);
+      // Lorsqu'on choisi une image dans l'input file
+      $('#imageAjout, #imageModif').change(function (e1) {
+        var filename = e1.target.files[0];
+        var fr = new FileReader();
+        fr.onload = function (e2) {
+          $('.apercuImage').attr('src', e2.target.result);
+        };
+        fr.readAsDataURL(filename);
+      });
 
-            $('.modal-title').text(action[0].toUpperCase() + action.substr(1, action.length) + " un produit");
-        });
+      $('#adminAjout, #adminModif').on('hidden.bs.modal', function(e)
+      {
+        $(this).find('input, textarea').val('');
+        $('.apercuImage').attr('src', '');
+      });
     });
 </script>
 <!-- ======== Fin Code Javascript ======== -->

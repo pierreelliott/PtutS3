@@ -1,81 +1,71 @@
-<?php
-
-	$title = "Administration - Ajouter produit";
-	ob_start();
-?>
-<!-- ======== Début Code HTML ======== -->
-	
-	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<form method="post" action="administration.php?action=ajout" name="ajoutProduit" accept-charset="utf-8">
-				<fieldset>
-					<legend>Ajouter un produit</legend>
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="form-group">
-										<img src="images/achat.png">
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="image" class="control-label"></label>
-										<input type="file" id="image" name="image">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="libelle" class="control-label">Libellé :</label>
-										<input type="text" id="libelle" name="libelle" placeholder="Libellé" class="form-control" autofocus>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="typeProduit" class="control-label">Type de produit :</label>
-										<select id="typeProduit" class="form-control">
-											<option>Sushi</option>
-											<option>Maki</option>
-											<option>...</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="prix" class="control-label">Prix :</label>
-										<input type="number" id="prix" name="prix" class="form-control">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label for="description" class="control-label">Description</label>
-								<textarea type="textarea" class="form-control">Ecrivez une courte decription du produit</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-offset-4 col-lg-4">
-							<div class="form-group">
-								<button type="submit" class="btn btn-success btn btn-success">Ajouter à la base de données <span class="glyphicon glyphicon-ok"></span></button>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+		<h4 class="modal-title">Ajouter un produit</h4>
 	</div>
-
-<!-- ======== Fin Code HTML ======== -->
-<?php
-	$contenu = ob_get_clean();
-
-	require("layout/site.php");
-?>
+	<div class="modal-body">
+		<form method="post" action="index.php?page=administration&action=ajout" id="ajoutProduit" accept-charset="utf-8" enctype="multipart/form-data">
+			<fieldset>
+				<input type="hidden" name="numProduit" id="numProduitAjout" value="">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="file-upload btn btn-primary">
+									<label for="imageAjout" class="control-label">Parcourir...</label>
+									<input type="file" id="imageAjout" name="image" class="upload">
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<img src="" class="apercuImage img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="libelleAjout" class="control-label">Libellé :</label>
+									<input type="text" id="libelleAjout" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="typeProduitAjout" class="control-label">Type de produit :</label>
+									<select id="typeProduitAjout" name="typeProduit" class="form-control" required>
+										<option value="Sushi">Sushi</option>
+										<option value="Maki">Maki</option>
+										<option value="Sauce">Sauce</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="prixAjout" class="control-label">Prix :</label>
+									<input type="number" id="prixAjout" name="prix" class="form-control" required>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="descriptionAjout" class="control-label">Description :</label>
+							<textarea type="textarea" name="description" id="descriptionAjout" placeholder="Ecrivez une courte decription du produit" class="form-control" required></textarea>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="submit" form="ajoutProduit" class="btn btn-success">Ajouter à la base de données <span class="glyphicon glyphicon-ok"></span></button>
+	</div>
+</div>

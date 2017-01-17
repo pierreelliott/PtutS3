@@ -26,17 +26,17 @@
 			$imagefactice = array($libelle."allo1",$libelle."allo2",$libelle."allo3");
 			$image = $this->executerRequete('insert into image (sourcePetit, sourceMoyen, sourceGrand) values (?,?,?)', $imagefactice);
 			$image = $this->executerRequete('select numImage from image where sourcePetit = ? and sourceMoyen = ? and sourceGrand = ?', $imagefactice);
-			$numImage = $image->fetch();
+			$numImage = $image->fetch(PDO::FETCH_ASSOC)["numImage"];
 
 
-            //Si le produit est gratuit (Contrainte)
-            if($prix == null)
-            {
-                $prix = 0;
-                # On considère qu'on a le $numImage
-    			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
-    								values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
-            }
+      //Si le produit est gratuit (Contrainte)
+      if($prix == null)
+      {
+          $prix = 0;
+      }
+      # On considère qu'on a le $numImage
+      $resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
+  						values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
 
 			if($compatibilite == null) // Je sais plus du tout à quoi ça sert....
 			{

@@ -1,81 +1,71 @@
-<?php
-
-	$title = "Administration - Modifier produit";
-	ob_start();
-?>
-<!-- ======== Début Code HTML ======== -->
-	
-	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<form method="post" action="administration.php?action=modification" name="ajoutProduit" accept-charset="utf-8">
-				<fieldset>
-					<legend>Modifier un produit</legend>
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="form-group">
-										<img src="images/achat.png">
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="image" class="control-label"></label>
-										<input type="file" id="image" name="image">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="libelle" class="control-label">Libellé :</label>
-										<input type="text" id="libelle" name="libelle" placeholder="Libellé" class="form-control" autofocus>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="typeProduit" class="control-label">Type de produit :</label>
-										<select id="typeProduit" class="form-control">
-											<option>Sushi</option>
-											<option>Maki</option>
-											<option>...</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="form-group">
-										<label for="prix" class="control-label">Prix :</label>
-										<input type="number" id="prix" name="prix" class="form-control">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label for="description" class="control-label">Description</label>
-								<textarea type="textarea" class="form-control">Ecrivez une courte decription du produit</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-offset-4 col-lg-4">
-							<div class="form-group">
-								<button type="submit" class="btn btn-success btn btn-success">Modifier le produit</button>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+		<h4 class="modal-title">Modifier un produit</h4>
 	</div>
-	
-<!-- ======== Fin Code HTML ======== -->
-<?php
-	$contenu = ob_get_clean();
-
-	require("layout/site.php");
-?>
+	<div class="modal-body">
+		<form method="post" action="index.php?page=administration&action=modification" id="modifProduit" accept-charset="utf-8" enctype="multipart/form-data">
+			<fieldset>
+				<input type="hidden" name="numProduit" id="numProduitModif" value="">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="file-upload btn btn-primary">
+									<label for="imageModif" class="control-label">Parcourir...</label>
+									<input type="file" id="imageModif" name="image" class="upload">
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<img src="" class="apercuImage img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="libelleModif" class="control-label">Libellé :</label>
+									<input type="text" id="libelleModif" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="typeProduitModif" class="control-label">Type de produit :</label>
+									<select id="typeProduitModif" name="typeProduit" class="form-control" required>
+										<option value="Sushi">Sushi</option>
+										<option value="Maki">Maki</option>
+										<option value="Sauce">Sauce</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="prixModif" class="control-label">Prix :</label>
+									<input type="number" id="prixModif" name="prix" class="form-control" required>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="descriptionModif" class="control-label">Description :</label>
+							<textarea type="textarea" name="description" id="descriptionModif" placeholder="Ecrivez une courte decription du produit" class="form-control" required></textarea>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="submit" form="" class="btn btn-success btn btn-success">Modifier le produit</button>
+	</div>
+</div>

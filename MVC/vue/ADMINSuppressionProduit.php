@@ -1,40 +1,32 @@
-<?php
-
-	$title = "Administration - Supprimer produit";
-	ob_start();
-?>
-<!-- ======== Début Code HTML ======== -->
-
-	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<form method="post" action="administration.php?action=suppression" name="ajoutProduit" accept-charset="utf-8">
-				<fieldset>
-					<legend>Supprimer un produit</legend>
-					<table class="table table-hover">
-						<tbody>
-							<tr>
-								<th>Libellé</th>
-								<th>Description</th>
-								<th>Image</th>
-								<th>Prix</th>
-								<th>Type de produit</th>
-							</tr>
-						</tbody>
-					</table>
-					<div class="row">
-						<div class="col-lg-offset-4 col-lg-4">
-							<button type="submit" class="btn btn-danger">Confirmer la suppression</button>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-
-		</div>
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+		<h4 class="modal-title">Supprimer un produit</h4>
 	</div>
-
-<!-- ======== Fin Code HTML ======== -->
-<?php
-	$contenu = ob_get_clean();
-
-	require("layout/site.php");
-?>
+	<div class="modal-body">
+		<form method="post" action="index.php?page=administration&action=suppression" id="supprProduit" accept-charset="utf-8">
+			<fieldset>
+				<input type="hidden" id="numProduitSuppr" name="numProduit" value="">
+				<input type="hidden" id="libelleSuppr" name="libelle">
+				<input type="hidden" id="typeProduitSuppr" name="typeProduit">
+				<input type="hidden" id="prixSuppr" name="prix">
+				<input type="hidden" id="descriptionSuppr" name="description">
+				<table class="table table-hover">
+					<tbody>
+						<tr>
+							<th>Libellé</th>
+							<th>Description</th>
+							<th>Image</th>
+							<th>Prix</th>
+							<th>Type de produit</th>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="submit" form="supprProduit" class="btn btn-danger">Confirmer la suppression</button>
+	</div>
+</div>
