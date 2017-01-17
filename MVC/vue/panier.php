@@ -11,8 +11,17 @@
 			<?php
 			//Si le panier est vide
 			if($estVide)
-			{
-				echo "Votre panier est vide";
+			{?>
+				<div class="row">
+					<h1>Votre panier est vide</h1>
+				</div>
+				<hr/>
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+						<a class="btn btn-success btn btn-success" href="index?page=carte"><h2>Commander quelque chose !</h2></a>
+					</div>
+				</div>
+			<?php
 			}
 			else
 			{
@@ -20,7 +29,8 @@
 				<legend>Votre panier</legend>
 				<div class="row">
 
-					<?php foreach($produits as $numProduit => $produit) { ?>
+					<?php foreach($produits as $numProduit => $produit)
+					{ ?>
 
 					<div id="<?php echo $numProduit; ?>" class="panel panel-default">
 
@@ -36,7 +46,7 @@
 						</div>
 						<div class="panel-footer">
 							<div class="row">
-								<div class="col-xs-1"> <!-- Enlever une occurrence -->
+								<div class="col-xs-offset-2 col-xs-1"> <!-- Enlever une occurrence -->
 									<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
 								</div>
 								<div class="col-xs-3">
@@ -56,33 +66,8 @@
 						</div>
 					</div>
 
-					<!--<div id="<?php echo $numProduit; ?>" class="col-xs-12 produit">
-						<div class="row produit-ligne-separateurs">
-							<div class="col-xs-2">
-								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
-							</div>
-							<div class="col-xs-3">
-								<p><?php echo $produit["libelle"]; ?></p>
-							</div>
-							<div class="col-xs-1"> <!-- Enlever une occurrence
-								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="-1" class="btn btn-xs btn-primary btn-qte-produit">-</button>
-							</div>
-							<div class="col-xs-1">
-								<p class="qte"><?php echo $produit["quantite"]; ?></p>
-							</div>
-							<div class="col-xs-1"> <!-- Ajouter une occurrence
-								<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
-							</div>
-							<div class="col-xs-3">
-								<p><?php echo $produit["prix"]; ?> €</p>
-							</div>
-							<div class="col-xs-1">
-								<button type="button" data-action="suppression" data-produit="<?php echo $numProduit; ?>" class="btn btn-xs btn-danger btn-qte-produit">&times;</button>
-							</div>
-						</div>
-					</div>-->
-
-					<?php } ?>
+					<?php
+					} ?>
 
 				</div>
 				<div class="row">
@@ -90,9 +75,20 @@
 				</div>
 				<hr/>
 				<div class="row">
+					<?php
+					// Si l'utilisateur est connecté
+					if(isset($_SESSION["utilisateur"]))
+					{?>
 					<div class="col-lg-4 col-lg-offset-8">
 						<a class="btn btn-success btn btn-success" href="index?page=paiement">Payer ma commande</a>
 					</div>
+					<?php
+					} else { ?>
+					<div class="col-lg-5 col-lg-offset-6">
+						<a class="btn btn-danger" href="index?page=connexion">Veuillez vous connecter pour pouvoir commander</a>
+					</div>
+					<?php
+					} ?>
 				</div>
 			</div>
 

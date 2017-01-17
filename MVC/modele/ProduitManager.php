@@ -80,6 +80,22 @@
                     Plusieurs produits donnent des reductions
                     Depends aussi de la categorie du produit par exempls accompagnement*/
 		}
+		
+		public function getTypeProduit($numProduit)
+		{
+			//Les menus sont stockés dans la base
+			//avec un type dans le style : "menu.[...]"
+			
+			//Return : une chaine (à repréciser si jamais)
+		}
+		
+		public function getProduitsCompatibles($numProduit)
+		{
+			// Table compatibilite :
+			// Colonne 1 : $numProduit ; colonne 2 : les produits compatibles
+			
+			// Return array des numProduit compatibles
+		}
 
 		/* ============= Fonctions sur la carte des produits ============= */
 
