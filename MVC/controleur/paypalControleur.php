@@ -6,84 +6,132 @@
  * and open the template in the editor.
  */
 
+    include_once('modele/PaypalManager.php');
+    include_once('modele/CommandeManager.php');
     include_once('modele/PanierManager.php');
 
-    //session_start();
-
-    class panierControleur
+    class paypalControleur
     {
-        public $paypal;
+        public $paypal, $commande, $panier, $urlSite;
 
         public function __construct()
         {
-            $this->paypal = new PaypalManager;
+            $this->paypal = new PaypalManager();
+            $this->commande = new CommandeManager();
+            $this->panier = new PanierManager();
+
+            $this->setUrlSite();
         }
 
-        public function paiementPaypal()
+        //Determine l'url en fonction de la ou est hebergé le site
+        public function setUrlSite()
         {
-            include("fonction_api.php");
-            $requete = $this->paypal->construitURL();
-            $requete = $requete."&METHOD=SetExpressCheckout".
-                                "&CANCELURL=".urlencode("http://127.0.0.1/index.php?page=annulePaypal").
-                                "&RETURNURL=".urlencode("http://127.0.0.1/index.php?page=retourPaypal").
-                                "&AMT=10.0".
-                                "&CURRENCYCODE=EUR".
-                                "&DESC=".urlencode("Magnifique oeuvre d'art (que mon fils de 3 ans a peint.)").
-                                "&LOCALECODE=FR".
-                                "&HDRIMG=".urlencode("http://www.siteduzero.com/Templates/images/designs/2/logo_sdz_fr.png");
+            if($_SERVER["SERVER_NAME"] == "localhost")
+            {
+                 $this->urlSite = "127.0.0.1/";
+            }
+            else if($_SERVER["SERVER_NAME"] == "sushinoss.alwaysdata.net")
+            {
+                 $this->urlSite = "http://sushinoss.alwaysdata.net/";
+            }
+            elseif ( $_SERVER["SERVER_NAME"] == "ptut") {
+                 $this->urlSite = "http://ptut/";
+            }
+            else
+        	{
+        		$this->urlSite = "http://iutdoua-web.univ-lyon1.fr/~p1402690/";
+        	}
+        }
 
+        //Redirige l'utilisateur sur le site de paypal pour payer
+        public function paiementPaypal($prix)
+        {
+            $requete = $this->paypal->construitURL();
+            $typeCommande = null;
+            if($_POST["typeCommande"] == "Livraison")
+            {
+                $typeCommande = "Livraison";
+            }
+            else {
+                $typeCommande = "A Emporter";
+            }
+            //Ajout des parametres variables
+            $requete = $requete."&METHOD=SetExpressCheckout".
+                                "&CANCELURL=".urlencode($this->urlSite."index.php?page=annulePaypal").
+                                "&RETURNURL=".urlencode($this->urlSite."index.php?page=retourPaypal&typeCommande".$typeCommande).
+                                "&AMT=".$prix.
+                                "&CURRENCYCODE=EUR".
+                                "&DESC=".urlencode("SUSHI").
+                                "&LOCALECODE=FR";
+
+            //Creation d'une session cURL
             $ch = curl_init($requete);
+            //Ignore le certificat SSL
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            //Permet de recuperer les données issus de la requete
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
+            //Execute la requete
             $resultat_paypal = curl_exec($ch);
 
             //On test si c'est bien paypal qui veut acceder a la page
 
-            //Si non erruer
+            //Si elle n'a pas marché
             if (!$resultat_paypal)
             {
+                //Affichage de l'erreur
                 echo "<p>Erreur</p><p>".curl_error($ch)."</p>";
             }
-            //Si c'est paypal
+            //Sinon on effectue les traitements
             else
             {
-                $liste_param_paypal = $this->paypal->recupParams($resultat_paypal); // Lance notre fonction qui dispatche le résultat obtenu en un array
+                //Recupere les parametre en les séparant puis les stock dans un tableau
+                $liste_param = $this->paypal->separeParametres($resultat_paypal);
+                $parametres = $this->paypal->stockerParametre($liste_param);
 
                 // Si la requête a été traitée avec succès
-                if ($liste_param_paypal['ACK'] == 'Success')
+                if ($parametres['ACK'] == 'Success')
                 {
+                    echo "string";
                     // Redirige le visiteur sur le site de PayPal
-                    header("Location: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token=".$liste_param_paypal['TOKEN']);
+                    header("Location: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token=".$parametres['TOKEN']);
                     exit();
                 }
                 else // En cas d'échec, affiche la première erreur trouvée.
                 {
-                    echo "<p>Erreur de communication avec le serveur PayPal.<br />".$liste_param_paypal['L_SHORTMESSAGE0']."<br />".$liste_param_paypal['L_LONGMESSAGE0']."</p>";
+                    echo "<p>Erreur de communication avec le serveur PayPal.<br />".$parametres['L_SHORTMESSAGE0']."<br />"
+                    .$parametres['L_LONGMESSAGE0']."</p>";
+
+                    echo "\n".$requete;
+
+                    echo "\n".urlencode("http://127.0.0.1/index.php?page=retourPaypal");
                 }
             }
+            //Fermeture de la session
             curl_close($ch);
         }
 
-        public function retourPaypal()
+        //Valide la transaction paypal apres le paiemet ou le refus
+        public function retourPaypal($typeCommande)
         {
-            $requete = $this->paypal->construitURL(); // Construit les options de base
+            $requete = $this->paypal->construitURL();
 
-            // On ajoute le reste des options
-            // La fonction urlencode permet d'encoder au format URL les espaces, slash, deux points, etc.)
+           //Ajout des parametre variables
             $requete = $requete."&METHOD=DoExpressCheckoutPayment".
-                                "&TOKEN=".htmlentities($_GET['token'], ENT_QUOTES). // Ajoute le jeton qui nous a été renvoyé
-                                "&AMT=10.0".
+                                // Ajoute le jeton qui nous a été renvoyé
+                                "&TOKEN=".htmlentities($_GET['token'], ENT_QUOTES).
+                                "&AMT=".$_SESSION["prixPanier"].
                                 "&CURRENCYCODE=EUR".
-                                "&PayerID=".htmlentities($_GET['PayerID'], ENT_QUOTES). // Ajoute l'identifiant du paiement qui nous a également été renvoyé
+                                // Ajoute l'identifiant du paiement qui nous a également été renvoyé
+                                "&PayerID=".htmlentities($_GET['PayerID'], ENT_QUOTES).
                                 "&PAYMENTACTION=sale";
 
-            // Initialise notre session cURL. On lui donne la requête à exécuter.
+            // Initialise notre session cURL.
             $ch = curl_init($requete);
 
-            // Modifie l'option CURLOPT_SSL_VERIFYPEER afin d'ignorer la vérification du certificat SSL. Si cette option est à 1, une erreur affichera que la vérification du certificat SSL a échoué, et rien ne sera retourné.
+            // ignorer la vérification du certificat SSL.
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            // Retourne directement le transfert sous forme de chaîne de la valeur retournée par curl_exec() au lieu de l'afficher directement.
+            // Retourne directement le transfert sous forme de chaîne de la valeur retournée par curl_exec()
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             // On lance l'exécution de la requête URL et on récupère le résultat dans une variable
@@ -96,34 +144,34 @@
             // S'il s'est exécuté correctement, on effectue les traitements...
             else
             {
-                $liste_param_paypal = $this->paypal->recupParams($resultat_paypal); // Lance notre fonction qui dispatche le résultat obtenu en un array
-
-                // On affiche tous les paramètres afin d'avoir un aperçu global des valeurs exploitables (pour vos traitements). Une fois que votre page sera comme vous le voulez, supprimez ces 3 lignes. Les visiteurs n'auront aucune raison de voir ces valeurs s'afficher.
-                echo "<pre>";
-                print_r($liste_param_paypal);
-                echo "</pre>";
+                //Recupere les parametre en les séparant  puis les stock dans un tableau
+                $liste_param = $this->paypal->separeParametres($resultat_paypal);
+                $parametres = $this->paypal->stockerParametre($liste_param);
 
                 // Si la requête a été traitée avec succès
-                if ($liste_param_paypal['ACK'] == 'Success')
+                if ($parametres['ACK'] == 'Success')
                 {
-                    echo "<h1>Youpii, le paiement a été effectué</h1>"; // On affiche la page avec les remerciements, et tout le tralala...
-                    /*********************************************/
-                    /* Faire la requête pour valider la commande */
-                    /*********************************************/
+                    //Ajout du panier comme une commande
+                    $this->commande->addCommande($_SESSION["utilisateur"]["pseudo"], $_SESSION["panier"], $typeCommande);
+                    //Vider Panier
+                    $this->panier->viderPanier();
+
                 }
                 else // En cas d'échec, affiche la première erreur trouvée.
                 {
-                    echo "<p>Erreur de communication avec le serveur PayPal.<br />".$liste_param_paypal['L_SHORTMESSAGE0']."<br />".$liste_param_paypal['L_LONGMESSAGE0']."</p>";
+                    echo "<p>Erreur de communication avec le serveur PayPal.<br />".$parametres['L_SHORTMESSAGE0']."<br />"
+                    .$parametres['L_LONGMESSAGE0']."</p>";
                 }
             }
             // On ferme notre session cURL.
             curl_close($ch);
         }
 
+        /* Pas utile si on ne stocke pas les données de la transaction
         public function traitementPaypal()
         {
-            include("fonction_api.php");
-            $requete = construit_url_paypal();
+
+            $requete = $this->paypal->construitURL();
             $requete = $requete."&METHOD=GetExpressCheckoutDetails".
                                 "&TOKEN=".htmlentities($_GET['token'], ENT_QUOTES); // Ajoute le jeton
 
@@ -153,5 +201,6 @@
             }
             curl_close($ch);
         }
+        */
     }
 ?>

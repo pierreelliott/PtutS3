@@ -14,25 +14,25 @@
         //Creer une commande: $Produits est un tableau indexé 2 dimension [i][numProduit] et [i][quantiteProduit]
         public function addCommande($pseudo, $produits, $typeCommande)
         {
-            $numUser = $um->getNumUser($pseudo);
+            $numUser = $this->um->getNumUser($pseudo);
 
-            $user = $um->getInfo($pseudo);
+            $user = $this->um->getInfo($pseudo);
             //A gerer en dehors du modele juste avant de valider commande
-            if($typeComande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or $user['telephone'] == null or
+            if($typeCommande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or $user['telephone'] == null or
                 $user['numRue'] == null or $user['codePostal'] == null))
             {
                 return false;
             }
 
             //Pas utilisé
-            $prixCommande = $this->calcCommande($produits);
+            //$prixCommande = $this->calcCommande($produits);
 
             //Insertion dans la table Commande
             $requete = $this->executerRequete('insert into commande(rue, date, ville, numRue, codePostal,
                                             typeCommande, numUser)
                                             values(?, CURRENT_DATE(), ?, ?, ?, ?, ?)',
                                             array($user['rue'], $user['ville'], $user['numRue'], $user['codePostal'],
-                                            $typeCommande, $numUser['numUser']));
+                                            $typeCommande, $numUser));
 
             //Recupere le numCommande de la commande insérer
             $numCommande = $this->executerRequete('select max(numCommande) numCommande from commande');
@@ -42,8 +42,8 @@
             {
                 $requete = $this->executerRequete('insert into quantiteProduit(numCommande, numProduit, quantite)
                                                 values(?, ?, ?)',
-                                                array($numCommande['numCommande'], $produits['numProduit'],
-                                                    $produits['quantiteProduit']));
+                                                array($numCommande['numCommande'], $prod['numProduit'],
+                                                    $prod['quantite']));
             }
 
             return true;

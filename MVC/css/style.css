@@ -240,7 +240,19 @@ footer
 
 /* Premeire Panel qui affiche les colonnes dans l'historiqueCommande */
 .colonne-produit{
-    padding-bottom: : 0;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.colonne-produit .produit
+{
+    margin-top: 0px;
+}
+
+.colonne-produit p
+{
+    font-weight: bold;
 }
 
 /* Texte media-left dans historique Commande */

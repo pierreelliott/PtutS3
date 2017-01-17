@@ -49,6 +49,7 @@
       				$p = $this->produit->getInformationsProduit($numProduit);
 
       				$produit = array(
+                                "numProduit" => $p["numProduit"],
       							"libelle" => $p["libelle"],
       							"description" => $p["description"],
       							"quantite" => $qte,
@@ -64,7 +65,7 @@
 
       			$quantiteTotale = $this->panier->getQteTotale();
       			$prixTotal = $this->panier->getPrixPanier();
-
+                $_SESSION["prixPanier"] = $prixTotal;
             include_once('vue/panier.php');
         }
     }

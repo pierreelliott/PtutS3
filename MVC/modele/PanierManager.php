@@ -37,6 +37,13 @@
             }
         }
 
+        //Vide le panier après une commande
+        public function viderPanier()
+        {
+            $_SESSION["panier"] = array();
+            $_SESSION["nbProduit"] = 0;
+        }
+
 		public function getQteTotale()
         {
             $resultat = 0;
@@ -73,9 +80,10 @@
             }
             else
             {
-				$_SESSION["panier"][$numProduit] = array("quantite" => $quantite);
+				$_SESSION["panier"][$numProduit] = array("quantite" => $quantite,
+                                                            "numProduit" => $numProduit);
             }
-			
+
 			$_SESSION["nbProduit"] += 1;
 
             header('Location: index.php?page=carte');
@@ -102,7 +110,7 @@
 				if($quantite < 0) $quantite = 1;
 				$this->ajouterProduit($numProduit, $quantite);
 			}
-			
+
 			$_SESSION["nbProduit"] += $quantite;
 		}
     }

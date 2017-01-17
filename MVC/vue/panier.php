@@ -91,7 +91,7 @@
 				<hr/>
 				<div class="row">
 					<div class="col-lg-4 col-lg-offset-8">
-						<a class="btn btn-success btn btn-success">Payer ma commande</a>
+						<a class="btn btn-success btn btn-success" href="index?page=paiement">Payer ma commande</a>
 					</div>
 				</div>
 			</div>

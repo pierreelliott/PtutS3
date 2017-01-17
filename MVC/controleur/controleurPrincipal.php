@@ -23,6 +23,7 @@
 	include_once("inscriptionControleur.php");
 	include_once("panierControleur.php");
 	include_once("commandeControleur.php");
+	include_once("paypalControleur.php");
 
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();
@@ -31,6 +32,7 @@
 	$inscription = new inscriptionControleur();
 	$panier = new panierControleur();
 	$commande = new CommandeControleur();
+	$paypal = new paypalControleur();
 
 
 	switch($page)
@@ -77,6 +79,25 @@
 			break;
 		case "commande":
 			$commande->afficherCommande($_GET['numCommande']);
+			break;
+		//Appelé lorsque l'on clique sur le bouton payer du panier
+		case "paiement":
+			$commande->recapCommande();
+			break;
+		//Si la transaction est annulé
+		case "paiementPaypal":
+			//Appel a la page de paiement avec le prix du panier
+			$paypal->paiementPaypal($_SESSION["prixPanier"]);
+		break;
+		case "annulePaypal":
+			include_once("vue/annulePaypal.php");
+			break;
+		//Si la transaction s'ést déroulé normalement
+		case 'retourPaypal':
+			$typeCommande = $_GET["typeCommande"];
+			$paypal->retourPaypal($typeCommande);
+
+			include_once("vue/commandeValidee.php");
 			break;
 		case "administration":
 

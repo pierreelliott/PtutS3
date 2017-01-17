@@ -87,5 +87,29 @@
 				include_once("vue/404.php");
 			}
 		}
+
+        public function recapCommande()
+        {
+            $produits = array();
+            foreach($_SESSION["panier"] as $prod)
+            {
+                $p = $this->bdProduit->getInformationsProduit($prod["numProduit"]);
+                $produit = array(
+                    "numProduit" => $p["numProduit"],
+                    "libelle" => $p["libelle"],
+                    "description" => $p["description"],
+                    "quantite" => $prod["quantite"],
+                    "prix" => $p["prix"],
+                    "prixTotal" => $p["prix"]* $prod["quantite"],
+                    "sourcePetit" => $p["sourcePetit"],
+                    "sourceMoyen" => $p["sourceMoyen"],
+                    "sourceGrand" => $p["sourceGrand"]
+                );
+                $produits[$prod["numProduit"]] = $produit;
+            }
+            $prixCommande = $_SESSION["prixPanier"];
+
+            include_once("vue/recapCommande.php");
+        }
     }
 ?>
