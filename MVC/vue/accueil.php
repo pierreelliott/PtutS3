@@ -9,14 +9,14 @@
         <div class="col-md-2 hidden-sm hidden-xs">
             <div class="row">
                 <aside class="col-md-12">
-                    
+
                 </aside>
             </div>
         </div>
         <div class="col-md-8 col-xs-12">
-		
+
             <?php include("carousel.php"); ?>
-			
+
 			<div class="row">
                 <div class="col-md-12">
                     <div class="site-wrapper">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-4">
-                                <a href="index.php?page=carte"  class="btn btn-md btn-default">Découvrir</a>
+                                <a href="index.php?page=carte"  class="btn btn-md btn-default btn-block">Découvrir</a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
         <div class="col-md-2 hidden-sm hidden-xs">
             <div class="row">
                 <aside class="col-md-12">
-                    
+
                 </aside>
             </div>
         </div>

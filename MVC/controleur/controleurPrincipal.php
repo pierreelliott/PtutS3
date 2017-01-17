@@ -24,6 +24,8 @@
 	include_once("panierControleur.php");
 	include_once("commandeControleur.php");
 	include_once("paypalControleur.php");
+	include_once("adminControleur.php");
+
 
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();
@@ -33,6 +35,7 @@
 	$panier = new panierControleur();
 	$commande = new CommandeControleur();
 	$paypal = new paypalControleur();
+	$administration = new AdminControleur();
 
 
 	switch($page)
@@ -100,7 +103,8 @@
 			include_once("vue/commandeValidee.php");
 			break;
 		case "administration":
-
+			$administration->administrer();
+			break;
 		default:
 			include_once("vue/404.php");
 			break;

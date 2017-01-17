@@ -1,1 +1,157 @@
-﻿
+<?php
+    $title = "La carte";
+
+    ob_start();
+?>
+<!-- ======== Début Code HTML ======== -->
+  <!-- Popup d'information succès ajout produit -->
+  <div class="alert alert-success hidden">
+    Produit correctement ajouté !
+  </div>
+  <!-- fin popup -->
+	<div class="row">
+		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
+      <div class="row">
+        <div class="col-xs-6">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#produits" data-toggle="tab">Nos produits</a></li>
+            <li><a href="#menus" data-toggle="tab">Nos menus</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="produits">
+              <table class="table table-striped table-hover">
+        				<thead>
+        					<tr>
+        						<th>Produit</th>
+        						<th>Description</th>
+        						<th>Image</th>
+        					</tr>
+        				</thead>
+        				<?php
+        					foreach($tabRows as $produit) {
+        				?>
+        				<tr>
+        					<td><?php echo $produit["libelle"]; ?></td>
+        					<td><?php echo $produit["description"]; ?></td>
+        					<td><img src='<?php echo $produit["sourceMoyen"]; ?>' alt='Image du produit'></td>
+        				</tr>
+        				<?php
+        				}
+        				?>
+        			</table>
+            </div>
+            <div class="tab-pane" id="menus">
+              <!-- Je sais pas commment sont gérés les menus donc voilà je mets ça en attendant -->
+              <ul class="nav nav-pills">
+              <?php
+          			for($i = 1; $i <= 4; $i++)
+          			{
+          			?>
+
+                <li<?php echo ($i == 1) ? ' class="active"' : ''; ?>><a href="#" data-toggle="tab">
+          				<div class="panel panel-default">
+          					<div class="media">
+          						<div class="media-left media-top">
+          							<img src="images/maki1,1.png" class="media-object" style="width:80px">
+          						</div>
+          						<div class="media-body">
+          							<h2 class="media-heading text-muted">Menu <?php echo $i;?></h2>
+          							<p class="text-muted pull-left">Description [...........]</p>
+          							<p class="text-muted">Prix : 2€</p>
+          						</div>
+          					</div>
+          					<div class="panel-footer">
+          						<div class="row">
+          							<div class="col-lg-offset-8 col-lg-4">
+          								<!--<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
+          									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+          								</button>-->
+          							</div>
+          						</div>
+          					</div>
+          				</div>
+                </a></li>
+          			<?php
+          			}
+          			?>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal"
+                                                                                   data-target="#admin"
+                                                                                   data-action="ajouter">Ajout un produit</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block btn-admin" data-toggle="modal"
+                                                                                   data-target="#admin"
+                                                                                   data-action="modifier">Modifier un produit</button>
+          <button type="button" class="btn btn-danger btn-lg btn-block btn-admin" data-toggle="modal"
+                                                                                  data-target="#admin"
+                                                                                  data-action="supprimer">Supprimer un produit</button>
+        </div>
+      </div>
+		</div>
+	</div>
+
+  <!-- Début fenête modale -->
+  <div class="modal fade" id="admin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="libelle" class="label-form">Libellé :</label>
+              <input type="text" name="libelle" id="libelle" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="description" class="label-form">Description :</label>
+              <input type="text" name="description" id="description" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="typeProduit" class="label-form">Type de produit :</label>
+              <input type="text" name="typeProduit" id="typeProduit" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="prix" class="label-form">Prix :</label>
+              <input type="text" name="prix" id="prix" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Fin fenêtre modale -->
+
+<!-- ======== Fin Code HTML ======== -->
+<?php
+	  $contenu = ob_get_clean();
+?>
+<!-- ======== Début Code Javascript ======== -->
+<script>
+    $(function()
+    {
+        $('.btn-admin').click(function(e)
+        {
+            var action = $(this).data('action');
+            console.log(action);
+
+            $('.modal-title').text(action[0].toUpperCase() + action.substr(1, action.length) + " un produit");
+        });
+    });
+</script>
+<!-- ======== Fin Code Javascript ======== -->
+<?php
+    $script = ob_get_clean();
+
+    require("layout/site.php");
+?>

@@ -43,7 +43,7 @@
     					<td><?php echo $produit["description"]; ?></td>
     					<td><img src='<?php echo $produit["sourceMoyen"]; ?>' alt='Image du produit'></td>
     					<td>
-    						<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
+    						<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
     							<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
     						</button>
     					</td>

@@ -96,7 +96,7 @@
 								<div class="row">
 									<div class="col-lg-offset-8 col-lg-4">
 										<div class="form-group">
-											<button type="submit" class="btn btn-success btn btn-success pull-right">Inscription</button>
+											<button type="submit" class="btn btn-success btn-block pull-right">Inscription</button>
 										</div>
 									</div>
 								</div>
