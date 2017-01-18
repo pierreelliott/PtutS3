@@ -5,12 +5,12 @@
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand" href="index.php" id="active">Sushinos</a>
+				<a class="navbar-brand" href="index.php" id="active">Accueil</a>
 			</div>
 
 			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="carte.php">Carte</a></li>
+					<li><a href="index.php?page=carte">Carte</a></li>
 					<li><a href="index.php?page=avis">Avis des utilisateurs</a></li>
 					<li>
 						<form class="navbar-form form-inline navbar-left">
