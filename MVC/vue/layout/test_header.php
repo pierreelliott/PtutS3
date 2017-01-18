@@ -1,5 +1,5 @@
 <!-- NAVBAR -->
-	<div class="container">
+	
 		<nav class="navbar navbar-inverse">
 			<div class="navbar-header">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -73,6 +73,7 @@
 				</ul>
 			</div>
 		</nav>
+	<div class="container-fluid">
 	</div>
 
 
