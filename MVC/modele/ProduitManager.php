@@ -5,7 +5,7 @@
     {
 		public function getInformationsProduit($numProduit)
 		{
-			$requete = "select numProduit, libelle, description, typeProduit, prix, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
+			$requete = "select numProduit, libelle, description, typeProduit, prix, p.numImage numImage, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
 			$resultat = $this->executerRequete($requete, array($numProduit));
 			$resultat = $resultat->fetch(PDO::FETCH_ASSOC);
 
@@ -47,10 +47,8 @@
         //Supression d'un produit (Admin): Passage du prix en négatif
 		public function supprimerProduit($numProduit)
 		{
-			echo "numProduit : ".$numProduit;
 			$produit = $this->getInformationsProduit($numProduit);
 			$prix = floatval((-1)*floatval($produit["prix"]));
-			echo $produit["prix"]."<br>";
 
 			$requete = "update produit set prix = :prix where numProduit = :numProduit";
 			$params = array(
@@ -59,7 +57,7 @@
 					);
 			$resultat = $this->executerRequete($requete, $params);
 			//$resultat = $resultat->fetchAll(PDO::FETCH_ASSOC);
-			print_r($resultat);
+			//print_r($resultat);
 
 			# Si on supprime plus d'1 produit, on dit qu'il y a eu une erreur
 			//if($resultat == 1) return true;
@@ -69,10 +67,21 @@
         //Si les valeurs ne sont modifiés ont renvoi les valeurs déja presente
 		public function modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand)
 		{
+			// Si aucune image n'est envoyée on ne la modifie pas
+			if($sourcePetit != null and $sourceMoyen != null and $sourceGrand != null)
+			{
+				$numImage = $this->getInformationsProduit($numProduit)["numImage"];
+			
+				$requeteImage = $this->executerRequete('update image
+														set sourcePetit = ?, sourceMoyen = ?, sourceGrand = ?
+														where numImage = ?',
+														array($sourcePetit, $sourceMoyen, $sourceGrand, $numImage));
+			}
+			
             $requete = $this->executerRequete('update produit
-                                            set libelle= ?, description= ?, typeProduit= ?, prix= ?, sourcePetit=?,
-                                            sourceMoyen= ?, sourceGrand= ? where numProduit= ?',
-                                            array($libelle, $description , $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $numProduit));
+                                            set libelle = ?, description = ?, typeProduit = ?, prix = ?
+											where numProduit = ?',
+                                            array($libelle, $description , $typeProduit, $prix, $numProduit));
             return $requete;
 		}
 

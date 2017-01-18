@@ -10,10 +10,10 @@
 
       public function administrer()
       {
+		  $imageProduit = null;
+		  
           if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
           {
-            $imageProduit = null;
-
             // On upload le fichier image s'il existe
             if ($_FILES['image']['size'] <= 1000000)
             {
@@ -23,8 +23,8 @@
               $extensions_autorisees = array('jpg', 'jpeg', 'png');
               if (in_array($extension_upload, $extensions_autorisees))
               {
-                move_uploaded_file($_FILES['image']['tmp_name'], 'images/'.basename($_FILES['image']['name']));
-                $imageProduit = 'images/'.basename($_FILES['image']['name']);
+                move_uploaded_file($_FILES['image']['tmp_name'], 'src/img/'.basename($_FILES['image']['name']));
+                $imageProduit = 'src/img/'.basename($_FILES['image']['name']);
               }
             }
           }

@@ -18,7 +18,7 @@
 				<hr/>
 				<div class="row">
 					<div class="col-lg-6 col-lg-offset-3">
-						<a class="btn btn-success btn btn-success" href="index.php?page=carte"><h2>Commander quelque chose !</h2></a>
+						<a class="btn btn-success btn-block" href="index.php?page=carte"><h2>Commander quelque chose !</h2></a>
 					</div>
 				</div>
 			<?php
@@ -80,12 +80,12 @@
 					if(isset($_SESSION["utilisateur"]))
 					{?>
 					<div class="col-lg-4 col-lg-offset-8">
-						<a class="btn btn-success btn btn-success" href="index.php?page=paiement">Payer ma commande</a>
+						<a class="btn btn-success btn-block" href="index.php?page=paiement">Payer ma commande</a>
 					</div>
 					<?php
 					} else { ?>
 					<div class="col-lg-5 col-lg-offset-6">
-						<a class="btn btn-danger" href="index.php?page=connexion">Veuillez vous connecter pour pouvoir commander</a>
+						<a class="btn btn-danger btn-block" href="index.php?page=connexion">Veuillez vous connecter pour pouvoir commander</a>
 					</div>
 					<?php
 					} ?>

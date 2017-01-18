@@ -16,6 +16,7 @@
         <li><a href="#menus" data-toggle="tab">Nos menus</a></li>
       </ul>
       <div class="tab-content">
+		<!-- Affichage des produits seuls -->
         <div class="tab-pane active" id="produits">
           <table class="table table-striped table-hover">
     				<thead>
@@ -76,9 +77,10 @@
             </div>
           </div>
         </div>
+		<!-- Affichage des menus -->
         <div class="tab-pane" id="menus">
-          <!-- Je sais pas commment sont gérés les menus donc voilà je mets ça en attendant -->
           <?php
+		  //foreach($menus as $menu)
 			for($i = 1; $i <= 4; $i++)
 			{
 			?>
@@ -87,10 +89,30 @@
 						<div class="media-left media-top">
 							<img src="images/maki1,1.png" class="media-object" style="width:80px">
 						</div>
-						<div class="media-body">
-							<h2 class="media-heading text-muted">Menu <?php echo $i;?></h2>
-							<p class="text-muted pull-left">Description [...........]</p>
-							<p class="text-muted">Prix : 2€</p>
+						<div class="media-body menu-produit-container">
+							<h2 class="media-heading text-muted">Menu <?php echo $i;?><?php //echo $menu["libelle"]; ?></h2>
+							<p class="text-muted pull-left">Description [...........]<?php //echo $menu["description"]; ?></p>
+							<p class="text-muted">Prix : 2€<?php //echo $menu["prix"]; ?></p>
+							<?php
+							//foreach($menu["produits"] as $produit)
+							for($j = 1; $j <= 3; $j++)
+							{
+							?>
+								<div class="panel col-lg-6 menu-produit">
+									<div class="media">
+										<div class="media-left media-top">
+											<!--<img src="<?php //echo produit["sourceMoyen"]; ?>" class="media-object img-responsive" style="width:80px">-->
+											<img src="images/maki1,1.png" class="media-object img-responsive" style="width:80px">
+										</div>
+										<div class="media-body">
+											<h2 class="media-heading text-muted">Produit <?php echo $i;?><?php //echo $produit["libelle"]; ?></h2>
+											<p class="text-muted pull-left">Description [...........]<?php //echo $produit["description"]; ?></p>
+										</div>
+									</div>
+								</div>
+							<?php
+							}
+							?>
 						</div>
 					</div>
 					<div class="panel-footer">
