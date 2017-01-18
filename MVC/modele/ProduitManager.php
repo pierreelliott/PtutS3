@@ -71,13 +71,13 @@
 			if($sourcePetit != null and $sourceMoyen != null and $sourceGrand != null)
 			{
 				$numImage = $this->getInformationsProduit($numProduit)["numImage"];
-			
+
 				$requeteImage = $this->executerRequete('update image
 														set sourcePetit = ?, sourceMoyen = ?, sourceGrand = ?
 														where numImage = ?',
 														array($sourcePetit, $sourceMoyen, $sourceGrand, $numImage));
 			}
-			
+
             $requete = $this->executerRequete('update produit
                                             set libelle = ?, description = ?, typeProduit = ?, prix = ?
 											where numProduit = ?',
@@ -92,20 +92,49 @@
                     Plusieurs produits donnent des reductions
                     Depends aussi de la categorie du produit par exempls accompagnement*/
 		}
-		
+
 		public function getTypeProduit($numProduit)
 		{
 			//Les menus sont stockés dans la base
 			//avec un type dans le style : "menu.[...]"
-			
+			$requete = $this->executerRequete('select lower(TYPEPRODUIT) typeProduit from produit
+                                            where numProduit= ?', array("numProduit"));
+            $resultat = $requete->fetch();
+
+            //Tableau contenant le type produit en 2 chianes
+            $partie = explode(".", $resultat["typeProduit"]);
+
+            //Si le tbleau est vide ou le delimiter n'a pas été trouvé
+            if(empty($partie) || $partie == false)
+            {
+                return "produit";
+            }
+            //Si le menu est
+            else
+            {
+                //On regarde si le premier segement est une menu
+                if(strcmp($partie[0], "menu") == 0)
+                {
+                    return "menu";
+                }
+                else {
+                    return "produit";
+                }
+            }
+
 			//Return : une chaine (à repréciser si jamais)
 		}
-		
+
 		public function getProduitsCompatibles($numProduit)
 		{
 			// Table compatibilite :
 			// Colonne 1 : $numProduit ; colonne 2 : les produits compatibles
-			
+            $requete = $this->executerRequete('select numProduit2 from compatible
+                                            where numProduit = ?', array($numProduit));
+
+            $resultat =  $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            return $resultat;
 			// Return array des numProduit compatibles
 		}
 
