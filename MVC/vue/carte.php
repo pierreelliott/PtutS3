@@ -30,6 +30,32 @@
     				<?php
     					foreach($carte as $produit) {
     				?>
+					<div id="<?php echo $numProduit; ?>" class="panel panel-default">
+
+						<div class="media img-produit">
+							<div class="media-left media-top">
+								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail" style="width:80px">
+							</div>
+							<div class="media-body">
+								<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
+								<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
+								<p class="text-muted">Prix : <?php echo $produit["prix"]; ?>€</p>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-xs-3">
+									<p class="qte">Prix : <?php echo $produit["prix"]; ?> €</p>
+								</div>
+								<div class="col-xs-offset-3 col-xs-3">
+									<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
+										<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Affichage tableau -->
     				<tr>
     					<td>
                 <a href="#produitModal" data-toggle="modal"

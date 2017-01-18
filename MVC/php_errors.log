@@ -179,3 +179,6 @@ Stack trace:
 [18-Jan-2017 10:34:33 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39
 [18-Jan-2017 10:34:33 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39
 [18-Jan-2017 10:34:33 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39
+[18-Jan-2017 11:02:35 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39
+[18-Jan-2017 11:04:00 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39
+[18-Jan-2017 11:17:35 Europe/Paris] PHP Fatal error:  Call to a member function exec() on a non-object in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/Model.php on line 39

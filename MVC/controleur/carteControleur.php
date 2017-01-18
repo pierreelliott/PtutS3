@@ -12,7 +12,7 @@
 		{
 			$carte = $this->bdd->recupererCarte();
 			
-			
+			$this->bdd->getTypeProduit($carte[0]["numProduit"]);
 			
 			
 			include_once('vue/carte.php');
