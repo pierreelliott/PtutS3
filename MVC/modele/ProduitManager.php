@@ -7,7 +7,7 @@
 		{
 			$requete = "select numProduit, libelle, description, typeProduit, prix, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
 			$resultat = $this->executerRequete($requete, array($numProduit));
-			$resultat = $resultat->fetch();
+			$resultat = $resultat->fetch(PDO::FETCH_ASSOC);
 
 			return $resultat;
 		}
@@ -47,8 +47,10 @@
         //Supression d'un produit (Admin): Passage du prix en négatif
 		public function supprimerProduit($numProduit)
 		{
+			echo "numProduit : ".$numProduit;
 			$produit = $this->getInformationsProduit($numProduit);
 			$prix = floatval((-1)*floatval($produit["prix"]));
+			echo $produit["prix"]."<br>";
 
 			$requete = "update produit set prix = :prix where numProduit = :numProduit";
 			$params = array(
@@ -56,11 +58,12 @@
 					'numProduit' => $numProduit
 					);
 			$resultat = $this->executerRequete($requete, $params);
-			$resultat = $resultat->fetch();
+			//$resultat = $resultat->fetchAll(PDO::FETCH_ASSOC);
+			print_r($resultat);
 
 			# Si on supprime plus d'1 produit, on dit qu'il y a eu une erreur
-			if($resultat == 1) return true;
-			else return false;
+			//if($resultat == 1) return true;
+			//else return false;
 		}
 
         //Si les valeurs ne sont modifiés ont renvoi les valeurs déja presente

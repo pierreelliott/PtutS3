@@ -105,6 +105,9 @@
 		case "administration":
 			$administration->administrer();
 			break;
+		case "getProduitAdmmin":
+			$administration->remplirFormulaireModif($_POST["numProduitAdmin"]);
+			break;
 		default:
 			include_once("vue/404.php");
 			break;

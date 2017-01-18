@@ -299,3 +299,13 @@ footer
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+.btn-circle
+{
+	border-radius: 2em;
+}
+
+.vresize
+{
+	resize: vertical;
+}

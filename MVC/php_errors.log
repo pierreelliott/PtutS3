@@ -80,3 +80,32 @@ Stack trace:
 [12-Jan-2017 15:39:48 Europe/Paris] PHP Fatal error:  require_once(): Failed opening required 'UserManager.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/commandeManager.php on line 3
 [12-Jan-2017 15:40:03 Europe/Paris] PHP Parse error:  syntax error, unexpected ')' in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/BD.php on line 2
 [12-Jan-2017 16:07:13 Europe/Paris] PHP Notice:  Undefined index: nbProduit in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/PanierManager.php on line 79
+[18-Jan-2017 08:03:33 Europe/Paris] PHP Warning:  include_once(modele/CommandeManager.php): failed to open stream: No such file or directory in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/paypalControleur.php on line 10
+[18-Jan-2017 08:03:33 Europe/Paris] PHP Warning:  include_once(): Failed opening 'modele/CommandeManager.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/paypalControleur.php on line 10
+[18-Jan-2017 08:09:47 Europe/Paris] PHP Fatal error:  Call to undefined method UserManager::getPseudo() in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/inscriptionControleur.php on line 45
+[18-Jan-2017 09:22:48 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error' in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php:59
+Stack trace:
+#0 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php(59): PDOStatement->fetch()
+#1 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/adminControleur.php(55): ProduitManager->supprimerProduit('')
+#2 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/controleurPrincipal.php(106): AdminControleur->administrer()
+#3 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/index.php(3): require_once('/home/UNIV-LYON...')
+#4 {main}
+  thrown in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php on line 59
+[18-Jan-2017 09:24:13 Europe/Paris] PHP Notice:  Object of class PDOStatement could not be converted to int in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php on line 63
+[18-Jan-2017 09:24:53 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error' in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php:59
+Stack trace:
+#0 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php(59): PDOStatement->fetch(2)
+#1 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/adminControleur.php(55): ProduitManager->supprimerProduit('')
+#2 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/controleurPrincipal.php(106): AdminControleur->administrer()
+#3 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/index.php(3): require_once('/home/UNIV-LYON...')
+#4 {main}
+  thrown in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php on line 59
+[18-Jan-2017 09:25:01 Europe/Paris] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error' in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php:59
+Stack trace:
+#0 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php(59): PDOStatement->fetchAll(2)
+#1 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/adminControleur.php(55): ProduitManager->supprimerProduit('')
+#2 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/controleur/controleurPrincipal.php(106): AdminControleur->administrer()
+#3 /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/index.php(3): require_once('/home/UNIV-LYON...')
+#4 {main}
+  thrown in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php on line 59
+[18-Jan-2017 09:26:20 Europe/Paris] PHP Parse error:  syntax error, unexpected '$prix' (T_VARIABLE) in /home/UNIV-LYON1/p1402690/public_html/ptut/MVC/modele/ProduitManager.php on line 52

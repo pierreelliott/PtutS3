@@ -42,14 +42,14 @@
                 $ville = htmlspecialchars($_POST["ville"]);
                 $codePostal = htmlspecialchars($_POST["codePostal"]);
 
-                $resultat = $this->bdd->getPseudo($pseudo);
+                /*$resultat = $this->bdd->getPseudo($pseudo);
 
                 // On vérifie que le pseudo est libre (la requête ne renvoie pas de résultat)
                 if($resultat->rowCount() != 0)
                 {
                     $message = "Ce pseudo n'est pas libre.<br>";
                     $inscriptionValide = false;
-                }
+                }*/
 
                 // On vérifie que les deux mots de passe sont identiques
                 if($_POST["mdp"] != $_POST["mdpConfirm"])

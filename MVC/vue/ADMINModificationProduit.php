@@ -22,7 +22,7 @@
 								</div>
 							</div>
 							<div class="col-lg-12">
-								<img src="" class="apercuImage img-responsive">
+								<img class="apercuImage img-responsive">
 							</div>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 							<div class="col-lg-12">
 								<div class="form-group">
 									<label for="prixModif" class="control-label">Prix :</label>
-									<input type="number" id="prixModif" name="prix" class="form-control" required>
+									<input type="number" id="prixModif" name="prix" min="1" step="0.01" class="form-control" required>
 								</div>
 							</div>
 						</div>

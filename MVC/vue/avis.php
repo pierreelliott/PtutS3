@@ -21,7 +21,7 @@
 								<div class="col-lg-8">
 									<div class="form-group">
 										<label for="commentaire" class="control-label">Commentaire :</label>
-										<textarea type="text" id="commentaire" name="commentaire" placeholder="Ecrivez votre commentaire ici" class="form-control"></textarea>
+										<textarea type="text" id="commentaire" name="commentaire" placeholder="Ecrivez votre commentaire ici" class="form-control vresize"></textarea>
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -43,13 +43,29 @@
 								<img src="images/user.png" class="media-object" style="width:80px">
 							</div>
 							<div class="media-body">
-								<h2 class="media-heading text-muted">Utilisateur</h2>
-								<p class="text-muted pull-left">Commentaire [...........]</p>
-								<p class="text-muted">Note : * * * * *</p>
+								<h2 class="media-heading text-muted">Utilisateur <?php echo $i; ?></h2>
+								<p class="text-muted pull-left">Note : * * * * *</p>
+								<p class="text-muted">Commentaire [...........]</p>
 							</div>
 						</div>
 						<div class="panel-footer">
-							Coucou
+							<div class="row">
+								<div class="col-lg-1">
+									<a href="#"><img src="images/signaler.png" alt="Pouce bleu" class="img-responsive"/></a>
+								</div>
+								<div class="col-lg-offset-7 col-lg-1">
+									<a href="#"><img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/></a>
+								</div>
+								<div class="col-lg-1">
+									<?php echo $i*($i -$i +2*$i); ?>
+								</div>
+								<div class="col-lg-1">
+									<a href="#"><img src="images/pouce_rouge.png" alt="Pouce bleu" class="img-responsive"/></a>
+								</div>
+								<div class="col-lg-1">
+									<?php echo $i+($i -$i +2*$i); ?>
+								</div>
+							</div>
 						</div>
 					</div>
 				<?php

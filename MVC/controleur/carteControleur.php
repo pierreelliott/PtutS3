@@ -3,15 +3,19 @@
 
     class carteControleur
     {
-  		public function __construct()
-      {
+		public function __construct()
+		{
           $this->bdd = new ProduitManager();
-      }
+		}
 
-      public function carte()
-      {
-		      $tabRows = $this->bdd->recupererCarte();
-          include_once('vue/carte.php');
-      }
+		public function carte()
+		{
+			$carte = $this->bdd->recupererCarte();
+			
+			
+			
+			
+			include_once('vue/carte.php');
+		}
     }
 ?>

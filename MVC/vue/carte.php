@@ -27,7 +27,7 @@
     					</tr>
     				</thead>
     				<?php
-    					foreach($tabRows as $produit) {
+    					foreach($carte as $produit) {
     				?>
     				<tr>
     					<td>

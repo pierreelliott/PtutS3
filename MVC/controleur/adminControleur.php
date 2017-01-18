@@ -51,7 +51,7 @@
               case "modification" :
                 $this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
               break;
-              case "supprimer" :
+              case "suppression" :
                 $this->bdd->supprimerProduit($numProduit);
               break;
             }
@@ -60,5 +60,12 @@
 		      $produits = $this->bdd->recupererCarte();
           include_once('vue/administration.php');
       }
+	  
+	  function remplirFormulaireModif($numProduit)
+	  {
+		  $produit = $this->bdd->getInformationsProduit($numProduit);
+		  
+		  echo json_encode($produit);
+	  }
     }
 ?>
