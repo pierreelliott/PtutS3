@@ -17,7 +17,7 @@
 
 	<body>
 		<?php
-			require("header.php");
+			require("test_header.php");
 		?>
 
 		<div class="container-fluid">
