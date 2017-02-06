@@ -1,6 +1,6 @@
 <?php
     require_once('modele/userManager.php');
-	
+
     class connexionControleur
     {
         protected $bdd;
@@ -35,7 +35,7 @@
                             setcookie("mdpHash", $mdpHash);
                     }
 
-                    header("Location: index.php");
+                    header("Location: /PtutS3/MVC/");
                 }
                 else
                 {

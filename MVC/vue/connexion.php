@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="index.php?page=connexion" method="post" name="login" accept-charset="utf-8">
+				<form action="/PtutS3/MVC/connexion" method="post" name="login" accept-charset="utf-8">
 					<fieldset>
 						<legend>Connexion à Sushinos</legend>
 						<input type="hidden" name="page" value="connexion"/>
@@ -43,7 +43,7 @@
 				</form>
 			</div>
 			<div class="row">
-				<p class="lead">Pas encore inscrit ? <a href="index.php?page=inscription" class="text-info">Inscrivez-vous par ici</a> !</p>
+				<p class="lead">Pas encore inscrit ? <a href="/PtutS3/MVC/inscription" class="text-info">Inscrivez-vous par ici</a> !</p>
 			</div>
 		</div>
 	</div>

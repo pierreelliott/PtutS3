@@ -1,16 +1,16 @@
 <!-- NAVBAR -->
-	
+
 		<nav class="navbar navbar-inverse">
 			<div class="navbar-header">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand" href="index.php" id="active">Accueil</a>
+				<a class="navbar-brand" href="/PtutS3/MVC/" id="active">Accueil</a>
 			</div>
 
 			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.php?page=carte">Carte</a></li>
+					<li><a href="/PtutS3/MVC/carte">Carte</a></li>
 					<li><a href="index.php?page=avis">Avis des utilisateurs</a></li>
 					<li>
 						<form class="navbar-form form-inline navbar-left">
@@ -44,14 +44,14 @@
 							}
 							?>
 							<li class="divider"></li>
-							<li><a href="index.php?page=deconnexion">Déconnexion</a></li>
+							<li><a href="/PtutS3/MVC/deconnexion">Déconnexion</a></li>
 						</ul>
 					</li>
 					<?php
 					}
 					else
 					{
-						echo '<li><a href="index.php?page=connexion">Connexion</a></li>';
+						echo '<li><a href="/PtutS3/MVC/connexion">Connexion</a></li>';
 					}						?>
 
 					<li>

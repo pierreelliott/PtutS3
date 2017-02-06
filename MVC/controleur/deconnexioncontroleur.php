@@ -1,15 +1,16 @@
 <?php
-	
-	function deconnexion()
+	class deconnexionControleur
 	{
-		// Suppression des variables de session et de la session
-		$_SESSION = array();
-		session_destroy();
+			public function deconnexion()
+			{
+				// Suppression des variables de session et de la session
+				$_SESSION = array();
+				session_destroy();
 
-		// Suppression des cookies de connexion automatique
-		setcookie("pseudo", "");
-		setcookie("mdpHash", "");
+				// Suppression des cookies de connexion automatique
+				setcookie("pseudo", "");
+				setcookie("mdpHash", "");
 
-		header("Location: index.php");
+				header("Location: /PtutS3/MVC/");
+			}
 	}
-    

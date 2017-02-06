@@ -1,0 +1,8 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
+<routes>
+	<route url="/" vue="accueil"/>
+	<route url="/carte" controleur="carte" methode="carte"/>
+	<route url="/connexion" controleur="connexion" methode="connexion"/>
+	<route url="/inscription" controleur="inscription" methode="inscription"/>
+	<route url="/deconnexion" controleur="deconnexion" methode="deconnexion"/>
+</routes>

@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
-				<form action="index.php?page=inscription" method="post" name="inscription" accept-charset="utf-8">
+				<form action="/PtutS3/MVC/inscription" method="post" name="inscription" accept-charset="utf-8">
 					<fieldset>
 						<legend>Inscription à Sushinos</legend>
 						<input type="hidden" name="page" value="inscription"/>
