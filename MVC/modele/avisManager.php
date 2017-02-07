@@ -8,7 +8,7 @@
 
         public function __construct()
         {
-            $this->$um = new UserManager();
+            $this->um = new UserManager();
         }
 
         //Ajouter un avis
@@ -71,7 +71,7 @@
         //Recupere l'avis en fonction du pseudo de l'utilisateur
         public function getAvis($pseudo)
         {
-            $user = $um->getNumUser($pseudo);
+            $user = $this->um->getNumUser($pseudo);
 
             $resultat = $this->executerRequete('select avis, note, date from avis where numUser = ?', array($user));
             $resultat = $resultat->fetch();
@@ -124,7 +124,7 @@
 
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-            return $resultat
+            return $resultat;
         }
 
         public function getSignalements($numAvis)
@@ -169,25 +169,25 @@
         //Recupere le nombre de votes positif sur un avis
         public function getVotePositif($numAvis)
         {
-            $requete = $this->executerRequete("select IFNULL(count(vote), 0)
+            $requete = $this->executerRequete("select IFNULL(count(vote), 0) votePositif
                                             from vote
                                             where vote ='true' and
                                             numAvis= ?", array($numAvis));
             $vote = $requete->fetch();
 
-            return $vote;
+            return $vote["votePositif"];
         }
 
         //Recupere le nombre de votes négatif sur un avis
         public function getVoteNegatif($numAvis)
         {
-            $requete = $this->executerRequete("select IFNULL(count(vote), 0)
+            $requete = $this->executerRequete("select IFNULL(count(vote), 0) voteNegatif
                                             from vote
                                             where vote ='false' and
                                             numAvis= ?", array($numAvis));
             $vote = $requete->fetch();
 
-            return $vote;
+            return $vote["voteNegatif"];
         }
 
         //Recupere l'avis avec le plus de vote positif

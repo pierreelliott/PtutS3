@@ -7,10 +7,10 @@
  */
 
     include_once('modele/PaypalManager.php');
-    include_once('modele/commandeManager.php');
+    include_once('modele/CommandeManager.php');
     include_once('modele/PanierManager.php');
 
-    class paypalControleur
+    class PaypalControleur
     {
         public $paypal, $commande, $panier, $urlSite;
 

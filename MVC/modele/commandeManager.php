@@ -1,6 +1,6 @@
 <?php
 
-    require_once("userManager.php");
+    require_once("UserManager.php");
 
     class CommandeManager extends Model
     {

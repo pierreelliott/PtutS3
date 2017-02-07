@@ -1,6 +1,6 @@
 <?php
-    include_once('modele/userManager.php');
-	
+    include_once('modele/UserManager.php');
+
     class inscriptionControleur
     {
         public $bdd;
@@ -75,11 +75,11 @@
                 // Si les données de l'inscription sont valides on fait l'inscription
                 if($inscriptionValide)
                 {
-                    $mdpHash = sha1($_POST["mdp"]);	
+                    $mdpHash = sha1($_POST["mdp"]);
                     $this->bdd->inscription($pseudo, $mdpHash, $nom, $prenom, $email, $_POST["tel"], $_POST["numRue"], $rue, $ville, $_POST["codePostal"]);
 
 					return true;
-                }  
+                }
             }
 
             include_once('vue/inscription.php');

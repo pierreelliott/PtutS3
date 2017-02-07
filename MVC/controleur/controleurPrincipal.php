@@ -18,14 +18,13 @@
 	include_once("carteControleur.php");
 	include_once("connexionControleur.php");
 	include_once("controleurUtilisateur.php");
-	//include_once("controleurAdministration.php");
 	include_once("deconnexionControleur.php");
 	include_once("inscriptionControleur.php");
 	include_once("panierControleur.php");
 	include_once("commandeControleur.php");
 	include_once("paypalControleur.php");
 	include_once("adminControleur.php");
-
+	include_once("avisControleur.php");
 
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();
@@ -36,7 +35,7 @@
 	$commande = new CommandeControleur();
 	$paypal = new paypalControleur();
 	$administration = new AdminControleur();
-
+	$avis = new AvisControleur();
 
 	switch($page)
 	{
@@ -74,7 +73,9 @@
 			break;
 
 		case "avis":
+
 			include_once("vue/avis.php");
+
 			break;
 
 		case "historiqueCommandes":

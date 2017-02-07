@@ -19,14 +19,7 @@
 		<!-- Affichage des produits seuls -->
         <div class="tab-pane active" id="produits">
           <table class="table table-striped table-hover">
-    				<thead>
-    					<tr>
-    						<th>Produit</th>
-    						<th>Description</th>
-    						<th>Image</th>
-    						<th>Ajout panier</th>
-    					</tr>
-    				</thead>
+    				<hr/>
     				<?php
     					foreach($carte as $produit) {
     				?>
@@ -36,7 +29,7 @@
 							<a href="#produitModal" data-toggle="modal"
                                         data-numProduit="<?php echo $produit["numProduit"]; ?>"
                                         data-libelle="<?php echo $produit["libelle"]; ?>"
-                                        data-sourceImg="<?php echo $produit['sourceMoyen']; ?>"
+                                        data-sourceImg="<?php echo $produit['sourceMoyen'].".png"; ?>"
                                         data-description="<?php echo $produit["description"]; ?>"
                                         data-prix="<?php echo $produit["prix"]; ?>">
 								<div class="media-left media-top">
