@@ -11,7 +11,7 @@
 			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/carte">Carte</a></li>
-					<li><a href="index.php?page=avis">Avis des utilisateurs</a></li>
+					<li><a href="/avis">Avis des utilisateurs</a></li>
 					<li>
 						<form class="navbar-form form-inline navbar-left">
 						<!--<div class="input-group">
@@ -33,14 +33,14 @@
 						<a data-toggle="dropdown" href="#"><?php echo $_SESSION["utilisateur"]["pseudo"]; ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="/utilisateur">Mon compte</a></li>
-							<li><a href="index.php?page=panier">Consulter panier</a></li>
-							<li><a href="index.php?page=historiqueCommandes">Historique Commandes</a></li>
+							<li><a href="/panier">Consulter panier</a></li>
+							<li><a href="/historique-commandes">Historique Commandes</a></li>
 							<?php
 							//Si l'utilisateur est administrateur
 							if($_SESSION["utilisateur"]["typeUser"] == "ADMIN")
 							{
 								echo '<li class="divider"></li>';
-								echo "<li><a href='index.php?page=administration'>Interface administrateur</a></li>\n";
+								echo "<li><a href='/administration'>Interface administrateur</a></li>\n";
 							}
 							?>
 							<li class="divider"></li>
@@ -55,7 +55,7 @@
 					}						?>
 
 					<li>
-						<a href="index.php?page=panier">
+						<a href="/panier">
 						<span class="glyphicon glyphicon-shopping-cart"></span>
 						<span class="badge">
 							<?php if(isset($_SESSION["nbProduit"]))
@@ -73,14 +73,6 @@
 				</ul>
 			</div>
 		</nav>
-	<div class="container-fluid">
-	</div>
-
-
-
-
-
-
 
     <!--
     <div class="dropbtn">

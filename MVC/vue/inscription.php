@@ -82,14 +82,14 @@
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="mdpConfirm" class="control-label">Confirmer mot de passe <span class="text-danger">*</span></label>
-											<input type="password" id="mdpConfirm" name="mdpConfirm" placeholder="Confirmer mot de passe" class="form-control" required/>
+											<label for="mdp" class="control-label">Mot de passe <span class="text-danger">*</span></label>
+											<input type="password" id="mdp" name="mdp" placeholder="Mot de passe" class="form-control" required/>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="mdp" class="control-label">Mot de passe <span class="text-danger">*</span></label>
-											<input type="password" id="mdp" name="mdp" placeholder="Mot de passe" class="form-control" required/>
+											<label for="mdpConfirm" class="control-label">Confirmer mot de passe <span class="text-danger">*</span></label>
+											<input type="password" id="mdpConfirm" name="mdpConfirm" placeholder="Confirmer mot de passe" class="form-control" required/>
 										</div>
 									</div>
 								</div>

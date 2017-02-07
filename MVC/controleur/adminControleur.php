@@ -11,7 +11,7 @@
       public function administrer()
       {
 		  $imageProduit = null;
-		  
+
           if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
           {
             // On upload le fichier image s'il existe
@@ -60,12 +60,12 @@
 		      $produits = $this->bdd->recupererCarte();
           include_once('vue/administration.php');
       }
-	  
-	  function remplirFormulaireModif($numProduit)
-	  {
-		  $produit = $this->bdd->getInformationsProduit($numProduit);
-		  
-		  echo json_encode($produit);
-	  }
+
+		  function remplirFormulaireModif()
+		  {
+			  $produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
+
+			  echo json_encode($produit);
+		  }
     }
 ?>

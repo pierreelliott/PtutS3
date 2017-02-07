@@ -4,7 +4,7 @@
         <img src="images/logo_w3c.png" alt="Lien vers le validateur W3C">
     </a>
     Copyright Sushinos - Tous droits réservés.<br>
-	<a href="index.php?page=contact">Contactez-nous !</a>
+	<a href="/contact">Contactez-nous !</a>
 </footer>
 <!-- FOOTER END -->
 

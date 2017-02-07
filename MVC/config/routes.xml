@@ -6,4 +6,15 @@
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
 	<route url="/deconnexion" controleur="deconnexion" methode="deconnexion"/>
 	<route url="/utilisateur" controleur="utilisateur" methode="afficherInfos"/>
+	<route url="/panier" controleur="panier" methode="afficherPanier"/>
+	<route url="/contact" vue="contact"/>
+	<route url="/avis" vue="avis"/>
+	<route url="/historique-commandes" controleur="commande" methode="afficherHistorique"/>
+	<route url="/commande-([0-9]+)" controleur="commande" methode="afficherCommande" params="numCommande"/>
+	<route url="/paiement" controleur="commande" methode="recapCommande"/>
+	<route url="/paiement-paypal" controleur="paypal" methode="paiementPaypal"/>
+	<route url="/annule-paypal" vue="annulePaypal"/>
+	<route url="/retour-paypal" controleur="paypal" methode="retourPaypal"/>
+	<route url="/administration(-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>
+	<route url="/get-produit-admin" controleur="admin" methode="remplirFormulaireModif"/>
 </routes>

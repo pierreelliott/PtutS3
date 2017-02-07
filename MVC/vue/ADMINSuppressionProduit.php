@@ -4,7 +4,7 @@
 		<h4 class="modal-title">Supprimer un produit</h4>
 	</div>
 	<div class="modal-body">
-		<form method="post" action="index.php?page=administration&action=suppression" id="supprProduit" accept-charset="utf-8">
+		<form method="post" action="/administration-suppression" id="supprProduit" accept-charset="utf-8">
 			<fieldset>
 				<input type="hidden" id="numProduitSuppr" name="numProduit" value="">
 				<input type="hidden" id="libelleSuppr" name="libelle">

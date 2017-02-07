@@ -141,62 +141,66 @@
         $(this).find('input, textarea').val('');
         $('.apercuImage').attr('src', '');
       });
-	  
+
+
+		// Lorsque l'on clique sur le bouton Modifier produit
 	  $('.modifProduit').click(function(e)
 	  {
-		var numProduit = $('.tab-pane.active li.active').find('a').data('numproduit');
-		
-		$.post("index.php?page=getProduitAdmmin",
-		{
-			numProduitAdmin: numProduit
-		},
-		function(data, status)
-		{
-			produit = JSON.parse(data);
-			
-			$('#numProduitModif').val(produit.numProduit);
-			$('.apercuImage').attr('src', produit.sourceMoyen);
-			$('#libelleModif').val(produit.libelle);
-			$('#typeProduitModif').val(produit.typeProduit);
-			$('#prixModif').val(produit.prix);
-			$('#descriptionModif').val(produit.description);
-		});
+			var numProduit = $('.tab-pane.active li.active').find('a').data('numproduit');
+
+			$.post("/get-produit-admin",
+			{
+				numProduitAdmin: numProduit
+			},
+			function(data, status)
+			{
+				produit = JSON.parse(data);
+
+				$('#numProduitModif').val(produit.numProduit);
+				$('.apercuImage').attr('src', produit.sourceMoyen);
+				$('#libelleModif').val(produit.libelle);
+				$('#typeProduitModif').val(produit.typeProduit);
+				$('#prixModif').val(produit.prix);
+				$('#descriptionModif').val(produit.description);
+			});
 	  });
-	  
+
+
+		// Lorsque l'on clique sur le bouton Supprimer produit
 	  $('.supprProduit').click(function(e)
 	  {
-		var numProduit = $('.tab-pane.active li.active').find('a').data('numproduit');
-		
-		$('tbody').html(
-			'<tr>' +
-			'\t<th>Libellé</th>' +
-			'\t<th>Description</th>' +
-			'\t<th>Image</th>' +
-			'\t<th>Prix</th>' +
-			'\t<th>Type de produit</th>' +
-			'</tr>'
-		);
-		
-		$.post("index.php?page=getProduitAdmmin",
-		{
-			numProduitAdmin: numProduit
-		},
-		function(data, status)
-		{
-			produit = JSON.parse(data);
-			
-			$('#numProduitSuppr').val(produit.numProduit);
-			$('tbody').append(
-				'<tr>\n' +
-				'\t<td>' + produit.libelle + '</td>' +
-				'\t<td>' + produit.description + '</td>' +
-				'\t<td><img src="' + produit.sourceMoyen + '" alt="image" class="img-responsive"></td>' +
-				'\t<td>' + produit.prix + '</td>' +
-				'\t<td>' + produit.typeProduit + '</td>' +
+			var numProduit = $('.tab-pane.active li.active').find('a').data('numproduit');
+
+			$('tbody').html(
+				'<tr>' +
+				'\t<th>Libellé</th>' +
+				'\t<th>Description</th>' +
+				'\t<th>Image</th>' +
+				'\t<th>Prix</th>' +
+				'\t<th>Type de produit</th>' +
 				'</tr>'
 			);
-		});
-	  });
+
+			$.post("/get-produit-admin",
+			{
+				numProduitAdmin: numProduit
+			},
+			function(data, status)
+			{
+				produit = JSON.parse(data);
+
+				$('#numProduitSuppr').val(produit.numProduit);
+				$('tbody').append(
+					'<tr>\n' +
+					'\t<td>' + produit.libelle + '</td>' +
+					'\t<td>' + produit.description + '</td>' +
+					'\t<td><img src="' + produit.sourceMoyen + '" alt="image" class="img-responsive"></td>' +
+					'\t<td>' + produit.prix + '</td>' +
+					'\t<td>' + produit.typeProduit + '</td>' +
+					'</tr>'
+				);
+			});
+		  });
     });
 </script>
 <!-- ======== Fin Code Javascript ======== -->

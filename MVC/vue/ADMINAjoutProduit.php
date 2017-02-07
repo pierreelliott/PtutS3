@@ -4,7 +4,7 @@
 		<h4 class="modal-title">Ajouter un produit</h4>
 	</div>
 	<div class="modal-body">
-		<form method="post" action="index.php?page=administration&action=ajout" id="ajoutProduit" accept-charset="utf-8" enctype="multipart/form-data">
+		<form method="post" action="administration-ajout" id="ajoutProduit" accept-charset="utf-8" enctype="multipart/form-data">
 			<fieldset>
 				<input type="hidden" name="numProduit" id="numProduitAjout" value="">
 				<div class="row">

@@ -13,7 +13,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-offset-4 col-md-4">
-			<a href="index.php"  class="btn btn-md btn-default">Revenir à l'accueil</a>
+			<a href="/"  class="btn btn-md btn-default">Revenir à l'accueil</a>
 		</div>
 	</div>
 

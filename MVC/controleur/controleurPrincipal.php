@@ -17,7 +17,23 @@
 		if(preg_match("#^".$route->getAttribute("url")."$#", $uri, $matchedUrl))
 		{
 			$routeTrouvee = true;
-			$matchedUrl = $route->getAttribute("url");
+
+			if($route->hasAttribute("params"))
+			{
+				$params = explode(",", $route->getAttribute("params"));
+				$listParams = [];
+
+				foreach ($matchedUrl as $key => $value)
+        {
+          if ($key !== 0)
+          {
+            $listParams[$params[$key - 1]] = $value;
+          }
+        }
+
+				$_GET = array_merge($_GET, $listParams);
+			}
+
 			if($route->hasAttribute("controleur"))
 			{
 				$controleurClass = $route->getAttribute("controleur")."Controleur";

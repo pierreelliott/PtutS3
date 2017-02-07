@@ -4,7 +4,7 @@
 		<h4 class="modal-title">Modifier un produit</h4>
 	</div>
 	<div class="modal-body">
-		<form method="post" action="index.php?page=administration&action=modification" id="modifProduit" accept-charset="utf-8" enctype="multipart/form-data">
+		<form method="post" action="/administration-modification" id="modifProduit" accept-charset="utf-8" enctype="multipart/form-data">
 			<fieldset>
 				<input type="hidden" name="numProduit" id="numProduitModif" value="">
 				<div class="row">

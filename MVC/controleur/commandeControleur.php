@@ -11,7 +11,7 @@
             $this->bdProduit = new ProduitManager();
 		}
 
-		public function afficherHistorique($pseudo)
+		public function afficherHistorique()
 		{
             /*Creation d'un tableau 2 dimension contenant
             toutes les commandes avec 2 colonnes en plus: prix et
@@ -25,7 +25,7 @@
                             'nbProduits' => 0));
 
             //On recupere les commandes dans la base de données
-			$data = $this->bdCommande->getHistoriqueCommande($pseudo);
+			$data = $this->bdCommande->getHistoriqueCommande($_SESSION["utilisateur"]["pseudo"]);
 
             /*on reference la valeur pour pouvoir modifier le tableau
             dans la boucle*/
@@ -43,9 +43,9 @@
 			include_once('vue/historiqueCommandes.php');
 		}
 
-		public function afficherCommande($numCommande)
+		public function afficherCommande()
 		{
-			$resultat = $this->bdCommande->getInfosCommande($numCommande);
+			$resultat = $this->bdCommande->getInfosCommande($_GET["numCommande"]);
 
             //Tester la valeur de retour de la fonction getInfos Commande
 			if($resultat != false)
@@ -57,7 +57,7 @@
                     $dateCommande = $res["date"];
                 }
 
-    			$prixCommande = $this->bdCommande->getPrixTotalCommande($numCommande);
+    			$prixCommande = $this->bdCommande->getPrixTotalCommande($_GET["numCommande"]);
                 //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
                 $produits = array();
 
