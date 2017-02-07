@@ -13,7 +13,7 @@
             $mdp = "sushinos";
             $base = "sushinoss_bd";
     }
-    else if ($_SERVER["SERVER_NAME"] == "PtutS4") {*/
+    else if ($_SERVER["SERVER_NAME"] == "PtutS4") {
         $serveur = "localhost";
         $utilisateur = "root";
         $mdp = "";

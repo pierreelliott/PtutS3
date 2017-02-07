@@ -6,16 +6,6 @@
 	# On crée un formulaire invisible pour demander l'appel d'une page
 
 	$uri = trim($_SERVER["REQUEST_URI"]);
-	echo $uri."<br>";
-
-	if($uri == "/PtutS3/MVC/")
-	{
-		echo "oui<br>";
-	}
-	else
-	{
-		echo "non<br>";
-	}
 
 	$xml = new \DOMDocument;
 	$xml->load("config/routes.xml");
@@ -23,9 +13,8 @@
 
 	foreach($routes as $route)
 	{
-		if(preg_match("#^(/PtutS3/MVC)?".$route->getAttribute("url")."$#", $uri, $matchedUrl))
+		if(preg_match("#^".$route->getAttribute("url")."$#", $uri, $matchedUrl))
 		{
-			echo "test";
 			$matchedUrl = $route->getAttribute("url");
 			if($route->hasAttribute("controleur"))
 			{

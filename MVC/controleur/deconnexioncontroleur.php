@@ -11,6 +11,6 @@
 				setcookie("pseudo", "");
 				setcookie("mdpHash", "");
 
-				header("Location: /PtutS3/MVC/");
+				header("Location: /");
 			}
 	}

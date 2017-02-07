@@ -5,4 +5,5 @@
 	<route url="/connexion" controleur="connexion" methode="connexion"/>
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
 	<route url="/deconnexion" controleur="deconnexion" methode="deconnexion"/>
+	<route url="/utilisateur" controleur="utilisateur" methode="afficherInfos"/>
 </routes>

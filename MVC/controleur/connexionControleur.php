@@ -37,7 +37,7 @@
                             setcookie("mdpHash", $mdpHash);
                     }
 
-                    header("Location: /PtutS3/MVC/");
+                    header("Location: /");
                 }
                 else
                 {

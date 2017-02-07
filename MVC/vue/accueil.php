@@ -28,7 +28,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-offset-4 col-md-4">
-                                <a href="index.php?page=carte"  class="btn btn-md btn-default btn-block">Découvrir</a>
+                                <a href="/carte"  class="btn btn-md btn-default btn-block">Découvrir</a>
                             </div>
                         </div>
                     </div>
