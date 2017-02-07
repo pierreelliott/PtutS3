@@ -10,11 +10,13 @@
 	$xml = new \DOMDocument;
 	$xml->load("config/routes.xml");
 	$routes = $xml->getElementsByTagName("route");
+	$routeTrouvee = false;
 
 	foreach($routes as $route)
 	{
 		if(preg_match("#^".$route->getAttribute("url")."$#", $uri, $matchedUrl))
 		{
+			$routeTrouvee = true;
 			$matchedUrl = $route->getAttribute("url");
 			if($route->hasAttribute("controleur"))
 			{
@@ -31,6 +33,11 @@
 				include_once("vue/".$vue.".php");
 			}
 		}
+	}
+
+	if(!$routeTrouvee)
+	{
+		include_once("vue/404.php");
 	}
 
 /*
