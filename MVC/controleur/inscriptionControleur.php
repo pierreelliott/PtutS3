@@ -77,8 +77,27 @@
                 {
                     $mdpHash = sha1($_POST["mdp"]);
                     $this->bdd->inscription($pseudo, $mdpHash, $nom, $prenom, $email, $_POST["tel"], $_POST["numRue"], $rue, $ville, $_POST["codePostal"]);
+										$this->bdd->connexion($pseudo, $mdpHash);
+										$_SESSION["utilisateur"] = array(
+											"pseudo" => $pseudo,
+											"mdp" => $mdpHash,
+											"nom" => $nom,
+											"prenom" => $prenom,
+											"email" => $email,
+											"tel" => $tel,
+											"numRue" => $numRue,
+											"rue" => $rue,
+											"ville" => $ville,
+											"codePostal" => $codePostal,
+										);
 
+										header("Location: /PtutS3/MVC/");
+
+<<<<<<< HEAD
 					return true;
+=======
+					//return true;
+>>>>>>> ff67b8aa9604a7fc72928488d51e4d3384984399
                 }
             }
 

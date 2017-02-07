@@ -1,5 +1,5 @@
 <?php
-   /* if($_SERVER["SERVER_NAME"] == "localhost")
+    if($_SERVER["SERVER_NAME"] == "localhost")
     {
             $serveur = "localhost";
             $utilisateur = "root";
@@ -18,12 +18,12 @@
         $utilisateur = "root";
         $mdp = "";
         $base = "ptut";
-   /* }
+    }
     else
 	{
 			$serveur = "iutdoua-web.univ-lyon1.fr";
             $utilisateur = "p1402690";
             $mdp = "212340";
             $base = "p1402690";
-	}*/
+	}
 ?>

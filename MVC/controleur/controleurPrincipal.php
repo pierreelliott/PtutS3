@@ -5,6 +5,47 @@
 
 	# On crée un formulaire invisible pour demander l'appel d'une page
 
+	$uri = trim($_SERVER["REQUEST_URI"]);
+	echo $uri."<br>";
+
+	if($uri == "/PtutS3/MVC/")
+	{
+		echo "oui<br>";
+	}
+	else
+	{
+		echo "non<br>";
+	}
+
+	$xml = new \DOMDocument;
+	$xml->load("config/routes.xml");
+	$routes = $xml->getElementsByTagName("route");
+
+	foreach($routes as $route)
+	{
+		if(preg_match("#^(/PtutS3/MVC)?".$route->getAttribute("url")."$#", $uri, $matchedUrl))
+		{
+			echo "test";
+			$matchedUrl = $route->getAttribute("url");
+			if($route->hasAttribute("controleur"))
+			{
+				$controleurClass = $route->getAttribute("controleur")."Controleur";
+				$methode = $route->getAttribute("methode");
+
+				include_once($controleurClass.".php");
+				$controleur = new $controleurClass;
+				$controleur->$methode();
+			}
+			else
+			{
+				$vue = $route->getAttribute("vue");
+				include_once("vue/".$vue.".php");
+			}
+		}
+	}
+
+/*
+
 	if(isset($_GET["page"]))
 	{
 		$page = $_GET["page"];
@@ -17,7 +58,7 @@
 	# Inclusion des différents contrôleurs
 	include_once("carteControleur.php");
 	include_once("connexionControleur.php");
-	include_once("controleurUtilisateur.php");
+	include_once("utilisateurControleur.php");
 	include_once("deconnexionControleur.php");
 	include_once("inscriptionControleur.php");
 	include_once("panierControleur.php");
@@ -29,7 +70,7 @@
 	# Instanciation des contrôleurs
 	$carte = new carteControleur();
 	$connexion = new connexionControleur();
-	$utilisateur = new controleurUtilisateur();
+	$utilisateur = new utilisateurControleur();
 	$inscription = new inscriptionControleur();
 	$panier = new panierControleur();
 	$commande = new CommandeControleur();
@@ -106,11 +147,8 @@
 		case "administration":
 			$administration->administrer();
 			break;
-		case "getProduitAdmmin":
-			$administration->remplirFormulaireModif($_POST["numProduitAdmin"]);
-			break;
 		default:
 			include_once("vue/404.php");
 			break;
-	}
+	}*/
 ?>

@@ -1,13 +1,14 @@
 <?php
+
     require_once('modele/UserManager.php');
 
-	class controleurUtilisateur
+	class utilisateurControleur
 	{
 		protected $bdd;
 
 		public function __construct()
 		{
-			$this->bdd = new UserManager;
+			$this->bdd = new UserManager();
 		}
 
 		public function afficherInfos()
