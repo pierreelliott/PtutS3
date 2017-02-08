@@ -16,9 +16,19 @@ $(function()
 			console.log(data);
 			infosPanier = JSON.parse(data);
 
-			if(infosPanier.panierVide === "1")
+			if(infosPanier.panierVide === 1)
 			{
-				$('.panier').html('Votre panier est vide');
+				$('.panier').html(
+					'<div class="row">' +
+						'<h1>Votre panier est vide</h1>' +
+					'</div>' +
+					'<hr/>' +
+					'<div class="row">' +
+						'<div class="col-lg-6 col-lg-offset-3">' +
+							'<a class="btn btn-success btn-block" href="/carte"><h2>Commander quelque chose !</h2></a>' +
+						'</div>' +
+					'</div>'
+				);
 			}
 
 			if(infosPanier.qtePanier === 0)
