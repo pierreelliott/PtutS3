@@ -51,11 +51,11 @@ $(function()
 
 		$('tbody').html(
 			'<tr>' +
-			'\t<th>Libellé</th>' +
-			'\t<th>Description</th>' +
-			'\t<th>Image</th>' +
-			'\t<th>Prix</th>' +
-			'\t<th>Type de produit</th>' +
+			'<th>Libellé</th>' +
+			'<th>Description</th>' +
+			'<th>Image</th>' +
+			'<th>Prix</th>' +
+			'<th>Type de produit</th>' +
 			'</tr>'
 		);
 

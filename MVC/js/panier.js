@@ -4,35 +4,45 @@ $(function()
 		var produit = $(this).data('produit');
 		var action = $(this).data('action');
 		var qte = $(this).data('qte');
-		$.post('/panier',
+		$.post('/get-infos-panier',
 		{
 			action: action,
 			produit: produit,
-			qte: qte
+			qte: qte,
+			isAjax: true
 		},
 		function(data, status)
 		{
-			var panierVide = $(data).find('.panier').data('estVide');
-			console.log('estVide : ' + panierVide);
-			if(panierVide === "1")
+			console.log(data);
+			infosPanier = JSON.parse(data);
+
+			if(infosPanier.panierVide === 1)
 			{
-				$('.panier').text('Votre panier est vide');
+				$('.panier').html(
+					'<div class="row">' +
+						'<h1>Votre panier est vide</h1>' +
+					'</div>' +
+					'<hr/>' +
+					'<div class="row">' +
+						'<div class="col-lg-6 col-lg-offset-3">' +
+							'<a class="btn btn-success btn-block" href="/carte"><h2>Commander quelque chose !</h2></a>' +
+						'</div>' +
+					'</div>'
+				);
 			}
 
-			var qte = $(data).find('#' + produit + ' .qte').text();
-			var prix = $(data).find('.prix').text();
-			console.log('qte : ' + qte);
-			console.log('prix : ' + prix);
-			if(qte === "")
+			if(infosPanier.qtePanier === 0)
 			{
 				$('#' + produit).remove();
 			}
 			else
 			{
-				$('#' + produit + ' .qte').text(qte);
+				$('#' + produit + ' .qte').text('Quantité : ' + infosPanier.qtePanier);
 			}
 
-			$('.prix').text(prix);
+			$('.prix').text('Prix du panier : ' + infosPanier.prixPanier + '€');
+
+			$('#qtePanier').text(infosPanier.qtePanier);
 		});
 	});
 });

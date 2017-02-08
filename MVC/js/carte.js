@@ -4,11 +4,12 @@ $(function()
 		var produit = $(this).data('produit');
 		var action = $(this).data('action');
 		var qte = $(this).data('qte');
-		$.post('/panier',
+		$.post('/get-infos-panier',
 		{
 			action: action,
 			produit: produit,
-			qte: qte
+			qte: qte,
+			isAjax: true
 		},
 		function(data, status)
 		{
@@ -19,6 +20,10 @@ $(function()
 			{
 				fenAlert.addClass('hidden');
 			}, 2500);
+
+			qtePanier = JSON.parse(data).qtePanier;
+
+			$('#qtePanier').text(qtePanier);
 		});
 	});
 

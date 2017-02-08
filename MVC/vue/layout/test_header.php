@@ -5,7 +5,7 @@
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand" href="/" id="active">Accueil</a>
+				<a class="navbar-brand" href="/accueil" id="active">Accueil</a>
 			</div>
 
 			<div class="collapse navbar-collapse js-navbar-collapse">
@@ -57,7 +57,7 @@
 					<li>
 						<a href="/panier">
 						<span class="glyphicon glyphicon-shopping-cart"></span>
-						<span class="badge">
+						<span id="qtePanier" class="badge">
 							<?php if(isset($_SESSION["nbProduit"]))
 						{
 							echo $_SESSION["nbProduit"];

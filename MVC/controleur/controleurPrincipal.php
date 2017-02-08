@@ -24,12 +24,12 @@
 				$listParams = [];
 
 				foreach ($matchedUrl as $key => $value)
-        {
-          if ($key !== 0)
-          {
-            $listParams[$params[$key - 1]] = $value;
-          }
-        }
+		        {
+					if ($key !== 0)
+					{
+						$listParams[$params[$key - 1]] = $value;
+					}
+		        }
 
 				$_GET = array_merge($_GET, $listParams);
 			}

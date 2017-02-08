@@ -85,8 +85,6 @@
             }
 
 			$_SESSION["nbProduit"] += 1;
-
-            header('Location: index.php?page=carte');
         }
 
 		public function supprimerProduit($numProduit)

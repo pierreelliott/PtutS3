@@ -1,12 +1,13 @@
 <?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
 <routes>
-	<route url="/" vue="accueil"/>
+	<route url="/(accueil)?" vue="accueil"/>
 	<route url="/carte" controleur="carte" methode="carte"/>
 	<route url="/connexion" controleur="connexion" methode="connexion"/>
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
 	<route url="/deconnexion" controleur="deconnexion" methode="deconnexion"/>
 	<route url="/utilisateur" controleur="utilisateur" methode="afficherInfos"/>
 	<route url="/panier" controleur="panier" methode="afficherPanier"/>
+	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>
 	<route url="/avis" vue="avis"/>
 	<route url="/historique-commandes" controleur="commande" methode="afficherHistorique"/>
