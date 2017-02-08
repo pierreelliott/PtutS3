@@ -11,7 +11,14 @@
 		public function carte()
 		{
 			$carte = $this->bdd->recupererCarte();
-			
+			foreach($carte as $key => $produit)
+			{
+				if($produit["prix"] < 0)
+				{
+					unset($carte[$key]);
+				}
+			}
+
 			$menus = array();
 			foreach($carte as $keyMenu => $produit)
 			{
@@ -26,7 +33,7 @@
 					}
 				}
 			}
-			
+
 			include_once('vue/carte.php');
 		}
     }
