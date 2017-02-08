@@ -57,8 +57,8 @@
             }
             //Ajout des parametres variables
             $requete = $requete."&METHOD=SetExpressCheckout".
-                                "&CANCELURL=".urlencode($this->urlSite."index.php?page=annulePaypal").
-                                "&RETURNURL=".urlencode($this->urlSite."index.php?page=retourPaypal&typeCommande".$typeCommande).
+                                "&CANCELURL=".urlencode($this->urlSite."/annule-paypal").
+                                "&RETURNURL=".urlencode($this->urlSite."/retour-paypal-".$typeCommande).
                                 "&AMT=".$prix.
                                 "&CURRENCYCODE=EUR".
                                 "&DESC=".urlencode("SUSHI").
@@ -104,7 +104,7 @@
 
                     echo "\n".$requete;
 
-                    echo "\n".urlencode("http://127.0.0.1/index.php?page=retourPaypal");
+                    echo "\n".urlencode("http://127.0.0.1/retour-paypal");
                 }
             }
             //Fermeture de la session
