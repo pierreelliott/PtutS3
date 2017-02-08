@@ -106,7 +106,7 @@
 <script language="javascript" src="js/panier.js"></script>
 
 <?php
-  $script = ob_get_clean();
+  	$script = ob_get_clean();
 
 	require("layout/site.php");
 ?>

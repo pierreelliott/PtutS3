@@ -63,9 +63,15 @@
 
 		  function remplirFormulaireModif()
 		  {
-			  $produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
-
-			  echo json_encode($produit);
+			  if(isset($_POST["numProduitAdmin"]))
+			  {
+				  $produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
+				  echo json_encode($produit);
+			  }
+			  else
+			  {
+				  header("Location: /accueil");
+			  }
 		  }
     }
 ?>
