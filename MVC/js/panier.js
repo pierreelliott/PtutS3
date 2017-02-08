@@ -16,27 +16,23 @@ $(function()
 			console.log(data);
 			infosPanier = JSON.parse(data);
 
-			//var panierVide = $(data).find('.panier').data('estVide');
-			console.log('estVide : ' + infosPanier.panierVide);
 			if(infosPanier.panierVide === "1")
 			{
-				$('.panier').text('Votre panier est vide');
+				$('.panier').html('Votre panier est vide');
 			}
 
-			//var qte = $(data).find('#' + produit + ' .qte').text();
-			//var prix = $(data).find('.prix').text();
-			console.log('qte : ' + infosPanier.qte);
-			console.log('prix : ' + infosPanier.prix);
-			if(infosPanier.qte === "")
+			if(infosPanier.qtePanier === 0)
 			{
 				$('#' + produit).remove();
 			}
 			else
 			{
-				$('#' + produit + ' .qte').text(infosPanier.qte);
+				$('#' + produit + ' .qte').text('Quantité : ' + infosPanier.qtePanier);
 			}
 
-			$('.prix').text(infosPanier.prix);
+			$('.prix').text('Prix du panier : ' + infosPanier.prixPanier + '€');
+
+			$('#qtePanier').text(infosPanier.qtePanier);
 		});
 	});
 });

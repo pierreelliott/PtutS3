@@ -21,11 +21,9 @@ $(function()
 				fenAlert.addClass('hidden');
 			}, 2500);
 
-			console.log(data);
-			infosPanier = JSON.parse(data);
-			qtePanier = infosPanier.qtePanier;
-			console.log(qtePanier);
-			$("#qtePanier").text(qtePanier);
+			qtePanier = JSON.parse(data).qtePanier;
+
+			$('#qtePanier').text(qtePanier);
 		});
 	});
 

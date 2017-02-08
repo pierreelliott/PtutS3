@@ -7,7 +7,7 @@
 <!-- ======== Début Code HTML ======== -->
 	<div class="row">
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
-			<div data-estVide="<?php echo $estVide; ?>" class="panier">
+			<div class="panier">
 			<?php
 			//Si le panier est vide
 			if($estVide)
