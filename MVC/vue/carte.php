@@ -46,7 +46,7 @@
 								<div class="col-xs-3">
 									<p>Prix : <?php echo $produit["prix"]; ?> €</p>
 								</div>
-								<div class="col-xs-offset-3 col-xs-3">
+								<div class="col-xs-offset-6 col-xs-3">
 									<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
 										<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 									</button>
@@ -104,6 +104,7 @@
         </div>
 		<!-- Affichage des menus -->
         <div class="tab-pane" id="menus">
+			<hr/>
           <?php
 		  //foreach($menus as $menu)
 			for($i = 1; $i <= 4; $i++)
@@ -130,7 +131,7 @@
 											<img src="images/maki1,1.png" class="media-object img-responsive" style="width:80px">
 										</div>
 										<div class="media-body">
-											<h2 class="media-heading text-muted">Produit <?php echo $i;?><?php //echo $produit["libelle"]; ?></h2>
+											<h2 class="media-heading text-muted">Produit <?php echo $j;?><?php //echo $produit["libelle"]; ?></h2>
 											<p class="text-muted pull-left">Description [...........]<?php //echo $produit["description"]; ?></p>
 										</div>
 									</div>
@@ -142,8 +143,8 @@
 					</div>
 					<div class="panel-footer">
 						<div class="row">
-							<div class="col-lg-offset-8 col-lg-4">
-								<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
+							<div class="col-lg-offset-9 col-lg-3">
+								<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
 									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 								</button>
 							</div>

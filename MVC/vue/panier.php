@@ -17,7 +17,7 @@
 				</div>
 				<hr/>
 				<div class="row">
-					<div class="col-lg-6 col-lg-offset-3">
+					<div class="col-lg-8 col-lg-offset-2">
 						<a class="btn btn-success btn-block" href="/carte"><h2>Commander quelque chose !</h2></a>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 					</div>
 					<?php
 					} else { ?>
-					<div class="col-lg-5 col-lg-offset-6">
+					<div class="col-lg-6 col-lg-offset-6">
 						<a class="btn btn-danger btn-block" href="/connexion">Veuillez vous connecter pour pouvoir commander</a>
 					</div>
 					<?php

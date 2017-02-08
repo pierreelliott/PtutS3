@@ -31,15 +31,15 @@
 							$ville;
 						}
 						else echo "Vous n'avez pas renseigné d'adresse";
-						
+
 					?>
 				</dd>
-				<dt><span class="glyphicon glyphicon-map-marker"></span> Date d'inscription :</dt>
+				<dt><span class="glyphicon glyphicon-hourglass"></span> Date d'inscription :</dt>
 				<dd><?php echo $dateInscription; ?></dd>
 			</dl>
 		</div>
 	</div>
-	
+
 <!-- ======== Fin Code HTML ======== -->
 <?php
 	$contenu = ob_get_clean();
