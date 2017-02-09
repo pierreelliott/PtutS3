@@ -47,7 +47,7 @@
 									<p>Prix : <?php echo $produit["prix"]; ?> €</p>
 								</div>
 								<div class="col-xs-offset-6 col-xs-3">
-									<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
+									<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" id="btnAjout" class="btn btn-primary btn-block">
 										<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 									</button>
 								</div>
@@ -144,7 +144,7 @@
 					<div class="panel-footer">
 						<div class="row">
 							<div class="col-lg-offset-9 col-lg-3">
-								<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
+								<button type="button" data-action="ajout" data-produit="1<?php //echo $produit["numProduit"]; ?>" id="btnAjout" class="btn btn-primary">
 									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 								</button>
 							</div>
