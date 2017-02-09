@@ -106,8 +106,12 @@
         <div class="tab-pane" id="menus">
 			<hr/>
           <?php
-		  //foreach($menus as $menu)
-			for($i = 1; $i <= 4; $i++)
+		  /*print_r($menus);
+		  echo "<br>";
+		  foreach ($test as $msg) {
+		  	//echo "Prod type : ".$msg["type"]." et libelle : ".$msg["libelle"]."<br>";
+		}*/
+		  foreach($menus as $menu)
 			{
 			?>
 				<div class="panel panel-default">
@@ -116,23 +120,21 @@
 							<img src="images/maki1,1.png" class="media-object" style="width:80px">
 						</div>
 						<div class="media-body menu-produit-container">
-							<h2 class="media-heading text-muted">Menu <?php echo $i;?><?php //echo $menu["libelle"]; ?></h2>
-							<p class="text-muted pull-left">Description [...........]<?php //echo $menu["description"]; ?></p>
-							<p class="text-muted">Prix : 2€<?php //echo $menu["prix"]; ?></p>
+							<h2 class="media-heading text-muted">Menu "<?php echo $menu["libelle"]; ?>"</h2>
+							<p class="text-muted pull-left"><?php echo $menu["description"]; ?></p>
+							<p class="text-muted"><?php echo $menu["prix"]; ?></p>
 							<?php
-							//foreach($menu["produits"] as $produit)
-							for($j = 1; $j <= 3; $j++)
+							foreach($menu["produits"] as $produit)
 							{
 							?>
 								<div class="panel col-lg-6 menu-produit">
 									<div class="media">
 										<div class="media-left media-top">
-											<!--<img src="<?php //echo produit["sourceMoyen"]; ?>" class="media-object img-responsive" style="width:80px">-->
-											<img src="images/maki1,1.png" class="media-object img-responsive" style="width:80px">
+											<img src="<?php echo $produit["sourceMoyen"]; ?>" class="media-object img-responsive" style="width:80px">
 										</div>
 										<div class="media-body">
-											<h2 class="media-heading text-muted">Produit <?php echo $j;?><?php //echo $produit["libelle"]; ?></h2>
-											<p class="text-muted pull-left">Description [...........]<?php //echo $produit["description"]; ?></p>
+											<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
+											<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
 										</div>
 									</div>
 								</div>
@@ -144,7 +146,7 @@
 					<div class="panel-footer">
 						<div class="row">
 							<div class="col-lg-offset-9 col-lg-3">
-								<button type="button" data-action="ajout" data-produit="1<?php //echo $produit["numProduit"]; ?>" id="btnAjout" class="btn btn-primary">
+								<button type="button" data-action="ajout" data-produit="1<?php echo $menu["numProduit"]; ?>" id="btnAjout" class="btn btn-primary">
 									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 								</button>
 							</div>

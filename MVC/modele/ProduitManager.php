@@ -107,7 +107,7 @@
 			//Les menus sont stockés dans la base
 			//avec un type dans le style : "menu.[...]"
 			$requete = $this->executerRequete('select lower(TYPEPRODUIT) typeProduit from produit
-                                            where numProduit= ?', array("numProduit"));
+                                            where numProduit= ?', array($numProduit));
             $resultat = $requete->fetch();
 
             //Tableau contenant le type produit en 2 chianes
@@ -138,7 +138,7 @@
 		{
 			// Table compatibilite :
 			// Colonne 1 : $numProduit ; colonne 2 : les produits compatibles
-            $requete = $this->executerRequete('select numProduit2 from compatible
+            $requete = $this->executerRequete('select numProduit2 from compatibilite
                                             where numProduit = ?', array($numProduit));
 
             $resultat =  $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -151,6 +151,7 @@
 
 		public function recupererCarte($tailleImage=null)
 		{
+			// Il faut qu'on change la requête parce que s'il n'y pas d'image, le produit n'est pas pris en compte...
 			switch($tailleImage)
 			{
 			# Oui je me suis tapé un petit kiff,

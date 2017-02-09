@@ -42,17 +42,27 @@ insert into typeProduit values
 ("Sushi"),
 ("Sauce"),
 ("Accompagnement"),
-("Maki");
+("Algue"),
+("Maki"),
+("Menu.Jour");
 
 
 /* Table Produit (numproduit,libelle,prix,description,typeproduit,numimage)*/
-insert into produit(Libelle, Prix,Description, TypeProduit, NumImage) values
-("Sushi noss",10,"Sushi au saumon","Sushi",2),
-("Ketchup",0.5,"Sauce de base","Sauce",3),
-("Rix titi",3,"Riz au lait","Accompagnement",4),
-("Makizu chichi",6,"Maki au poulet","Maki",5),
-("Sushi rah",5,"Sushi au cabillaud","Sushi",6),
-("Alges à gogo",9,"Boîte d algues rouges","Accompagnement",7);
+insert into produit(numProduit, Libelle, Prix,Description, TypeProduit, NumImage) values
+(1, "Sushi noss",10,"Sushi au saumon","Sushi",2),
+(2, "Ketchup",1,"Sauce de base","Sauce",3),
+(3, "Rix titi",3,"Riz au lait","Accompagnement",4),
+(4, "Makizu chichi",8,"Maki au poulet","Maki",5),
+(5, "Sushi rah",8,"Sushi au cabillaud","Sushi",6),
+
+(6, "Algues au crabe",9,"Boîte d'algues rouges","Algue",7),
+(7, "Algues du fermier",7,"Boîte d'algues vertes qui font penser à de l'herbe","Algue",7),
+(8, "Algues arc-en-ciel",12,"Boîte d'algues multicolores","Algue",7),
+
+(9, "Algues à gogo",22,"Dégustez une savoureuse sélection d'algues","Menu.Jour",null),
+(10, "Saké pateux",1,"Ces japonais sont vraiment bizarres...","Sauce",3),
+(11, "Le suprême Suhinos",10,"Dégustez une savoureuse sélection de sushis","Menu.Jour",null),
+(12, "Le maki de l'extrême",15,"Attention, ça pique !","Menu.Jour",null);
 
 /* Table Commande (numcommande,date,codepostal,ville,rue,numrue,typecommande)*/
 insert into commande(Date, CodePostal, Ville, Rue, NumRue, TypeCommande, NumUser) values
@@ -70,7 +80,11 @@ values
 (3,2,4), (3,3,2);
 
 /* Table Compatibilite (numproduit,numproduit2) */
-insert into compatibilite (NumProduit, NumProduit2) values(1,2), (5,2), (3,2), (1,3), (4,6), (5,6);
+insert into compatibilite (NumProduit, NumProduit2) values
+	(1,2), (5,2), (3,2), (1,3), (4,6), (5,6),
+	(9,6), (9,7), (9,8), (9,10),
+	(11,1), (11,2), (11,3),
+	(12,4), (12,5), (12,10);
 
 /* Table Preference (numuser,numproduit,classement)*/
 insert into preference (NumUser,NumProduit,Classement)
