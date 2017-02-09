@@ -35,7 +35,7 @@
 
 				<!-- Pour le formulaire d'envoi de message -->
 				<div class="row">
-					<form  action="javascript:go('accueil')" method="post" accept-charset="utf-8">
+					<form  action="/accueil" method="post" accept-charset="utf-8">
 						<fieldset>
 							<legend>Contactez-nous :</legend>
 							<div class="row">

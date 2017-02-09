@@ -53,7 +53,7 @@
 
 	if(!$routeTrouvee)
 	{
-		include_once("vue/404.php");
+		header("Location: /404");
 	}
 
 /*

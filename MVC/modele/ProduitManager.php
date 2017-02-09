@@ -12,6 +12,15 @@
 			return $resultat;
 		}
 
+		public function rechercherProduits($libelleProduit)
+		{
+			$requete = "select numProduit, libelle, description, typeProduit, prix, p.numImage numImage, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where libelle like ?;";
+			$resultat = $this->executerRequete($requete, array("$libelleProduit%"));
+			$resultat = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+			return $resultat;
+		}
+
 		# Normalement, le principal devrait fonctionner (à voir !)
 		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $compatibilite = null)
 		{

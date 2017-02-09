@@ -270,3 +270,14 @@ footer
 	padding-left: 1vw;
 	padding-right: 1vw;
 }
+
+.navbar-toggle
+{
+	padding-bottom: 5px;
+	border: 0;
+}
+
+.navbar-collapse.js-navbar-collapse.collapse, .navbar-collapse.js-navbar-collapse.collapsing
+{
+	overflow-y: visible;
+}

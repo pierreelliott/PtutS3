@@ -4,6 +4,7 @@
 			<div class="navbar-header">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-menu-hamburger"></span>
 				</button>
 				<a class="navbar-brand" href="/accueil" id="active">Accueil</a>
 			</div>
@@ -13,13 +14,13 @@
 					<li><a href="/carte">Carte</a></li>
 					<li><a href="/avis">Avis des utilisateurs</a></li>
 					<li>
-						<form class="navbar-form form-inline navbar-left">
-						<!--<div class="input-group">
-							<input type="search" class="form-control" placeholder="Rechercher">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-							</span>
-						</div> -->
+						<form method="post" action="/recherche" class="navbar-form form-inline navbar-left">
+							<div class="input-group">
+								<input type="search" name="nomProduitRecherche" class="form-control" placeholder="Rechercher">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+								</span>
+							</div>
 						</form>
 					</li>
 				</ul>
@@ -73,11 +74,5 @@
 				</ul>
 			</div>
 		</nav>
-
-    <!--
-    <div class="dropbtn">
-        <p><img src="images/burger_menu.png" alt="dropbtn"/></p>
-    </div>
-    -->
 
 <!-- NAVBAR END -->

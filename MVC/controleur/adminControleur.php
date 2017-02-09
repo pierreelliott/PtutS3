@@ -64,7 +64,7 @@
 			}
 			else
 			{
-				header("Location: /accueil");
+				header("Location: /404");
 			}
 		}
 

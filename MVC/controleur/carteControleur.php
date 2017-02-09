@@ -11,17 +11,16 @@
 		public function carte()
 		{
 			$carte = $this->bdd->recupererCarte();
-			foreach($carte as $key => $produit)
-			{
-				if($produit["prix"] < 0)
-				{
-					unset($carte[$key]);
-				}
-			}
 
 			$menus = array();
 			foreach($carte as $keyMenu => $produit)
 			{
+				if($produit["prix"] < 0)
+				{
+					unset($carte[$keyMenu]);
+					continue;
+				}
+
 				$typeProduit = $this->bdd->getTypeProduit($produit["numProduit"]);
 				if($typeProduit == "menu")
 				{
