@@ -16,30 +16,27 @@
             /*Creation d'un tableau 2 dimension contenant
             toutes les commandes avec 2 colonnes en plus: prix et
             nbProduits
-            1er dimension contient le nombre de ligne
+            1er dimension contient le nbCommande
             2ème les differentes colonne de la requete sql*/
-            $commandes = array('ligne' => array('date' => 'NULL',
-                            'typeCommande' => 'NULL',
-                            'numCommande'  => 'NULL',
-                            'prix' =>  0,
-                            'nbProduits' => 0));
+            $commandes = array();
 
             //On recupere les commandes dans la base de données
 			$data = $this->bdCommande->getHistoriqueCommande($_SESSION["utilisateur"]["pseudo"]);
 
-            /*on reference la valeur pour pouvoir modifier le tableau
-            dans la boucle*/
-            foreach ($commandes as &$com)
-            {
                 foreach ($data as $d) {
-                    $com['date'] = $d['date'];
-                    $com['typeCommande'] = $d['typeCommande'];
-                    $com['numCommande'] = $d['numCommande'];
-                }
-                $com["prix"] = $this->bdCommande->getPrixTotalCommande($com['numCommande']);
-                $com["nbProduits"] = $this->bdCommande->getNbProduit($com['numCommande']);
 
-            }
+
+                    $com = array('date' => $d['date'],
+                                 'typeCommande' => $d['typeCommande'],
+                                 'numCommande'  => $d['numCommande'],
+                                 'prix' => $this->bdCommande->getPrixTotalCommande($d['numCommande']),
+                                 'nbProduits' => $this->bdCommande->getNbProduit($d['numCommande']));
+
+                    //Ajout de la commande dans le tableau final
+                    $commandes[$com['numCommande']] = $com;
+                }
+
+
 			include_once('vue/historiqueCommandes.php');
 		}
 
@@ -76,7 +73,7 @@
 						"sourceMoyen" => $p["sourceMoyen"],
 						"sourceGrand" => $p["sourceGrand"]
 					);
-
+                    //Ajout d'un tableau en 2 dimensions avec toutes les donnees
 					$produits[$prod["numProduit"]] = $produit;
 				}
 

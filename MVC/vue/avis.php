@@ -9,13 +9,15 @@
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="col-lg-12">
 				<div class="row">
+                    <div class="form-group has-error">
+                        <?php if(isset($message)) echo "<span class='help-block'>" . $message . "</span>";
+                        else { ?>
+                    </div>
 					<form action="index.php?page=avis" method="post" name="avisUtilisateur" accept-charset="utf-8">
 						<fieldset>
 							<legend>Donnez votre avis sur nos services</legend>
 							<div class="row">
-								<div class="form-group has-error">
-									<?php if(isset($message)) echo "<span class='help-block'>" . $message . "</span>"; ?>
-								</div>
+
 							</div>
 							<div class="row">
 								<div class="col-lg-8">
@@ -32,9 +34,10 @@
 							</div>
 						</fieldset>
 					</form>
+                    <?php } ?>
 				</div>
 				<?php
-				for($i = 1; $i <= 6; $i++)
+				foreach($tousAvis as $avis)
 				{
 				?>
 					<div class="panel panel-default">
@@ -43,9 +46,9 @@
 								<img src="images/user.png" class="media-object" style="width:80px">
 							</div>
 							<div class="media-body">
-								<h2 class="media-heading text-muted">Utilisateur <?php echo $i; ?></h2>
-								<p class="text-muted pull-left">Note : * * * * *</p>
-								<p class="text-muted">Commentaire [...........]</p>
+								<h2 class="media-heading text-muted"><?php echo $avis['pseudo']; ?></h2>
+								<p class="text-muted pull-left">Note : <?php echo $avis['note']; ?></p>
+								<p class="text-muted">Commentaire: <?php echo $avis['avis']; ?></p>
 							</div>
 						</div>
 						<div class="panel-footer">
@@ -57,13 +60,13 @@
 									<a href="#"><img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-1">
-									<?php echo $i*($i -$i +2*$i); ?>
+                                    <?php echo $avis["pouceBleu"]; ?>
 								</div>
 								<div class="col-lg-1">
 									<a href="#"><img src="images/pouce_rouge.png" alt="Pouce bleu" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-1">
-									<?php echo $i+($i -$i +2*$i); ?>
+                                    <?php echo $avis["pouceRouge"]; ?>
 								</div>
 							</div>
 						</div>

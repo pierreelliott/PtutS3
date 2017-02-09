@@ -64,6 +64,15 @@
             return $resultat['numUser'];
         }
 
+        //Permet de récupérer le pseudo de l'utilisateur
+        public function getPseudo($numUser)
+        {
+            $requete= $this->executerRequete('select pseudo from utilisateur where numUser = ?', array($numUser));
+            $resultat = $requete->fetch();
+
+            return $resultat['pseudo'];
+        }
+
         //Recupere les informations de l'user
         public function getInfo($pseudo)
         {

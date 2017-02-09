@@ -7,36 +7,57 @@
  */
 
     include_once('modele/AvisManager.php');
-
+    require_once('modele/UserManager.php');
 
     class AvisControleur
     {
-        public $avis;
+        public $avis, $user;
 
         public function __construct()
         {
             $this->avis = new AvisManager();
+            $this->user= new UserManager();
         }
 
         public function afficherAvis()
         {
-            $userAvis = $this->avis->getAvis($_SESSION["pseudo"]);
-
-            //Si l'utilisateur n'a pas d'avis
-            if($userAvis == false)
+            //Si l'utilisateur est connecté
+            if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
-                $userAvis = null;
+                $userAvis = $this->avis->getAvis($_SESSION["utilisateur"]["pseudo"]);
+
+                //Si l'utilisateur n'a pas d'avis
+                if($userAvis == false)
+                {
+                    $userAvis = null;
+                }
+            }
+            else
+            {
+                $message = "Vous devez vous connecter pour poster un avis";
             }
 
-            $tousAvis = $this->avis->getTousAvis();
-            //Ajout des compteurs de vote
-            foreach ($tousAvis as $avis) {
-                $avis["PouceBleu"] = $this->avis->getVotePositif($avis["numAvis"]);
-                $avis["PouceRouge"] = $this->avis->getVoteNegatif($avis["numAvis"]);
+            $tousAvisBD = $this->avis->getTousAvis();
+
+            //Creation du tableau qui va conteir tous les avis
+            $tousAvis = array();
+
+            foreach ($tousAvisBD as $avisBD) {
+
+                //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
+                $avis = array('avis' => $avisBD['avis'],
+                                'note' => $avisBD['note'],
+                                'date'  => $avisBD['date'],
+                                'numuser' =>  $avisBD['numUser'],
+                                'pouceBleu' =>  $this->avis->getVotePositif($avisBD['numUser']),
+                                'pouceRouge' => $this->avis->getVoteNegatif($avisBD['numUser']),
+                                'pseudo' => $this->user->getPseudo($avisBD['numUser']));
+                //Ajout d'un tableau en 2 dimensions avec toutes les donnees
+                $tousAvis[$avisBD['numUser']] = $avis;
             }
 
+            include_once("vue/avis.php");
         }
-
 
     }
 ?>

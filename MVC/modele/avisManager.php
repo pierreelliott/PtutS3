@@ -80,9 +80,9 @@
         }
 
         //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
-        public function getTousAvis($critere = "NUMAVIS", $ordre = "asc")
+        public function getTousAvis($critere = "NumUser", $ordre = "asc")
         {
-            $requete= $this->executerRequete('select avis, note, date from avis order by'.$critere.' '.$ordre);
+            $requete= $this->executerRequete('select avis, note, date, numUser from avis order by '.$critere.' '.$ordre);
 
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
