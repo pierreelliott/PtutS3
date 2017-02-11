@@ -69,7 +69,7 @@
 							</div>
 						</div>
                         <div>
-                            <form method="post" action="index.php?page=paiementPaypal" class="form-horizontal">
+                            <form action="/paiement-paypal" method="post"class="form-horizontal">
                                 <div class="form-group">
                                     <label for="typeCommande" class="control-label col-lg-6">Sélectionnez le type de la commande</label>
                                     <div class="col-lg-5">
@@ -79,6 +79,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" name="prix" value="<?php echo $prixCommande;?>">
                                 <button class="btn btn-success" type="submit">Payer via Paypal</button>
                             </form>
                         </div>

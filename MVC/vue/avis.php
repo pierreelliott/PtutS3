@@ -23,7 +23,16 @@
 								<div class="col-lg-8">
 									<div class="form-group">
 										<label for="commentaire" class="control-label">Commentaire :</label>
-										<textarea type="text" id="commentaire" name="commentaire" placeholder="Ecrivez votre commentaire ici" class="form-control vresize"></textarea>
+										<textarea type="text" id="commentaire" name="commentaire"
+                                        <?php  //Affichage de l'avis deja existant si il y en a un
+                                        if($userAvis != false)
+                                        {
+                                            echo "placeholder='".$userAvis['avis']."'";
+                                        }
+                                        else {
+                                            echo "placeholder='Entrez votre commentaire'";
+                                        }
+                                        ?> class="form-control vresize"></textarea>
 									</div>
 								</div>
 								<div class="col-lg-4">

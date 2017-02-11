@@ -44,71 +44,77 @@
         }
 
         //Redirige l'utilisateur sur le site de paypal pour payer
-        public function paiementPaypal($prix)
+        public function paiementPaypal()
         {
-            $requete = $this->paypal->construitURL();
-            $typeCommande = null;
-            if($_POST["typeCommande"] == "Livraison")
+            //Si un prix est passé en parametre
+            if(isset($_POST["prix"]))
             {
-                $typeCommande = "Livraison";
-            }
-            else {
-                $typeCommande = "A Emporter";
-            }
-            //Ajout des parametres variables
-            $requete = $requete."&METHOD=SetExpressCheckout".
-                                "&CANCELURL=".urlencode($this->urlSite."/annule-paypal").
-                                "&RETURNURL=".urlencode($this->urlSite."/retour-paypal-".$typeCommande).
-                                "&AMT=".$prix.
-                                "&CURRENCYCODE=EUR".
-                                "&DESC=".urlencode("SUSHI").
-                                "&LOCALECODE=FR";
-
-            //Creation d'une session cURL
-            $ch = curl_init($requete);
-            //Ignore le certificat SSL
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            //Permet de recuperer les données issus de la requete
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-            //Execute la requete
-            $resultat_paypal = curl_exec($ch);
-
-            //On test si c'est bien paypal qui veut acceder a la page
-
-            //Si elle n'a pas marché
-            if (!$resultat_paypal)
-            {
-                //Affichage de l'erreur
-                echo "<p>Erreur</p><p>".curl_error($ch)."</p>";
-            }
-            //Sinon on effectue les traitements
-            else
-            {
-                //Recupere les parametre en les séparant puis les stock dans un tableau
-                $liste_param = $this->paypal->separeParametres($resultat_paypal);
-                $parametres = $this->paypal->stockerParametre($liste_param);
-
-                // Si la requête a été traitée avec succès
-                if ($parametres['ACK'] == 'Success')
+                $prix = $_POST["prix"];
+                $requete = $this->paypal->construitURL();
+                $typeCommande = null;
+                if($_POST["typeCommande"] == "Livraison")
                 {
-                    echo "string";
-                    // Redirige le visiteur sur le site de PayPal
-                    header("Location: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token=".$parametres['TOKEN']);
-                    exit();
+                    $typeCommande = "Livraison";
                 }
-                else // En cas d'échec, affiche la première erreur trouvée.
+                else {
+                    $typeCommande = "A Emporter";
+                }
+                //Ajout des parametres variables
+                $requete = $requete."&METHOD=SetExpressCheckout".
+                                    "&CANCELURL=".urlencode($this->urlSite."/annule-paypal").
+                                    "&RETURNURL=".urlencode($this->urlSite."/retour-paypal").
+                                    "&AMT=$prix".
+                                    "&CURRENCYCODE=EUR".
+                                    "&DESC=".urlencode("SUSHI").
+                                    "&LOCALECODE=FR";
+
+                //Creation d'une session cURL
+                $ch = curl_init($requete);
+                //Ignore le certificat SSL
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                //Permet de recuperer les données issus de la requete
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                //Execute la requete
+                $resultat_paypal = curl_exec($ch);
+
+                //On test si c'est bien paypal qui veut acceder a la page
+
+                //Si elle n'a pas marché
+                if (!$resultat_paypal)
                 {
-                    echo "<p>Erreur de communication avec le serveur PayPal.<br />".$parametres['L_SHORTMESSAGE0']."<br />"
-                    .$parametres['L_LONGMESSAGE0']."</p>";
-
-                    echo "\n".$requete;
-
-                    echo "\n".urlencode("http://127.0.0.1/retour-paypal");
+                    //Affichage de l'erreur
+                    echo "<p>Erreur</p><p>".curl_error($ch)."</p>";
                 }
+                //Sinon on effectue les traitements
+                else
+                {
+                    //Recupere les parametre en les séparant puis les stock dans un tableau
+                    $liste_param = $this->paypal->separeParametres($resultat_paypal);
+                    $parametres = $this->paypal->stockerParametre($liste_param);
+
+                    // Si la requête a été traitée avec succès
+                    if ($parametres['ACK'] == 'Success')
+                    {
+                        echo "string";
+                        // Redirige le visiteur sur le site de PayPal
+                        header("Location: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token=".$parametres['TOKEN']);
+                        exit();
+                    }
+                    else // En cas d'échec, affiche la première erreur trouvée.
+                    {
+                        echo "<p>Erreur de communication avec le serveur PayPal.<br />".$parametres['L_SHORTMESSAGE0']."<br />"
+                        .$parametres['L_LONGMESSAGE0']."</p>";
+
+                        echo "\n".$requete;
+
+                        echo "\n".urlencode("http://127.0.0.1/retour-paypal");
+                    }
+                }
+                //Fermeture de la session
+                curl_close($ch);
             }
-            //Fermeture de la session
-            curl_close($ch);
+
         }
 
         //Valide la transaction paypal apres le paiemet ou le refus

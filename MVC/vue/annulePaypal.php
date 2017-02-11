@@ -1,6 +1,5 @@
 <?php
     $title = "Paiement annulé";
-    print_r($_SESSION["panier"]);
     ob_start();
 ?>
 <!-- ======== Début Code HTML ======== -->

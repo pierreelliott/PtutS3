@@ -59,5 +59,11 @@
             include_once("vue/avis.php");
         }
 
+        //Ajout d'un avis à la base de données
+        public function addAvis()
+        {
+
+        }
+
     }
 ?>
