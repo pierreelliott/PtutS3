@@ -1,10 +1,10 @@
 /* Table Utilisateur */
 insert into utilisateur(Nom, Prenom,Mail, Ville, Rue, CodePostal, Telephone, TypeUser, Pseudo, MDP, NumRue)
 values
-("Menvu","Gérard","adr@mail.fr",null,null,null,"0404040404","ADMIN","gmenvu","1234", null),
-("Atan","Charles","addmail.en",null,null,null,"0505050505","USER","catan","2345", null),
-("Doeuf","John","ddd@mail.us",null,null,null,"0202020202","USER","jdoeuf","3456",null),
-("Pietrac","Nicolas","aha@mail.net","Ploubelec","rue des Alouettes","14100","0606060606","USER","npietrac","4567", "42");
+("Menvu","Gérard","adr@mail.fr",null,null,null,"0404040404","ADMIN","gmenvu"," 7110eda4d09e062aa5e4a390b0a572ac0d2c0220", null), /*mdp = 1234*/
+("Atan","Charles","addmail.en",null,null,null,"0505050505","USER","catan"," d2f75e8204fedf2eacd261e2461b2964e3bfd5be", null), /*mdp = 2345*/
+("Doeuf","John","ddd@mail.us",null,null,null,"0202020202","USER","jdoeuf"," ae8fe380dd9aa5a7a956d9085fe7cf6b87d0d028",null), /*mdp = 3456*/
+("Pietrac","Nicolas","aha@mail.net","Ploubelec","rue des Alouettes","14100","0606060606","USER","npietrac","83787f060a59493aefdcd4b2369990e7303e186e", "42"); /*mdp = 4567*/
 
 
 /* Table Avis (numuser,note,avis,date,datederniervote) */
