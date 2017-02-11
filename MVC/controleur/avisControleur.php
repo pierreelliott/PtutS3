@@ -62,7 +62,83 @@
         //Ajout d'un avis à la base de données
         public function addAvis()
         {
+            //Si l'utilisateur a posté quelque chose
+            if(isset($_POST['commentaire']) && isset($_POST['note']))
+            {
+                //On recupere le pseudo
+                $pseudo = $_SESSION["utilisateur"]["pseudo"];
 
+                //Si l'utilisateur a un avis
+                if($this->avis->getAvis($pseudo) != false)
+                {
+                    //Modifie l'avis
+                    $this->avis->modifAvis($_POST['commentaire'], $pseudo, $_POST['note']);
+                }
+                else
+                {
+                    //Ajout de l'avis
+                    $this->avis->addAvis($_POST['commentaire'], $pseudo, $_POST['note']);
+                }
+            }
+            else
+            {
+                $erreur = "Vous n'avez rien rempli";
+            }
+            header("Location: /avis");
+        }
+
+        public function vote()
+        {
+            //Teste si on a toutes les variables
+            if(isset($_GET["pouce"] && isset($_GET["numAvis"]) && isset($_SESSION["utilisateur"]["pseudo"]))
+            {
+                //On test si l'utilisateur n'a pas deja voté pour cet avis
+                $vote = $avis->aVote($_GET["numAvis"], $_SESSION["utilisateur"]["pseudo"])
+                if($vote == -1)
+                {
+                    //Si il n'en a pas on ajoute le vote
+                    $resultat = $avis->addVote($_GET["numAvis"], $_GET["pouce"], $_SESSION["utilisateur"]["pseudo"]);
+
+                    //Si il vote pour un avis qui n'a pas de commentaire
+                    if($resultat == false)
+                    {
+                        $erreur = "Vous ne pouvez voter pour cet avis car il n'a pas de commentaire";
+                    }
+                }
+                //Si en a deja un
+                else {
+                    //Si c'est le meme vote
+                    if($vote == $_GET["pouce"])
+                    {
+                        $erreur = "Vous avez déjà voté pour cet avis";
+
+                    }
+                    else
+                    {
+                        //Si ce n'est pas le même on modifie le vote
+                        $avis->modifVote($_GET["numAvis"], $_GET["pouce"], $_SESSION["utilisateur"]["pseudo"] );
+                    }
+                }
+            }
+            header("Location: /avis");
+        }
+
+        public function signaler()
+        {
+             //Teste si on a toutes les variables
+            if(isset($_GET['numAvis']) && isset($_GET['numUser']) && isset($_SESSION["utilisateur"]["pseudo"])
+                isset($_GET['remarque']))
+            {
+                //Si l'utilisateur n' a pas déjà signalé cet avis
+                if($avis->aSignale($_GET['numAvis'], $_SESSION["utilisateur"]["pseudo"]) == false)
+                {
+                    $avis->signalAvis($_GET['numAvis'], $_SESSION["utilisateur"]["pseudo"], $_GET['remarque']);
+                }
+                //Si l'utilkisateur a déjà signalé l'avis
+                else {
+                    $erreur = "Vous avez déjà signalé cet avis";
+                }
+            }
         }
 
     }

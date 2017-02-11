@@ -11,9 +11,10 @@
 				<div class="row">
                     <div class="form-group has-error">
                         <?php if(isset($message)) echo "<span class='help-block'>" . $message . "</span>";
-                        else { ?>
+                        else {
+                            if(isset($erreur)) echo "<span class='help-block'>".$erreur."</span>";?>
                     </div>
-					<form action="index.php?page=avis" method="post" name="avisUtilisateur" accept-charset="utf-8">
+					<form action="/add-avis" method="post" name="avisUtilisateur" accept-charset="utf-8">
 						<fieldset>
 							<legend>Donnez votre avis sur nos services</legend>
 							<div class="row">
@@ -24,15 +25,18 @@
 									<div class="form-group">
 										<label for="commentaire" class="control-label">Commentaire :</label>
 										<textarea type="text" id="commentaire" name="commentaire"
-                                        <?php  //Affichage de l'avis deja existant si il y en a un
-                                        if($userAvis != false)
-                                        {
-                                            echo "placeholder='".$userAvis['avis']."'";
-                                        }
-                                        else {
-                                            echo "placeholder='Entrez votre commentaire'";
-                                        }
-                                        ?> class="form-control vresize"></textarea>
+                                            <?php  //Affichage de l'avis deja existant si il y en a un
+                                            if($userAvis != false)
+                                            {
+                                                echo "placeholder='".$userAvis['avis']."'";
+                                            }
+                                            else {
+                                                echo "placeholder='Entrez votre commentaire'";
+                                            }
+                                            ?> class="form-control vresize">
+                                        </textarea>
+                                        <label for="note" class="control-label">Note :</label>
+                                        <input type="number" name="note" >
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -63,10 +67,10 @@
 						<div class="panel-footer">
 							<div class="row">
 								<div class="col-lg-1">
-									<a href="#"><img src="images/signaler.png" alt="Pouce bleu" class="img-responsive"/></a>
+									<a <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>><img src="images/signaler.png" alt="Pouce bleu" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-offset-7 col-lg-1">
-									<a href="#"><img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/></a>
+									<a <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>><img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-1">
                                     <?php echo $avis["pouceBleu"]; ?>
