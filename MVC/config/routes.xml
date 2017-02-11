@@ -9,7 +9,12 @@
 	<route url="/panier" controleur="panier" methode="afficherPanier"/>
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>
+
+	<!-- AVIS !-->
 	<route url="/avis" controleur="avis" methode="afficherAvis" />
+	<route url="/add-avis" controleur="avis" methode="addAvis" />
+	<route url="/vote(-[0-1]-[0-9])" controleur="avis" methode="addAvis" params="pouce,numAvis"/>
+
 	<route url="/historique-commandes" controleur="commande" methode="afficherHistorique"/>
 	<route url="/commande-([0-9]+)" controleur="commande" methode="afficherCommande" params="numCommande"/>
 	<route url="/paiement" controleur="commande" methode="recapCommande"/>

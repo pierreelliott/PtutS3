@@ -114,6 +114,18 @@
             }
         }
 
+        //Test si l'utilisateur a déjà signalé cet Avis
+        public function aSignale($numAvis, $pseudo)
+        {
+           //On recupere le NumUser associé
+           $user = $um->getNumUser($pseudo);
+
+           $requete = $this->executerRequete('select numSignal from signalAvis where numAvis = ? and  NumUser = ?', array($numAvis, $user ));
+           $requete->fetch();
+           
+           return $requete;
+        }
+
         //Recupere tous les avis signalé: Numuser correspond a la personne qui signale
         public function getTousAvisSignaler()
         {
@@ -161,9 +173,37 @@
             //Correspond au trigger voteParAvisParUtilisateur
             else if($resultat->errorCode() == '13000')
             {
-                return false;
+                return -1;
             }
             return true;
+        }
+
+        //Modifie l'avis d'un utilisateur
+        public function modifVote($numAvis, $vote, $pseudo)
+        {
+            //On recupere le NumUser associé
+            $user = $um->getNumUser($pseudo);
+
+            $resultat = $this->executerRequete('update vote where numAvis = ? and numUser = ? set vote = ? ', array($numAvis, $numUser, $vote));
+
+            return $resultat;
+        }
+
+        //Test si un utilisateur a déjà voté pour un avis si il en a un on renvoi le vote sinon on renvoi -1
+        public function aVote($numAvis, $pseudo)
+        {
+            $numuser = $this->um->getNumUser($pseudo);
+
+            $requete = $this->executerRequete('select vote from vote where numAvis= ? and NumUser = ?', array($numAvis,$numuser ));
+
+            if($requete->rowCount() > 0)
+            {
+                $data = $requete->fetch();
+                return $data['vote'];
+            }
+            else {
+                return -1;
+            }
         }
 
         //Recupere le nombre de votes positif sur un avis
