@@ -14,7 +14,7 @@
 
 	foreach($routes as $route)
 	{
-		if(preg_match("#^".$route->getAttribute("url")."$#", $uri, $matchedUrl))
+		if(preg_match("#^.*".$route->getAttribute("url")."$#", $uri, $matchedUrl))
 		{
 			$routeTrouvee = true;
 

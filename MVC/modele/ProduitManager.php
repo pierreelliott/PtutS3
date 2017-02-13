@@ -38,18 +38,21 @@
 			$numImage = $image->fetch(PDO::FETCH_ASSOC)["numImage"];
 
 
-      //Si le produit est gratuit (Contrainte)
-      if($prix == null)
-      {
-          $prix = 0;
-      }
-      # On considère qu'on a le $numImage
-      $resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
+			//Si le produit est gratuit (Contrainte)
+			if($prix == null)
+			{
+				$prix = 0;
+			}
+			# On considère qu'on a le $numImage
+			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
   						values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
 
-			if($compatibilite == null) // Je sais plus du tout à quoi ça sert....
+			if($compatibilite != null)
 			{
-
+				$resultat = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ? and numImage = ?',
+									array($libelle, $description, $typeProduit, $prix, $numImage));
+				$numProduit = $resultat->fetch(PDO::FETCH_ASSOC)["numProduit"];
+				
 			}
 		}
 
@@ -94,12 +97,15 @@
             return $requete;
 		}
 
-		public function ajouterCompatibilite()
+		public function ajouterCompatibilite($numProduit, $numProduit2)
 		{
             /* Exemple Un produit avec une sauce ou assaisonnement
-                    Plusieurs produits pour un menu une table Menu
-                    Plusieurs produits donnent des reductions
-                    Depends aussi de la categorie du produit par exempls accompagnement*/
+			Plusieurs produits pour un menu une table Menu
+			Plusieurs produits donnent des reductions
+			Depends aussi de la categorie du produit par exemple accompagnement*/
+			
+			$requete = 'insert into compatibilite (numProduit, numProduit2) values (?, ?)';
+			$this->executerRequete($requete, array($numProduit, $numProduit2));
 		}
 
 		public function getTypeProduit($numProduit)
@@ -113,20 +119,20 @@
             //Tableau contenant le type produit en 2 chianes
             $partie = explode(".", $resultat["typeProduit"]);
 
-            //Si le tbleau est vide ou le delimiter n'a pas été trouvé
+            //Si le tableau est vide ou le delimiter n'a pas été trouvé
             if(empty($partie) || $partie == false)
             {
                 return "produit";
             }
-            //Si le menu est
             else
             {
-                //On regarde si le premier segement est une menu
+                //On regarde si le premier segement est un menu
                 if(strcmp($partie[0], "menu") == 0)
                 {
                     return "menu";
                 }
-                else {
+                else
+				{
                     return "produit";
                 }
             }
