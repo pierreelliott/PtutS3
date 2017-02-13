@@ -80,14 +80,12 @@
         {
             $user = $this->um->getNumUser($pseudo);
             $requete = $this->executerRequete('select date, typeCommande, numCommande from commande
-                                                where numUser= ?', array($user));
+                                                where numUser= ? order by numCommande desc', array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($resultat as $res) {
                  $res["prix"] = $this->getPrixTotalCommande($res['numCommande']);
             }
-
-
 
             return $resultat;
         }

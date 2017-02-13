@@ -184,7 +184,7 @@
             //On recupere le NumUser associé
             $user =  $this->um->getNumUser($pseudo);
 
-            $resultat = $this->executerRequete('update vote set vote = ?  where numAvis = ? and numUser = ? ', array($numAvis, $user, $vote));
+            $resultat = $this->executerRequete('update vote set vote = ?  where numAvis = ? and numUser = ? ', array($vote, $numAvis, $user ));
 
             return $resultat;
         }

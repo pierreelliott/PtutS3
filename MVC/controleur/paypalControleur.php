@@ -61,8 +61,8 @@
                 }
                 //Ajout des parametres variables
                 $requete = $requete."&METHOD=SetExpressCheckout".
-                                    "&CANCELURL=".urlencode($this->urlSite."/annule-paypal").
-                                    "&RETURNURL=".urlencode($this->urlSite."/retour-paypal").
+                                    "&CANCELURL=".urlencode($this->urlSite."annule-paypal").
+                                    "&RETURNURL=".urlencode($this->urlSite."retour-paypal").
                                     "&AMT=$prix".
                                     "&CURRENCYCODE=EUR".
                                     "&DESC=".urlencode("SUSHI").
