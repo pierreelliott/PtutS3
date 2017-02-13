@@ -36,7 +36,7 @@
                                             ?> class="form-control vresize">
                                         </textarea>
                                         <label for="note" class="control-label">Note :</label>
-                                        <input type="number" name="note" >
+                                        <input type="number" name="note" class="text-muted"  >
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -67,16 +67,16 @@
 						<div class="panel-footer">
 							<div class="row">
 								<div class="col-lg-1">
-									<a <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>><img src="images/signaler.png" alt="Pouce bleu" class="img-responsive"/></a>
+									<a href='#' ><img src="images/signaler.png" alt="Signaler l'avis" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-offset-7 col-lg-1">
-									<a <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>><img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/></a>
+									<a <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>><img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-1">
                                     <?php echo $avis["pouceBleu"]; ?>
 								</div>
 								<div class="col-lg-1">
-									<a href="#"><img src="images/pouce_rouge.png" alt="Pouce bleu" class="img-responsive"/></a>
+									<a <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>><img src="images/pouce_rouge.png" alt="Pouce rouge" class="img-responsive"/></a>
 								</div>
 								<div class="col-lg-1">
                                     <?php echo $avis["pouceRouge"]; ?>

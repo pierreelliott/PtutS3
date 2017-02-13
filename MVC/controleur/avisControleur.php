@@ -90,14 +90,14 @@
         public function vote()
         {
             //Teste si on a toutes les variables
-            if(isset($_GET["pouce"] && isset($_GET["numAvis"]) && isset($_SESSION["utilisateur"]["pseudo"]))
+            if(isset($_GET["pouce"]) && isset($_GET["numAvis"]) && isset($_SESSION["utilisateur"]["pseudo"]))
             {
                 //On test si l'utilisateur n'a pas deja voté pour cet avis
-                $vote = $avis->aVote($_GET["numAvis"], $_SESSION["utilisateur"]["pseudo"])
+                $vote = $this->avis->aVote($_GET["numAvis"], $_SESSION["utilisateur"]["pseudo"]);
                 if($vote == -1)
                 {
                     //Si il n'en a pas on ajoute le vote
-                    $resultat = $avis->addVote($_GET["numAvis"], $_GET["pouce"], $_SESSION["utilisateur"]["pseudo"]);
+                    $resultat = $this->avis->addVote($_GET["numAvis"], $_GET["pouce"], $_SESSION["utilisateur"]["pseudo"]);
 
                     //Si il vote pour un avis qui n'a pas de commentaire
                     if($resultat == false)
@@ -110,13 +110,12 @@
                     //Si c'est le meme vote
                     if($vote == $_GET["pouce"])
                     {
-                        $erreur = "Vous avez déjà voté pour cet avis";
-
+                        $this->avis->deleteVote($_GET["numAvis"], $_SESSION["utilisateur"]["pseudo"] );
                     }
                     else
                     {
                         //Si ce n'est pas le même on modifie le vote
-                        $avis->modifVote($_GET["numAvis"], $_GET["pouce"], $_SESSION["utilisateur"]["pseudo"] );
+                         $this->avis->modifVote($_GET["numAvis"], $_GET["pouce"], $_SESSION["utilisateur"]["pseudo"] );
                     }
                 }
             }
@@ -126,7 +125,7 @@
         public function signaler()
         {
              //Teste si on a toutes les variables
-            if(isset($_GET['numAvis']) && isset($_GET['numUser']) && isset($_SESSION["utilisateur"]["pseudo"])
+            if(isset($_GET['numAvis']) && isset($_GET['numUser']) && isset($_SESSION["utilisateur"]["pseudo"]) &&
                 isset($_GET['remarque']))
             {
                 //Si l'utilisateur n' a pas déjà signalé cet avis

@@ -122,7 +122,7 @@
 
            $requete = $this->executerRequete('select numSignal from signalAvis where numAvis = ? and  NumUser = ?', array($numAvis, $user ));
            $requete->fetch();
-           
+
            return $requete;
         }
 
@@ -155,7 +155,7 @@
         public function addVote($numAvis, $vote, $pseudo)
         {
             //On recupere le NumUser associé
-            $user = $um->getNumUser($pseudo);
+            $user =  $this->um->getNumUser($pseudo);
 
             $resultat = $this->executerRequete('insert into vote(numAvis, numUser, vote)
                                                values(?, ?, ?)', array($numAvis, $user, $vote));
@@ -182,9 +182,19 @@
         public function modifVote($numAvis, $vote, $pseudo)
         {
             //On recupere le NumUser associé
-            $user = $um->getNumUser($pseudo);
+            $user =  $this->um->getNumUser($pseudo);
 
-            $resultat = $this->executerRequete('update vote where numAvis = ? and numUser = ? set vote = ? ', array($numAvis, $numUser, $vote));
+            $resultat = $this->executerRequete('update vote set vote = ?  where numAvis = ? and numUser = ? ', array($numAvis, $user, $vote));
+
+            return $resultat;
+        }
+
+        public function deleteVote($numAvis, $pseudo)
+        {
+            //On recupere le NumUser associé
+            $user =  $this->um->getNumUser($pseudo);
+
+            $resultat = $this->executerRequete('delete from vote where numAvis = ? and numUser = ? ', array($numAvis, $user));
 
             return $resultat;
         }
@@ -211,7 +221,7 @@
         {
             $requete = $this->executerRequete("select IFNULL(count(vote), 0) votePositif
                                             from vote
-                                            where vote ='true' and
+                                            where vote = 1 and
                                             numAvis= ?", array($numAvis));
             $vote = $requete->fetch();
 
@@ -223,7 +233,7 @@
         {
             $requete = $this->executerRequete("select IFNULL(count(vote), 0) voteNegatif
                                             from vote
-                                            where vote ='false' and
+                                            where vote = 0 and
                                             numAvis= ?", array($numAvis));
             $vote = $requete->fetch();
 
