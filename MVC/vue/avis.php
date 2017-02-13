@@ -10,7 +10,9 @@
 			<div class="col-lg-12">
 				<div class="row">
                     <div class="form-group has-error">
-                        <?php if(isset($message)) echo "<span class='help-block'>" . $message . "</span>";
+                        <?php //Si il y a message d'erreur causé par les votes
+                        if(isset($erreur)) echo "<span class='help-block'>" . $erreur . "</span>";
+                        if(isset($message)) echo "<span class='help-block'>" . $message . "</span>";
                         else {
                             if(isset($erreur)) echo "<span class='help-block'>".$erreur."</span>";?>
                     </div>
