@@ -47,6 +47,7 @@
 			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
   						values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
 
+			if($compatibilite != null)
 			{
 				$resultat = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ? and numImage = ?',
 									array($libelle, $description, $typeProduit, $prix, $numImage));
