@@ -17,15 +17,13 @@
             $numUser = $this->um->getNumUser($pseudo);
 
             $user = $this->um->getInfo($pseudo);
+
             //A gerer en dehors du modele juste avant de valider commande
             if($typeCommande == "Livraison" and ($user['ville'] == null or $user['rue'] == null or $user['telephone'] == null or
                 $user['numRue'] == null or $user['codePostal'] == null))
             {
                 return false;
             }
-
-            //Pas utilisé
-            //$prixCommande = $this->calcCommande($produits);
 
             //Insertion dans la table Commande
             $requete = $this->executerRequete('insert into commande(rue, date, ville, numRue, codePostal,
