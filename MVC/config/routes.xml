@@ -21,9 +21,9 @@
 	<!-- Paiement paypal !-->
 	<route url="/paiement" controleur="commande" methode="recapCommande"/>
 	<route url="/paiement-paypal" controleur="paypal" methode="paiementPaypal"/>
-	<route url="/annule-paypal\?token=([a-zA-Z0-9_-]+)" vue="annulePaypal" params="token"/>
-<!--	<route url="/retour-paypal\?token=([a-zA-Z0-9_-]+)\&PayerID=([a-zA-Z0-9_-]+)" controleur="paypal" methode="retourPaypal" params="token,PayerID "/>
-!-->
+	<route url="/annule-paypal" vue="annulePaypal"/>
+	<route url="/retour-paypal" controleur="paypal" methode="retourPaypal"/>
+
 	<route url="/administration(-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params=",action"/>
 	<route url="/get-produit-admin" controleur="admin" methode="remplirFormulaireModif"/>
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
