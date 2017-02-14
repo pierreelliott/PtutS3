@@ -5,7 +5,7 @@
     {
 		public function getInformationsProduit($numProduit)
 		{
-			$requete = "select numProduit, libelle, description, typeProduit, prix, p.numImage numImage, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where numProduit = ?;";
+			$requete = "select numProduit, libelle, description, typeProduit, prix, p.numImage numImage, sourcePetit, sourceMoyen, sourceGrand from produit p left join image i on p.numImage = i.numImage where numProduit = ?;";
 			$resultat = $this->executerRequete($requete, array($numProduit));
 			$resultat = $resultat->fetch(PDO::FETCH_ASSOC);
 
@@ -52,7 +52,7 @@
 				$resultat = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ? and numImage = ?',
 									array($libelle, $description, $typeProduit, $prix, $numImage));
 				$numProduit = $resultat->fetch(PDO::FETCH_ASSOC)["numProduit"];
-				
+
 			}
 		}
 
@@ -103,7 +103,7 @@
 			Plusieurs produits pour un menu une table Menu
 			Plusieurs produits donnent des reductions
 			Depends aussi de la categorie du produit par exemple accompagnement*/
-			
+
 			$requete = 'insert into compatibilite (numProduit, numProduit2) values (?, ?)';
 			$this->executerRequete($requete, array($numProduit, $numProduit2));
 		}
@@ -114,7 +114,7 @@
 			//avec un type dans le style : "menu.[...]"
 			$requete = $this->executerRequete('select lower(TYPEPRODUIT) typeProduit from produit
                                             where numProduit= ?', array($numProduit));
-            $resultat = $requete->fetch();
+            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
             //Tableau contenant le type produit en 2 chianes
             $partie = explode(".", $resultat["typeProduit"]);
@@ -164,17 +164,17 @@
 			# on peut accorder en genre ou non le paramètre :-)
 				case "grand":
 				case "grande":
-					$requete = "select numProduit, libelle, description, sourceGrand, prix from produit p join image i on p.numImage = i.numImage;";
+					$requete = "select numProduit, libelle, description, sourceGrand, prix from produit p left join image i on p.numImage = i.numImage;";
 				break;
 
 				case "petit":
 				case "petite":
-				$requete = "select numProduit, libelle, description, sourcePetit, prix from produit p join image i on p.numImage = i.numImage;";
+				$requete = "select numProduit, libelle, description, sourcePetit, prix from produit p left join image i on p.numImage = i.numImage;";
 
 				case "moyen":
 				case "moyenne":
 				default:
-				$requete = "select numProduit, libelle, description, sourceMoyen, prix from produit p join image i on p.numImage = i.numImage;";
+				$requete = "select numProduit, libelle, description, sourceMoyen, prix from produit p left join image i on p.numImage = i.numImage;";
 			}
 			$resultat = $this->executerRequete($requete);
 			$resultat = $resultat->fetchAll(PDO::FETCH_ASSOC);

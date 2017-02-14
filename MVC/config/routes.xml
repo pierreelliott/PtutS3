@@ -24,7 +24,7 @@
 	<route url="/annule-paypal" vue="annulePaypal"/>
 	<route url="/retour-paypal" controleur="paypal" methode="retourPaypal"/>
 
-	<route url="/administration(-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params=",action"/>
+	<route url="/administration(?:-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>
 	<route url="/get-produit-admin" controleur="admin" methode="remplirFormulaireModif"/>
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
 	<route url="/404" vue="404"/>

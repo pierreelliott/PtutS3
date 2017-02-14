@@ -17,7 +17,7 @@
       </ul>
       <div class="tab-content">
 		<!-- Affichage des produits seuls -->
-        <div class="tab-pane active" id="produits">
+        <div class="tab-pane fade in active" id="produits">
           <table class="table table-striped table-hover">
     				<hr/>
     				<?php
@@ -103,7 +103,7 @@
           </div>
         </div>
 		<!-- Affichage des menus -->
-        <div class="tab-pane" id="menus">
+        <div class="tab-pane fade" id="menus">
 			<hr/>
           <?php
 		  /*print_r($menus);
@@ -122,7 +122,7 @@
 						<div class="media-body menu-produit-container">
 							<h2 class="media-heading text-muted">Menu "<?php echo $menu["libelle"]; ?>"</h2>
 							<p class="text-muted pull-left"><?php echo $menu["description"]; ?></p>
-							<p class="text-muted"><?php echo $menu["prix"]; ?></p>
+							<p class="text-muted"><?php echo $menu["prix"]; ?> €</p>
 							<?php
 							foreach($menu["produits"] as $produit)
 							{

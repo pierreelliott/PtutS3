@@ -19,6 +19,12 @@
         $mdp = "";
         $base = "ptut";
     }
+	else if ($_SERVER["SERVER_NAME"] == "ptut") {
+        $serveur = "localhost";
+        $utilisateur = "root";
+        $mdp = "";
+        $base = "ptut";
+    }
     else
 	{
 			$serveur = "iutdoua-web.univ-lyon1.fr";
