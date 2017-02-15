@@ -17,8 +17,8 @@
 					<li><a href="#menus" data-toggle="tab">Nos menus</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="col-xs-6">
-						<div class="tab-pane active" id="produits">
+					<div class="tab-pane fade in active" id="produits">
+						<div class="col-xs-6">
 							<ul class="nav nav-pills">
 								<?php
 									foreach($produits as $key => $produit) {
@@ -51,16 +51,14 @@
 								?>
 							</ul>
 						</div>
+						<div class="col-xs-6">
+							<button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajouter un produit</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block btn-admin modifProduit" data-toggle="modal" data-target="#adminModif">Modifier un produit</button>
+							<button type="button" class="btn btn-danger btn-lg btn-block btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr">Supprimer un produit</button>
+						</div>
 					</div>
-					<div class="col-xs-6">
-						<button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajouter un produit</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block btn-admin modifProduit" data-toggle="modal" data-target="#adminModif">Modifier un produit</button>
-						<button type="button" class="btn btn-danger btn-lg btn-block btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr">Supprimer un produit</button>
-					</div>
-				</div>
-				<div class="tab-content">
-					<div class="col-xs-6">
-						<div class="tab-pane" id="menus">
+					<div class="tab-pane fade" id="menus">
+						<div class="col-xs-6">
 							<hr/>
 							<?php
 							/*print_r($menus);
@@ -114,11 +112,11 @@
 							}
 							?>
 						</div>
-					</div>
-					<div class="col-xs-6">
-						<button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajouter un menu</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block btn-admin modifProduit" data-toggle="modal" data-target="#adminModif">Modifier un menu</button>
-						<button type="button" class="btn btn-danger btn-lg btn-block btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr">Supprimer un menu</button>
+						<div class="col-xs-6">
+							<button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajouter un menu</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block btn-admin modifProduit" data-toggle="modal" data-target="#adminModif">Modifier un menu</button>
+							<button type="button" class="btn btn-danger btn-lg btn-block btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr">Supprimer un menu</button>
+						</div>
 					</div>
 				</div>
 			</div>
