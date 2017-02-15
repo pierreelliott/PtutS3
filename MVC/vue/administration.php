@@ -21,12 +21,14 @@
 						<!-- Bouton ajouter produit -->
 						<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
 							<?php
-								foreach($produits as $key => $produit) {
+								foreach($produits as $produit) {
 							?>
 							<div class="produit">
 								<div class="panel panel-default">
 									<div class="panel-heading text-right">
+										<!-- Bouton modifier produit -->
 										<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+										<!-- Bouton supprimer produit -->
 										<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
 									</div>
 									<div class="panel-body">
@@ -49,50 +51,53 @@
 						</ul>
 					</div>
 					<div class="tab-pane fade" id="menus">
-						<div class="col-xs-6">
-							<hr/>
+						<div class="tab-pane fade in active" id="produits">
+							<!-- Bouton ajouter produit -->
+							<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
 							<?php
-							foreach($menus as $menu)
-							{
+								foreach($menus as $menu) {
 							?>
+							<div class="menu">
 								<div class="panel panel-default">
-									<div class="media">
-										<div class="media-left media-top">
-											<img src="images/maki1,1.png" class="media-object" style="width:80px">
-										</div>
-										<div class="media-body menu-produit-container">
-											<h2 class="media-heading text-muted">Menu "<?php echo $menu["libelle"]; ?>"</h2>
-											<p class="text-muted pull-left"><?php echo $menu["description"]; ?></p>
-											<p class="text-muted"><?php echo $menu["prix"]; ?></p>
-											<?php
-											foreach($menu["produits"] as $produit)
-											{
-											?>
+									<div class="panel-heading text-right">
+										<!-- Bouton modifier produit -->
+										<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+										<!-- Bouton supprimer produit -->
+										<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+									</div>
+									<div class="panel-body">
+										<div class="media">
+											<div class="media-left media-top">
+												<img src="images/maki1,1.png" class="media-object" style="width:80px">
+											</div>
+											<div class="media-body menu-produit-container">
+												<h2 class="media-heading text-muted">Menu "<?php echo $menu["libelle"]; ?>"</h2>
+												<p class="text-muted pull-left"><?php echo $menu["description"]; ?></p>
+												<p class="text-muted"><?php echo $menu["prix"]; ?> €</p>
+												<?php
+													foreach($menu["produits"] as $produit) {
+												?>
 												<div class="panel col-lg-6 menu-produit">
-													<div class="media">
-														<div class="media-left media-top">
-															<img src="<?php echo $produit["sourceMoyen"]; ?>" class="media-object img-responsive" style="width:80px">
+													<a href="#info" data-container="body" data-toggle="popover" data-trigger="focus" title="<p class='text-muted'><?php echo $produit["libelle"] ?></p>" data-content="<p class='text-muted'><?php echo $produit["description"] ?></p>" data-placement="auto right" data-html="true">
+														<div class="panel-heading">
+															<p><?php echo $produit["libelle"]; ?></p>
 														</div>
-														<div class="media-body">
-															<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
-															<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
+														<div class="panel-body">
+															<img src="<?php echo $produit["sourceMoyen"]; ?>" class="img-responsive" style="width:80px">
 														</div>
-													</div>
+													</a>
 												</div>
-											<?php
-											}
-											?>
+												<?php
+												}
+												?>
+											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 							<?php
 							}
 							?>
-						</div>
-						<div class="col-xs-6">
-							<button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajouter un menu</button>
-							<button type="button" class="btn btn-primary btn-lg btn-block btn-admin modifProduit" data-toggle="modal" data-target="#adminModif">Modifier un menu</button>
-							<button type="button" class="btn btn-danger btn-lg btn-block btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr">Supprimer un menu</button>
 						</div>
 					</div>
 				</div>

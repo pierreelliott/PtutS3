@@ -1,3 +1,5 @@
+$('[data-toggle="popover"]').popover();
+
 $(function()
 {
 	// Lorsqu'on choisi une image dans l'input file
