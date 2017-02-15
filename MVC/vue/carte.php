@@ -27,9 +27,8 @@
 
 						<div class="media img-produit">
 							<a href="#produitModal" data-toggle="modal"
-                                        data-numProduit="<?php echo $produit["numProduit"]; ?>"
                                         data-libelle="<?php echo $produit["libelle"]; ?>"
-                                        data-sourceImg="<?php echo $produit['sourceMoyen'].".png"; ?>"
+                                        data-source-img="<?php echo $produit['sourceMoyen'].".png"; ?>"
                                         data-description="<?php echo $produit["description"]; ?>"
                                         data-prix="<?php echo $produit["prix"]; ?>">
 								<div class="media-left media-top">

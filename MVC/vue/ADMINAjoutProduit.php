@@ -11,11 +11,6 @@
 					<div class="col-lg-6">
 						<div class="row">
 							<div class="col-lg-12">
-								<div class="form-group">
-									<span class="glyphicon glyphicon-shopping-cart"></span>
-								</div>
-							</div>
-							<div class="col-lg-12">
 								<div class="file-upload btn btn-primary">
 									<label for="imageAjout" class="control-label">Parcourir...</label>
 									<input type="file" id="imageAjout" name="image" class="upload">
@@ -41,6 +36,7 @@
 										<option value="Sushi">Sushi</option>
 										<option value="Maki">Maki</option>
 										<option value="Sauce">Sauce</option>
+										<option value="Menu">Menu</option>
 									</select>
 								</div>
 							</div>

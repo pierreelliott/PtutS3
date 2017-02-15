@@ -117,6 +117,10 @@
 			if(isset($_POST["numProduitAdmin"]))
 			{
 				$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
+				$typeProduit = $this->bdd->getTypeProduit($_POST["numProduitAdmin"]);
+
+				$produit["typeProduit"] = ucfirst($typeProduit);
+
 				echo json_encode($produit);
 			}
 			else

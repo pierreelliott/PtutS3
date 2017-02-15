@@ -31,9 +31,8 @@ $(function()
 
 	$('#produitModal').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget);
-		var numProduit = button.data('numProduit');
 		var libelle = button.data('libelle');
-		var sourceImg = button.data('sourceImg');
+		var sourceImg = button.data('source-img');
 		var description = button.data('description');
 		var prix = button.data('prix');
 		var modal = $(this);
