@@ -1,3 +1,5 @@
+$('[data-toggle="popover"]').popover();
+
 $(function()
 {
 	$('.btnAjout').click(function(e) {

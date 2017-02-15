@@ -102,16 +102,19 @@
 							foreach($menu["produits"] as $produit)
 							{
 							?>
-								<a data-toggle="popover" title="<?php echo $produit["libelle"] ?>" data-content="<?php echo $produit["description"] ?>" data-placement="auto right">
+
 									<div class="panel col-lg-6 menu-produit">
-										<div class="panel-heading">
-											<p><?php echo $produit["libelle"]; ?></p>
-										</div>
-										<div class="panel-body">
-											<img src="<?php echo $produit["sourceMoyen"]; ?>" class="img-responsive" style="width:80px">
-										</div>
+                                        <a href="#info" data-container="body" data-toggle="popover" data-trigger="focus" title="<p class='text-muted'><?php echo $produit["libelle"] ?></p>" data-content="<p class='text-muted'><?php echo $produit["description"] ?></p>" data-placement="auto right" data-html="true">
+    										<div class="panel-heading">
+    											<p><?php echo $produit["libelle"]; ?></p>
+    										</div>
+    										<div class="panel-body">
+
+    											    <img src="<?php echo $produit["sourceMoyen"]; ?>" class="img-responsive" style="width:80px">
+
+    										</div>
+                                        </a>
 									</div>
-								</a>
 							<?php
 							}
 							?>
