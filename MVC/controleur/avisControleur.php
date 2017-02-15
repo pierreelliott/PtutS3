@@ -125,8 +125,8 @@
         public function signaler()
         {
              //Teste si on a toutes les variables
-            if(isset($_GET['numAvis']) && isset($_GET['numUser']) && isset($_SESSION["utilisateur"]["pseudo"]) &&
-                isset($_GET['remarque']))
+            if(isset($_POST['numAvis']) && isset($_POST['numUser']) && isset($_SESSION["utilisateur"]["pseudo"]) &&
+                isset($_POST['remarque']))
             {
                 //Si l'utilisateur n' a pas déjà signalé cet avis
                 if($avis->aSignale($_GET['numAvis'], $_SESSION["utilisateur"]["pseudo"]) == false)
