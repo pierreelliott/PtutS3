@@ -35,15 +35,6 @@
 													<p class="text-muted">Prix : <?php echo $produit["prix"]; ?>€</p>
 												</div>
 											</div>
-											<div class="panel-footer">
-												<div class="row">
-													<div class="col-lg-offset-8 col-lg-4">
-														<!--<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary">
-															<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-														</button>-->
-													</div>
-												</div>
-											</div>
 										</div>
 								</a></li>
 								<?php
@@ -61,11 +52,6 @@
 						<div class="col-xs-6">
 							<hr/>
 							<?php
-							/*print_r($menus);
-							echo "<br>";
-							foreach ($test as $msg) {
-								//echo "Prod type : ".$msg["type"]." et libelle : ".$msg["libelle"]."<br>";
-							}*/
 							foreach($menus as $menu)
 							{
 							?>
@@ -96,15 +82,6 @@
 											<?php
 											}
 											?>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<div class="row">
-											<div class="col-lg-offset-9 col-lg-3">
-												<!--<button type="button" data-action="ajout" data-produit="1<?php echo $menu["numProduit"]; ?>" id="btnAjout" class="btn btn-primary">
-													<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-												</button>-->
-											</div>
 										</div>
 									</div>
 								</div>

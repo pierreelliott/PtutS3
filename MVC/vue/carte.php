@@ -54,26 +54,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- Affichage tableau -
-    				<tr>
-    					<td>
-                <a href="#produitModal" data-toggle="modal"
-                                        data-numProduit="<?php //echo $produit["numProduit"]; ?>"
-                                        data-libelle="<?php //echo $produit["libelle"]; ?>"
-                                        data-sourceImg="<?php //echo $produit['sourceMoyen']; ?>"
-                                        data-description="<?php //echo $produit["description"]; ?>"
-                                        data-prix="<?php //echo $produit["prix"]; ?>">
-					        <?php //echo $produit["libelle"]; ?>
-                </a>
-              </td>
-    					<td><?php //echo $produit["description"]; ?></td>
-    					<td><img src='<?php //echo $produit["sourceMoyen"]; ?>' alt='Image du produit'></td>
-    					<td>
-    						<button type="button" data-action="ajout" data-produit="<?php //echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
-    							<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-    						</button>
-    					</td>
-    				</tr>-->
     				<?php
     				}
     				?>
@@ -106,11 +86,6 @@
         <div class="tab-pane fade" id="menus">
 			<hr/>
           <?php
-		  /*print_r($menus);
-		  echo "<br>";
-		  foreach ($test as $msg) {
-		  	//echo "Prod type : ".$msg["type"]." et libelle : ".$msg["libelle"]."<br>";
-		}*/
 		  foreach($menus as $menu)
 			{
 			?>

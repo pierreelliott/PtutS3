@@ -27,7 +27,8 @@
 									<div class="form-group">
 										<label for="commentaire" class="control-label">Commentaire :</label>
 										<textarea type="text" id="commentaire" name="commentaire"
-                                            <?php  //Affichage de l'avis deja existant si il y en a un
+                                            <?php
+                                            //Affichage de l'avis deja existant si il y en a un
                                             if($userAvis != false)
                                             {
                                                 echo "placeholder='".$userAvis['avis']."'";
