@@ -1,6 +1,6 @@
 $(function()
 {
-	$('#btnAjout').click(function(e) {
+	$('.btnAjout').click(function(e) {
 		var produit = $(this).data('produit');
 		var action = $(this).data('action');
 		var qte = $(this).data('qte');
