@@ -74,7 +74,7 @@
                                     <label for="typeCommande" class="control-label col-lg-6">Sélectionnez le type de la commande</label>
                                     <div class="col-lg-5">
                                         <select name="typeCommande" id="typeCommande" class="form-control">
-                                            <option value="Emporter">À emporter</option>
+                                            <option value="A Emporter">À emporter</option>
                                             <option value="Livraison">Livraison</option>
                                         </select>
                                     </div>

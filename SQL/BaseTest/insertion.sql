@@ -66,7 +66,7 @@ insert into produit(numProduit, Libelle, Prix,Description, TypeProduit, NumImage
 
 /* Table Commande (numcommande,date,codepostal,ville,rue,numrue,typecommande)*/
 insert into commande(Date, CodePostal, Ville, Rue, NumRue, TypeCommande, NumUser) values
-("2015-10-02",null,null,null,null,"A emporter", 4),
+("2015-10-02",null,null,null,null,"A Emporter", 4),
 ("2015-11-04", null,null, null,null, "A Emporter", 3),
 ("2015-12-07", "07100", "Pietache", "Rue de l honneur", "35", "Livraison", 2);
 

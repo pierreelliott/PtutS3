@@ -51,14 +51,16 @@
             {
                 $prix = $_POST["prix"];
                 $requete = $this->paypal->construitURL();
-                $typeCommande = null;
-                if($_POST["typeCommande"] == "Livraison")
+
+                if($_POST['typeCommande'] == "Livraison")
                 {
-                    $typeCommande = "Livraison";
+                    $typeCommande = 1;
                 }
                 else {
-                    $typeCommande = "A Emporter";
+                    $typeCommande = 0;
                 }
+
+
                 //Ajout des parametres variables
                 $requete = $requete."&METHOD=SetExpressCheckout".
                                     "&CANCELURL=".urlencode($this->urlSite."annule-paypal").
@@ -118,8 +120,17 @@
         }
 
         //Valide la transaction paypal apres le paiemet ou le refus
-        public function retourPaypal($typeCommande)
+        public function retourPaypal()
         {
+          /*  if($_GET['typeCommande'] == 0)
+            {
+                $typeCommande = "A Emporter";
+            }
+            else {
+                $typeCommande = "Livraison";
+            }*/
+            $typeCommande = "A Emporter";
+
             $requete = $this->paypal->construitURL();
 
            //Ajout des parametre variables

@@ -7,13 +7,6 @@
 		public $produit;
 
 		# Constructeur du panier
-		# Fonctionne comme n'importe quel constructeur (mais pas d'appel implicite au constructeur parent)
-
-		/* Description variables du panier */
-		#Ce serait bien que tu décrives un peu les variables du panier Axel, parce que j'ai pas tout suivi ^^'
-                # ==> en gros on a un champ "panier" dans $_SESSION puis les numéros de produit dans $_SESSION["panier"]
-                #     et dans chaque case $_SESSION["panier"][$numproduit] on a la quantité du produit
-
 		public function __construct()
 		{
 			$this->produit = new ProduitManager;
@@ -85,12 +78,14 @@
             }
 
 			$_SESSION["nbProduit"] += 1;
+            $_SESSION["prixPanier"] = $this->getPrixPanier();
         }
 
 		public function supprimerProduit($numProduit)
         {
 			$_SESSION["nbProduit"] -= $_SESSION["panier"][$numProduit]["quantite"];
             unset($_SESSION["panier"][$numProduit]);
+            $_SESSION["prixPanier"] = $this->getPrixPanier();
         }
 
 		public function changerQuantiteProduit($numProduit, $quantite)
@@ -110,5 +105,6 @@
 			}
 
 			$_SESSION["nbProduit"] += $quantite;
+            $_SESSION["prixPanier"] = $this->getPrixPanier();
 		}
     }
