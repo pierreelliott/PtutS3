@@ -103,19 +103,19 @@
   <!-- Début fenête modales -->
   <div class="modal fade" id="adminAjout">
     <div class="modal-dialog">
-      <?php include("vue/ADMINAjoutProduit.php"); ?>
+      <?php include("vue/adminAjoutProduit.php"); ?>
     </div>
   </div>
 
   <div class="modal fade" id="adminModif">
     <div class="modal-dialog">
-      <?php include("vue/ADMINModificationProduit.php"); ?>
+      <?php include("vue/adminModificationProduit.php"); ?>
     </div>
   </div>
 
   <div class="modal fade" id="adminSuppr">
     <div class="modal-dialog">
-      <?php include("vue/ADMINSuppressionProduit.php"); ?>
+      <?php include("vue/adminSuppressionProduit.php"); ?>
     </div>
   </div>
   <!-- Fin fenêtres modales -->
