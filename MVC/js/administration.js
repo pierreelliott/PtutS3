@@ -2,6 +2,8 @@ $('[data-toggle="popover"]').popover();
 
 $(function()
 {
+	$('[data-toggle="tooltip"]').tooltip()
+
 	// Lorsqu'on choisi une image dans l'input file
 	$('#imageAjout, #imageModif').change(function (e1)
 	{

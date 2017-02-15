@@ -19,7 +19,9 @@
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="produits">
 						<!-- Bouton ajouter produit -->
-						<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
+						<span data-toggle="tooltip" data-placement="top" title="Ajouter un produit">
+							<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
+						</span>
 							<?php
 								foreach($produits as $produit) {
 							?>
@@ -27,9 +29,13 @@
 								<div class="panel panel-default">
 									<div class="panel-heading text-right">
 										<!-- Bouton modifier produit -->
-										<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+										<span data-toggle="tooltip" data-placement="top" title="Modifier un produit">
+											<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+										</span>
 										<!-- Bouton supprimer produit -->
-										<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+										<span data-toggle="tooltip" data-placement="top" title="Supprimer un produit">
+											<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+										</span>
 									</div>
 									<div class="panel-body">
 										<div class="media">
@@ -53,7 +59,9 @@
 					<div class="tab-pane fade" id="menus">
 						<div class="tab-pane fade in active" id="produits">
 							<!-- Bouton ajouter produit -->
-							<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
+							<span data-toggle="tooltip" data-placement="top" title="Ajouter un menu">
+								<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
+							</span>
 							<?php
 								foreach($menus as $menu) {
 							?>
@@ -61,9 +69,13 @@
 								<div class="panel panel-default">
 									<div class="panel-heading text-right">
 										<!-- Bouton modifier produit -->
-										<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+										<span data-toggle="tooltip" data-placement="top" title="Modifier un menu">
+											<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+										</span>
 										<!-- Bouton supprimer produit -->
-										<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+										<span data-toggle="tooltip" data-placement="top" title="Supprimer un menu">
+											<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+										</span>
 									</div>
 									<div class="panel-body">
 										<div class="media">
