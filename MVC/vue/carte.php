@@ -47,7 +47,7 @@
 									<p>Prix : <?php echo $produit["prix"]; ?> €</p>
 								</div>
 								<div class="col-xs-offset-6 col-xs-3">
-									<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" id="btnAjout" class="btn btn-primary btn-block">
+									<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block btnAjout">
 										<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 									</button>
 								</div>
@@ -102,17 +102,16 @@
 							foreach($menu["produits"] as $produit)
 							{
 							?>
-								<div class="panel col-lg-6 menu-produit">
-									<div class="media">
-										<div class="media-left media-top">
-											<img src="<?php echo $produit["sourceMoyen"]; ?>" class="media-object img-responsive" style="width:80px">
+								<a data-toggle="popover" title="<?php echo $produit["libelle"] ?>" data-content="<?php echo $produit["description"] ?>" data-placement="auto right">
+									<div class="panel col-lg-6 menu-produit">
+										<div class="panel-heading">
+											<p><?php echo $produit["libelle"]; ?></p>
 										</div>
-										<div class="media-body">
-											<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
-											<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
+										<div class="panel-body">
+											<img src="<?php echo $produit["sourceMoyen"]; ?>" class="img-responsive" style="width:80px">
 										</div>
 									</div>
-								</div>
+								</a>
 							<?php
 							}
 							?>
@@ -121,7 +120,7 @@
 					<div class="panel-footer">
 						<div class="row">
 							<div class="col-lg-offset-9 col-lg-3">
-								<button type="button" data-action="ajout" data-produit="1<?php echo $menu["numProduit"]; ?>" id="btnAjout" class="btn btn-primary">
+								<button type="button" data-action="ajout" data-produit="1<?php echo $menu["numProduit"]; ?>" class="btn btn-primary btnAjout">
 									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 								</button>
 							</div>
