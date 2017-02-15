@@ -57,7 +57,7 @@
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="descriptionAjout" class="control-label">Description :</label>
-							<textarea type="textarea" name="description" id="descriptionAjout" placeholder="Ecrivez une courte decription du produit" class="form-control" required></textarea>
+							<textarea type="textarea" name="description" id="descriptionAjout" placeholder="Ecrivez une courte decription du produit" class="form-control vresize" required></textarea>
 						</div>
 					</div>
 				</div>

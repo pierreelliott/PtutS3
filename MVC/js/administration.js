@@ -24,7 +24,7 @@ $(function()
 	// Lorsque l'on clique sur le bouton Modifier produit
 	$('.modifProduit').click(function(e)
 	{
-		var numProduit = $('.tab-pane.active li.active').find('a').data('numproduit');
+		var numProduit = $(this).data('num-produit');
 
 		$.post("/get-produit-admin",
 		{
@@ -47,7 +47,7 @@ $(function()
 	// Lorsque l'on clique sur le bouton Supprimer produit
 	$('.supprProduit').click(function(e)
 	{
-		var numProduit = $('.tab-pane.active li.active').find('a').data('numproduit');
+		var numProduit = $(this).data('num-produit');
 
 		$('tbody').html(
 			'<tr>' +

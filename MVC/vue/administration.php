@@ -1,5 +1,5 @@
 <?php
-    $title = "La carte";
+    $title = "Administration";
 
     ob_start();
 ?>
@@ -18,35 +18,35 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="produits">
-						<div class="col-xs-6">
-							<ul class="nav nav-pills">
-								<?php
-									foreach($produits as $key => $produit) {
-								?>
-								<li<?php echo ($key == 0) ? ' class="active"' : ''; ?>><a href="#" data-toggle="tab" data-numProduit="<?php echo $produit["numProduit"]; ?>">
-										<div class="panel panel-default">
-											<div class="media">
-												<div class="media-left media-top">
-													<img src="<?php echo $produit["sourceMoyen"]; ?>" class="media-object" style="width:80px">
-												</div>
-												<div class="media-body">
-													<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
-													<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
-													<p class="text-muted">Prix : <?php echo $produit["prix"]; ?>€</p>
-												</div>
+						<!-- Bouton ajouter produit -->
+						<button type="button" class="glyphicon glyphicon-plus btn btn-success btn-admin" data-toggle="modal" data-target="#adminAjout"></button>
+							<?php
+								foreach($produits as $key => $produit) {
+							?>
+							<div class="produit">
+								<div class="panel panel-default">
+									<div class="panel-heading text-right">
+										<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+										<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
+									</div>
+									<div class="panel-body">
+										<div class="media">
+											<div class="media-left media-top">
+												<img src="<?php echo $produit["sourceMoyen"]; ?>" class="media-object" style="width:80px">
+											</div>
+											<div class="media-body">
+												<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
+												<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
+												<p class="text-muted">Prix : <?php echo $produit["prix"]; ?>€</p>
 											</div>
 										</div>
-								</a></li>
-								<?php
-								}
-								?>
-							</ul>
-						</div>
-						<div class="col-xs-6">
-							<button type="button" class="btn btn-success btn-lg btn-block btn-admin" data-toggle="modal" data-target="#adminAjout">Ajouter un produit</button>
-							<button type="button" class="btn btn-primary btn-lg btn-block btn-admin modifProduit" data-toggle="modal" data-target="#adminModif">Modifier un produit</button>
-							<button type="button" class="btn btn-danger btn-lg btn-block btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr">Supprimer un produit</button>
-						</div>
+									</div>
+								</div>
+							</div>
+							<?php
+							}
+							?>
+						</ul>
 					</div>
 					<div class="tab-pane fade" id="menus">
 						<div class="col-xs-6">
@@ -125,7 +125,7 @@
 	  $contenu = ob_get_clean();
 ?>
 
-<script language="javascript" src="js/administration.js"></script>
+<script language="javascript" src="js/administration.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 
 <?php
     $script = ob_get_clean();

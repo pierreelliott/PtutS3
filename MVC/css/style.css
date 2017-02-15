@@ -133,12 +133,14 @@ label
     margin-right: 0;
 }
 
+/*
 .produit
 {
 	border: 1px solid black;
 	background-color: rgba(150, 150, 150, 0.5);
 	margin-top: 15px;
 }
+*/
 
 .produit-ligne-separateurs > *
 {
@@ -167,13 +169,13 @@ label
   margin-right: 15px;
 }
 
-.panel-footer{
+.panel-footer
+{
     background-color: #909090;
 }
 
-.panel-default{
-    border-top: solid 2vh;
-    border-color: #909090;
+.panel-default
+{
     margin-left: 1vw;
     margin-right: 1vw;
 }
@@ -207,8 +209,7 @@ label
 
 .site-wrapper .btn-admin
 {
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+    margin-left: 1vw;
 }
 
 .menu, .menu .panel
