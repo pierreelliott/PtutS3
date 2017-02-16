@@ -116,7 +116,7 @@
                                             where numProduit= ?', array($numProduit));
             $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
-            //Tableau contenant le type produit en 2 chianes
+            //Tableau contenant le type produit en 2 chaines
             $partie = explode(".", $resultat["typeProduit"]);
 
             //Si le tableau est vide ou le delimiter n'a pas été trouvé
@@ -133,11 +133,30 @@
                 }
                 else
 				{
-                    return "produit";
+                    return $partie[0];
                 }
             }
 
 			//Return : une chaine (à repréciser si jamais)
+		}
+
+		public function getTypesProduit()
+		{
+			$requete = $this->executerRequete('select libelle from typeProduit');
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+			$typesProduit = array();
+			foreach($resultat as $key => $typeProduit)
+			{
+				//Tableau contenant le type produit en 2 chaines
+	            $partie = explode(".", $typeProduit["libelle"]);
+
+				$typeProduit["libelle"] = $partie[0];
+
+				$typesProduit[$key] = $typeProduit["libelle"];
+			}
+
+			return $typesProduit;
 		}
 
 		public function getProduitsCompatibles($numProduit)

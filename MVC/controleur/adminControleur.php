@@ -59,6 +59,8 @@
 					}
 				}
 
+				$typesProduit = $this->bdd->getTypesProduit();
+
 				$produits = $this->bdd->recupererCarte();
 
 				$menus = array();
@@ -71,7 +73,6 @@
 						unset($produits[$keyMenu]);
 						continue;
 					}
-
 
 					$typeProduit = $this->bdd->getTypeProduit($produit["numProduit"]);
 

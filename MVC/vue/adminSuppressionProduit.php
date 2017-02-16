@@ -26,7 +26,7 @@
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 		<button type="submit" form="supprProduit" class="btn btn-danger">Confirmer la suppression</button>
 	</div>
 </div>

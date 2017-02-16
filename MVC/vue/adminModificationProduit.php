@@ -33,10 +33,10 @@
 								<div class="form-group">
 									<label for="typeProduitModif" class="control-label">Type de produit :</label>
 									<select id="typeProduitModif" name="typeProduit" class="form-control" required>
-										<option value="Sushi">Sushi</option>
-										<option value="Maki">Maki</option>
-										<option value="Sauce">Sauce</option>
-										<option value="Menu">Menu</option>
+										<?php foreach($typesProduit as $typeProduit)
+										{
+											echo '<option value="'.$typeProduit.'">'.$typeProduit.'</option>';
+										} ?>
 									</select>
 								</div>
 							</div>
@@ -61,7 +61,7 @@
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 		<button type="submit" form="modifProduit" class="btn btn-success btn btn-success">Modifier le produit</button>
 	</div>
 </div>

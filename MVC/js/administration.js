@@ -21,6 +21,7 @@ $(function()
 	$('#adminAjout, #adminModif').on('hidden.bs.modal', function(e)
 	{
 		$(this).find('input, textarea').val('');
+		//$(this).find('input[type=number]').val(0);
 		$('.apercuImage').attr('src', '');
 	});
 

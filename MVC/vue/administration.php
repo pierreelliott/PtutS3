@@ -29,11 +29,11 @@
 								<div class="panel panel-default">
 									<div class="panel-heading text-right">
 										<!-- Bouton modifier produit -->
-										<span data-toggle="tooltip" data-placement="top" title="Modifier un produit">
+										<span data-toggle="tooltip" data-placement="top" title="Modifier produit">
 											<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
 										</span>
 										<!-- Bouton supprimer produit -->
-										<span data-toggle="tooltip" data-placement="top" title="Supprimer un produit">
+										<span data-toggle="tooltip" data-placement="top" title="Supprimer produit">
 											<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $produit["numProduit"]; ?>"></button>
 										</span>
 									</div>
@@ -69,11 +69,11 @@
 								<div class="panel panel-default">
 									<div class="panel-heading text-right">
 										<!-- Bouton modifier produit -->
-										<span data-toggle="tooltip" data-placement="top" title="Modifier un menu">
+										<span data-toggle="tooltip" data-placement="top" title="Modifier menu">
 											<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminModif" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
 										</span>
 										<!-- Bouton supprimer produit -->
-										<span data-toggle="tooltip" data-placement="top" title="Supprimer un menu">
+										<span data-toggle="tooltip" data-placement="top" title="Supprimer menu">
 											<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminSuppr" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
 										</span>
 									</div>
