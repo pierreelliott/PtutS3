@@ -92,11 +92,11 @@
         //Signaler l'avis le pseudo correspond à la personne qui signale
         public function signalerAvis($numAvis, $pseudo, $remarque)
         {
-            $user = $um->getNumUser($pseudo);
+            $user = $this->um->getNumUser($pseudo);
 
             //On teste si un signalement a deja été fait
-            $doublon = $this->executerRequete('select numAvis from signalAvis where numUser= ? and numAvis= ?', array($user,$numAvis));
-            $doublon->fetch();
+            $doublon = $this->executerRequete('select numAvis from signalavis where numUser= ? and numAvis= ?', array($user,$numAvis));
+            $doublon->fetchAll(PDO::FETCH_ASSOC);
 
             if($doublon == false)
             {
@@ -118,7 +118,7 @@
         public function aSignale($numAvis, $pseudo)
         {
            //On recupere le NumUser associé
-           $user = $um->getNumUser($pseudo);
+           $user = $this->um->getNumUser($pseudo);
 
            $requete = $this->executerRequete('select numSignal from signalAvis where numAvis = ? and  NumUser = ?', array($numAvis, $user ));
            $requete->fetch();

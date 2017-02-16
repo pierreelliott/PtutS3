@@ -20,7 +20,7 @@
         }
 
         public function afficherAvis()
-        {
+            {
             //Si l'utilisateur est connecté
             if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
@@ -125,19 +125,20 @@
         public function signaler()
         {
              //Teste si on a toutes les variables
-            if(isset($_POST['numAvis']) && isset($_POST['numUser']) && isset($_SESSION["utilisateur"]["pseudo"]) &&
+            if(isset($_POST['numAvis'])  && isset($_SESSION["utilisateur"]["pseudo"]) &&
                 isset($_POST['remarque']))
             {
-                //Si l'utilisateur n' a pas déjà signalé cet avis
-                if($avis->aSignale($_GET['numAvis'], $_SESSION["utilisateur"]["pseudo"]) == false)
-                {
-                    $avis->signalAvis($_GET['numAvis'], $_SESSION["utilisateur"]["pseudo"], $_GET['remarque']);
-                }
-                //Si l'utilkisateur a déjà signalé l'avis
-                else {
-                    $erreur = "Vous avez déjà signalé cet avis";
-                }
+
+                    $doublon = $this->avis->signalerAvis($_POST['numAvis'], $_SESSION["utilisateur"]["pseudo"], $_POST['remarque']);
+                     //Si l'utillisateur a déjà signalé l'avis
+                    if($doublon == true)
+                    {
+                        header("Location: /avis");
+                        $erreur = "Vous avez déjà signalé cet avis";
+                    }
+
             }
+
         }
 
     }

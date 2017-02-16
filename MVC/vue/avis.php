@@ -123,8 +123,8 @@
                         <footer class="modal-pseudo"></footer>
                     </blockquote>
                   </div>
-
                 </div>
+                <input type="hidden" name="numAvis" id="numAvis">
                 <div class="form-group">
                     <label for="remarque" class="control-label">Remarque:</label>
                     <textarea class="form-control vresize" type="text" name="remarque" placeholder="Entrer une remarque"></textarea>

@@ -14,6 +14,7 @@
 	<route url="/avis" controleur="avis" methode="afficherAvis" />
 	<route url="/add-avis" controleur="avis" methode="addAvis" />
 	<route url="/vote-([0-1])-([0-9]+)" controleur="avis" methode="vote" params="pouce,numAvis"/>
+	<route url="/signalAvis" controleur="avis" methode="signaler"/>
 
 	<route url="/historique-commandes" controleur="commande" methode="afficherHistorique"/>
 	<route url="/commande-([0-9]+)" controleur="commande" methode="afficherCommande" params="numCommande"/>

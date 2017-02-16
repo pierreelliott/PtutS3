@@ -9,6 +9,7 @@ $(function()
         var modal = $(this);
         modal.find('.modal-pseudo').text(pseudo);
         modal.find('.commentaireAvis').text(commentaireAvis);
+        document.getElementById("numAvis").setAttribute("value", numAvis); 
     });
 
 });
