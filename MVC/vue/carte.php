@@ -140,7 +140,7 @@
 	  $contenu = ob_get_clean();
 ?>
 
-<script language="javascript" src="js/carte.js"></script>
+<script language="javascript" src="js/carte.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 
 <?php
     $script = ob_get_clean();

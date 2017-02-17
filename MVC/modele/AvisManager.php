@@ -96,7 +96,7 @@
 
             //On teste si un signalement a deja été fait
             $doublon = $this->executerRequete('select numAvis from signalavis where numUser= ? and numAvis= ?', array($user,$numAvis));
-            $doublon->fetchAll(PDO::FETCH_ASSOC);
+            $doublon = $doublon->fetchAll(PDO::FETCH_ASSOC);
 
             if($doublon == false)
             {
@@ -104,7 +104,7 @@
                 $remarque = $this->convertChaine($remarque, 0);
 
                 $requete = $this->executerRequete('insert into signalAvis(numAvis, numUser, remarque)
-                                                values(?,?,?)',array($numAvis, $numUser, $remarque));
+                                                values(?,?,?)',array($numAvis, $user, $remarque));
 
                 return true;
             }

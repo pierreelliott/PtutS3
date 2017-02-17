@@ -130,13 +130,9 @@
             {
 
                     $doublon = $this->avis->signalerAvis($_POST['numAvis'], $_SESSION["utilisateur"]["pseudo"], $_POST['remarque']);
-                     //Si l'utillisateur a déjà signalé l'avis
-                    if($doublon == true)
-                    {
-                        header("Location: /avis");
-                        $erreur = "Vous avez déjà signalé cet avis";
-                    }
 
+                    //Si l'utillisateur a déjà signalé l'avis
+                    echo json_encode($doublon);
             }
 
         }
