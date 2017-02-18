@@ -1,7 +1,7 @@
-$('[data-toggle="popover"]').popover();
-
 $(function()
 {
+	$('[data-toggle="popover"]').popover();
+
 	$('.btnAjout').click(function(e) {
 		var produit = $(this).data('produit');
 		var action = $(this).data('action');

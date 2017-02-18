@@ -69,7 +69,7 @@
 							</div>
 						</div>
                         <div>
-                            <form action="/paiement-paypal" method="post"class="form-horizontal">
+                            <form action="/paiement-paypal" method="post" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="typeCommande" class="control-label col-lg-6">Sélectionnez le type de la commande</label>
                                     <div class="col-lg-5">

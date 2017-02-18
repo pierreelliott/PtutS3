@@ -65,7 +65,7 @@
 					<div class="panel panel-default">
 						<div class="media">
 							<div class="media-left media-top">
-								<img src="images/user.png" class="media-object" style="width:80px">
+								<img src="images/user.png" alt="Avatar" class="media-object" style="width:80px">
 							</div>
 							<div class="media-body">
 								<h2 class="media-heading text-muted"><?php echo $avis['pseudo']; ?></h2>
@@ -152,7 +152,7 @@
 
 	$contenu = ob_get_clean(); ?>
 
-<script language="javascript" src="js/avis.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
+<script src="js/avis.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 
 <?php
 $script = ob_get_clean();

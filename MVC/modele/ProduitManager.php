@@ -142,7 +142,7 @@
 
 		public function getTypesProduit()
 		{
-			$requete = $this->executerRequete('select libelle from typeProduit');
+			$requete = $this->executerRequete('select libelle from typeproduit');
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
 			$typesProduit = array();

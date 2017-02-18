@@ -142,7 +142,7 @@
 	  $contenu = ob_get_clean();
 ?>
 
-<script language="javascript" src="js/administration.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
+<script src="js/administration.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 
 <?php
     $script = ob_get_clean();

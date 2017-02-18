@@ -90,10 +90,10 @@
 					<?php
 					} ?>
 				</div>
-			</div>
 
 			<?php } ?>
 
+			</div>
 		</div>
 	</div>
 
@@ -103,7 +103,7 @@
 	$contenu = ob_get_clean();
 ?>
 
-<script language="javascript" src="js/panier.js"></script>
+<script src="js/panier.js"></script>
 
 <?php
   	$script = ob_get_clean();
