@@ -17,14 +17,14 @@
             //Test si l'utilisateur n'a pas deja donné un avis
             $doublon = $this->executerRequete("select numUser from avis where numUser in (select pseudo
                                                                                            from utilisateur
-                                                                                           where pseudo = ?)", $array($pseudo));
+                                                                                           where pseudo = ?)", array($pseudo));
             $doublon = $doublon->fetchAll(PDO::FETCH_ASSOC);
             if($doublon == false)
             {
                 //Si que des espaces on mets a null
                 $commentaire = $this->convertChaine($commentaire, 0);
                 //On recupere le NumUser associé
-                $user = $um->getNumUser($pseudo);
+                $user = $this->um->getNumUser($pseudo);
 
                 $resultat = $this->executerRequete('insert into avis (Numuser, avis, note, date, dateDernierVote)
                                         values(?, ?, ?, CURRENT_DATE(), null)', array($user, $commentaire, $note));
@@ -43,14 +43,14 @@
         public function modifAvis($commentaire, $pseudo, $note)
         {
             //On recupere le NumUser associé
-            $user = $um->getNumUser($pseudo);
+            $user = $this->um->getNumUser($pseudo);
 
             //Si que des espaces on mets a null
             $commentaire = $this->convertChaine($commentaire, 0);
 
 
             $resultat= $this->executerRequete('update avis
-                                                set commentaire= ?, note = ?
+                                                set avis= ?, note = ?
                                                 where numUser= ?', array($commentaire, $note, $user));
 
             return $resultat;
@@ -82,7 +82,16 @@
         //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
         public function getTousAvis($critere = "NumUser", $ordre = "asc")
         {
-            $requete= $this->executerRequete('select avis, note, date, numUser from avis order by '.$critere.' '.$ordre);
+            if(isset($_SESSION["utilisateur"]["pseudo"]))
+            {
+                //On recupere le numUser actuelle si il est connecté
+                $numUser = $this->um->getNumUser($_SESSION["utilisateur"]["pseudo"]);
+
+                $requete= $this->executerRequete('select avis, note, date, numUser from avis where numUser != ? order by '.$critere.' '.$ordre, array($numUser));
+            }
+            else {
+                $requete= $this->executerRequete('select avis, note, date, numUser from avis order by '.$critere.' '.$ordre);
+            }
 
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
