@@ -24,13 +24,8 @@
             //Si l'utilisateur est connecté
             if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
+                //Teste si l'utilisateur a un avis
                 $userAvis = $this->avis->getAvis($_SESSION["utilisateur"]["pseudo"]);
-
-                //Si l'utilisateur n'a pas d'avis
-                if($userAvis == false)
-                {
-                    $userAvis = null;
-                }
             }
             else
             {

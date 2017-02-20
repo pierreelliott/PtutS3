@@ -54,6 +54,11 @@
                     return null;
                 }
             }
+            //Mode 1 supprime les espace en fin et debut de chaine
+            else if ($mode == 1)
+             {
+                $chaine = trim($chaine);
+            }
             return $chaine;
         }
     }

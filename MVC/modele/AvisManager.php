@@ -23,6 +23,11 @@
             {
                 //Si que des espaces on mets a null
                 $commentaire = $this->convertChaine($commentaire, 0);
+
+                //Supression des espaces inutiles en debut et fin de chaine
+                $commentaire = $this->convertChaine($commentaire, 1);
+
+
                 //On recupere le NumUser associé
                 $user = $this->um->getNumUser($pseudo);
 
@@ -47,6 +52,9 @@
 
             //Si que des espaces on mets a null
             $commentaire = $this->convertChaine($commentaire, 0);
+
+            //Supression des espaces inutiles en debut et fin de chaine
+            $commentaire = $this->convertChaine($commentaire, 1);
 
 
             $resultat= $this->executerRequete('update avis
@@ -111,6 +119,9 @@
             {
                 //Si il n'y a que des espaces dans la remarque
                 $remarque = $this->convertChaine($remarque, 0);
+
+                //Supression des espaces inutiles en debut et fin de chaine
+                $remarque = $this->convertChaine($remarque, 1);
 
                 $requete = $this->executerRequete('insert into signalAvis(numAvis, numUser, remarque)
                                                 values(?,?,?)',array($numAvis, $user, $remarque));
