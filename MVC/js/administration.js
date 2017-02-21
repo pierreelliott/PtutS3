@@ -5,7 +5,7 @@ $(function()
 	$('[data-toggle="tooltip"]').tooltip()
 
 	// Lorsqu'on choisi une image dans l'input file
-	$('#imageAjout, #imageModif').change(function (e1)
+	$('#imageProduitAjout, #imageMenuAjout, #imageProduitModif').change(function (e1)
 	{
 		var filename = e1.target.files[0];
 		var fr = new FileReader();
@@ -18,7 +18,7 @@ $(function()
 	});
 
 	// On efface l'image quand la fenêtre modale se ferme
-	$('#adminAjout, #adminModif').on('hidden.bs.modal', function(e)
+	$('#adminProduitAjout, #adminMenuAjout, #adminProduitModif').on('hidden.bs.modal', function(e)
 	{
 		$(this).find('input, textarea').val('');
 		//$(this).find('input[type=number]').val(0);
@@ -33,7 +33,8 @@ $(function()
 
 		$.post("/get-produit-admin",
 		{
-			numProduitAdmin: numProduit
+			numProduitAdmin: numProduit,
+			isAjax: true
 		},
 		function(data, status)
 		{
@@ -66,7 +67,8 @@ $(function()
 
 		$.post("/get-produit-admin",
 		{
-			numProduitAdmin: numProduit
+			numProduitAdmin: numProduit,
+			isAjax: true
 		},
 		function(data, status)
 		{
@@ -84,4 +86,44 @@ $(function()
 			);
 		});
   	});
+
+	$('#ajoutProduitMenu').click(function(e)
+	{
+		var nbProduits = $('.produits select').length;
+
+		$.post("/get-produits-admin",
+		{
+			isAjax: true
+		},
+		function(data, status)
+		{
+			produits = JSON.parse(data);
+
+			$('.produits').append(
+				'<div class="col-lg-12">' +
+					'<div class="col-lg-8">' +
+						'<div class="form-group">' +
+							'<label for="produitMenu' + nbProduits + '" class="control-label"></label>' +
+							'<select id="produitMenu' + nbProduits + '" name="produitsMenu' + nbProduits + '" class="form-control" required>' +
+							'</select>' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-lg-2">' +
+						'<div class="form-group">' +
+							'<label for="produitMenuQte' + nbProduits + '" class="control-label"></label>' +
+							'<input type="number" id="produitMenuQte' + nbProduits + '" name="produitsMenuQte' + nbProduits + '" min="1" value="1" class="form-control" required>' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-lg-2">' +
+						'<button type="button" id="supprProduitMenu" class="glyphicon glyphicon-remove btn btn-danger"></button>' +
+					'</div>' +
+				'</div>'
+			);
+
+			produits.forEach(function(produit)
+			{
+				$('#produitMenu' + nbProduits).append('<option value="' + produit.numProduit + '">' + produit.numProduit + '-' + produit.libelle + '</option>');
+			});
+		});
+	});
 });

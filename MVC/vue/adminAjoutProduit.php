@@ -12,8 +12,8 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="file-upload btn btn-primary">
-									<label for="imageAjout" class="control-label">Parcourir...</label>
-									<input type="file" id="imageAjout" name="image" class="upload">
+									<label for="imageProduitAjout" class="control-label">Parcourir...</label>
+									<input type="file" id="imageProduitAjout" name="image" class="upload">
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -25,8 +25,8 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="libelleAjout" class="control-label">Libellé :</label>
-									<input type="text" id="libelleAjout" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
+									<label for="libelleProduitAjout" class="control-label">Libellé :</label>
+									<input type="text" id="libelleProduitAjout" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -42,8 +42,8 @@
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="prixAjout" class="control-label">Prix :</label>
-									<input type="number" id="prixAjout" name="prix" min="1" step="0.01" value="0" class="form-control" required>
+									<label for="prixProduitAjout" class="control-label">Prix :</label>
+									<input type="number" id="prixProduitAjout" name="prix" min="1" step="0.01" value="0" class="form-control" required>
 								</div>
 							</div>
 						</div>
@@ -52,8 +52,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="descriptionAjout" class="control-label">Description :</label>
-							<textarea type="textarea" name="description" id="descriptionAjout" placeholder="Ecrivez une courte decription du produit" class="form-control vresize" required></textarea>
+							<label for="descriptionProduitAjout" class="control-label">Description :</label>
+							<textarea type="textarea" name="description" id="descriptionProduitAjout" placeholder="Ecrivez une courte decription du produit" class="form-control vresize" required></textarea>
 						</div>
 					</div>
 				</div>

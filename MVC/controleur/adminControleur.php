@@ -59,7 +59,7 @@
 					}
 				}
 
-				$typesProduit = $this->bdd->getTypesProduit();
+				$typesProduit = $this->bdd->getTypesProduit(); // Utilisé dans la vue
 
 				$produits = $this->bdd->recupererCarte();
 
@@ -113,16 +113,43 @@
 			}
 		}
 
-		function remplirFormulaireModif()
+		function getProduitAdmin()
 		{
-			if(isset($_POST["numProduitAdmin"]))
+			if(isset($_POST["isAjax"]) and $_POST["isAjax"])
 			{
-				$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
-				$typeProduit = $this->bdd->getTypeProduit($_POST["numProduitAdmin"]);
+				if(isset($_POST["numProduitAdmin"]))
+				{
+					$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
+					$typeProduit = $this->bdd->getTypeProduit($_POST["numProduitAdmin"]);
 
-				$produit["typeProduit"] = ucfirst($typeProduit);
+					$produit["typeProduit"] = ucfirst($typeProduit);
 
-				echo json_encode($produit);
+					echo json_encode($produit);
+				}
+				else
+				{
+					$produits = $this->bdd->recupererCarte();
+					foreach($produits as $key => $produit)
+					{
+						if($produit["prix"] < 0)
+						{
+							unset($produits[$key]);
+							continue;
+						}
+
+						$typeProduit = $this->bdd->getTypeProduit($produit["numProduit"]);
+
+						if($typeProduit == "menu")
+						{
+							unset($produits[$key]);
+						}
+					}
+
+					// On défragmente le tableau pour avoir des index qui se suivent
+					$produits = array_values($produits);
+
+					echo json_encode($produits);
+				}
 			}
 			else
 			{
