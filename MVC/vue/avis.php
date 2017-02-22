@@ -40,7 +40,12 @@
                                                 echo "Entrez votre commentaire";?>
                                         </textarea>
                                         <label for="note" class="control-label">Note :</label>
-                                        <input required type="number" name="note" class="text-muted"  >
+
+                                        <div id="test">
+
+
+                                        </div>
+                                        <input  id="valNow" type="hidden" name="note" class="text-muted" value="<?php echo $userAvis['note'];?>">
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -71,7 +76,7 @@
 						<div class="panel-footer">
 							<div class="row">
 
-                                <?php  //Si l'utilisateur n'est pas connecté
+                                <?php  //Si l'utilisateur est connecté
                                 if(!isset($message))
                                 { ?>
     								<div class="col-lg-1">
@@ -152,7 +157,9 @@
 
 	$contenu = ob_get_clean(); ?>
 
+<script src="js/notes.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 <script src="js/avis.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
+<script src="js/afficheNote.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 
 <?php
 $script = ob_get_clean();
