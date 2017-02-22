@@ -70,16 +70,21 @@
 						</div>
 						<div class="panel-footer">
 							<div class="row">
-								<div class="col-lg-1">
-                                    <!-- Lien vers la fenetre modale !-->
-									<a href='#signalModal'
-                                        data-toggle='modal'
-                                        data-num-avis="<?php echo $avis["numuser"]; ?>"
-                                        data-pseudo="<?php echo $avis["pseudo"]; ?>"
-                                        data-commentaire-avis="<?php echo $avis['avis']; ?>">
-                                        <img src="images/signaler.png" alt="Signaler l'avis" class="img-responsive"/>
-                                    </a>
-								</div>
+
+                                <?php  //Si l'utilisateur n'est pas connecté
+                                if(!isset($message))
+                                { ?>
+    								<div class="col-lg-1">
+                                        <!-- Lien vers la fenetre modale !-->
+    									<a href='#signalModal'
+                                            data-toggle='modal'
+                                            data-num-avis="<?php echo $avis["numuser"]; ?>"
+                                            data-pseudo="<?php echo $avis["pseudo"]; ?>"
+                                            data-commentaire-avis="<?php echo $avis['avis']; ?>">
+                                            <img src="images/signaler.png" alt="Signaler l'avis" class="img-responsive"/>
+                                        </a>
+    								</div>
+                                <?php } ?>
 								<div class="col-lg-offset-7 col-lg-1">
 									<a <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
                                         <img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/>
