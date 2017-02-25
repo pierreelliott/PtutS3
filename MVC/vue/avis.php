@@ -32,13 +32,13 @@
 								<div class="col-lg-8">
 									<div class="form-group">
 										<label for="commentaire" class="control-label">Commentaire :</label>
-										<textarea type="text" id="commentaire" name="commentaire" class="form-control vresize">
+										<textarea id="commentaire" name="commentaire" class="form-control vresize"
                                             <?php //Affichage de l'avis deja existant si il y en a un
                                             if($userAvis != false)
-                                                echo $userAvis['avis'];
+                                                echo ">".$userAvis['avis'];
                                             else
-                                                echo "Entrez votre commentaire";?>
-                                        </textarea>
+                                                echo " placeholder='Entrez votre commentaire'>";?></textarea>
+
                                         <label for="note" class="control-label">Note :</label>
 
                                         <div id="test">
