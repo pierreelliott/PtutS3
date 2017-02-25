@@ -13,8 +13,8 @@
 		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 			<div class="row">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#produits" data-toggle="tab">Nos produits</a></li>
-					<li><a href="#menus" data-toggle="tab">Nos menus</a></li>
+					<li class="active"><a href="#produits" data-toggle="tab">Produits</a></li>
+					<li><a href="#menus" data-toggle="tab">Menus</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="produits">
