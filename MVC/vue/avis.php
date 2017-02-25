@@ -40,7 +40,12 @@
                                                 echo "Entrez votre commentaire";?>
                                         </textarea>
                                         <label for="note" class="control-label">Note :</label>
-                                        <input required type="number" name="note" class="text-muted"  >
+
+                                        <div id="test">
+
+
+                                        </div>
+                                        <input  id="valNow" type="hidden" name="note" class="text-muted" value="<?php echo $userAvis['note'];?>">
 									</div>
 								</div>
 								<div class="col-lg-4">
@@ -70,16 +75,21 @@
 						</div>
 						<div class="panel-footer">
 							<div class="row">
-								<div class="col-lg-1">
-                                    <!-- Lien vers la fenetre modale !-->
-									<a href='#signalModal'
-                                        data-toggle='modal'
-                                        data-num-avis="<?php echo $avis["numuser"]; ?>"
-                                        data-pseudo="<?php echo $avis["pseudo"]; ?>"
-                                        data-commentaire-avis="<?php echo $avis['avis']; ?>">
-                                        <img src="images/signaler.png" alt="Signaler l'avis" class="img-responsive"/>
-                                    </a>
-								</div>
+
+                                <?php  //Si l'utilisateur est connecté
+                                if(!isset($message))
+                                { ?>
+    								<div class="col-lg-1">
+                                        <!-- Lien vers la fenetre modale !-->
+    									<a href='#signalModal'
+                                            data-toggle='modal'
+                                            data-num-avis="<?php echo $avis["numuser"]; ?>"
+                                            data-pseudo="<?php echo $avis["pseudo"]; ?>"
+                                            data-commentaire-avis="<?php echo $avis['avis']; ?>">
+                                            <img src="images/signaler.png" alt="Signaler l'avis" class="img-responsive"/>
+                                        </a>
+    								</div>
+                                <?php } ?>
 								<div class="col-lg-offset-7 col-lg-1">
 									<a <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
                                         <img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/>
@@ -147,7 +157,9 @@
 
 	$contenu = ob_get_clean(); ?>
 
+<script src="js/notes.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 <script src="js/avis.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
+<script src="js/afficheNote.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
 
 <?php
 $script = ob_get_clean();
