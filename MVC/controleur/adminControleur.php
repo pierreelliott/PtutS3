@@ -58,38 +58,16 @@
 					switch($_GET["action"])
 					{
 						case "ajout" :
-							if(empty($produitMenu) and empty($produitMenuQte))
-							{
-								$this->bdd->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
-								break;
-							}
-							else
-							{
-
-								break;
-							}
+							$this->bdd->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
+							break;
 
 						case "modification" :
-							if(empty($produitMenu) and empty($produitMenuQte))
-							{
-								$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
-								break;
-							}
-							else
-							{
-								break;
-							}
-							
+							$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
+							break;
+
 						case "suppression" :
-							if(empty($produitMenu) and empty($produitMenuQte))
-							{
-								$this->bdd->supprimerProduit($numProduit);
-								break;
-							}
-							else
-							{
-								break;
-							}
+							$this->bdd->supprimerProduit($numProduit);
+							break;
 					}
 				}
 

@@ -89,7 +89,11 @@ $(function()
 
 	$('#ajoutProduitMenu').click(function(e)
 	{
-		var nbProduits = $('.produits select').length;
+		var nbProduits = $('.produits select:last').length;
+		if(nbProduits != 0)
+		{
+			nbProduits = parseInt($('.produits select:last').attr('id').substr(11)) + 1;
+		}
 
 		$.post("/get-produits-admin",
 		{
@@ -100,7 +104,7 @@ $(function()
 			produits = JSON.parse(data);
 
 			$('.produits').append(
-				'<div class="col-lg-12">' +
+				'<div id="produit' + nbProduits + '" class="col-lg-12">' +
 					'<div class="col-lg-8">' +
 						'<div class="form-group">' +
 							'<select id="produitMenu' + nbProduits + '" name="produitsMenu' + nbProduits + '" class="form-control" required>' +
@@ -113,7 +117,7 @@ $(function()
 						'</div>' +
 					'</div>' +
 					'<div class="col-lg-2">' +
-						'<button type="button" class="glyphicon glyphicon-remove btn btn-danger supprProduitMenu" data-num="' + nbProduits + '"></button>' +
+						'<button type="button" id="supprProduitMenu' + nbProduits + '" class="glyphicon glyphicon-remove btn btn-danger"></button>' +
 					'</div>' +
 				'</div>'
 			);
@@ -121,6 +125,13 @@ $(function()
 			produits.forEach(function(produit)
 			{
 				$('#produitMenu' + nbProduits).append('<option value="' + produit.numProduit + '">' + produit.numProduit + '-' + produit.libelle + '</option>');
+			});
+
+			$('#supprProduitMenu' + nbProduits).click(function(e)
+			{
+				var num = $(this).attr('id').substr(16);
+
+				$('#produit' + num).remove();
 			});
 		});
 	});

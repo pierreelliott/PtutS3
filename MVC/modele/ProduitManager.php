@@ -22,7 +22,7 @@
 		}
 
 		# Normalement, le principal devrait fonctionner (à voir !)
-		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $produitsMenu = null, $produitsMenuQte = null)
+		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $produitsMenu = array(), $produitsMenuQte = array())
 		{
 			/*$resultat = $this->executerRequete('insert into image values(?, ?, ?)', array($sourcePetit, $sourceMoyen, $sourceGrand));
 			$image = $this->executerRequete('select numImage from image where sourcePetit')*/
@@ -48,7 +48,7 @@
   						values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
 
 			// Apparement la quantité de produit dans un menu n'est pas gérée dans la BD mais bon je laisse comme ça au cas où
-			if($produitsMenu != null and $produitsMenuQte != null)
+			if(empty($produitsMenu) and empty($produitsMenuQte))
 			{
 				$numProduit = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ?',
 						array($libelle, $description, $typeProduit, $prix));

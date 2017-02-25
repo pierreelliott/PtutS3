@@ -67,6 +67,6 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-		<button type="submit" form="ajoutProduit" class="btn btn-success">Ajouter à la base de données <span class="glyphicon glyphicon-ok"></span></button>
+		<button type="submit" form="ajoutMenu" class="btn btn-success">Ajouter à la base de données <span class="glyphicon glyphicon-ok"></span></button>
 	</div>
 </div>
