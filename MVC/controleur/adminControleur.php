@@ -45,17 +45,51 @@
 					$prix = htmlspecialchars($_POST["prix"]);
 					$description = htmlspecialchars($_POST["description"]);
 
+					$produitMenu = array();
+					$produitMenuQte = array();
+
+					// On récupère les produits à ajouter dans le nouveau menu (si les tableaux sont vides c'est que l'on n'a pas ajouter un menu mais un produit seul)
+					for($i = 0; isset($_POST["produitMenu" + $i]) and isset($_POST["produitMenuQte" + $i]); $i++)
+					{
+						$produitMenu[$i] = $_POST["produitMenu" + $i];
+						$produitMenuQte[$i] = $_POST["produitMenuQte" + $i];
+					}
+
 					switch($_GET["action"])
 					{
 						case "ajout" :
-							$this->bdd->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
-							break;
+							if(empty($produitMenu) and empty($produitMenuQte))
+							{
+								$this->bdd->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
+								break;
+							}
+							else
+							{
+
+								break;
+							}
+
 						case "modification" :
-							$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
-							break;
+							if(empty($produitMenu) and empty($produitMenuQte))
+							{
+								$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
+								break;
+							}
+							else
+							{
+								break;
+							}
+							
 						case "suppression" :
-							$this->bdd->supprimerProduit($numProduit);
-							break;
+							if(empty($produitMenu) and empty($produitMenuQte))
+							{
+								$this->bdd->supprimerProduit($numProduit);
+								break;
+							}
+							else
+							{
+								break;
+							}
 					}
 				}
 
@@ -117,6 +151,7 @@
 		{
 			if(isset($_POST["isAjax"]) and $_POST["isAjax"])
 			{
+				// Si on veut récupérer les infos d'un produit en particulier
 				if(isset($_POST["numProduitAdmin"]))
 				{
 					$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
@@ -126,6 +161,7 @@
 
 					echo json_encode($produit);
 				}
+				// Si on veut récupérer les infos de tous produits
 				else
 				{
 					$produits = $this->bdd->recupererCarte();

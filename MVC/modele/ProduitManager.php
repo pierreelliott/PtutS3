@@ -22,7 +22,7 @@
 		}
 
 		# Normalement, le principal devrait fonctionner (à voir !)
-		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $compatibilite = null)
+		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $produitsMenu = null, $produitsMenuQte = null)
 		{
 			/*$resultat = $this->executerRequete('insert into image values(?, ?, ?)', array($sourcePetit, $sourceMoyen, $sourceGrand));
 			$image = $this->executerRequete('select numImage from image where sourcePetit')*/
@@ -47,12 +47,17 @@
 			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
   						values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
 
-			if($compatibilite != null)
+			// Apparement la quantité de produit dans un menu n'est pas gérée dans la BD mais bon je laisse comme ça au cas où
+			if($produitsMenu != null and $produitsMenuQte != null)
 			{
-				$resultat = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ? and numImage = ?',
-									array($libelle, $description, $typeProduit, $prix, $numImage));
-				$numProduit = $resultat->fetch(PDO::FETCH_ASSOC)["numProduit"];
+				$numProduit = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ?',
+						array($libelle, $description, $typeProduit, $prix));
+				$numProduit = $numProduit->fetch(PDO::FETCH_ASSOC)["numProduit"];
 
+				for($i = 0; i < count($produitsMenu); $i++)
+				{
+					$this->ajouterCompatibilite($numProduit, $produitsMenu[$i]);
+				}
 			}
 		}
 
