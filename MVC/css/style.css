@@ -287,3 +287,7 @@ label
 .c-rating__item.is-active {
   background-position: -24px 0;
 }
+
+.italic {
+  font-style: italic;
+}

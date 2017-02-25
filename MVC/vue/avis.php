@@ -65,12 +65,13 @@
 					<div class="panel panel-default">
 						<div class="media">
 							<div class="media-left media-top">
+								<p class="text-primary italic"><?php echo $avis['pseudo']; ?></p>
 								<img src="images/user.png" alt="Avatar" class="media-object" style="width:80px">
 							</div>
 							<div class="media-body">
-								<h2 class="media-heading text-muted"><?php echo $avis['pseudo']; ?></h2>
-								<p class="text-muted pull-left">Note : <?php echo $avis['note']; ?></p>
-								<p class="text-muted">Commentaire: <?php echo $avis['avis']; ?></p>
+									<p class="text-muted text-left">Note : <?php echo $avis['note']; ?></p>
+									<p class="text-muted text-left">Commentaire: <?php echo $avis['avis']; ?></p>
+
 							</div>
 						</div>
 						<div class="panel-footer">
@@ -90,21 +91,15 @@
                                         </a>
     								</div>
                                 <?php } ?>
-								<div class="col-lg-offset-7 col-lg-1">
-									<a <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
-                                        <img src="images/pouce_bleu.png" alt="Pouce bleu" class="img-responsive"/>
+								<div class="col-lg-offset-7 col-lg-2">
+									<a class="btn-primary btn" <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
+										<span class="glyphicon glyphicon-thumbs-up"> <span class="badge"><?php echo $avis["pouceBleu"]; ?></span></span>
                                     </a>
 								</div>
 								<div class="col-lg-1">
-                                    <?php echo $avis["pouceBleu"]; ?>
-								</div>
-								<div class="col-lg-1">
-									<a <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>>
-                                        <img src="images/pouce_rouge.png" alt="Pouce rouge" class="img-responsive"/>
+									<a class="btn-danger btn" <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>>
+										<span class="glyphicon glyphicon-thumbs-down"> <span class="badge"><?php echo $avis["pouceRouge"]; ?></span></span>
                                     </a>
-								</div>
-								<div class="col-lg-1">
-                                    <?php echo $avis["pouceRouge"]; ?>
 								</div>
 							</div>
 						</div>
