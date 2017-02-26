@@ -69,8 +69,8 @@
 								<img src="images/user.png" alt="Avatar" class="media-object" style="width:80px">
 							</div>
 							<div class="media-body">
-									<p class="text-muted text-left">Note : <?php echo $avis['note']; ?></p>
-									<p class="text-muted text-left">Commentaire: <?php echo $avis['avis']; ?></p>
+									<p class="text-dark text-left">Note : <?php echo $avis['note']; ?></p>
+									<p class="text-dark text-left">Commentaire: <?php echo $avis['avis']; ?></p>
 
 							</div>
 						</div>
@@ -93,12 +93,14 @@
                                 <?php } ?>
 								<div class="col-lg-offset-7 col-lg-2">
 									<a class="btn-primary btn" <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
-										<span class="glyphicon glyphicon-thumbs-up"> <span class="badge"><?php echo $avis["pouceBleu"]; ?></span></span>
+										<span class="glyphicon glyphicon-thumbs-up"></span>
+										<span class="badge"><?php echo $avis["pouceBleu"]; ?></span>
                                     </a>
 								</div>
 								<div class="col-lg-1">
 									<a class="btn-danger btn" <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>>
-										<span class="glyphicon glyphicon-thumbs-down"> <span class="badge"><?php echo $avis["pouceRouge"]; ?></span></span>
+										<span class="glyphicon glyphicon-thumbs-down"></span>
+										<span class="badge"><?php echo $avis["pouceRouge"]; ?></span>
                                     </a>
 								</div>
 							</div>

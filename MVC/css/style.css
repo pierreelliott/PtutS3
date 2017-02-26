@@ -260,6 +260,10 @@ label
 	overflow-y: visible;
 }
 
+.text-dark {
+	color: #333;
+}
+
 /* ==========================  Classe pour les notes avec étoile =========================== */
 
 .c-rating {
