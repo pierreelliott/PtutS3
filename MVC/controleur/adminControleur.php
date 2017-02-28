@@ -136,11 +136,11 @@
 					$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
 					$typeProduit = $this->bdd->getTypeProduit($_POST["numProduitAdmin"]);
 
-					$produit["typeProduit"] = ucfirst($typeProduit);
+					//$produit["typeProduit"] = ucfirst($typeProduit);
 
 					echo json_encode($produit);
 				}
-				// Si on veut récupérer les infos de tous produits
+				// Si on veut récupérer les infos de tous les produits
 				else
 				{
 					$produits = $this->bdd->recupererCarte();
@@ -168,7 +168,7 @@
 			}
 			else
 			{
-				header("Location: /accueil");
+				header("Location: /");
 			}
 		}
     }

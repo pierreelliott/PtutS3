@@ -35,7 +35,10 @@
 									<select id="typeProduitModif" name="typeProduit" class="form-control" required>
 										<?php foreach($typesProduit as $typeProduit)
 										{
-											echo '<option value="'.$typeProduit.'">'.$typeProduit.'</option>';
+											if(explode('.', $typeProduit)[0] != 'Menu')
+											{
+												echo '<option value="'.$typeProduit.'">'.$typeProduit.'</option>';
+											}
 										} ?>
 									</select>
 								</div>

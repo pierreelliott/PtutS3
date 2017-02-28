@@ -162,9 +162,9 @@
 			foreach($resultat as $key => $typeProduit)
 			{
 				//Tableau contenant le type produit en 2 chaines
-	            $partie = explode(".", $typeProduit["libelle"]);
+	            /*$partie = explode(".", $typeProduit["libelle"]);
 
-				$typeProduit["libelle"] = $partie[0];
+				$typeProduit["libelle"] = $partie[0];*/
 
 				$typesProduit[$key] = $typeProduit["libelle"];
 			}
