@@ -52,7 +52,7 @@
 
     };
 
-    var r = rating(ratingElement, currentRating, maxRating, callback);
+    var r = rating(ratingElement, currentRating, maxRating, ajoutNote);
   }
 
 })();
