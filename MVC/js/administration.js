@@ -107,13 +107,13 @@ $(function()
 				'<div id="produit' + nbProduits + '" class="col-lg-12">' +
 					'<div class="col-lg-8">' +
 						'<div class="form-group">' +
-							'<select id="produitMenu' + nbProduits + '" name="produitsMenu' + nbProduits + '" class="form-control" required>' +
+							'<select id="produitMenu' + nbProduits + '" name="produitMenu' + nbProduits + '" class="form-control" required>' +
 							'</select>' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-lg-2">' +
 						'<div class="form-group">' +
-							'<input type="number" id="produitMenuQte' + nbProduits + '" name="produitsMenuQte' + nbProduits + '" min="1" value="1" class="form-control" required>' +
+							'<input type="number" id="produitMenuQte' + nbProduits + '" name="produitMenuQte' + nbProduits + '" min="1" value="1" class="form-control" required>' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-lg-2">' +

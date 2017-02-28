@@ -32,7 +32,7 @@
 							<div class="col-lg-12">
 								<div class="form-group">
 									<label for="typeMenuAjout" class="control-label">Type de produit :</label>
-									<input type="text" id="typeMenuAjout" name="typeMenu" class="form-control" required>
+									<input type="text" id="typeMenuAjout" name="typeProduit" class="form-control" required>
 								</div>
 							</div>
 							<div class="col-lg-12">

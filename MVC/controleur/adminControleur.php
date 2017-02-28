@@ -12,25 +12,6 @@
 		{
 			if(isset($_SESSION["utilisateur"]["typeUser"]) and $_SESSION["utilisateur"]["typeUser"] == "ADMIN")
 			{
-				$imageProduit = null;
-
-				if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
-				{
-					// On upload le fichier image s'il existe
-					if ($_FILES['image']['size'] <= 1000000)
-					{
-
-						$infosfichier = pathinfo($_FILES['image']['name']);
-						$extension_upload = $infosfichier['extension'];
-						$extensions_autorisees = array('jpg', 'jpeg', 'png');
-						if (in_array($extension_upload, $extensions_autorisees))
-						{
-							move_uploaded_file($_FILES['image']['tmp_name'], 'src/img/'.basename($_FILES['image']['name']));
-							$imageProduit = 'src/img/'.basename($_FILES['image']['name']);
-						}
-					}
-				}
-
 				// On test la présence des variables POST
 				if
 				(
@@ -38,7 +19,27 @@
 					isset($_POST["typeProduit"]) and isset($_POST["prix"]) and isset($_POST["description"])
 				)
 				{
-					// Pour chaque variable POST on regarde si elle est vide et on l'instancie à null le cas échéant
+					// Upload de l'image
+					$imageProduit = null;
+
+					if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
+					{
+						// On upload le fichier image s'il existe
+						if ($_FILES['image']['size'] <= 1000000)
+						{
+
+							$infosfichier = pathinfo($_FILES['image']['name']);
+							$extension_upload = $infosfichier['extension'];
+							$extensions_autorisees = array('jpg', 'jpeg', 'png');
+							if (in_array($extension_upload, $extensions_autorisees))
+							{
+								move_uploaded_file($_FILES['image']['tmp_name'], 'src/img/'.basename($_FILES['image']['name']));
+								$imageProduit = 'src/img/'.basename($_FILES['image']['name']);
+							}
+						}
+					}
+
+					// On évite les failles XSS
 					$numProduit = htmlspecialchars($_POST["numProduit"]);
 					$libelle = htmlspecialchars($_POST["libelle"]);
 					$typeProduit = htmlspecialchars($_POST["typeProduit"]);
@@ -49,10 +50,10 @@
 					$produitMenuQte = array();
 
 					// On récupère les produits à ajouter dans le nouveau menu (si les tableaux sont vides c'est que l'on n'a pas ajouter un menu mais un produit seul)
-					for($i = 0; isset($_POST["produitMenu" + $i]) and isset($_POST["produitMenuQte" + $i]); $i++)
+					for($i = 0; isset($_POST["produitMenu".$i]) and isset($_POST["produitMenuQte".$i]); $i++)
 					{
-						$produitMenu[$i] = $_POST["produitMenu" + $i];
-						$produitMenuQte[$i] = $_POST["produitMenuQte" + $i];
+						$produitMenu[$i] = $_POST["produitMenu".$i];
+						$produitMenuQte[$i] = $_POST["produitMenuQte".$i];
 					}
 
 					switch($_GET["action"])

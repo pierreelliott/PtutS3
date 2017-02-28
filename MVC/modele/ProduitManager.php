@@ -31,7 +31,7 @@
 			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 			/* ===== J'ai une idée ===== */
-			# À voir, parce que c'est très moche...
+			// À voir, parce que c'est très moche...
 			$imagefactice = array($libelle."allo1",$libelle."allo2",$libelle."allo3");
 			$image = $this->executerRequete('insert into image (sourcePetit, sourceMoyen, sourceGrand) values (?,?,?)', $imagefactice);
 			$image = $this->executerRequete('select numImage from image where sourcePetit = ? and sourceMoyen = ? and sourceGrand = ?', $imagefactice);
@@ -43,18 +43,26 @@
 			{
 				$prix = 0;
 			}
-			# On considère qu'on a le $numImage
+
+			// Si le type de produit n'existe pas dans la BD (possible uniquement si on ajoute un menu)
+			if(empty($this->executerRequete('select libelle from typeproduit where libelle = ?', array($typeProduit))->fetchAll(PDO::FETCH_ASSOC)))
+			{
+				$typeProduit = 'Menu.'.$typeProduit;
+				$this->executerRequete('insert into typeproduit values (?)', array($typeProduit));
+			}
+
+			// On considère qu'on a le $numImage
 			$resultat = $this->executerRequete('insert into produit (libelle,description,typeProduit,prix,numImage)
   						values (?,?,?,?,?)', array($libelle, $description, $typeProduit, $prix, $numImage));
 
 			// Apparement la quantité de produit dans un menu n'est pas gérée dans la BD mais bon je laisse comme ça au cas où
-			if(empty($produitsMenu) and empty($produitsMenuQte))
+			if(!empty($produitsMenu) and !empty($produitsMenuQte))
 			{
 				$numProduit = $this->executerRequete('select numProduit from produit where libelle = ? and description = ? and typeProduit = ? and prix = ?',
 						array($libelle, $description, $typeProduit, $prix));
 				$numProduit = $numProduit->fetch(PDO::FETCH_ASSOC)["numProduit"];
 
-				for($i = 0; i < count($produitsMenu); $i++)
+				for($i = 0; $i < count($produitsMenu); $i++)
 				{
 					$this->ajouterCompatibilite($numProduit, $produitsMenu[$i]);
 				}
