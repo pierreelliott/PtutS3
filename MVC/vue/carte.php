@@ -10,49 +10,49 @@
   </div>
   <!-- fin popup -->
 	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
+		<div class="col-lg-offset-2 col-lg-8 site-wrapper">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#produits" data-toggle="tab">Nos produits</a></li>
         <li><a href="#menus" data-toggle="tab">Nos menus</a></li>
       </ul>
       <div class="tab-content">
 		<!-- Affichage des produits seuls -->
-        <div class="tab-pane fade in active" id="produits">
+        <div class="tab-pane fade in active push" id="produits">
+			<hr/>
 			<?php
+				$i = 0;
 				foreach($carte as $produit) {
+					if($i%3 == 0) echo '<div class="row">';
 			?>
-			<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default">
+			<div class="col-md-4">
+				<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default">
 
-				<div class="media img-produit">
-					<a href="#produitModal" data-toggle="modal"
-	                            data-libelle="<?php echo $produit["libelle"]; ?>"
-	                            data-source-img="<?php echo $produit['sourceMoyen'].".png"; ?>"
-	                            data-description="<?php echo $produit["description"]; ?>"
-	                            data-prix="<?php echo $produit["prix"]; ?>">
-						<div class="media-left media-top">
-							<img src="<?php echo $produit["sourceMoyen"]; ?>.png" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail" style="width:80px">
-						</div>
-						<div class="media-body">
-							<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
-							<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
-						</div>
-					</a>
-				</div>
-				<div class="panel-footer">
-					<div class="row">
-						<div class="col-xs-3">
-							<p>Prix : <?php echo $produit["prix"]; ?> €</p>
-						</div>
-						<div class="col-xs-offset-6 col-xs-3">
-							<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block btnAjout">
-								<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-							</button>
-						</div>
+					<div class="media img-produit">
+							<div class="media-top">
+								<img src="<?php echo $produit["sourceMoyen"]; ?>.png" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail text-center">
+							</div>
+							<div class="media-body">
+								<a href="#produitModal" data-toggle="modal"
+				                            data-libelle="<?php echo $produit["libelle"]; ?>"
+				                            data-source-img="<?php echo $produit['sourceMoyen'].".png"; ?>"
+				                            data-description="<?php echo $produit["description"]; ?>"
+				                            data-prix="<?php echo $produit["prix"]; ?>">
+									<h2 class="media-heading text-muted text-center push-down"><?php echo $produit["libelle"]; ?></h2>
+									<p class="text-muted desc-frame"><?php echo $produit["description"]; ?></p>
+								</a>
+								<hr/>
+								<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block btnAjout">
+									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+								</button>
+								<p class="text-muted">Prix : <?php echo $produit["prix"]; ?> €</p>
+							</div>
 					</div>
 				</div>
 			</div>
 			<?php
-			}
+				$i+=1;
+				if($i%3 == 0) echo '</div>';
+				}
 			?>
           <div class="modal fade" id="produitModal">
             <div class="modal-dialog">
@@ -98,7 +98,7 @@
 							foreach($menu["produits"] as $produit)
 							{
 							?>
-								<div class="panel col-lg-6 menu-produit">
+								<div class="panel col-md-4 menu-produit">
                                     <a href="#info" data-container="body" data-toggle="popover" data-trigger="focus" title="<p class='text-muted'><?php echo $produit["libelle"] ?></p>" data-content="<p class='text-muted'><?php echo $produit["description"] ?></p>" data-placement="auto right" data-html="true">
 										<div class="panel-heading">
 											<p><?php echo $produit["libelle"]; ?></p>

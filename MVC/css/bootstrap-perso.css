@@ -1,0 +1,17 @@
+.row {
+ display: table;
+}
+[class*="col-"] {
+ float: none;
+ display: table-cell;
+ vertical-align: top;
+}
+
+
+.push-down {
+	padding-bottom: 1vh;
+}
+
+.desc-frame {
+	border: 1px solid #555555;
+}
