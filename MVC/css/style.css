@@ -292,6 +292,12 @@ label
   background-position: -24px 0;
 }
 
+/* Change la couleur des glyphicon etoiles de bootstrap */
+.yellow
+{
+    color: #FBC100;
+}
+
 .italic {
   font-style: italic;
 }

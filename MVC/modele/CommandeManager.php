@@ -77,7 +77,7 @@
         public function getHistoriqueCommande($pseudo)
         {
             $user = $this->um->getNumUser($pseudo);
-            $requete = $this->executerRequete("select DATE_FORMAT(date, '%d-%m-%Y') date, typeCommande, numCommande from commande
+            $requete = $this->executerRequete("select DATE_FORMAT(date, '%d/%m/%Y') date, typeCommande, numCommande from commande
                                                 where numUser= ? order by numCommande desc", array($user));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
