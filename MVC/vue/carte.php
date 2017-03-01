@@ -25,8 +25,7 @@
 					if($i%3 == 0) echo '<div class="row">';
 			?>
 			<div class="col-md-4">
-				<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default panel-product hoverable">
-
+				<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default panel-product">
 					<div class="media img-produit">
 						<a href="#produitModal" data-toggle="modal"
 									data-libelle="<?php echo $produit["libelle"]; ?>"
@@ -79,38 +78,42 @@
         </div>
 		<!-- Affichage des menus -->
         <div class="tab-pane fade" id="menus">
-			<hr/>
+			<hr class="invisible-separator"/>
           <?php
 		  foreach($menus as $menu)
 			{
 			?>
-				<div class="panel panel-default">
-					<div class="media">
-						<div class="media-left media-top">
-							<img src="images/maki1,1.png" alt="Image <?php echo $menu["libelle"]; ?>" class="media-object" style="width:80px">
+				<div class="panel panel-default panel-menu">
+					<div class="panel-header">
+						<h2 class="menu-heading text-muted">Menu "<?php echo $menu["libelle"]; ?>"</h2>
+						<p class="text-muted"><?php echo $menu["description"]; ?></p>
+						<p class="text-muted"><?php echo $menu["prix"]; ?> €</p>
+					</div>
+					<div class="panel-body">
+						<?php
+						$i = 0;
+						foreach($menu["produits"] as $produit)
+						{
+							if($i%3 == 0) echo '<div class="row">';
+						?>
+						<div class="col-md-4">
+							<div class="panel panel-default panel-menu-product">
+                                <a href="#" data-container="body" data-toggle="popover" data-trigger="focus" title="<p class='text-muted'><?php echo $produit["libelle"] ?></p>" data-content="<p class='text-muted'><?php echo $produit["description"] ?></p>" data-placement="auto right" data-html="true">
+									<div class="panel-heading">
+										<p class="text-muted"><?php echo $produit["libelle"]; ?></p>
+									</div>
+									<div class="panel-body">
+										<img src="<?php echo $produit["sourceMoyen"]; ?>.png" alt="Image <?php echo $produit["libelle"] ?>" class="img-responsive" style="width:80px">
+									</div>
+                                </a>
+							</div>
 						</div>
-						<div class="media-body menu-produit-container">
-							<h2 class="media-heading text-muted">Menu "<?php echo $menu["libelle"]; ?>"</h2>
-							<p class="text-muted pull-left"><?php echo $menu["description"]; ?></p>
-							<p class="text-muted"><?php echo $menu["prix"]; ?> €</p>
-							<?php
-							foreach($menu["produits"] as $produit)
-							{
-							?>
-								<div class="panel col-md-4 menu-produit">
-                                    <a href="#info" data-container="body" data-toggle="popover" data-trigger="focus" title="<p class='text-muted'><?php echo $produit["libelle"] ?></p>" data-content="<p class='text-muted'><?php echo $produit["description"] ?></p>" data-placement="auto right" data-html="true">
-										<div class="panel-heading">
-											<p><?php echo $produit["libelle"]; ?></p>
-										</div>
-										<div class="panel-body">
-											<img src="<?php echo $produit["sourceMoyen"]; ?>.png" alt="Image <?php echo $produit["libelle"] ?>" class="img-responsive" style="width:80px">
-										</div>
-                                    </a>
-								</div>
-							<?php
-							}
-							?>
-						</div>
+
+						<?php
+							$i+=1;
+							if($i%3 == 0) echo '</div>';
+						}
+						?>
 					</div>
 					<div class="panel-footer">
 						<div class="row">
