@@ -7,11 +7,29 @@
  vertical-align: top;
 }
 
+.panel-product {
+	/*background-color: #BBB;*/
+}
 
+.panel-product * {
+	color: #555;
+}
+.panel-product .media-object {
+	width: 100%;
+}
+.panel-product hr {
+	border-color: #555;
+}
+
+/* ##################### */
+.invisible-separator {
+	border-width: 0px;
+}
 .push-down {
 	padding-bottom: 1vh;
 }
-
 .desc-frame {
-	border: 1px solid #555555;
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #555;
+	padding: 1em;
 }
