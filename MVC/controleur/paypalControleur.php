@@ -98,7 +98,6 @@
                     // Si la requête a été traitée avec succès
                     if ($parametres['ACK'] == 'Success')
                     {
-                        echo "string";
                         // Redirige le visiteur sur le site de PayPal
                         header("Location: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token=".$parametres['TOKEN']);
                         exit();
@@ -130,7 +129,6 @@
                 $typeCommande = "Livraison";
             }*/
             $typeCommande = "A Emporter";
-
             $requete = $this->paypal->construitURL();
 
            //Ajout des parametre variables
@@ -172,7 +170,7 @@
                     $this->commande->addCommande($_SESSION["utilisateur"]["pseudo"], $_SESSION["panier"], $typeCommande);
                     //Vider Panier
                     $this->panier->viderPanier();
-
+                    include_once("vue/commandeValidee.php");
                 }
                 else // En cas d'échec, affiche la première erreur trouvée.
                 {
