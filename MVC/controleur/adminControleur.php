@@ -49,6 +49,8 @@
 					$produitMenu = array();
 					$produitMenuQte = array();
 
+					print_r($_POST);
+
 					// On récupère les produits à ajouter dans le nouveau menu (si les tableaux sont vides c'est que l'on n'a pas ajouter un menu mais un produit seul)
 					for($i = 0; isset($_POST["produitMenu".$i]) and isset($_POST["produitMenuQte".$i]); $i++)
 					{
@@ -63,7 +65,7 @@
 							break;
 
 						case "modification" :
-							$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit);
+							$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
 							break;
 
 						case "suppression" :

@@ -4,7 +4,7 @@
 		<h4 class="modal-title">Ajouter un Menu</h4>
 	</div>
 	<div class="modal-body">
-		<form method="post" action="administration-ajout" id="ModifMenu" accept-charset="utf-8" enctype="multipart/form-data">
+		<form method="post" action="administration-modification" id="modifMenu" accept-charset="utf-8" enctype="multipart/form-data">
 			<fieldset>
 				<input type="hidden" name="numProduit" id="numMenuModif" value="">
 				<div class="row">
@@ -67,6 +67,6 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-		<button type="submit" form="ajoutMenu" class="btn btn-success">Ajouter à la base de données <span class="glyphicon glyphicon-ok"></span></button>
+		<button type="submit" form="modifMenu" class="btn btn-primary">Modifier le menu</button>
 	</div>
 </div>

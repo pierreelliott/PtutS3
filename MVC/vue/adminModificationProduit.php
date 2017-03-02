@@ -65,6 +65,6 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-		<button type="submit" form="modifProduit" class="btn btn-success btn btn-success">Modifier le produit</button>
+		<button type="submit" form="modifProduit" class="btn btn-primary">Modifier le produit</button>
 	</div>
 </div>

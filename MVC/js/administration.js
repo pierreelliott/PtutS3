@@ -59,24 +59,24 @@ $(function()
 				{
 					var listeProduits = JSON.parse(data);
 
-					produit.produits.forEach(function(prod)
+					produit.produits.forEach(function(prod, index)
 					{
 						$('#produitsModif').append(
-							'<div id="produit' + prod.numProduit + '" class="col-lg-12">' +
+							'<div id="produit' + index + '" class="col-lg-12">' +
 								'<div class="col-lg-8">' +
 									'<div class="form-group">' +
-										'<select id="produitMenu' + prod.numProduit + '" name="produitMenu' + prod.numProduit + '" class="form-control" required>' +
+										'<select id="produitMenu' + index + '" name="produitMenu' + index + '" class="form-control" required>' +
 											// On ajoutera ici tous les produits dans des balises options
 										'</select>' +
 									'</div>' +
 								'</div>' +
 								'<div class="col-lg-2">' +
 									'<div class="form-group">' +
-										'<input type="number" id="produitMenuQte' + prod.numProduit + '" name="produitMenuQte' + prod.numProduit + '" min="1" value="1" class="form-control" required>' +
+										'<input type="number" id="produitMenuQte' + index + '" name="produitMenuQte' + index + '" min="1" value="1" class="form-control" required>' +
 									'</div>' +
 								'</div>' +
 								'<div class="col-lg-2">' +
-									'<button type="button" id="supprProduitMenu' + prod.numProduit + '" class="glyphicon glyphicon-remove btn btn-danger"></button>' +
+									'<button type="button" id="supprProduitMenu' + index + '" class="glyphicon glyphicon-remove btn btn-danger"></button>' +
 								'</div>' +
 							'</div>'
 						);
@@ -84,12 +84,12 @@ $(function()
 						// Ajout des produits dans des balises options
 						listeProduits.forEach(function(listeProd)
 						{
-							var select = $('#produitMenu' + prod.numProduit);
+							var select = $('#produitMenu' + index);
 							select.append('<option value="' + listeProd.numProduit + '">' + listeProd.numProduit + '-' + listeProd.libelle + '</option>');
 							select.val(prod.numProduit);
 						});
 
-						$('#supprProduitMenu' + prod.numProduit).click(function(e)
+						$('#supprProduitMenu' + index).click(function(e)
 						{
 							var num = $(this).attr('id').substr(16);
 

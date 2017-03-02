@@ -90,7 +90,7 @@
 		}
 
         //Si les valeurs ne sont modifiés ont renvoi les valeurs déja presente
-		public function modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand)
+		public function modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $produitsMenu = array(), $produitsMenuQte = array())
 		{
 			// Si aucune image n'est envoyée on ne la modifie pas
 			if($sourcePetit != null and $sourceMoyen != null and $sourceGrand != null)
@@ -107,7 +107,52 @@
                                             set libelle = ?, description = ?, typeProduit = ?, prix = ?
 											where numProduit = ?',
                                             array($libelle, $description , $typeProduit, $prix, $numProduit));
-            return $requete;
+
+			print_r($produitsMenu);
+			if(!empty($produitsMenu) and !empty($produitsMenuQte))
+			{
+				$produitsCompatibles = $this->getProduitsCompatibles($numProduit);
+				print_r($produitsCompatibles);
+
+				$i = 0;
+				while(true)
+				{
+					// S'il reste des produits
+					if($i < count($produitsMenu))
+					{
+						// Si on doit encore modifier des valeurs
+						if(isset($produitsCompatibles[$i]))
+						{
+							$this->modifierCompatibilite($produitsMenu[$i], $numProduit, $produitsCompatibles[$i]["numProduit2"]);
+						}
+						else
+						{
+							// Si on a ajouté des produts au menu
+							if(isset($produitsMenu[$i]))
+							{
+								$this->ajouterCompatibilite($numProduit, $produitsMenu[$i]);
+							}
+							else
+							{
+								break;
+							}
+						}
+					}
+					else
+					{
+						// Si on a supprimé des prosuits au menu
+						if(isset($produitsCompatibles[$i]))
+						{
+							$this->supprimerCompatibilite($numProduit, $produitsCompatibles[$i]["numProduit2"]);
+						}
+						else
+						{
+							break;
+						}
+					}
+					$i++;
+				}
+			}
 		}
 
 		public function ajouterCompatibilite($numProduit, $numProduit2)
@@ -118,6 +163,18 @@
 			Depends aussi de la categorie du produit par exemple accompagnement*/
 
 			$requete = 'insert into compatibilite (numProduit, numProduit2) values (?, ?)';
+			$this->executerRequete($requete, array($numProduit, $numProduit2));
+		}
+
+		public function modifierCompatibilite($numProduit, $numProduit2, $nouvNumProduit2)
+		{
+			$requete = 'update compatibilite set numProduit2 = ? where numProduit = ? and numProduit2 = ?';
+			$this->executerRequete($requete, array($nouvNumProduit2, $numProduit, $numProduit2));
+		}
+
+		public function supprimerCompatibilite($numProduit, $numProduit2)
+		{
+			$requete = 'delete from compatibilite where numProduit = ? and numProduit2 = ?';
 			$this->executerRequete($requete, array($numProduit, $numProduit2));
 		}
 
