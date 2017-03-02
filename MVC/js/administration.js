@@ -95,6 +95,8 @@ $(function()
 
 							$('#produit' + num).remove();
 						});
+
+						$('#lastNumProduitModif').val(index);
 					});
 				});
 			}
@@ -159,6 +161,8 @@ $(function()
 		{
 			nbProduits = parseInt($('#produits' + bouton + ' select:last').attr('id').substr(11)) + 1;
 		}
+
+		$('#lastNumProduit' + bouton).val(nbProduits);
 
 		$.post("/get-produits-admin",
 		{

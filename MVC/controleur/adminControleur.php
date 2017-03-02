@@ -50,10 +50,19 @@
 					$produitMenuQte = array();
 
 					// On récupère les produits à ajouter dans le nouveau menu (si les tableaux sont vides c'est que l'on n'a pas ajouter un menu mais un produit seul)
-					for($i = 0; isset($_POST["produitMenu".$i]) and isset($_POST["produitMenuQte".$i]); $i++)
+					if(isset($_POST["lastNumProduit"]))
 					{
-						$produitMenu[$i] = $_POST["produitMenu".$i];
-						$produitMenuQte[$i] = $_POST["produitMenuQte".$i];
+						for($i = 0; $i <= $_POST["lastNumProduit"]; $i++)
+						{
+							if(isset($_POST["produitMenu".$i]) and isset($_POST["produitMenuQte".$i]))
+							{
+								$produitMenu[$i] = $_POST["produitMenu".$i];
+								$produitMenuQte[$i] = $_POST["produitMenuQte".$i];
+							}
+						}
+
+						$produitMenu = array_values($produitMenu);
+						$produitMenuQte = array_values($produitMenuQte);
 					}
 
 					switch($_GET["action"])

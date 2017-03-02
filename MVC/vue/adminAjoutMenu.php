@@ -53,6 +53,7 @@
 					</div>
 				</div>
 				<div class="row">
+					<input type="hidden" id="lastNumProduitAjout" name="lastNumProduit" value="0">
 					<div id="produitsAjout">
 
 					</div>
