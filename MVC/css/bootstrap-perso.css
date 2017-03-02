@@ -7,15 +7,26 @@
  vertical-align: top;
 }
 
+.panel-menu * {
+	color: #555;
+}
 .panel-menu > .panel-header {
 	background: white;
 }
+.panel-menu .menu-heading {
+	padding-bottom: 2vh;
+	padding-left: 2vw;
+	font-weight: bold;
+	margin-bottom: 1vh;
+}
+.panel-menu > .panel-header > .desc-frame {
+	margin: 1vh 2vw;
+	display: inline-block;
+}
 .panel-menu {
-	background: rgba(0,0,0,0);
-	border: 0px;
 }
 .panel-menu-product {
-
+	background-color: #DDD;
 }
 
 
