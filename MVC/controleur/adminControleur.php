@@ -136,7 +136,15 @@
 					$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
 					$typeProduit = $this->bdd->getTypeProduit($_POST["numProduitAdmin"]);
 
-					//$produit["typeProduit"] = ucfirst($typeProduit);
+					if($typeProduit == "menu")
+					{
+						$produitsCompatibles = $this->bdd->getProduitsCompatibles($_POST["numProduitAdmin"]);
+
+						foreach($produitsCompatibles as $keyProduit => $produitCompatible)
+						{
+							$produit["produits"][$keyProduit] = $this->bdd->getInformationsProduit($produitCompatible["numProduit2"]);
+						}
+					}
 
 					echo json_encode($produit);
 				}

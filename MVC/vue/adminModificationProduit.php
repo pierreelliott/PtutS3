@@ -12,8 +12,8 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="file-upload btn btn-primary">
-									<label for="imageModif" class="control-label">Parcourir...</label>
-									<input type="file" id="imageModif" name="image" class="upload">
+									<label for="imageProduitModif" class="control-label">Parcourir...</label>
+									<input type="file" id="imageProduitModif" name="image" class="upload">
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -25,8 +25,8 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="libelleModif" class="control-label">Libellé :</label>
-									<input type="text" id="libelleModif" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
+									<label for="libelleProduitModif" class="control-label">Libellé :</label>
+									<input type="text" id="libelleProduitModif" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -45,8 +45,8 @@
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="prixModif" class="control-label">Prix :</label>
-									<input type="number" id="prixModif" name="prix" min="1" step="0.01" class="form-control" required>
+									<label for="prixProduitModif" class="control-label">Prix :</label>
+									<input type="number" id="prixProduitModif" name="prix" min="1" step="0.01" class="form-control" required>
 								</div>
 							</div>
 						</div>
@@ -55,8 +55,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="descriptionModif" class="control-label">Description :</label>
-							<textarea type="textarea" name="description" id="descriptionModif" placeholder="Ecrivez une courte decription du produit" class="form-control vresize" required></textarea>
+							<label for="descriptionProduitModif" class="control-label">Description :</label>
+							<textarea type="textarea" name="description" id="descriptionProduitModif" placeholder="Ecrivez une courte decription du produit" class="form-control vresize" required></textarea>
 						</div>
 					</div>
 				</div>

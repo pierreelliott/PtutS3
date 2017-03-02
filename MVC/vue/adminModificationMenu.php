@@ -12,7 +12,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="file-upload btn btn-primary">
-									<label for="imageMenuAjout" class="control-label">Parcourir...</label>
+									<label for="imageMenuModif" class="control-label">Parcourir...</label>
 									<input type="file" id="imageMenuModif" name="image" class="upload">
 								</div>
 							</div>
@@ -25,19 +25,19 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="libelleMenuAjout" class="control-label">Libellé :</label>
+									<label for="libelleMenuModif" class="control-label">Libellé :</label>
 									<input type="text" id="libelleMenuModif" name="libelle" placeholder="Libellé" class="form-control" autofocus required>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="typeMenuAjout" class="control-label">Type de produit :</label>
+									<label for="typeMenuModif" class="control-label">Type de produit :</label>
 									<input type="text" id="typeMenuModif" name="typeProduit" class="form-control" required>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="prixMenuAjout" class="control-label">Prix :</label>
+									<label for="prixMenuModif" class="control-label">Prix :</label>
 									<input type="number" id="prixMenuModif" name="prix" min="1" step="0.01" value="0" class="form-control" required>
 								</div>
 							</div>
@@ -47,13 +47,13 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="form-group">
-							<label for="descriptionMenuAjout" class="control-label">Description :</label>
+							<label for="descriptionMenuModif" class="control-label">Description :</label>
 							<textarea type="textarea" name="description" id="descriptionMenuModif" placeholder="Ecrivez une courte decription du menu" class="form-control vresize" required></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="produits">
+					<div id="produitsModif">
 
 					</div>
 					<div class="col-lg-1">

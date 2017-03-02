@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="produits">
+					<div id="produitsAjout">
 
 					</div>
 					<div class="col-lg-1">

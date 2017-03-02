@@ -132,22 +132,14 @@
             //Tableau contenant le type produit en 2 chaines
             $partie = explode(".", $resultat["typeProduit"]);
 
-            //Si le tableau est vide ou le delimiter n'a pas été trouvé
-            if(empty($partie) || $partie == false)
+            //On regarde si le premier segement est un menu
+            if(strcmp($partie[0], "menu") == 0)
             {
-                return "produit";
+                return "menu";
             }
             else
-            {
-                //On regarde si le premier segement est un menu
-                if(strcmp($partie[0], "menu") == 0)
-                {
-                    return "menu";
-                }
-                else
-				{
-                    return $partie[0];
-                }
+			{
+                return $partie[0];
             }
 
 			//Return : une chaine (à repréciser si jamais)
