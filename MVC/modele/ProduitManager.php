@@ -111,13 +111,10 @@
 			if(!empty($produitsMenu) and !empty($produitsMenuQte))
 			{
 				$produitsCompatibles = $this->getProduitsCompatibles($numProduit);
-				print_r($produitsCompatibles);
-				print_r($produitsMenu);
 
 				$i = 0;
 				while(true)
 				{
-					echo "i = ".$i."<br>";
 					// S'il reste des produits
 					if($i < count($produitsMenu))
 					{
@@ -151,6 +148,7 @@
 							break;
 						}
 					}
+					
 					$i++;
 				}
 			}
