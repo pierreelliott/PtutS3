@@ -15,4 +15,4 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	<link href="css/bootstrap-perso.css" rel="stylesheet">
+	<link href="css/bootstrap-perso.css?v=<?php echo filemtime('css/style.css'); ?>" rel="stylesheet">

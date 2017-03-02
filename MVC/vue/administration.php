@@ -68,11 +68,11 @@
 							<div class="menu">
 								<div class="panel panel-default">
 									<div class="panel-heading text-right">
-										<!-- Bouton modifier produit -->
+										<!-- Bouton modifier menu -->
 										<span data-toggle="tooltip" data-placement="top" title="Modifier menu">
 											<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminMenuModif" data-num-menu="<?php echo $menu["numProduit"]; ?>"></button>
 										</span>
-										<!-- Bouton supprimer produit -->
+										<!-- Bouton supprimer menu -->
 										<span data-toggle="tooltip" data-placement="top" title="Supprimer menu">
 											<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminMenuSuppr" data-num-menu="<?php echo $menu["numProduit"]; ?>"></button>
 										</span>
@@ -117,31 +117,43 @@
 		</div>
 	</div>
 
-  <!-- Début fenête modales -->
-  <div class="modal fade" id="adminProduitAjout">
-    <div class="modal-dialog">
-      <?php include("vue/adminAjoutProduit.php"); ?>
-    </div>
-  </div>
+  	<!-- Début fenête modales -->
+  	<div class="modal fade" id="adminProduitAjout">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminAjoutProduit.php"); ?>
+	    </div>
+  	</div>
 
-  <div class="modal fade" id="adminMenuAjout">
-    <div class="modal-dialog">
-      <?php include("vue/adminAjoutMenu.php"); ?>
-    </div>
-  </div>
+  	<div class="modal fade" id="adminMenuAjout">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminAjoutMenu.php"); ?>
+	    </div>
+  	</div>
 
-  <div class="modal fade" id="adminProduitModif">
-    <div class="modal-dialog">
-      <?php include("vue/adminModificationProduit.php"); ?>
-    </div>
-  </div>
+  	<div class="modal fade" id="adminProduitModif">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminModificationProduit.php"); ?>
+	    </div>
+  	</div>
 
-  <div class="modal fade" id="adminProduitSuppr">
-    <div class="modal-dialog">
-      <?php include("vue/adminSuppressionProduit.php"); ?>
-    </div>
-  </div>
-  <!-- Fin fenêtres modales -->
+  	<div class="modal fade" id="adminMenuModif">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminModificationMenu.php"); ?>
+	    </div>
+  	</div>
+
+  	<div class="modal fade" id="adminProduitSuppr">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminSuppressionProduit.php"); ?>
+	    </div>
+  	</div>
+
+	<div class="modal fade" id="adminMenuSuppr">
+	    <div class="modal-dialog">
+	      	<?php //include("vue/adminSuppressionMenu.php"); ?>
+	    </div>
+  	</div>
+  	<!-- Fin fenêtres modales -->
 
 <!-- ======== Fin Code HTML ======== -->
 <?php
