@@ -108,22 +108,23 @@
 											where numProduit = ?',
                                             array($libelle, $description , $typeProduit, $prix, $numProduit));
 
-			print_r($produitsMenu);
 			if(!empty($produitsMenu) and !empty($produitsMenuQte))
 			{
 				$produitsCompatibles = $this->getProduitsCompatibles($numProduit);
 				print_r($produitsCompatibles);
+				print_r($produitsMenu);
 
 				$i = 0;
 				while(true)
 				{
+					echo "i = ".$i."<br>";
 					// S'il reste des produits
 					if($i < count($produitsMenu))
 					{
 						// Si on doit encore modifier des valeurs
 						if(isset($produitsCompatibles[$i]))
 						{
-							$this->modifierCompatibilite($produitsMenu[$i], $numProduit, $produitsCompatibles[$i]["numProduit2"]);
+							$this->modifierCompatibilite($numProduit, $produitsCompatibles[$i]["numProduit2"], $produitsMenu[$i]);
 						}
 						else
 						{
