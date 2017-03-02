@@ -185,6 +185,7 @@
 			// Return array des numProduit compatibles
 		}
 
+
 		/* ============= Fonctions sur la carte des produits ============= */
 
 		public function recupererCarte($tailleImage=null)
