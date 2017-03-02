@@ -21,7 +21,7 @@
             return $resultat;
         }
 
-        private static function getBdd()
+        protected static function getBdd()
         {
             if(self::$bdd == null)
             {

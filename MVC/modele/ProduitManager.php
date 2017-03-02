@@ -24,19 +24,8 @@
 		# Normalement, le principal devrait fonctionner (à voir !)
 		public function ajouterProduit($libelle, $description, $typeProduit, $prix, $sourcePetit, $sourceMoyen, $sourceGrand, $produitsMenu = array(), $produitsMenuQte = array())
 		{
-			/*$resultat = $this->executerRequete('insert into image values(?, ?, ?)', array($sourcePetit, $sourceMoyen, $sourceGrand));
-			$image = $this->executerRequete('select numImage from image where sourcePetit')*/
-			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-			/* !!!!! Comment ajouter les images pour un produit (contraintes clefs étrangères) ? !!!!! */
-			/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-			/* ===== J'ai une idée ===== */
-			// À voir, parce que c'est très moche...
-			$imagefactice = array($libelle."allo1",$libelle."allo2",$libelle."allo3");
-			$image = $this->executerRequete('insert into image (sourcePetit, sourceMoyen, sourceGrand) values (?,?,?)', $imagefactice);
-			$image = $this->executerRequete('select numImage from image where sourcePetit = ? and sourceMoyen = ? and sourceGrand = ?', $imagefactice);
-			$numImage = $image->fetch(PDO::FETCH_ASSOC)["numImage"];
-
+			$image = $this->executerRequete('insert into image (sourcePetit, sourceMoyen, sourceGrand) values (?,?,?)', array($sourcePetit, $sourceMoyen, $sourceGrand));
+			$numImage = Model::getBdd()->lastInsertId();
 
 			//Si le produit est gratuit (Contrainte)
 			if($prix == null)
@@ -148,7 +137,7 @@
 							break;
 						}
 					}
-					
+
 					$i++;
 				}
 			}
