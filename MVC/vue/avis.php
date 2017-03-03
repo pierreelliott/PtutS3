@@ -69,7 +69,7 @@
 								<img src="images/user.png" alt="Avatar" class="media-object" style="width:80px">
 							</div>
 							<div class="media-body">
-									<p class="text-dark text-left">Note : </p>
+									<p class="text-left">
                                         <?php
                                         for($i = 0; $i < $avis['note']/2; $i++)
                                         {
@@ -78,7 +78,7 @@
                                         for (; $i < 5 ; $i++) {
                                             echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
                                         }
-                                         ?>
+                                         ?></p>
 									<p class="text-dark text-left">Commentaire: <?php echo $avis['avis']; ?></p>
 
 							</div>

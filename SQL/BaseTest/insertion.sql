@@ -19,7 +19,6 @@ values
 
 /* Table Vote (numuser_avis,numuser,vote(1>like,0>dislike/ mysql>boolean=tinyint)) */
 insert into vote(NumAvis, NumUser, Vote)  values
-(2,4, false),
 (3,4, true),
 (3,2,true),
 (4,2,false),
