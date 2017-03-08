@@ -42,3 +42,13 @@ $(function()
 		modal.find('#prixProduit').text('Prix : ' + prix + '€');
 	});
 });
+
+
+function hoverFavori(icon) {
+	//console.log(icon.className);
+	icon.className = icon.className.replace("glyphicon-star-empty","glyphicon-star");
+	//console.log(icon.className);
+}
+function outFavori(icon) {
+	icon.className = icon.className.replace("glyphicon-star","glyphicon-star-empty");
+}

@@ -35,6 +35,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="/utilisateur">Mon compte</a></li>
 							<li><a href="/panier">Consulter panier</a></li>
+							<li><a href="/produits-favoris">Produits favoris</a></li>
 							<li><a href="/historique-commandes">Historique Commandes</a></li>
 							<?php
 							//Si l'utilisateur est administrateur

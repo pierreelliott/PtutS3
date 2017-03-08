@@ -10,6 +10,11 @@
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>
 
+	<!-- Produits favoris -->
+	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>
+	<route url="/produits-favoris-ajout-([0-9]+)" controleur="produitFavoris" methode="ajouterProduitFavoris"/>
+	<route url="/produits-favoris-suppression-([0-9]+)" controleur="produitFavoris" methode="deleteProduitFavoris"/>
+
 	<!-- AVIS !-->
 	<route url="/avis" controleur="avis" methode="afficherAvis" />
 	<route url="/add-avis" controleur="avis" methode="addAvis" />

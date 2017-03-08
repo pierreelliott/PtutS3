@@ -28,12 +28,23 @@
 	color: #555;
 }
 .panel-product .media-object {
-/*	width: 100%;*/
+	width: 80%;
 }
 .panel-product hr {
 	border-color: #555;
 }
 
+.favori {
+	background-color: white;
+	border: 1px solid;
+	border-radius: 5em;
+	font-size: larger;
+	position: relative;
+	top: -1vh;
+}
+.favori:hover {
+	background-color: yellow;
+}
 /* ##################### */
 .invisible-separator {
 	border-width: 0px;

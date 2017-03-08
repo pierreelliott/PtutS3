@@ -14,8 +14,18 @@
         //Affiche les produits favoris sans tester la connexion
         public function afficherProduitFavoris()
         {
-            //Contient tous les produits favoris avec tous les détails
-            $produitsFav = $this->um->getProduitsFavoris($_SESSION["utilisateur"]["pseudo"]);
+			if(isset($_SESSION["utilisateur"]["pseudo"])) {
+	            //Contient tous les produits favoris avec tous les détails
+	            $produitsFav = $this->um->getProduitsFavoris($_SESSION["utilisateur"]["pseudo"]);
+
+				// Booléen pour savoir si $produitsFav est vide
+				$estVide = true;
+
+				include_once("vue/produitsFavoris.php");
+			}
+			else {
+				include_once("vue/404.php");
+			}
         }
 
         public function deleteProduitFavoris($NumProduit)
