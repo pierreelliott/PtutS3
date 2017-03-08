@@ -60,9 +60,6 @@
 								$produitMenuQte[$i] = $_POST["produitMenuQte".$i];
 							}
 						}
-
-						$produitMenu = array_values($produitMenu);
-						$produitMenuQte = array_values($produitMenuQte);
 					}
 
 					switch($_GET["action"])

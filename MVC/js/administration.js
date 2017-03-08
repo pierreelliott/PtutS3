@@ -81,12 +81,18 @@ $(function()
 							'</div>'
 						);
 
+						var blackListProduit = Array.from(produit.produits, x => x.numProduit);
+						blackListProduit.splice(index, 1);
+
 						// Ajout des produits dans des balises options
 						listeProduits.forEach(function(listeProd)
 						{
-							var select = $('#produitMenu' + index);
-							select.append('<option value="' + listeProd.numProduit + '">' + listeProd.numProduit + '-' + listeProd.libelle + '</option>');
-							select.val(prod.numProduit);
+							if(!blackListProduit.includes(listeProd.numProduit))
+							{
+								var select = $('#produitMenu' + index);
+								select.append('<option value="' + listeProd.numProduit + '">' + listeProd.numProduit + '-' + listeProd.libelle + '</option>');
+								select.val(prod.numProduit);
+							}
 						});
 
 						$('#supprProduitMenu' + index).click(function(e)

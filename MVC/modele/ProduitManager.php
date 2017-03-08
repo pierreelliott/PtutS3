@@ -97,6 +97,7 @@
 											where numProduit = ?',
                                             array($libelle, $description , $typeProduit, $prix, $numProduit));
 
+			// Si c'est un menu
 			if(!empty($produitsMenu) and !empty($produitsMenuQte))
 			{
 				$produitsCompatibles = $this->getProduitsCompatibles($numProduit);
@@ -104,38 +105,37 @@
 				$i = 0;
 				while(true)
 				{
-					// S'il reste des produits
-					if($i < count($produitsMenu))
+					// Si on doit encore modifier des valeurs
+					if(isset($produitsCompatibles[$i]) && isset($produitsMenu[$i]))
 					{
-						// Si on doit encore modifier des valeurs
-						if(isset($produitsCompatibles[$i]))
+						// Si la paire ($numProduit, $produitsMenu[$i]) existe dans la base on échange dans $produitsMenu avec le produit suivant (pour éviter les contraintes d'unicité)
+						if($produitsCompatibles[$i]['numProduit2'] != $produitsMenu[$i])
 						{
+							$compatibilite = $this->executerRequete('select numProduit, numProduit2 from compatibilite where numProduit = ? and numProduit2 = ?', array($numProduit, $produitsMenu[$i]))->fetch(PDO::FETCH_ASSOC);
+							if(!empty($compatibilite))
+							{
+								$tmp = $produitsMenu[$i];
+								$produitsMenu[$i] = $produitsMenu[$i + 1];
+								$produitsMenu[$i + 1] = $tmp;
+							}
+
 							$this->modifierCompatibilite($numProduit, $produitsCompatibles[$i]["numProduit2"], $produitsMenu[$i]);
 						}
-						else
-						{
-							// Si on a ajouté des produts au menu
-							if(isset($produitsMenu[$i]))
-							{
-								$this->ajouterCompatibilite($numProduit, $produitsMenu[$i]);
-							}
-							else
-							{
-								break;
-							}
-						}
 					}
+					// Si on a supprimé des prosuits au menu
+					else if(isset($produitsCompatibles[$i]) && !isset($produitsMenu[$i]))
+					{
+						$this->supprimerCompatibilite($numProduit, $produitsCompatibles[$i]["numProduit2"]);
+					}
+					// Si on a ajouté des produits au menu
+					else if(!isset($produitsCompatibles[$i]) && isset($produitsMenu[$i]))
+					{
+						$this->ajouterCompatibilite($numProduit, $produitsMenu[$i]);
+					}
+					// Il n'y a plus de produits à modifier
 					else
 					{
-						// Si on a supprimé des prosuits au menu
-						if(isset($produitsCompatibles[$i]))
-						{
-							$this->supprimerCompatibilite($numProduit, $produitsCompatibles[$i]["numProduit2"]);
-						}
-						else
-						{
-							break;
-						}
+						break;
 					}
 
 					$i++;
@@ -156,6 +156,8 @@
 
 		public function modifierCompatibilite($numProduit, $numProduit2, $nouvNumProduit2)
 		{
+
+
 			$requete = 'update compatibilite set numProduit2 = ? where numProduit = ? and numProduit2 = ?';
 			$this->executerRequete($requete, array($nouvNumProduit2, $numProduit, $numProduit2));
 		}
