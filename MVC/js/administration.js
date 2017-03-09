@@ -155,10 +155,10 @@ $(function()
 				form.find('.desc-frame').text(produit.description);
 				form.find('.price-frame').text('Prix : ' + produit.prix + ' €');
 
+				form.find('.panel-body.row').empty();
+
 				produit.produits.forEach(function(prod)
 				{
-					console.log(prod);
-
 					form.find('.panel-body.row').append(
 					'<div class="col-md-4">' +
 						'<div class="panel panel-default panel-menu-product">' +
