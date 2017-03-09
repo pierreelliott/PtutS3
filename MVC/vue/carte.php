@@ -20,9 +20,7 @@
         <div class="tab-pane fade in active push" id="produits">
 			<hr class="invisible-separator"/>
 			<?php
-				$i = 0;
 				foreach($carte as $produit) {
-					if($i%3 == 0) echo '<div class="row">';
 			?>
 			<div class="col-lg-4 col-md-4 col-sm-4">
 				<div class="pull-left favori" onmouseover="hoverFavori()" onmouseout="outFavori()">
@@ -43,7 +41,7 @@
 						</a>
 						<div class="media-body">
 								<h2 class="media-heading text-center push-down"><?php echo $produit["libelle"]; ?></h2>
-								<div class="desc-frame"><p class="text-left"><?php echo $produit["description"]; ?></p></div>
+								<div class="desc-frame"><p class="text-left"><?php echo $produit["description"]; ?></div>
 							<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-success btn-block btnAjout">
 								<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 							</button>
@@ -52,34 +50,32 @@
 					</div>
 				</div>
 			</div>
-			<?php
-				$i+=1;
-				if($i%3 == 0) echo '</div>';
-				}
-			?>
-          <div class="modal fade" id="produitModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                  <h4 class="modal-title">Produit</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <img src="images/sushi.png" alt="Image du produit" id="imgModal" class="img-responsive">
-                    </div>
-                    <div class="col-xs-8">
-                      <p id="descriptionProduit"></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <p id="prixProduit" class="text-center"></p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+			<?php } ?>
+
+          	<div class="modal fade" id="produitModal">
+	            <div class="modal-dialog">
+	              	<div class="modal-content">
+		                <div class="modal-header">
+		                  	<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+		                  	<h4 class="modal-title">Produit</h4>
+		                </div>
+		                <div class="modal-body">
+		                  	<div class="row">
+			                    <div class="col-xs-4">
+			                      	<img src="images/sushi.png" alt="Image du produit" id="imgModal" class="img-responsive">
+			                    </div>
+			                    <div class="col-xs-8">
+			                      	<p id="descriptionProduit"></p>
+			                    </div>
+		                  	</div>
+		                </div>
+		                <div class="modal-footer">
+		                  	<p id="prixProduit" class="text-center"></p>
+		                </div>
+	              	</div>
+	            </div>
+          	</div>
         </div>
 		<!-- Affichage des menus -->
         <div class="tab-pane fade" id="menus">
