@@ -64,12 +64,8 @@
 			$produit = $this->getInformationsProduit($numProduit);
 			$prix = floatval((-1)*floatval($produit["prix"]));
 
-			$requete = "update produit set prix = :prix where numProduit = :numProduit";
-			$params = array(
-					'prix' => $prix,
-					'numProduit' => $numProduit
-					);
-			$resultat = $this->executerRequete($requete, $params);
+			$requete = "update produit set prix = ? where numProduit = ?";
+			$resultat = $this->executerRequete($requete, array($prix, $numProduit));
 			//$resultat = $resultat->fetchAll(PDO::FETCH_ASSOC);
 			//print_r($resultat);
 
