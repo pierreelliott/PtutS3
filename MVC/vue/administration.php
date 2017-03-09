@@ -149,8 +149,8 @@
   	</div>
 
 	<div class="modal fade" id="adminMenuSuppr">
-	    <div class="modal-dialog">
-	      	<?php //include("vue/adminSuppressionMenu.php"); ?>
+	    <div class="modal-dialog modal-lg">
+	      	<?php include("vue/adminSuppressionMenu.php"); ?>
 	    </div>
   	</div>
   	<!-- Fin fenêtres modales -->

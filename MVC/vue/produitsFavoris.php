@@ -13,9 +13,9 @@
 	<div class="col-lg-offset-2 col-lg-8 site-wrapper">
 		<!-- Si l'utilisateur n'a pas de produits favoris -->
 			<?php
-				if(estVide) {
+				if($estVide) {
 			?>
-			
+
 		<!-- Affichage des produits seuls -->
 			<?php
 			} else {
@@ -50,6 +50,7 @@
 				$i+=1;
 				if($i%3 == 0) echo '</div>';
 				}
+			}
 			?>
 	</div>
 </div>

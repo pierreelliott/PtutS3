@@ -7,21 +7,21 @@
 		<form method="post" action="/administration-suppression" id="supprProduit" accept-charset="utf-8">
 			<fieldset>
 				<input type="hidden" id="numProduitSuppr" name="numProduit" value="">
-				<input type="hidden" id="libelleSuppr" name="libelle">
+				<input type="hidden" id="libelleProduitSuppr" name="libelle">
 				<input type="hidden" id="typeProduitSuppr" name="typeProduit">
-				<input type="hidden" id="prixSuppr" name="prix">
-				<input type="hidden" id="descriptionSuppr" name="description">
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<th>Libellé</th>
-							<th>Description</th>
-							<th>Image</th>
-							<th>Prix</th>
-							<th>Type de produit</th>
-						</tr>
-					</tbody>
-				</table>
+				<input type="hidden" id="prixProduitSuppr" name="prix">
+				<input type="hidden" id="descriptionProduitSuppr" name="description">
+
+				<div class="media img-produit">
+					<div class="media-top">
+						<img src="" alt="" class="media-object img-thumbnail center-block">
+					</div>
+					<div class="media-body">
+						<h2 class="media-heading text-center push-down"></h2>
+						<div class="desc-frame"><p class="text-left"></p></div>
+						<p class="price-frame"></p>
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	</div>

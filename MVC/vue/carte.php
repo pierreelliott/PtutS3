@@ -40,8 +40,8 @@
 							</div>
 						</a>
 						<div class="media-body">
-								<h2 class="media-heading text-center push-down"><?php echo $produit["libelle"]; ?></h2>
-								<div class="desc-frame"><p class="text-left"><?php echo $produit["description"]; ?></div>
+							<h2 class="media-heading text-center push-down"><?php echo $produit["libelle"]; ?></h2>
+							<div class="desc-frame"><p class="text-left"><?php echo $produit["description"]; ?></p></div>
 							<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-success btn-block btnAjout">
 								<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 							</button>
@@ -95,16 +95,14 @@
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4">
 								<p class="text-center">Prix : <?php echo $menu["prix"]; ?> €</p>
-								<button type="button" data-action="ajout" data-produit="1<?php echo $menu["numProduit"]; ?>" class="btn btn-block btn-success btnAjout">
+								<button type="button" data-action="ajout" data-produit="<?php echo $menu["numProduit"]; ?>" class="btn btn-block btn-success btnAjout">
 									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 								</button>
 							</div>
 						</div>
 					</div>
-					<div class="panel-body">
-						<div class="row">
+					<div class="panel-body row">
 						<?php
-						$i = 0;
 						foreach($menu["produits"] as $produit)
 						{
 						?>
@@ -123,7 +121,6 @@
 						<?php
 						}
 						?>
-						</div>
 					</div>
 				</div>
 			<?php

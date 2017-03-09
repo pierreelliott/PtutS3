@@ -125,16 +125,6 @@ $(function()
 	{
 		var numProduit = $(this).data('num-produit');
 
-		$('tbody').html(
-			'<tr>' +
-			'<th>Libellé</th>' +
-			'<th>Description</th>' +
-			'<th>Image</th>' +
-			'<th>Prix</th>' +
-			'<th>Type de produit</th>' +
-			'</tr>'
-		);
-
 		$.post("/get-produit-admin",
 		{
 			numProduitAdmin: numProduit,
@@ -144,16 +134,44 @@ $(function()
 		{
 			var produit = JSON.parse(data);
 
-			$('#numProduitSuppr').val(produit.numProduit);
-			$('tbody').append(
-				'<tr>\n' +
-				'\t<td>' + produit.libelle + '</td>' +
-				'\t<td>' + produit.description + '</td>' +
-				'\t<td><img src="' + produit.sourceMoyen + '" alt="image" class="img-responsive"></td>' +
-				'\t<td>' + produit.prix + '</td>' +
-				'\t<td>' + produit.typeProduit + '</td>' +
-				'</tr>'
-			);
+			// Si c'est un produit
+			if(produit.typeProduit.split('.')[0] !== 'Menu')
+			{
+				$('#numProduitSuppr').val(produit.numProduit);
+
+				var form = $('#supprProduit');
+				form.find('img').attr('src', produit.sourceMoyen);
+				form.find('img').attr('alt', 'Image ' + produit.libelle);
+				form.find('.media-heading').text(produit.libelle);
+				form.find('.desc-frame p').text(produit.description);
+				form.find('.price-frame').text('Prix : ' + produit.prix + ' €');
+			}
+			else
+			{
+				$('#numMenuSuppr').val(produit.numProduit);
+
+				var form = $('#supprMenu');
+				form.find('.menu-heading').text('Menu "' + produit.libelle + '"');
+				form.find('.desc-frame').text(produit.description);
+				form.find('.price-frame').text('Prix : ' + produit.prix + ' €');
+
+				produit.produits.forEach(function(prod)
+				{
+					console.log(prod);
+
+					form.find('.panel-body.row').append(
+					'<div class="col-md-4">' +
+						'<div class="panel panel-default panel-menu-product">' +
+							'<div class="panel-heading">' +
+								'<p class="text-muted">' + prod.libelle + '</p>' +
+							'</div>' +
+							'<div class="panel-body">' +
+								'<img src="' + prod.sourceMoyen + '" alt="Image ' + prod.libelle + '" class="img-responsive" style="width:80px">' +
+							'</div>' +
+						'</div>' +
+					'</div>');
+				});
+			}
 		});
   	});
 
