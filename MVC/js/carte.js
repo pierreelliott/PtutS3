@@ -41,14 +41,11 @@ $(function()
 		modal.find('#descriptionProduit').text(description);
 		modal.find('#prixProduit').text('Prix : ' + prix + '€');
 	});
+
+	$('.favori').hover(hoverFavori, hoverFavori);
+
+	function hoverFavori()
+	{
+		$(this).find('span').toggleClass('glyphicon-star-empty glyphicon-star');
+	}
 });
-
-
-function hoverFavori(icon) {
-	//console.log(icon.className);
-	icon.className = icon.className.replace("glyphicon-star-empty","glyphicon-star");
-	//console.log(icon.className);
-}
-function outFavori(icon) {
-	icon.className = icon.className.replace("glyphicon-star","glyphicon-star-empty");
-}
