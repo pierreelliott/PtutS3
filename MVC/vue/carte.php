@@ -41,7 +41,7 @@
 						</a>
 						<div class="media-body">
 							<h2 class="media-heading text-center push-down"><?php echo $produit["libelle"]; ?></h2>
-							<div class="desc-frame"><p class="text-left"><?php echo $produit["description"]; ?></p></div>
+							<div class="desc-frame"><p class="text-left"><?php echo mb_strimwidth($produit["description"], 0, 25, "..."); ?></p></div>
 							<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-success btn-block btnAjout">
 								<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
 							</button>
