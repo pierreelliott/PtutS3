@@ -3,7 +3,7 @@
   'use strict';
 
   //note de l'utilisateur
-  var maNote = document.querySelector('#test');
+  var maNote = document.querySelector('#etoiles');
 
   //Note actuelle de l'utilisateur
   var valNote = document.getElementById("valNow").getAttribute('value');
@@ -48,6 +48,10 @@
     var ajoutNote = function(rating)
     {
         // Faire fonction pour ajouter l'avis dans la BD
+        var input = document.getElementById("noteInput");
+
+
+        input.value = rating*2;
 
 
     };

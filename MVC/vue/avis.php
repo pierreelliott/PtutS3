@@ -41,11 +41,17 @@
 
                                         <label for="note" class="control-label">Note :</label>
 
-                                        <div id="test">
+                                        <div id="etoiles">
 
 
                                         </div>
-                                        <input  id="valNow" type="hidden" name="note" class="text-muted" value="<?php echo $userAvis['note'];?>">
+
+                                        <input type="hidden" name="note" id="noteInput" value="0">
+
+
+
+                                        </div>
+                                        <input  id="valNow" type="hidden" name="noteNow" class="text-muted" value="<?php echo $userAvis['note'];?>">
 									</div>
 								</div>
 								<div class="col-lg-4">
