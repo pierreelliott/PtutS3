@@ -46,11 +46,11 @@
                                 'numuser' =>  $avisBD['numUser'],
                                 'pouceBleu' =>  $this->avis->getVotePositif($avisBD['numUser']),
                                 'pouceRouge' => $this->avis->getVoteNegatif($avisBD['numUser']),
-                                'pseudo' => $this->user->getPseudo($avisBD['numUser']));
+                                'pseudo' => $this->user->getPseudo($avisBD['numUser']),
+                                'estCommente' => isset($avisBD['avis']) == true );
                 //Ajout d'un tableau en 2 dimensions avec toutes les donnees
                 $tousAvis[$avisBD['numUser']] = $avis;
             }
-
             include_once("vue/avis.php");
         }
 
@@ -62,6 +62,9 @@
             {
                 //On recupere le pseudo
                 $pseudo = $_SESSION["utilisateur"]["pseudo"];
+
+                //On enleve les espace inutiles du commentaire ou on le mets à null
+                $commentaire = $this->avis->convertChaine($_POST['commentaire'], 0);
 
                 //Si l'utilisateur a un avis
                 if($this->avis->getAvis($pseudo) != false)

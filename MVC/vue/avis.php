@@ -80,7 +80,7 @@
 								</div>
 								<div class="media-body">
 									<p class="text-left text-primary italic"><?php echo $avis['pseudo']; ?></p>
-									<p class="text-left text-muted small italic"> - Posté le <?php echo "$avis['date']"; ?></p>
+									<p class="text-left text-muted small italic"> - Posté le <?php echo $avis['date']; ?></p>
 								</div>
 							</div>
 							<hr class="invisible-separator"/>
@@ -95,7 +95,7 @@
 										echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
 									}
 									 ?></p>
-								<?php if(true) { // Si il y a un commentaire
+								<?php if($avis["estCommente"] == 1) { // Si il y a un commentaire
 								 ?>
 								<p class="text-dark text-left">Commentaire: <?php echo $avis['avis']; ?></p>
 								<?php } ?>

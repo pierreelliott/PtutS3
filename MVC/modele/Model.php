@@ -53,6 +53,10 @@
                 {
                     return null;
                 }
+                //Si il y a un texte on supprime les espaces inutiles
+                else {
+                    $chaine = trim($chaine);
+                }
             }
             //Mode 1 supprime les espace en fin et debut de chaine
             else if ($mode == 1)
