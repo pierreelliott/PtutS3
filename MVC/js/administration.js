@@ -1,8 +1,22 @@
-$('[data-toggle="popover"]').popover();
-
 $(function()
 {
-	$('[data-toggle="tooltip"]').tooltip()
+	$('[data-toggle="popover"]').popover();
+	$('[data-toggle="tooltip"]').tooltip();
+
+	// Liste des produits de la base de données
+	var listeProduits = [];
+
+	// Ensemble des produits à mettre dans un menu
+	var produitsMenu = [];
+
+	$.post("/get-produits-admin",
+	{
+		isAjax: true
+	},
+	function(data, status)
+	{
+		listeProduits = JSON.parse(data);
+	});
 
 	// Lorsqu'on choisi une image dans l'input file
 	$('#imageProduitAjout, #imageMenuAjout, #imageProduitModif, #imageMenuModif').change(function (e1)
@@ -22,6 +36,7 @@ $(function()
 	{
 		$(this).find('input, textarea').val('');
 		$('.apercuImage').attr('src', '');
+		produitsMenu = [];
 		$('#produitsAjout, #produitsModif').empty();
 	});
 
@@ -40,8 +55,18 @@ $(function()
 		{
 			var produit = JSON.parse(data);
 
+			// Si c'est un produit
+			if(produit.typeProduit.split('.')[0] !== 'Menu')
+			{
+				$('#numProduitModif').val(produit.numProduit);
+				$('.apercuImage').attr('src', produit.sourceMoyen);
+				$('#libelleProduitModif').val(produit.libelle);
+				$('#typeProduitModif').val(produit.typeProduit);
+				$('#prixProduitModif').val(produit.prix);
+				$('#descriptionProduitModif').val(produit.description);
+			}
 			// Si le produit est un menu
-			if(produit.typeProduit.split('.')[0] === 'Menu')
+			else
 			{
 				$('#numMenuModif').val(produit.numProduit);
 				$('.apercuImage').attr('src', produit.sourceMoyen);
@@ -50,71 +75,78 @@ $(function()
 				$('#prixMenuModif').val(produit.prix);
 				$('#descriptionMenuModif').val(produit.description);
 
-				// On récupère la liste des produits
-				$.post("/get-produits-admin",
+				// Pour chaque produit du menu (un produit = un select + input Qte + bouton suppression)
+				produit.produits.forEach(function(prod, index)
 				{
-					isAjax: true
-				},
-				function(data, status)
-				{
-					var listeProduits = JSON.parse(data);
+					// On ajoute le div contenant le select, l'input Qte et le bouton de suppression et on le stocke dans un tableau
+					produitsMenu[index] = $(
+						'<div class="col-lg-12">' +
+							'<div class="col-lg-8">' +
+								'<div class="form-group">' +
+									'<select name="produitMenu' + index + '" class="form-control" required>' +
+										// On ajoutera ici tous les produits dans des balises <option>
+									'</select>' +
+								'</div>' +
+							'</div>' +
+							'<div class="col-lg-2">' +
+								'<div class="form-group">' +
+									'<input type="number" name="produitMenuQte' + index + '" min="1" value="1" class="form-control" required>' +
+								'</div>' +
+							'</div>' +
+							'<div class="col-lg-2">' +
+								'<button type="button" class="glyphicon glyphicon-remove btn btn-danger"></button>' +
+							'</div>' +
+						'</div>'
+					).appendTo('#produitsModif');
 
-					produit.produits.forEach(function(prod, index)
+					// Liste des produits à ne pas afficher dans le select
+					var blackListProduit = Array.from(produit.produits, x => x.numProduit);
+					blackListProduit.splice(index, 1);
+
+					// Ajout des produits dans des balises options
+					listeProduits.forEach(function(listeProd)
 					{
-						$('#produitsModif').append(
-							'<div id="produit' + index + '" class="col-lg-12">' +
-								'<div class="col-lg-8">' +
-									'<div class="form-group">' +
-										'<select id="produitMenu' + index + '" name="produitMenu' + index + '" class="form-control" required>' +
-											// On ajoutera ici tous les produits dans des balises options
-										'</select>' +
-									'</div>' +
-								'</div>' +
-								'<div class="col-lg-2">' +
-									'<div class="form-group">' +
-										'<input type="number" id="produitMenuQte' + index + '" name="produitMenuQte' + index + '" min="1" value="1" class="form-control" required>' +
-									'</div>' +
-								'</div>' +
-								'<div class="col-lg-2">' +
-									'<button type="button" id="supprProduitMenu' + index + '" class="glyphicon glyphicon-remove btn btn-danger"></button>' +
-								'</div>' +
-							'</div>'
-						);
-
-						var blackListProduit = Array.from(produit.produits, x => x.numProduit);
-						blackListProduit.splice(index, 1);
-
-						// Ajout des produits dans des balises options
-						listeProduits.forEach(function(listeProd)
+						// Si le produit est dans la blacklist on ne l'ajoute pas
+						if(!blackListProduit.includes(listeProd.numProduit))
 						{
-							if(!blackListProduit.includes(listeProd.numProduit))
+							var select = produitsMenu[index].find('select');
+							select.append('<option value="' + listeProd.numProduit + '">' + listeProd.numProduit + '-' + listeProd.libelle + '</option>');
+							select.val(prod.numProduit);
+						}
+					});
+
+					var oldValue = produitsMenu[index].find('select').val();
+					var oldLibelle = produitsMenu[index].find('select option[value="' + oldValue + '"]').text().split('-')[1];
+
+					produitsMenu[index].find('select').change(function(e)
+					{
+						var thisSelect = $(this);
+
+						console.log(oldLibelle);
+
+						produitsMenu.forEach(function(div, index)
+						{
+							//console.log(div.find('select').val());
+							//console.log(thisSelect.val());
+
+							// Si le select actuel correspond au select impliqué dans l'événement 'change'
+							if(index !== thisSelect.index())
 							{
-								var select = $('#produitMenu' + index);
-								select.append('<option value="' + listeProd.numProduit + '">' + listeProd.numProduit + '-' + listeProd.libelle + '</option>');
-								select.val(prod.numProduit);
+								div.find('select option[value="' + thisSelect.val() + '"]').remove();
+								div.find('select').append('<option value="' + oldValue + '">' + oldValue + '-' + oldLibelle + '</option>');
 							}
 						});
-
-						$('#supprProduitMenu' + index).click(function(e)
-						{
-							var num = $(this).attr('id').substr(16);
-
-							$('#produit' + num).remove();
-						});
-
-						$('#lastNumProduitModif').val(index);
 					});
+
+					$('#supprProduitMenu' + index).click(function(e)
+					{
+						var num = $(this).attr('id').substr(16);
+
+						$('#produit' + num).remove();
+					});
+
+					$('#lastNumProduitModif').val(index);
 				});
-			}
-			// Si c'est un produit
-			else
-			{
-				$('#numProduitModif').val(produit.numProduit);
-				$('.apercuImage').attr('src', produit.sourceMoyen);
-				$('#libelleProduitModif').val(produit.libelle);
-				$('#typeProduitModif').val(produit.typeProduit);
-				$('#prixProduitModif').val(produit.prix);
-				$('#descriptionProduitModif').val(produit.description);
 			}
 		});
 	});
