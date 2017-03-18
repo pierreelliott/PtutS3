@@ -28,8 +28,29 @@
 			}
         }
 
+        //Supprime un produit favoris a l'utilisateur
         public function deleteProduitFavoris($NumProduit)
         {
-            $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+            //Teste si l'utilsateur est connecté
+            if(isset($_SESSION["utilisateur"]["pseudo"]))
+            {
+                $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+            }
+            else {
+                include_once("vue/404.php");
+            }
+        }
+
+        //Ajoute un produit favoris a l'utilisateur
+        public function addProduitFavoris($NumProduit)
+        {
+            //Teste si l'utilsateur est connecté
+            if(isset($_SESSION["utilisateur"]["pseudo"]))
+            {
+                $resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+            }
+            else {
+                include_once("vue/404.php");
+            }
         }
     }

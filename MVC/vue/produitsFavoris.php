@@ -1,5 +1,5 @@
 <?php
-    $title = "La carte";
+    $title = "Produits Favoris";
 
     ob_start();
 ?>
