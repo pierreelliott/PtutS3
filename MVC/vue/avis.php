@@ -80,7 +80,7 @@
 								</div>
 								<div class="media-body">
 									<p class="text-left text-primary italic"><?php echo $avis['pseudo']; ?></p>
-									<p class="text-left text-muted small italic"> - Posté le --/--/----</p>
+									<p class="text-left text-muted small italic"> - Posté le <?php echo "$avis['date']"; ?></p>
 								</div>
 							</div>
 							<hr class="invisible-separator"/>

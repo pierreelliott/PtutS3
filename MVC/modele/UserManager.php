@@ -139,10 +139,10 @@
         //Verifie que le produit est un produit favoris pour l'utilisateur
         public function estFavoris($pseudo, $numProduit)
         {
-            $requete = $this->executerRequete('select numProduit from preference where NumProduit = ?' array($NumProduit));
+            $requete = $this->executerRequete('select numProduit from preference where NumProduit = ?', array($NumProduit));
 
             $requete= $requete->fetch();
-            
+
             if($requete != false)
             {
                 return true;
