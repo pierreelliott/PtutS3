@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-8 col-xs-12">
 
-            <?php include("carousel.php"); ?>
+            <?php include("include/carousel.php"); ?>
 
 			<div class="row">
                 <div class="col-md-12">
