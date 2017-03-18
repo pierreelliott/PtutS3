@@ -11,6 +11,7 @@
             $this->um = new UserManager();
         }
 
+//=================================== Fonctions sur les avis =================================================================================
         //Ajouter un avis
         public function addAvis($commentaire, $pseudo, $note)
         {
@@ -95,16 +96,18 @@
                 //On recupere le numUser actuelle si il est connecté
                 $numUser = $this->um->getNumUser($_SESSION["utilisateur"]["pseudo"]);
 
-                $requete= $this->executerRequete('select avis, note, date, numUser from avis where numUser != ? order by '.$critere.' '.$ordre, array($numUser));
+                $requete= $this->executerRequete("select avis, note,  DATE_FORMAT(date, '%d/%m/%Y') date, numUser from avis where numUser != ? order by ".$critere." ".$ordre, array($numUser));
             }
             else {
-                $requete= $this->executerRequete('select avis, note, date, numUser from avis order by '.$critere.' '.$ordre);
+                $requete= $this->executerRequete("select avis, note,  DATE_FORMAT(date, '%d/%m/%Y') date, numUser from avis order by ".$critere." ".$ordre);
             }
 
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultat;
         }
+
+//===================================== Fonctions sur le signalement ==========================================================================
 
         //Signaler l'avis le pseudo correspond à la personne qui signale
         public function signalerAvis($numAvis, $pseudo, $remarque)
@@ -167,6 +170,33 @@
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultat;
+        }
+
+        //Recupere l'avis avec le plus de vote positif
+        public function getAvisLePlusAime()
+        {
+
+            $requete= $this->executerRequete("select numAvis
+                                            from vote
+                                            where vote = '1'
+                                            group by numAvis having count(vote) >= (select count(vote) from vote
+                                                                                    where vote = '1')");
+            $numAvis = $requete->fetch();
+            $avis = $this->getAvis($numAvis['NUMAVIS']);
+            return $avis;
+        }
+
+        //Recupere l'avis avec le plus vote negatif
+        public function getAvisLePlusDeteste()
+        {
+            $requete= $this->executerRequete("select numAvis
+                                            from vote
+                                            where vote = '0'
+                                            group by numAvis having count(vote) >= (select count(vote) from vote
+                                                                                    where vote = '0')");
+            $numAvis = $requete->fetch();
+            $avis = $this->getAvis($numAvis['NUMAVIS']);
+            return $avis;
         }
 
 //===========================  Fonctions sur les votes   ==============================================
@@ -258,33 +288,6 @@
             $vote = $requete->fetch();
 
             return $vote["voteNegatif"];
-        }
-
-        //Recupere l'avis avec le plus de vote positif
-        public function getAvisLePlusAime()
-        {
-
-            $requete= $this->executerRequete("select numAvis
-                                            from vote
-                                            where vote = '1'
-                                            group by numAvis having count(vote) >= (select count(vote) from vote
-                                                                                    where vote = '1')");
-            $numAvis = $requete->fetch();
-            $avis = $this->getAvis($numAvis['NUMAVIS']);
-            return $avis;
-        }
-
-        //Recupere l'avis avec le plus vote negatif
-        public function getAvisLePlusDeteste()
-        {
-            $requete= $this->executerRequete("select numAvis
-                                            from vote
-                                            where vote = '0'
-                                            group by numAvis having count(vote) >= (select count(vote) from vote
-                                                                                    where vote = '0')");
-            $numAvis = $requete->fetch();
-            $avis = $this->getAvis($numAvis['NUMAVIS']);
-            return $avis;
         }
 
     }
