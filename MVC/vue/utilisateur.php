@@ -36,12 +36,48 @@
 									<p class="text-dark text-left text-capitalize"><?php echo $prenom.' '.$nom; ?></p>
 								</div>
 								<div class="col-sm-offset-2 col-sm-4">
-									<a href="#" class="pull-right btn btn-primary">Changer mon mot de passe</a>
+									<button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#modaleUtilisateur">Changer mon mot de passe</button>
 								</div>
 							</div>
 
+							<!-- Début fenêtre modale -->
 
+							<div class="modal fade" id="modaleUtilisateur">
+							    <div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+											<h4 class="modal-title">Modifier mon mot de passe</h4>
+										</div>
+										<div class="modal-body">
+											<form method="post" action="/modifMdpUser" id="modifMdp">
+												<fieldset>
+													<input type="hidden" id="pseudoModifMdp" name="pseudoModifMdp" value="<?= $pseudo ?>">
+													<div class="form-group">
+														<label for="oldMdp" class="label-form">Ancien mot de passe</label>
+														<input type="password" id="oldMdp" name="oldMdp" class="form-control">
+													</div>
+													<div class="form-group">
+														<label for="newMdp" class="label-form">Nouveau mot de passe</label>
+														<input type="password" id="newMdp" name="newMdp" class="form-control">
+													</div>
+													<div class="form-group">
+														<label for="confirmNewMdp" class="label-form">Confirmer mot de passe</label>
+														<input type="password" id="confirmNewMdp" name="confirmNewMdp" class="form-control">
+													</div>
+												</fieldset>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+											<button type="submit" form="modifMdp" class="btn btn-primary">Modifier mon mot de passe</button>
+										</div>
+									</div>
 
+							    </div>
+						  	</div>
+
+							<!-- Fin fenêtre modale -->
 
 						</div>
 					</div>

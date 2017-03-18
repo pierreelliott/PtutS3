@@ -55,6 +55,36 @@
             return false;
         }
 
+		// Permet de modifier les informations d'un utilisateur
+		// Le paramètre $infos doit être un tableau associatif dont les clés sont les champs à modifier
+		// (ex : array("numRue" => $numRue, "rue" => $rue) pour modifier le numéro de rue et la rue)
+		public function modifierInfos($numUser, array $infos)
+		{
+			$setPseudo = $setMdp = $setNumRue = $setRue = $setVille = $setCodePostal = "";
+
+			if($infos != null && !empty($infos))
+			{
+				$cpt = 1;
+				foreach($infos as $key => $info)
+				{
+					$setVariable = "set".ucfirst($key);
+					$$setVariable = "";
+
+					if($cpt > 1)
+					{
+						$$setVariable = ", ";
+					}
+
+					$$setVariable .= $key." = :".$key;
+					$cpt++;
+				}
+
+				$infos["numUser"] = $numUser;
+
+				$requete = $this->executerRequete("update utilisateur set ".$setPseudo . $setMdp . $setNumRue . $setRue . $setVille . $setCodePostal." where numUser = :numUser", $infos);
+			}
+		}
+
         //Permet de recuperer le NumUser à partir du pseudo
         public function getNumUser($pseudo)
         {
@@ -76,10 +106,10 @@
         //Recupere les informations de l'user
         public function getInfo($pseudo)
         {
-            $requete = $this->executerRequete('select nom, prenom, mail, ville, rue, codePostal, telephone, pseudo, numRue, dateInscription
+            $requete = $this->executerRequete('select nom, prenom, mdp, mail, ville, rue, codePostal, telephone, pseudo, numRue, dateInscription
                                             from utilisateur
                                             where pseudo= ?', array($pseudo));
-            $data = $requete->fetch();
+            $data = $requete->fetch(PDO::FETCH_ASSOC);
             return $data;
         }
 

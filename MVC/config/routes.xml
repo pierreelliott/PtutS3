@@ -9,6 +9,7 @@
 	<route url="/panier" controleur="panier" methode="afficherPanier"/>
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>
+	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
 
 	<!-- Produits favoris -->
 	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>
@@ -21,6 +22,7 @@
 	<route url="/vote-([0-1])-([0-9]+)" controleur="avis" methode="vote" params="pouce,numAvis"/>
 	<route url="/signalAvis" controleur="avis" methode="signaler"/>
 
+	<!-- Commande -->
 	<route url="/historique-commandes" controleur="commande" methode="afficherHistorique"/>
 	<route url="/commande-([0-9]+)" controleur="commande" methode="afficherCommande" params="numCommande"/>
 
@@ -30,8 +32,10 @@
 	<route url="/annule-paypal" vue="annulePaypal"/>
 	<route url="/retour-paypal" controleur="paypal" methode="retourPaypal"/>
 
+	<!-- Administration -->
 	<route url="/administration(?:-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>
 	<route url="/get-produits?-admin" controleur="admin" methode="getProduitAdmin"/>
+
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
 	<route url="/404" vue="404"/>
 </routes>

@@ -33,8 +33,8 @@
                     // Si l'utilisateur coche la case de connexion automatique
                     if(isset($_POST["connAuto"]))
                     {
-                            setcookie("pseudo", $pseudo);
-                            setcookie("mdpHash", $mdpHash);
+                        setcookie("pseudo", $pseudo);
+                        setcookie("mdpHash", $mdpHash);
                     }
 
                     header("Location: /");
