@@ -29,12 +29,22 @@
         }
 
         //Supprime un produit favoris a l'utilisateur
-        public function deleteProduitFavoris($NumProduit)
+        public function deleteProduitFavoris()
         {
             //Teste si l'utilsateur est connecté
             if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
-                $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                $NumProduit = $_GET["numProduit"];
+
+                //Teste si le produit est un produit favoris
+                if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit) == true)
+                {
+                    $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                }
+                else
+                {
+                    $erreur = "Impossible de supprimer ce produit car ce n'est pas un de vos produit favoris";
+                }
             }
             else {
                 include_once("vue/404.php");
@@ -42,15 +52,26 @@
         }
 
         //Ajoute un produit favoris a l'utilisateur
-        public function addProduitFavoris($NumProduit)
+        public function addProduitFavoris()
         {
             //Teste si l'utilsateur est connecté
             if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
-                $resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                $NumProduit = $_GET["numProduit"];
+
+                //Teste si le produit est n'est pas déjà un produit favoris
+                if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit) == false)
+                {
+                    $resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                }
+                else
+                {
+                    $erreur = "Impossible d'ajouter ce produit car il fait déjà parti vos produit favoris";
+                }
             }
             else {
                 include_once("vue/404.php");
             }
         }
     }
+?>

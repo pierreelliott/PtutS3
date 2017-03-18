@@ -57,7 +57,6 @@
         //Ajout d'un avis à la base de données
         public function addAvis()
         {
-            echo $_POST['note'];
             //Si l'utilisateur a posté quelque chose
             if(isset($_POST['commentaire']) && isset($_POST['note']))
             {
