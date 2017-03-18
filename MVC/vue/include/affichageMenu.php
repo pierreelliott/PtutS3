@@ -1,4 +1,16 @@
 <div class="panel panel-default panel-menu">
+	<?php if(isset($admin) && $admin == true) { ?>
+	<div class="panel-heading text-right">
+		<!-- Bouton modifier menu -->
+		<span data-toggle="tooltip" data-placement="top" title="Modifier menu">
+			<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin modifProduit" data-toggle="modal" data-target="#adminMenuModif" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+		</span>
+		<!-- Bouton supprimer menu -->
+		<span data-toggle="tooltip" data-placement="top" title="Supprimer menu">
+			<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin supprProduit" data-toggle="modal" data-target="#adminMenuSuppr" data-num-produit="<?php echo $menu["numProduit"]; ?>"></button>
+		</span>
+	</div>
+	<?php } ?>
 	<div class="panel-header">
 		<div class="row">
 			<h2 class="menu-heading">Menu "<?php echo $menu["libelle"]; ?>"</h2>

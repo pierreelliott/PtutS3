@@ -1,4 +1,4 @@
-.panel-menu * {
+.panel-menu .panel-body *, .panel-menu .panel-header * {
 	color: #555;
 }
 .panel-menu > .panel-header {
@@ -24,7 +24,7 @@
 .panel-product:hover {
 	box-shadow: 0px 0px 12px #2D3;
 }
-.panel-product * {
+.panel-product .media * {
 	color: #555;
 }
 .panel-product .media-object {

@@ -10,7 +10,7 @@
   </div>
   <!-- fin popup -->
 	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
+		<div class="col-lg-offset-2 col-lg-8 site-wrapper">
 		<?php if($rechercheVide) { ?>
 			<div class="row">
 				<h1>Aucun produit ne correspond à la recherche</h1>
@@ -24,45 +24,18 @@
 		 <?php } else { ?>
 	      <ul class="nav nav-tabs">
 	        <li class="active"><a href="#produits" data-toggle="tab">Nos produits</a></li>
-	        <li><a href="#menus" data-toggle="tab">Nos menus</a></li>
+	        <li><a data-toggle="tab" class="text-muted">Nos menus</a></li>
 	      </ul>
 	      <div class="tab-content">
 			<!-- Affichage des produits seuls -->
 	        <div class="tab-pane active" id="produits">
+				<hr class="invisible-separator"/>
 				<?php
 					foreach($produits as $produit) {
 				?>
-				<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default">
 
-					<div class="media img-produit">
-						<a href="#produitModal" data-toggle="modal"
-                                    data-numProduit="<?php echo $produit["numProduit"]; ?>"
-                                    data-libelle="<?php echo $produit["libelle"]; ?>"
-                                    data-sourceImg="<?php echo $produit['sourceMoyen'].".png"; ?>"
-                                    data-description="<?php echo $produit["description"]; ?>"
-                                    data-prix="<?php echo $produit["prix"]; ?>">
-							<div class="media-left media-top">
-								<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail" style="width:80px">
-							</div>
-							<div class="media-body">
-								<h2 class="media-heading text-muted"><?php echo $produit["libelle"]; ?></h2>
-								<p class="text-muted pull-left"><?php echo $produit["description"]; ?></p>
-							</div>
-						</a>
-					</div>
-					<div class="panel-footer">
-						<div class="row">
-							<div class="col-xs-3">
-								<p>Prix : <?php echo $produit["prix"]; ?> €</p>
-							</div>
-							<div class="col-xs-offset-3 col-xs-3">
-								<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-primary btn-block">
-									<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				<?php include("include/affichageProduit.php"); ?>
+
 				<?php
 				}
 				?>
@@ -93,51 +66,12 @@
 			<!-- Affichage des menus -->
 	        <div class="tab-pane" id="menus">
 	          <?php
-			  //foreach($menus as $menu)
-				for($i = 1; $i <= 4; $i++)
+			  	foreach($menus as $menu)
+				//for($i = 1; $i <= 4; $i++)
 				{
 				?>
-					<div class="panel panel-default">
-						<div class="media">
-							<div class="media-left media-top">
-								<img src="images/maki1,1.png" alt="Image menu" class="media-object" style="width:80px">
-							</div>
-							<div class="media-body menu-produit-container">
-								<h2 class="media-heading text-muted">Menu <?php echo $i;?><?php //echo $menu["libelle"]; ?></h2>
-								<p class="text-muted pull-left">Description [...........]<?php //echo $menu["description"]; ?></p>
-								<p class="text-muted">Prix : 2€<?php //echo $menu["prix"]; ?></p>
-								<?php
-								//foreach($menu["produits"] as $produit)
-								for($j = 1; $j <= 3; $j++)
-								{
-								?>
-									<div class="panel col-lg-6 menu-produit">
-										<div class="media">
-											<div class="media-left media-top">
-												<!--<img src="<?php //echo produit["sourceMoyen"]; ?>" class="media-object img-responsive" style="width:80px">-->
-												<img src="images/maki1,1.png" alt="Image produit" class="media-object img-responsive" style="width:80px">
-											</div>
-											<div class="media-body">
-												<h2 class="media-heading text-muted">Produit <?php echo $i;?><?php //echo $produit["libelle"]; ?></h2>
-												<p class="text-muted pull-left">Description [...........]<?php //echo $produit["description"]; ?></p>
-											</div>
-										</div>
-									</div>
-								<?php
-								}
-								?>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<div class="row">
-								<div class="col-lg-offset-8 col-lg-4">
-									<button type="button" data-action="ajout" data-produit="1<?php //echo $produit["numProduit"]; ?>" class="btn btn-primary">
-										<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php include("include/affichageMenu.php"); ?>
+
 				<?php
 				}
 				?>
