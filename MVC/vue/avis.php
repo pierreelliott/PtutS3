@@ -83,24 +83,24 @@
 									<p class="text-left text-muted small italic"> - Posté le <?php echo $avis['date']; ?></p>
 								</div>
 							</div>
-							<hr class="invisible-separator"/>
-							<div class="desc-frame">
-								<p class="text-left">
-									<?php
-									for($i = 0; $i < $avis['note']/2; $i++)
-									{
-										echo "<span class='glyphicon glyphicon-star yellow'></span>";
-									}
-									for (; $i < 5 ; $i++) {
-										echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
-									}
-									 ?></p>
-								<?php if($avis["estCommente"] == 1) { // Si il y a un commentaire
-								 ?>
-								<p class="text-dark text-left">Commentaire: <?php echo $avis['avis']; ?></p>
-								<?php } ?>
-							</div>
-							<hr class="invisible-separator"/>
+							<hr class="invisible-separator border-top"/>
+							<p class="text-left padding-left">
+								<?php
+								for($i = 0; $i < $avis['note']/2; $i++)
+								{
+									echo "<span class='glyphicon glyphicon-star yellow'></span>";
+								}
+								for (; $i < 5 ; $i++) {
+									echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
+								}
+								 ?></p>
+
+
+							<?php if($avis["estCommente"] == 1) { // Si il y a un commentaire
+							 ?>
+							<p class="text-dark text-left padding-left">Commentaire: <?php echo $avis['avis']; ?></p>
+
+							<hr class="invisible-separator border-top"/>
 							<div class="row">
 								<?php  //Si l'utilisateur est connecté
                                 if(!isset($message))
@@ -129,6 +129,7 @@
                                     </a>
 								</div>
 							</div>
+							<?php } ?>
 						</div>
 					</div>
 				<?php

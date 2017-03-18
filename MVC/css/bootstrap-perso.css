@@ -46,6 +46,12 @@
 .invisible-separator {
 	border-width: 0px;
 }
+.border-top {
+	border-top: 1px solid #555;
+}
+.padding-left {
+	padding-left: 3vw;
+}
 .push-down {
 	padding-bottom: 1vh;
 }
