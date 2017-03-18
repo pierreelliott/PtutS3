@@ -42,9 +42,6 @@
 	position: relative;
 	top: -1vh;
 }
-.favori:hover {
-	background-color: yellow;
-}
 /* ##################### */
 .invisible-separator {
 	border-width: 0px;

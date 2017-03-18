@@ -10,7 +10,7 @@
   </div>
   <!-- fin popup -->
 	<div class="row">
-		<div class="col-lg-offset-2 col-lg-8 site-wrapper">
+		<div class="col-md-offset-2 col-md-8 site-wrapper">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#produits" data-toggle="tab">Nos produits</a></li>
         <li><a href="#menus" data-toggle="tab">Nos menus</a></li>
@@ -36,10 +36,10 @@
 		                </div>
 		                <div class="modal-body">
 		                  	<div class="row">
-			                    <div class="col-xs-4">
+			                    <div class="col-sm-4">
 			                      	<img src="images/sushi.png" alt="Image du produit" id="imgModal" class="img-responsive">
 			                    </div>
-			                    <div class="col-xs-8">
+			                    <div class="col-sm-8">
 			                      	<p id="descriptionProduit"></p>
 			                    </div>
 		                  	</div>
