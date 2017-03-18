@@ -8,7 +8,7 @@
       Vous avez déja signalé cet avis !!!
     </div>
 	<div class="row">
-		<div class="col-lg-offset-3 col-lg-6 site-wrapper">
+		<div class="col-lg-offset-2 col-lg-8 site-wrapper">
 			<div class="col-lg-12">
 				<div class="row">
 
@@ -21,81 +21,91 @@
                         }
                         else {
                             ?>
+					<h1>Donnez votre avis sur nos services</h1>
 
-					<form action="/add-avis" method="post" name="avisUtilisateur" accept-charset="utf-8">
-						<fieldset>
-							<legend>Donnez votre avis sur nos services</legend>
-							<div class="row">
+					<hr class="invisible-separator"/>
 
-							</div>
-							<div class="row">
-								<div class="col-lg-8">
-									<div class="form-group">
-										<label for="commentaire" class="control-label">Commentaire :</label>
-										<textarea id="commentaire" name="commentaire" class="form-control vresize"
-                                            <?php //Affichage de l'avis deja existant si il y en a un
-                                            if($userAvis != false)
-                                                echo ">".$userAvis['avis'];
-                                            else
-                                                echo " placeholder='Entrez votre commentaire'>";?></textarea>
+					<div class="row">
+						<div class="col-sm-offset-1 col-sm-10">
+							<div class="panel panel-info">
+								<div class="panel-body">
+									<form action="/add-avis" method="post" name="avisUtilisateur" accept-charset="utf-8">
+										<fieldset>
+											<div class="row">
+												<div class="col-lg-8">
+													<div class="form-group">
+														<label for="commentaire" class="control-label text-dark">Commentaire :</label>
+														<?php //Affichage de l'avis deja existant si il y en a un
+														if($userAvis != false) { ?>
+															<textarea id="commentaire" name="commentaire" class="form-control vresize"><?=$userAvis['avis']?></textarea>
+														<?php
+														}else { ?>
+															<textarea id="commentaire" name="commentaire" class="form-control vresize" placeholder="Entrez votre commentaire"></textarea>
+														<?php } ?>
 
-                                        <label for="note" class="control-label">Note :</label>
+				                                        <label for="note" class="control-label text-dark">Note :</label>
 
-                                        <div id="etoiles">
+				                                        <div id="etoiles">
+				                                        </div>
+				                                        <input type="hidden" name="note" id="noteInput" value="0">
 
-
-                                        </div>
-
-                                        <input type="hidden" name="note" id="noteInput" value="0">
-
-
-
-                                        </div>
-                                        <input  id="valNow" type="hidden" name="noteNow" class="text-muted" value="<?php echo $userAvis['note'];?>">
-									</div>
+				                                        <input  id="valNow" type="hidden" name="noteNow" class="text-muted" value="<?php echo $userAvis['note'];?>">
+													</div>
+												</div>
+												<div class="col-lg-4">
+													<div class="form-group">
+														<button type="submit" class="btn btn-success btn-block">Poster mon avis</button>
+													</div>
+												</div>
+											</div>
+										</fieldset>
+									</form>
 								</div>
-								<div class="col-lg-4">
-									<div class="form-group">
-										<button type="submit" class="btn btn-success btn-block">Poster mon avis</button>
-									</div>
-								</div>
 							</div>
-						</fieldset>
-					</form>
+						</div>
+					</div>
+
                     <?php } ?>
 
 				<?php
 				foreach($tousAvis as $avis)
 				{
 				?>
+
 					<div class="panel panel-default">
-						<div class="media">
-							<div class="media-left media-top">
-								<p class="text-primary italic"><?php echo $avis['pseudo']; ?></p>
-								<img src="images/user.png" alt="Avatar" class="media-object" style="width:80px">
+						<div class="panel-body">
+							<div class="media">
+								<div class="media-left media-top">
+									<img src="images/user.png" alt="Avatar" class="media-object img-circle" style="width:80px">
+								</div>
+								<div class="media-body">
+									<p class="text-left text-primary italic"><?php echo $avis['pseudo']; ?></p>
+									<p class="text-left text-muted small italic"> - Posté le --/--/----</p>
+								</div>
 							</div>
-							<div class="media-body">
-									<p class="text-left">
-                                        <?php
-                                        for($i = 0; $i < $avis['note']/2; $i++)
-                                        {
-                                            echo "<span class='glyphicon glyphicon-star yellow'></span>";
-                                        }
-                                        for (; $i < 5 ; $i++) {
-                                            echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
-                                        }
-                                         ?></p>
-									<p class="text-dark text-left">Commentaire: <?php echo $avis['avis']; ?></p>
-
+							<hr class="invisible-separator"/>
+							<div class="desc-frame">
+								<p class="text-left">
+									<?php
+									for($i = 0; $i < $avis['note']/2; $i++)
+									{
+										echo "<span class='glyphicon glyphicon-star yellow'></span>";
+									}
+									for (; $i < 5 ; $i++) {
+										echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
+									}
+									 ?></p>
+								<?php if(true) { // Si il y a un commentaire
+								 ?>
+								<p class="text-dark text-left">Commentaire: <?php echo $avis['avis']; ?></p>
+								<?php } ?>
 							</div>
-						</div>
-						<div class="panel-footer">
+							<hr class="invisible-separator"/>
 							<div class="row">
-
-                                <?php  //Si l'utilisateur est connecté
+								<?php  //Si l'utilisateur est connecté
                                 if(!isset($message))
                                 { ?>
-    								<div class="col-lg-1">
+    								<div class="col-sm-1">
                                         <!-- Lien vers la fenetre modale !-->
     									<a href='#signalModal'
                                             data-toggle='modal'
@@ -106,13 +116,13 @@
                                         </a>
     								</div>
                                 <?php } ?>
-								<div class="col-lg-offset-7 col-lg-2">
+								<div class="col-sm-offset-7 col-sm-2">
 									<a class="btn-primary btn" <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 										<span class="badge"><?php echo $avis["pouceBleu"]; ?></span>
                                     </a>
 								</div>
-								<div class="col-lg-1">
+								<div class="col-sm-1">
 									<a class="btn-danger btn" <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>>
 										<span class="glyphicon glyphicon-thumbs-down"></span>
 										<span class="badge"><?php echo $avis["pouceRouge"]; ?></span>
