@@ -66,14 +66,17 @@
 					{
 						case "ajout" :
 							$this->bdd->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
+							header("Location: /administration");
 							break;
 
 						case "modification" :
 							$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
+							header("Location: /administration");
 							break;
 
 						case "suppression" :
 							$this->bdd->supprimerProduit($numProduit);
+							header("Location: /administration");
 							break;
 					}
 				}

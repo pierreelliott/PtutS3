@@ -52,6 +52,6 @@
 				$this->bdd->modifierInfos($this->bdd->getNumUser($pseudo), array("mdp" => sha1($newMdp)));
 			}
 
-			$this->afficherInfos();
+			header("Location: /utilisateur");
 		}
 	}
