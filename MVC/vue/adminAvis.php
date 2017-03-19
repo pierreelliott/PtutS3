@@ -1,0 +1,34 @@
+<?php
+    foreach($tousAvis as $avis) {
+?>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-left media-top">
+                <img src="images/user.png" alt="Avatar" class="media-object img-circle" style="width:80px">
+            </div>
+            <div class="media-body">
+                <p class="text-left text-primary italic"><?php echo $avis['pseudo']; ?></p>
+                <p class="text-left text-muted small italic"> - Posté le <?php echo $avis['date']; ?></p>
+            </div>
+        </div>
+        <hr class="invisible-separator border-top"/>
+        <p class="text-left padding-left">
+            <?php
+            for($i = 0; $i < $avis['note']/2; $i++)
+            {
+                echo "<span class='glyphicon glyphicon-star yellow'></span>";
+            }
+            for (; $i < 5 ; $i++) {
+                echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
+            }
+             ?></p>
+
+        <p class="text-dark text-left padding-left">Commentaire: <?php echo $avis['avis']; ?></p>
+
+        <hr class="invisible-separator border-top"/>
+    </div>
+</div>
+<?php
+}
+?>

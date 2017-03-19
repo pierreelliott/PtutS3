@@ -17,6 +17,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#produits" data-toggle="tab">Produits</a></li>
 					<li><a href="#menus" data-toggle="tab">Menus</a></li>
+                    <li><a href="#avis" data-toggle="tab">Avis</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="produits">
@@ -38,7 +39,7 @@
 							<?php
 							}
 							?>
-						</ul>
+
 					</div>
 					<div class="tab-pane fade" id="menus">
 						<div class="tab-pane fade in active" id="produits">
@@ -61,6 +62,13 @@
 			</div>
 		</div>
 	</div>
+
+    <!-- Onglet du tableau -->
+    <div class="tab-pane fade" id="avis">
+	      	<?php include("vue/adminAvis.php"); ?>
+  	</div>
+
+
 
   	<!-- Début fenête modales -->
   	<div class="modal fade" id="adminProduitAjout">
