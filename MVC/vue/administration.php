@@ -63,12 +63,10 @@
                     <div class="tab-pane fade" id="avis">
                             <?php include("vue/adminAvis.php"); ?>
                     </div>
-  
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 
 
