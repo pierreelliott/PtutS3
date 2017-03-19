@@ -10,6 +10,7 @@
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
+	<route url="/modifPseudoUser" controleur="utilisateur" methode="modifierPseudo"/>
 
 	<!-- Produits favoris -->
 	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>

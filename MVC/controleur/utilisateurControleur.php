@@ -17,6 +17,7 @@
 			{
 				$pseudo = $_SESSION["utilisateur"]["pseudo"];
 				$infos = $this->bdd->getInfo($pseudo);
+				$numUser = $this->bdd->getNumUser($pseudo);
 
 				$nom = $infos["nom"];
 				$prenom = $infos["prenom"];
@@ -39,17 +40,32 @@
 		// Permet de modifier le mot de passe d'un utilisateur
 		public function modifierMdp()
 		{
-			$pseudo = $_POST["pseudoModifMdp"];
-			$oldMdp = sha1($_POST["oldMdp"]);
-			$newMdp = $_POST["newMdp"];
-			$confirmNewMdp = $_POST["confirmNewMdp"];
-
-			// On récupère le mot de passe
-			$checkMdp = $this->bdd->getInfo($pseudo)["mdp"];
-
-			if($checkMdp == $oldMdp && $newMdp == $confirmNewMdp)
+			if(isset($_POST["pseudoModifMdp"]) && isset($_POST["oldMdp"]) && isset($_POST["newMdp"]) && isset($_POST["confirmNewMdp"]))
 			{
-				$this->bdd->modifierInfos($this->bdd->getNumUser($pseudo), array("mdp" => sha1($newMdp)));
+				$pseudo = $_POST["pseudoModifMdp"];
+				$oldMdp = sha1($_POST["oldMdp"]);
+				$newMdp = $_POST["newMdp"];
+				$confirmNewMdp = $_POST["confirmNewMdp"];
+
+				// On récupère le mot de passe
+				$checkMdp = $this->bdd->getInfo($pseudo)["mdp"];
+
+				if($checkMdp == $oldMdp && $newMdp == $confirmNewMdp)
+				{
+					$this->bdd->modifierInfos($this->bdd->getNumUser($pseudo), array("mdp" => sha1($newMdp)));
+				}
+			}
+
+			header("Location: /utilisateur");
+		}
+
+		public function modifierPseudo()
+		{
+			if(isset($_POST["pseudo"]) && isset($_POST["numUser"]))
+			{
+				$newPseudo = htmlspecialchars($_POST["pseudo"]);
+
+				$this->bdd->modifierInfos($_POST["numUser"], array("pseudo" => $newPseudo));
 			}
 
 			header("Location: /utilisateur");

@@ -21,19 +21,28 @@
 						<div class="media-body">
 							<div class="row">
 								<div class="col-sm-6">
-									<p class="text-left text-primary italic"><?php echo $pseudo; ?>
-										<a href="#" class="btn btn-primary btn-sm">
+									<div id="divPseudo">
+										<span id="affichePseudo" class="text-left text-primary italic"><?= $pseudo ?></span>
+										<form method="post" action="/modifPseudoUser" id="formModifPseudo" style="display: inline">
+											<input type="hidden" id="numUser" name="numUser" value="<?= $numUser ?>">
+											<input type="text" id="pseudo" name="pseudo" value="<?= $pseudo ?>" class="form-control hidden" style="display: inline; width: auto">
+										</form>
+
+										<button type="button" id="btnModifPseudo" class="btn btn-primary btn-sm">
 											<span class="glyphicon glyphicon-pencil"></span>
-										</a>
-									</p>
+										</button>
+										<button type="submit" id="btnValiderPseudo" form="formModifPseudo" class="btn btn-success btn-sm hidden">
+											<span class="glyphicon glyphicon-ok"></span>
+										</button>
+									</div>
 								</div>
 								<div class="col-sm-6">
-									<p class="pull-right text-muted italic small">Date d'inscription : <?php echo $dateInscription; ?> </p>
+									<p class="pull-right text-muted italic small">Date d'inscription : <?= $dateInscription ?> </p>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-6">
-									<p class="text-dark text-left text-capitalize"><?php echo $prenom.' '.$nom; ?></p>
+									<p class="text-dark text-left text-capitalize"><?= $prenom.' '.$nom ?></p>
 								</div>
 								<div class="col-sm-offset-2 col-sm-4">
 									<button type="button" class="pull-right btn btn-primary" data-toggle="modal" data-target="#modaleUtilisateur">Changer mon mot de passe</button>
@@ -89,7 +98,7 @@
 							<p class="text-left"><strong>@ Adresse mail :</strong></p>
 						</div>
 						<div class="col-sm-6">
-							<p class="text-left text-info"><?php echo $mail; ?></p>
+							<p class="text-left text-info"><?= $mail ?></p>
 						</div>
 					</div>
 					<div class="row text-dark">
@@ -100,7 +109,7 @@
 							</p>
 						</div>
 						<div class="col-sm-6">
-							<p class="text-left text-info"><?php echo $telephone; ?></p> <!-- Il faudrait formater l'affichage du numéro de tel -->
+							<p class="text-left text-info"><?= $telephone ?></p> <!-- Il faudrait formater l'affichage du numéro de tel -->
 						</div>
 					</div>
 					<div class="row">
@@ -115,18 +124,18 @@
 
 								<div class="row">
 									<div class="col-sm-offset-1 col-sm-6">
-										Rue : <span class="text-muted"><?php echo $rue; ?></span>
+										Rue : <span class="text-muted"><?= $rue ?></span>
 									</div>
 									<div class="col-sm-3">
-										N° : <span class="text-muted"><?php echo $numRue; ?></span>
+										N° : <span class="text-muted"><?= $numRue ?></span>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-offset-1 col-sm-6">
-										Ville : <span class="text-muted"><?php echo $ville; ?></span>
+										Ville : <span class="text-muted"><?= $ville ?></span>
 									</div>
 									<div class="col-sm-5">
-										Code postal : <span class="text-muted"><?php echo $codePostal; ?></span>
+										Code postal : <span class="text-muted"><?= $codePostal ?></span>
 									</div>
 								</div>
 							<?php
@@ -151,7 +160,13 @@
 
 <!-- ======== Fin Code HTML ======== -->
 <?php
-	$contenu = ob_get_clean();
+	  $contenu = ob_get_clean();
+?>
 
-	require("layout/site.php");
+<script src="js/utilisateur.js?v=<?php echo filemtime('css/style.css'); ?>"></script>
+
+<?php
+    $script = ob_get_clean();
+
+    require("layout/site.php");
 ?>

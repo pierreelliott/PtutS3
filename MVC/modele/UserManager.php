@@ -76,6 +76,8 @@
 					}
 
 					$$setVariable .= $key." = :".$key;
+					$_SESSION["utilisateur"][$key] = $info;
+
 					$cpt++;
 				}
 
