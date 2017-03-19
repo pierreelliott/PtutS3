@@ -1,11 +1,15 @@
 <?php
     include_once('modele/ProduitManager.php');
+    include_once('modele/AvisManager.php');
+    include_once('modele/AvisManager.php');
 
     class AdminControleur
     {
   		public function __construct()
 		{
 			$this->bdd = new ProduitManager();
+            $this->avis = new AvisManager();
+            $this->user = new UserManager();
 		}
 
 		public function administrer()
@@ -80,6 +84,25 @@
 							break;
 					}
 				}
+                // ========================= Recuperation des données pour les avis =========================================
+
+                //On recupere tous les avis signaler
+                $tousAvisBD = $this->avis->getTousAvisSignaler();
+
+                foreach ($tousAvisBD as $avisBD) {
+
+                    //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
+                    $avis = array('avis' => $avisBD['avis'],
+                                    'note' => $avisBD['note'],
+                                    'date'  => $avisBD['date'],
+                                    'numuser' =>  $avisBD['numAvis'],
+                                    'pseudo' => $this->user->getPseudo($avisBD['numAvis']),
+                                    'estCommente' => isset($avisBD['avis']) == true );
+                    //Ajout d'un tableau en 2 dimensions avec toutes les donnees
+                    $tousAvis[$avisBD['numAvis']] = $avis;
+                }
+                print_r($tousAvis);
+
 
 				$typesProduit = $this->bdd->getTypesProduit(); // Utilisé dans la vue
 

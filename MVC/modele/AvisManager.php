@@ -152,7 +152,7 @@
         //Recupere tous les avis signalé: Numuser correspond a la personne qui signale
         public function getTousAvisSignaler()
         {
-            $requete = $this->executerRequete('select avis, note, date, s.numUser, remarque
+            $requete = $this->executerRequete('select avis, note, date, s.numAvis
                                             from avis a join signalAvis s
                                             on a.NumUser= s.numAvis
                                             where numSignal is NOT null; ');

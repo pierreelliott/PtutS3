@@ -207,6 +207,7 @@ $(function()
 		});
   	});
 
+	//Lorsque l'on ajoute et modifie un commentaire
 	$('#ajoutProduitMenu, #modifProduitMenu').click(function(e)
 	{
 		var bouton = $(this).attr('id').substr(0, 5);

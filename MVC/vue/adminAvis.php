@@ -23,9 +23,10 @@
                 echo "<span class='glyphicon glyphicon-star-empty yellow'></span>";
             }
              ?></p>
-
+        <?php if($avis['estCommente'] == 1)
+        { ?>
         <p class="text-dark text-left padding-left">Commentaire: <?php echo $avis['avis']; ?></p>
-
+        <?php } ?>
         <hr class="invisible-separator border-top"/>
     </div>
 </div>
