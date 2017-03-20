@@ -2,6 +2,14 @@
     foreach($tousAvis as $avis) {
 ?>
 <div class="panel panel-default">
+    <div class="panel-heading">
+        <span data-toggle="tooltip" data-placement="top" title="Supprimer Commentaire">
+			<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin" data-toggle="modal" data-target="" ></button>
+		</span>
+        <span data-toggle="tooltip" data-placement="top" title="Modifier Commentaire">
+			<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin" data-toggle="modal" data-target="" data-num-produit=""></button>
+		</span>
+    </div>
     <div class="panel-body">
         <div class="media">
             <div class="media-left media-top">
