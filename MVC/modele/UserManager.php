@@ -22,11 +22,10 @@
         //Ajoute le nouveau utilisateur à la BD
         public function inscription($pseudo, $mdpHash, $nom, $prenom, $email, $tel, $numRue, $rue, $ville, $codePostal)
         {
-            $doublon = $this->executerRequete("select pseudo from utilisateur where pseudo = ?", array($pseudo));
-            $doublon = $doublon->fetchAll(PDO::FETCH_ASSOC);
+            $doublon = $this->checkDoublon($pseudo);
 
             //Si fetch renvoit rien il est égal a false
-            if($doublon == false)
+            if(!$doublon)
             {
                 $requete = "insert into utilisateur(pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription)"
                         . "values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, 'USER', CURDATE())";
@@ -54,6 +53,14 @@
             }
             return false;
         }
+
+		public function checkDoublon($pseudo)
+		{
+			$doublon = $this->executerRequete("select pseudo from utilisateur where pseudo = ?", array($pseudo));
+            $doublon = $doublon->fetchAll(PDO::FETCH_ASSOC);
+
+			return $doublon;
+		}
 
 		// Permet de modifier les informations d'un utilisateur
 		// Le paramètre $infos doit être un tableau associatif dont les clés sont les champs à modifier
@@ -114,6 +121,14 @@
             $data = $requete->fetch(PDO::FETCH_ASSOC);
             return $data;
         }
+
+		public function getListePseudos($input)
+		{
+			$pseudos = $this->executerRequete("select pseudo, typeUser from utilisateur where pseudo like ?", array("$input%"));
+			$pseudos = $pseudos->fetchAll(PDO::FETCH_ASSOC);
+
+			return $pseudos;
+		}
 
         /* ============= Fonctions sur les produits favoris ============= */
 

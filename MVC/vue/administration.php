@@ -18,6 +18,7 @@
 					<li class="active"><a href="#produits" data-toggle="tab">Produits</a></li>
 					<li><a href="#menus" data-toggle="tab">Menus</a></li>
                     <li><a href="#avis" data-toggle="tab">Avis</a></li>
+					<li><a href="#administrateurs" data-toggle="tab">Administrateurs</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="produits">
@@ -32,12 +33,8 @@
 
 							<?php
 								foreach($produits as $produit) {
-							?>
-
-							<?php include("include/affichageProduit.php"); ?>
-
-							<?php
-							}
+									include("include/affichageProduit.php");
+								}
 							?>
 
 					</div>
@@ -49,20 +46,19 @@
 							</span>
 							<?php
 								foreach($menus as $menu) {
-							?>
-
-							<?php include("include/affichageMenu.php"); ?>
-
-							<?php
-							}
+									include("include/affichageMenu.php");
+								}
 							?>
 						</div>
 					</div>
 
                     <!-- Onglet du tableau -->
                     <div class="tab-pane fade" id="avis">
-                            <?php include("vue/adminAvis.php"); ?>
+                        <?php include("vue/adminAvis.php"); ?>
                     </div>
+					<div class="tab-pane fade" id="administrateurs">
+						<?php include("vue/administrateurs.php"); ?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -71,7 +67,7 @@
 
 
 
-  	<!-- Début fenête modales -->
+  	<!-- Début fenêtres modales -->
     <div class="modal fade" id="adminAvisConfirm">
 	    <div class="modal-dialog">
 	      	<?php include("vue/adminConfirm.php"); ?>

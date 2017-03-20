@@ -65,18 +65,13 @@
 						</div>
 					</div>
 
-                    <?php } ?>
-
-				<?php
-				foreach($tousAvis as $avis)
-				{
-				?>
-
-					<?php include("include/affichageAvis.php"); ?>
-
-				<?php
-            	}
-				?>
+                    <?php
+						}
+						foreach($tousAvis as $avis)
+						{
+							include("include/affichageAvis.php");
+		        		}
+					?>
                 </div>
 			</div>
 		</div>

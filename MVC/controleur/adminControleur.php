@@ -7,7 +7,7 @@
     {
   		public function __construct()
 		{
-			$this->bdd = new ProduitManager();
+			$this->produit = new ProduitManager();
             $this->avis = new AvisManager();
             $this->user = new UserManager();
 		}
@@ -69,17 +69,17 @@
 					switch($_GET["action"])
 					{
 						case "ajout" :
-							$this->bdd->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
+							$this->produit->ajouterProduit($libelle, $description, $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
 							header("Location: /administration");
 							break;
 
 						case "modification" :
-							$this->bdd->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
+							$this->produit->modifierProduit($numProduit, $libelle, $description , $typeProduit, $prix, $imageProduit, $imageProduit, $imageProduit, $produitMenu, $produitMenuQte);
 							header("Location: /administration");
 							break;
 
 						case "suppression" :
-							$this->bdd->supprimerProduit($numProduit);
+							$this->produit->supprimerProduit($numProduit);
 							header("Location: /administration");
 							break;
 					}
@@ -104,9 +104,9 @@
                 print_r($tousAvis);
 
 
-				$typesProduit = $this->bdd->getTypesProduit(); // Utilisé dans la vue
+				$typesProduit = $this->produit->getTypesProduit(); // Utilisé dans la vue
 
-				$produits = $this->bdd->recupererCarte();
+				$produits = $this->produit->recupererCarte();
 
 				$menus = array();
 				foreach($produits as $keyMenu => $produit)
@@ -119,7 +119,7 @@
 						continue;
 					}
 
-					$typeProduit = $this->bdd->getTypeProduit($produit["numProduit"]);
+					$typeProduit = $this->produit->getTypeProduit($produit["numProduit"]);
 
 					// On teste le type du produit pour savoir si c'est un menu
 					if(strcmp($typeProduit, "menu") == 0)
@@ -128,15 +128,15 @@
 						unset($produits[$keyMenu]);
 
 						// On récupère les informations du menu (libellé, description, prix)
-						$menus[$keyMenu] = $this->bdd->getInformationsProduit($produit["numProduit"]);
+						$menus[$keyMenu] = $this->produit->getInformationsProduit($produit["numProduit"]);
 
 						// On récupère les numéros des produits compatibles du menu (donc les produits contenus dans le menu)
-						$produitCompatibles = $this->bdd->getProduitsCompatibles($produit["numProduit"]); // C'est un tableau des numProduits2
+						$produitCompatibles = $this->produit->getProduitsCompatibles($produit["numProduit"]); // C'est un tableau des numProduits2
 
 						// Pour chaque numProduit compatible, on récupère les informations du produit
 						foreach($produitCompatibles as $keyProduit => $produitCompatible)
 						{
-							$menus[$keyMenu]["produits"][$keyProduit] = $this->bdd->getInformationsProduit($produitCompatible["numProduit2"]);
+							$menus[$keyMenu]["produits"][$keyProduit] = $this->produit->getInformationsProduit($produitCompatible["numProduit2"]);
 						}
 					}
 					// La variable $menus est de la forme
@@ -165,16 +165,16 @@
 				// Si on veut récupérer les infos d'un produit en particulier
 				if(isset($_POST["numProduitAdmin"]))
 				{
-					$produit = $this->bdd->getInformationsProduit($_POST["numProduitAdmin"]);
-					$typeProduit = $this->bdd->getTypeProduit($_POST["numProduitAdmin"]);
+					$produit = $this->produit->getInformationsProduit($_POST["numProduitAdmin"]);
+					$typeProduit = $this->produit->getTypeProduit($_POST["numProduitAdmin"]);
 
 					if($typeProduit == "menu")
 					{
-						$produitsCompatibles = $this->bdd->getProduitsCompatibles($_POST["numProduitAdmin"]);
+						$produitsCompatibles = $this->produit->getProduitsCompatibles($_POST["numProduitAdmin"]);
 
 						foreach($produitsCompatibles as $keyProduit => $produitCompatible)
 						{
-							$produit["produits"][$keyProduit] = $this->bdd->getInformationsProduit($produitCompatible["numProduit2"]);
+							$produit["produits"][$keyProduit] = $this->produit->getInformationsProduit($produitCompatible["numProduit2"]);
 						}
 					}
 
@@ -183,7 +183,7 @@
 				// Si on veut récupérer les infos de tous les produits
 				else
 				{
-					$produits = $this->bdd->recupererCarte();
+					$produits = $this->produit->recupererCarte();
 					foreach($produits as $key => $produit)
 					{
 						if($produit["prix"] < 0)
@@ -192,7 +192,7 @@
 							continue;
 						}
 
-						$typeProduit = $this->bdd->getTypeProduit($produit["numProduit"]);
+						$typeProduit = $this->produit->getTypeProduit($produit["numProduit"]);
 
 						if($typeProduit == "menu")
 						{
@@ -210,6 +210,15 @@
 			{
 				header("Location: /");
 			}
+		}
+
+		public function rechercherPseudo()
+		{
+			$input = $_POST["input"];
+
+			$pseudos = $this->user->getListePseudos($input);
+
+			echo json_encode($pseudos);
 		}
     }
 ?>
