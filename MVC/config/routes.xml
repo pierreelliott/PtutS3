@@ -14,8 +14,7 @@
 
 	<!-- Produits favoris -->
 	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>
-	<route url="/produits-favoris-ajout-([0-9]+)" controleur="produitFavoris" methode="addProduitFavoris" params="numProduit"/>
-	<route url="/produits-favoris-suppression-([0-9]+)" controleur="produitFavoris" methode="deleteProduitFavoris" params="numProduit"/>
+	<route url="/produits-favoris-([0-9]+)" controleur="produitFavoris" methode="modifProduitFavoris" params="numProduit"/>
 
 	<!-- AVIS !-->
 	<route url="/avis" controleur="avis" methode="afficherAvis" />

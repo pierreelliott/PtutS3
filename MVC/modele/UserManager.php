@@ -151,7 +151,7 @@
             $user = $this->getNumUser($pseudo);
 
             $requete = $this->executerRequete('delete from preference where numUser = ? and NumProduit= ?',
-                                            array($user, $NUMPRODUIT, $classement));
+                                            array($user, $NUMPRODUIT));
             return $requete;
         }
 
@@ -171,7 +171,7 @@
         //Verifie que le produit est un produit favoris pour l'utilisateur
         public function estFavoris($pseudo, $numProduit)
         {
-            $requete = $this->executerRequete('select numProduit from preference where NumProduit = ?', array($NumProduit));
+            $requete = $this->executerRequete('select numProduit from preference where NumProduit = ?', array($numProduit));
 
             $requete= $requete->fetch();
 
