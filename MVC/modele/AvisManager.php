@@ -77,6 +77,15 @@
                 return false;
         }
 
+        //Supprime seulement le commentaire
+        public function deleteCommentaire($numAvis)
+        {
+            $requete = $this->executerRequete('update avis
+                                                set avis= ?
+                                                where numUser = ?', array($numAvis));
+            return $requete;
+        }
+
         //Recupere l'avis en fonction du pseudo de l'utilisateur
         public function getAvis($pseudo)
         {
@@ -170,6 +179,18 @@
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
             return $resultat;
+        }
+
+        //Supprime tous les signalements d'un avis
+        public function deleteSignalements($numAvis)
+        {
+            $requete = $this->executerRequete('delete from signalAvis where numAvis = ?', array($numAvis));
+
+            //Renvoit nb ligne effacé sinon une erreur
+            if($requete == 1)
+                return true;
+            else
+                return false;
         }
 
         //Recupere l'avis avec le plus de vote positif

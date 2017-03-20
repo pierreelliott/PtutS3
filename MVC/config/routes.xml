@@ -17,7 +17,7 @@
 	<route url="/produits-favoris-ajout-([0-9]+)" controleur="produitFavoris" methode="addProduitFavoris" params="numProduit"/>
 	<route url="/produits-favoris-suppression-([0-9]+)" controleur="produitFavoris" methode="deleteProduitFavoris" params="numProduit"/>
 
-	<!-- AVIS !-->
+	<!-- Avis !-->
 	<route url="/avis" controleur="avis" methode="afficherAvis" />
 	<route url="/add-avis" controleur="avis" methode="addAvis" />
 	<route url="/vote-([0-1])-([0-9]+)" controleur="avis" methode="vote" params="pouce,numAvis"/>
@@ -36,6 +36,7 @@
 	<!-- Administration -->
 	<route url="/administration(?:-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>
 	<route url="/get-produits?-admin" controleur="admin" methode="getProduitAdmin"/>
+	<route url="/deleteCommentaire" controleur="admin" methode="deleteCommentaire" />
 
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
 	<route url="/404" vue="404"/>

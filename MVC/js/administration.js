@@ -264,7 +264,7 @@ $(function()
 		});
 	});
 
-	//Lorque l'on supprime un commentaire d'un avis
+	//Ouverture de la fenetre modale pour la supression du commentaire
 	$('#adminAvisConfirm').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget);
 		var commentaire = 'Commentaire : ' + button.data('commentaire');
@@ -273,5 +273,18 @@ $(function()
 
 		modal.find('.modalCommentaire').text(commentaire);
 	});
+
+	//Lorsque l'on clique sur la confirmation de supression du commentaire
+	$('.supprCommentaire').click(function(e))
+	{
+		var numAvis = $('#adminAvisConfirm').data('numAvis');
+
+		$.post("/deleteCommentaire", numAvis:numAvis, function(data,status){
+
+		});
+
+		console.console.log(numAvis);
+
+	}
 
 });
