@@ -4,11 +4,17 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <span data-toggle="tooltip" data-placement="top" title="Supprimer Commentaire">
-			<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin" data-toggle="modal" data-target="" ></button>
+			<button type="button" class="glyphicon glyphicon-remove btn btn-danger btn-admin"
+            data-toggle="modal" data-target="#adminAvisConfirm" data-commentaire="<?php echo $avis['avis']?>" ></button>
 		</span>
         <span data-toggle="tooltip" data-placement="top" title="Modifier Commentaire">
-			<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin" data-toggle="modal" data-target="" data-num-produit=""></button>
+			<button type="button" class="glyphicon glyphicon-pencil btn btn-primary btn-admin"
+            data-toggle="modal" data-target="" ></button>
 		</span>
+        <span data-toggle="tooltip" data-placement="top" title="Voir les signalments">
+           <button type="button" class="glyphicon glyphicon-eye-open btn btn-primary btn-admin"
+           data-toggle="modal" data-target="" ></button>
+       </span>
     </div>
     <div class="panel-body">
         <div class="media">

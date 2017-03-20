@@ -72,6 +72,12 @@
 
 
   	<!-- Début fenête modales -->
+    <div class="modal fade" id="adminAvisConfirm">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminConfirm.php"); ?>
+	    </div>
+  	</div>
+
   	<div class="modal fade" id="adminProduitAjout">
 	    <div class="modal-dialog">
 	      	<?php include("vue/adminAjoutProduit.php"); ?>

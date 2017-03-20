@@ -263,4 +263,15 @@ $(function()
 			});
 		});
 	});
+
+	//Lorque l'on supprime un commentaire d'un avis
+	$('#adminAvisConfirm').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var commentaire = 'Commentaire : ' + button.data('commentaire');
+
+		var modal = $(this);
+
+		modal.find('.modalCommentaire').text(commentaire);
+	});
+
 });
