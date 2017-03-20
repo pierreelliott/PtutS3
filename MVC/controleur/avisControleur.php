@@ -127,11 +127,16 @@
             if(isset($_POST['numAvis'])  && isset($_SESSION["utilisateur"]["pseudo"]) &&
                 isset($_POST['remarque']))
             {
+                    //On recupere le commentaire de l'avis signale
+                    $avis = $this->getAvis($this->user->getPseudo($_POST['numAvis']));
+                    //On test qu'il n'est pas null
+                    if($this->user->convertChaine($avis["avis"], 0) != null )
+                    {
+                         $doublon = $this->avis->signalerAvis($_POST['numAvis'], $_SESSION["utilisateur"]["pseudo"], $_POST['remarque']);
+                         //Si l'utillisateur a déjà signalé l'avis
+                         echo json_encode($doublon);
+                    }
 
-                    $doublon = $this->avis->signalerAvis($_POST['numAvis'], $_SESSION["utilisateur"]["pseudo"], $_POST['remarque']);
-
-                    //Si l'utillisateur a déjà signalé l'avis
-                    echo json_encode($doublon);
             }
 
         }
