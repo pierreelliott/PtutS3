@@ -13,55 +13,155 @@
 						<div class="panel-heading">
 							<h1>Commande du <?php echo $dateCommande;?></h1>
 						</div>
-                        <!-- Affiche les colonnes du panel -->
-                        <div class="panel-body colonne-produit">
-							<div class="col-xs-12 produit">
-								<div class="row produit-ligne-separateurs">
-									<div class="col-xs-2">
-										<p>Image Produit</p>
+                        <!-- Affichage du produit -->
+						<div class="panel-body">
+
+							<div class="panel-group">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" href="#collapse1">
+												<span class="glyphicon glyphicon-chevron-down"></span>
+												Produits commandés
+											</a>
+										</h4>
 									</div>
-									<div class="col-xs-3">
-										<p>Nom Produit</p>
-									</div>
-									<div class="col-xs-2">
-										<p>Prix Unitaire</p>
-									</div>
-									<div class="col-xs-3">
-										<p>Quantite</p>
-									</div>
-									<div class="col-xs-2">
-										<p>Prix total</p>
+									<div id="collapse1" class="panel-collapse collapse in">
+										<ul class="list-group">
+											<?php $i = 0; foreach ($produits as  $produit) { ?>
+
+											<?php
+											// Si le "produit" n'est pas un menu
+											if(true) { ?>
+											<li class="list-group-item">
+												<div class="row">
+													<div class="col-sm-2">
+														<img src="<?php echo $produit["sourcePetit"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
+													</div>
+													<div class="col-sm-10">
+														<div class="row">
+															<div class="col-sm-5">
+																<p><?php echo $produit["libelle"]; ?></p>
+															</div>
+															<div class="col-sm-5">
+																<p>Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-offset-4 col-sm-5">
+																<p>Quantité : <?php echo $produit["quantite"]; ?></p>
+															</div>
+															<div class="col-sm-3">
+																<p>Prix : <?php echo $produit["prixTotal"]; ?> €</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<?php
+											} else {
+												// Si le "produit" n'est pas un menu
+												// (Il faut changer le nom des variables)
+											?>
+											<li class="list-group-item">
+												<div class="row">
+													<div class="col-sm-5">
+														<p><?php echo $produit["libelle"]; ?></p>
+													</div>
+													<div class="col-sm-5">
+														<p>Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-offset-4 col-sm-5">
+														<p>Quantité : <?php echo $produit["quantite"]; ?></p>
+													</div>
+													<div class="col-sm-3">
+														<p>Prix : <?php echo $produit["prixTotal"]; ?> €</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-8">
+														<div class="panel-group">
+															<div class="panel panel-default">
+																<div class="panel-heading">
+																	<h4 class="panel-title">
+																		<a data-toggle="collapse" href="#collapseMenu<?php echo "".$i; //Vaudrait mieux mettre le numProduit ?>">Produits du menu</a>
+																	</h4>
+																</div>
+																<div id="collapse2" class="panel-collapse collapse">
+																	<ul class="list-group">
+																		<?php foreach ($variable as $key => $value) { ?>
+																		<li class="list-group-item">
+																			<div class="row">
+																				<div class="col-sm-2">
+																					<img src="<?php echo $produit["sourcePetit"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
+																				</div>
+																				<div class="col-sm-4">
+																					<p><?php echo $produit["libelle"]; ?></p>
+																				</div>
+																			</div>
+																		</li>
+																		<?php } ?>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<?php
+												} $i++;
+											} ?>
+										</ul>
 									</div>
 								</div>
 							</div>
-						</div>
-                        <!-- Affichage du produit -->
-						<div class="panel-body">
-							<?php
-							foreach($produits as  $produit) {
-							?>
-								<div class="col-xs-12 produit">
-									<div class="row produit-ligne-separateurs">
-										<div class="col-xs-2">
-											<img src="<?php echo $produit["sourcePetit"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
-										</div>
-										<div class="col-xs-3">
-											<p><?php echo $produit["libelle"]; ?></p>
-										</div>
-										<div class="col-xs-2">
-											<p><?php echo $produit["prix"]; ?> €</p>
-										</div>
-										<div class="col-xs-offset-1 col-xs-2">
-											<p><?php echo $produit["quantite"]; ?></p>
-										</div>
-										<div class="col-xs-2">
-											<p><?php echo $produit["prixTotal"]; ?> €</p>
-										</div>
+
+							<div class="panel-group">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" href="#collapseInfos">
+												<span class="glyphicon glyphicon-chevron-down"></span>
+												Informations sur la commande
+											</a>
+										</h4>
+									</div>
+									<div id="collapseInfos" class="panel-collapse collapse in">
+										<ul class="list-group">
+											<?php foreach ($produits as  $produit) { ?>
+											<li class="list-group-item">
+												<div class="row">
+													<div class="col-sm-2">
+														<img src="<?php echo $produit["sourcePetit"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
+													</div>
+													<div class="col-sm-10">
+														<div class="row">
+															<div class="col-sm-5">
+																<p><?php echo $produit["libelle"]; ?></p>
+															</div>
+															<div class="col-sm-5">
+																<p>Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-offset-4 col-sm-5">
+																<p>Quantité : <?php echo $produit["quantite"]; ?></p>
+															</div>
+															<div class="col-sm-3">
+																<p>Prix : <?php echo $produit["prixTotal"]; ?> €</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<?php } ?>
+										</ul>
 									</div>
 								</div>
-							<?php
-							}
-							?>
+							</div>
+
 						</div>
 						<div class="panel-footer">
 							<div>
