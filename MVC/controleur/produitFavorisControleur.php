@@ -28,6 +28,33 @@
 			}
         }
 
+		public function modifProduitFavoris()
+		{
+			if(isset($_SESSION["utilisateur"]["pseudo"]))
+            {
+                $NumProduit = $_GET["numProduit"];
+
+                //Teste si le produit est un produit favoris
+				if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit) == false)
+                {
+                    $resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                }
+				elseif($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit) == true)
+                {
+                    $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                }
+                else
+                {
+                    $erreur = "Impossible de supprimer ce produit car ce n'est pas un de vos produit favoris";
+                }
+
+				header("Location: /carte");
+            }
+            else {
+                include_once("vue/404.php");
+            }
+		}
+
         //Supprime un produit favoris a l'utilisateur
         public function deleteProduitFavoris()
         {

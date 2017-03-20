@@ -1,13 +1,19 @@
 <div class="col-lg-4 col-md-4 col-sm-4">
+
 	<?php if(!isset($admin) || (isset($admin) && $admin == false)) { ?>
+		<!-- Etoile pour les produits favoris
+	 			(cachée dans l'interface d'administration) -->
 	<div class="pull-left favori" onmouseover="hoverFavori()" onmouseout="outFavori()">
 		<a href="/produits-favoris-<?php echo $produit["numProduit"]?>">
 			<span class="glyphicon glyphicon-star-empty yellow"></span>
 		</a>
 	</div>
 	<?php } ?>
+
 	<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default panel-product">
+
 		<?php if(isset($admin) && $admin == true) { ?>
+		<!-- Boutons d'administration -->
 		<div class="panel-heading text-right">
 			<!-- Bouton modifier produit -->
 			<span data-toggle="tooltip" data-placement="top" title="Modifier produit">
@@ -19,6 +25,7 @@
 			</span>
 		</div>
 		<?php } ?>
+
 		<div class="media img-produit">
 			<a href="#produitModal" data-toggle="modal"
 						data-libelle="<?php echo $produit["libelle"]; ?>"
