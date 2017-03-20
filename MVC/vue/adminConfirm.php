@@ -9,6 +9,6 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-		<button type="submit" form="ajoutProduit" class="btn btn-danger">Supprimer<span class="glyphicon glyphicon-remove"></span></button>
+		<button type="submit"  class="btn btn-danger supprCommentaire">Supprimer<span class="glyphicon glyphicon-remove"></span></button>
 	</div>
 </div>

@@ -220,5 +220,22 @@
 
 			echo json_encode($pseudos);
 		}
+
+        function deleteCommentaire()
+        {
+            //On verifie que l'utilisateur soit connecté et que c'est un administrateur
+            if(isset($_SESSION["utilisateur"]["typeUser"]) and $_SESSION["utilisateur"]["typeUser"] == "ADMIN")
+            {
+                //On teste que le numAvis existe
+                if(isset($_POST['numAvis']))
+                {
+                    //Supression des commentaires
+                    $this->avis->deleteCommentaire($_POST['numAvis']);
+
+                    //Supression des signalements relatif a cet avis et on stocke le resultat de la suppression
+                    $retour = $this->avis->deleteSignalements($_POST['numAvis']);
+                }
+            }
+        }
     }
 ?>
