@@ -88,24 +88,29 @@
 
                 //On recupere tous les avis signaler
                 $tousAvisBD = $this->avis->getTousAvisSignaler();
-                if($tousAvisBD != false)
+                $tousAvis = array();
+               /* if($tousAvisBD != false)
+                {*/
+                foreach ($tousAvisBD as $avisBD)
                 {
-                    foreach ($tousAvisBD as $avisBD) {
+                    //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
+                    $avis = array('avis' => $avisBD['avis'],
+                                    'note' => $avisBD['note'],
+                                    'date'  => $avisBD['date'],
+                                    'numuser' =>  $avisBD['numAvis'],
+                                    'pseudo' => $this->user->getPseudo($avisBD['numAvis']),
+                                    'signalement' => $this->avis->getSignalements($avisBD['numAvis']),
+                                    'estCommente' => isset($avisBD['avis']) == true );
 
-                        //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
-                        $avis = array('avis' => $avisBD['avis'],
-                                        'note' => $avisBD['note'],
-                                        'date'  => $avisBD['date'],
-                                        'numuser' =>  $avisBD['numAvis'],
-                                        'pseudo' => $this->user->getPseudo($avisBD['numAvis']),
-                                        'estCommente' => isset($avisBD['avis']) == true );
-                        //Ajout d'un tableau en 2 dimensions avec toutes les donnees
-                        $tousAvis[$avisBD['numAvis']] = $avis;
-                    }
+
+
+                    //Ajout d'un tableau en 2 dimensions avec toutes les donnees
+                    $tousAvis[$avisBD['numAvis']] = $avis;
                 }
+             /*   }
                 else {
                     $tousAvis = false;
-                }
+                }*/
 
 
 				$typesProduit = $this->produit->getTypesProduit(); // Utilisé dans la vue
@@ -257,6 +262,23 @@
                 {
                     //Supression des commentaires
                     $this->avis->deleteCommentaire($_POST['numAvis']);
+
+                    //Supression des signalements relatif a cet avis et on stocke le resultat de la suppression
+                    $retour = $this->avis->deleteSignalements($_POST['numAvis']);
+                }
+            }
+            header('Location: /administration');
+        }
+
+        function modifCommentaire()
+        {
+            //On verifie que l'utilisateur soit connecté et que c'est un administrateur
+            if(isset($_SESSION["utilisateur"]["typeUser"]) and $_SESSION["utilisateur"]["typeUser"] == "ADMIN")
+            {
+                //Test que les valeurs sont passé en parametre
+                if(isset($_POST["numAvis"]) && isset($_POST["commentaire"]))
+                {
+                    $this->avis->modifCommentaire($_POST["numAvis"], $_POST["commentaire"]);
 
                     //Supression des signalements relatif a cet avis et on stocke le resultat de la suppression
                     $retour = $this->avis->deleteSignalements($_POST['numAvis']);
