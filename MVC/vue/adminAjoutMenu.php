@@ -48,7 +48,7 @@
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="descriptionMenuAjout" class="control-label">Description :</label>
-							<textarea type="textarea" name="description" id="descriptionMenuAjout" placeholder="Ecrivez une courte decription du menu" class="form-control vresize" required></textarea>
+							<textarea  name="description" id="descriptionMenuAjout" placeholder="Ecrivez une courte decription du menu" class="form-control vresize" required></textarea>
 						</div>
 					</div>
 				</div>
