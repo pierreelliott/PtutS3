@@ -32,16 +32,18 @@
 		{
 			if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
-                $NumProduit = $_GET["numProduit"];
+                $numProduit = $_GET["numProduit"];
 
                 //Teste si le produit est un produit favoris
-				if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit) == false)
+				if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $numProduit) == false)
                 {
-                    $resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                    $resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $numProduit);
+
                 }
-				elseif($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit) == true)
+                //Le produit est favoris
+				elseif($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $numProduit) == true)
                 {
-                    $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $NumProduit);
+                    $resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $numProduit);
                 }
                 else
                 {

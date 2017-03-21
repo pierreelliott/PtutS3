@@ -151,11 +151,8 @@
         {
             $user = $this->getNumUser($pseudo);
 
-            $classement = $this->executerRequete('select max(classement) from preference where numUser = ?', array($user));
-            $classement = $classement['CLASSEMENT'] + 1;
-
             $requete = $this->executerRequete('insert into preference(numUser, NUMPRODUIT, CLASSEMENT)
-                                            values(?, ?, ?)', array($user, $NUMPRODUIT, $classement));
+                                            values(?, ?, 0)', array($user, $NUMPRODUIT));
             return $requete;
 
         }
@@ -186,7 +183,8 @@
         //Verifie que le produit est un produit favoris pour l'utilisateur
         public function estFavoris($pseudo, $numProduit)
         {
-            $requete = $this->executerRequete('select numProduit from preference where NumProduit = ?', array($numProduit));
+            $numUser = $this->getNumUser($pseudo);
+            $requete = $this->executerRequete('select numProduit from preference where NumProduit = ? and numUser = ?', array($numProduit, $numUser));
 
             $requete= $requete->fetch();
 

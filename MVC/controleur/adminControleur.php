@@ -108,7 +108,6 @@
                 }
 
 
-
 				$typesProduit = $this->produit->getTypesProduit(); // Utilisé dans la vue
 
 				$produits = $this->produit->recupererCarte();
