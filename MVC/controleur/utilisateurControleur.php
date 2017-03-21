@@ -65,7 +65,12 @@
 			{
 				$newPseudo = htmlspecialchars($_POST["pseudo"]);
 
-				$this->bdd->modifierInfos($_POST["numUser"], array("pseudo" => $newPseudo));
+				$doublon = $this->bdd->checkDoublon($newPseudo);
+
+				if(!$doublon)
+				{
+					$this->bdd->modifierInfos($_POST["numUser"], array("pseudo" => $newPseudo));
+				}
 			}
 
 			header("Location: /utilisateur");

@@ -274,6 +274,47 @@ $(function()
 		modal.find('.modalCommentaire').text(commentaire);
 	});
 
+
+
+	// Lorsue l'on entre une valeur dans l'input de recherche
+	$('#rechercheUser').keyup(function(e)
+	{
+		var input = $(this);
+		var autoCompleteList = $('#autoCompleteList');
+
+		var inputValue = input.val();
+		autoCompleteList.empty();
+
+		if(inputValue !== "")
+		{
+			$.post('/rechercher-pseudo',
+			{
+				input: inputValue
+			},
+			function(data)
+			{
+				//console.log(data);
+				listeUser = JSON.parse(data);
+				//console.log(listeUser);
+
+				listeUser.forEach(function(user)
+				{
+					var glyphTypeUser = "";
+					if(user.typeUser === "ADMIN")
+					{
+						glyphTypeUser = "wrench";
+					}
+					else if(user.typeUser === "USER")
+					{
+						glyphTypeUser = "user";
+					}
+
+					autoCompleteList.append('<li class="glyphicon glyphicon-' + glyphTypeUser + '"> ' + user.pseudo + '</li>');
+				});
+			});
+		}
+	});
+
 	//Lorsque l'on clique sur la confirmation de supression du commentaire
 	$('.supprCommentaire').click(function(e))
 	{
@@ -286,5 +327,4 @@ $(function()
 		console.console.log(numAvis);
 
 	}
-
 });
