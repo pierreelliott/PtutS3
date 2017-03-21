@@ -137,7 +137,7 @@ label
     margin: 0;
 }
 
-#autoCompleteList li {
+#autoCompleteList li a {
     border: 1px solid #ddd; /* Add a border to all links */
     margin-top: -1px; /* Prevent double borders */
     background-color: #f6f6f6; /* Grey background color */
@@ -148,7 +148,7 @@ label
     display: block; /* Make it into a block element to fill the whole list */
 }
 
-#autoCompleteList li:hover {
+#autoCompleteList li a:hover {
     background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
 

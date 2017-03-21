@@ -77,6 +77,15 @@
                 return false;
         }
 
+        //Modifie le commentaire à des fins de modération
+        public function modifCommentaire($numAvis, $commentaire)
+        {
+            $requete = $this->executerRequete('update avis
+                                    set avis = ?
+                                    where numUser = ?', array($commentaire,$numAvis));
+            return $requete;
+        }
+
         //Supprime seulement le commentaire
         public function deleteCommentaire($numAvis)
         {
@@ -161,10 +170,10 @@
         //Recupere tous les avis signalé: Numuser correspond a la personne qui signale
         public function getTousAvisSignaler()
         {
-            $requete = $this->executerRequete('select avis, note, date, s.numAvis
-                                            from avis a join signalAvis s
+            $requete = $this->executerRequete("select avis, note, DATE_FORMAT(date, '%d/%m/%Y') date, s.numAvis
+                                            from avis a left join signalAvis s
                                             on a.NumUser= s.numAvis
-                                            where numSignal is NOT null; ');
+                                            where numSignal is NOT null");
 
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
@@ -186,7 +195,7 @@
         {
             $requete = $this->executerRequete('delete from signalAvis where numAvis = ?', array($numAvis));
 
-            
+
             //Renvoit nb ligne effacé sinon une erreur
             if($requete >= 1)
                 return true;

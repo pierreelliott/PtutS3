@@ -81,6 +81,12 @@
 	    </div>
   	</div>
 
+    <div class="modal fade" id="adminAvisModif">
+	    <div class="modal-dialog">
+	      	<?php include("vue/adminModifCommentaire.php"); ?>
+	    </div>
+  	</div>
+
   	<div class="modal fade" id="adminProduitAjout">
 	    <div class="modal-dialog">
 	      	<?php include("vue/adminAjoutProduit.php"); ?>

@@ -301,10 +301,38 @@ $(function()
 						glyphTypeUser = "user";
 					}
 
-					autoCompleteList.append('<li class="glyphicon glyphicon-' + glyphTypeUser + '"> ' + user.pseudo + '</li>');
+					autoCompleteList.append('<li><a href="#adminGererAdmin" data-pseudo="' + user.pseudo + '" data-typeuser="' + user.typeUser + '" data-toggle="modal" class="glyphicon glyphicon-' + glyphTypeUser + '">  ' + user.pseudo + '</a></li>');
 				});
 			});
 		}
+	});
+
+	// Ouverture de la fenêtre modale pour l'ajout d'administrateurs
+	$('#adminGererAdmin').on('show.bs.modal', function(e)
+	{
+		var modal = $(this);
+		var typeUser = $(e.relatedTarget).data('typeuser').toLowerCase();
+		var pseudo = $(e.relatedTarget).data('pseudo');
+
+		modal.find('p').text(pseudo);
+		modal.find('#pseudoAdmin').val(pseudo);
+
+		console.log(typeUser);
+
+		var radio = modal.find('input[value=' + typeUser + ']').attr('checked', 'checked');
+	}
+
+	//Ouverture de la fenetre modale pour la modification du commentaire
+	$('#adminAvisModif').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var commentaire = button.data('commentaire');
+
+		var numAvis = button.data('numavis');
+
+		var modal = $(this);
+		modal.find('p').text("Commentaire :");
+		modal.find('textarea').text(commentaire);
+		modal.find('input').val(numAvis);
 	});
 
 	//Ouverture de la fenetre modale pour la supression du commentaire
@@ -321,18 +349,4 @@ $(function()
 		modal.find('input').val(numAvis);
 	});
 
-	//Lorsque l'on clique sur la confirmation de supression du commentaire
-	$('.supprCommentaire').click(function(e)
-	{
-		var numAvis = $('.adminNumAvis').data('numavis');
-
-		console.log(numAvis);
-
-		$.post("/deleteCommentaire", {numAvis:numAvis}, function(data,status){
-
-		});
-
-		//console.console.log(numAvis);
-
-	});
 });
