@@ -32,7 +32,7 @@
 
 											<?php
 											// Si le "produit" n'est pas un menu
-											if(true) { ?>
+											if($produit["estMenu"] == false) { ?>
 											<li class="list-group-item">
 												<div class="row">
 													<div class="col-sm-2">
@@ -44,7 +44,7 @@
 																<p><?php echo $produit["libelle"]; ?></p>
 															</div>
 															<div class="col-sm-5">
-																<p>Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
+																<p class="text-muted">Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
 															</div>
 														</div>
 														<div class="row">
@@ -69,7 +69,7 @@
 														<p><?php echo $produit["libelle"]; ?></p>
 													</div>
 													<div class="col-sm-5">
-														<p>Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
+														<p class="text-muted">Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
 													</div>
 												</div>
 												<div class="row">
@@ -130,33 +130,13 @@
 									</div>
 									<div id="collapseInfos" class="panel-collapse collapse in">
 										<ul class="list-group">
-											<?php foreach ($produits as  $produit) { ?>
 											<li class="list-group-item">
 												<div class="row">
-													<div class="col-sm-2">
-														<img src="<?php echo $produit["sourcePetit"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
-													</div>
-													<div class="col-sm-10">
-														<div class="row">
-															<div class="col-sm-5">
-																<p><?php echo $produit["libelle"]; ?></p>
-															</div>
-															<div class="col-sm-5">
-																<p>Prix unitaire : <?php echo $produit["prix"]; ?> €</p>
-															</div>
-														</div>
-														<div class="row">
-															<div class="col-sm-offset-4 col-sm-5">
-																<p>Quantité : <?php echo $produit["quantite"]; ?></p>
-															</div>
-															<div class="col-sm-3">
-																<p>Prix : <?php echo $produit["prixTotal"]; ?> €</p>
-															</div>
-														</div>
+													<div class="col-sm-12">
+														<p>Type de commande : <span class="text-info">À emporter</span></p>
 													</div>
 												</div>
 											</li>
-											<?php } ?>
 										</ul>
 									</div>
 								</div>

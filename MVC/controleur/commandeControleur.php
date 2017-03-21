@@ -23,18 +23,20 @@
             //On recupere les commandes dans la base de données
 			$data = $this->bdCommande->getHistoriqueCommande($_SESSION["utilisateur"]["pseudo"]);
 
-                foreach ($data as $d) {
+            foreach ($data as $d) {
 
 
-                    $com = array('date' => $d['date'],
-                                 'typeCommande' => $d['typeCommande'],
-                                 'numCommande'  => $d['numCommande'],
-                                 'prix' => $this->bdCommande->getPrixTotalCommande($d['numCommande']),
-                                 'nbProduits' => $this->bdCommande->getNbProduit($d['numCommande']));
+                $com = array('date' => $d['date'],
+                             'typeCommande' => $d['typeCommande'],
+                             'numCommande'  => $d['numCommande'],
+                             'prix' => $this->bdCommande->getPrixTotalCommande($d['numCommande']),
+                             'nbProduits' => $this->bdCommande->getNbProduit($d['numCommande']));
 
-                    //Ajout de la commande dans le tableau final
-                    $commandes[$com['numCommande']] = $com;
-                }
+                //Ajout de la commande dans le tableau final
+                $commandes[$com['numCommande']] = $com;
+            }
+
+			$estVide = (count($commandes) == 0);
 
 
 			include_once('vue/historiqueCommandes.php');
@@ -45,15 +47,15 @@
             //Si la commande lui appartient
             //if($this->bdCommande->estSaCommande($_SESSION["utilisateur"]["pseudo"], $_GET["numCommande"]))
 
-			$resultat = $this->bdCommande->getInfosCommande($_GET["numCommande"]);
+			$commande = $this->bdCommande->getInfosCommande($_GET["numCommande"]);
 
             //Tester la valeur de retour de la fonction getInfos Commande
-			if($resultat != false)
+			if($commande != false)
 			{
                 //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
                 $dateCommande = "null";
 
-                foreach ($resultat as $res) {
+                foreach ($commande as $res) {
                     $dateCommande = $res["date"];
                 }
 
@@ -62,9 +64,12 @@
                 $produits = array();
 
                 //Pour chaque produit dans la commande
-				foreach($resultat as $prod)
+				foreach($commande as $prod)
 				{
 					$p = $this->bdProduit->getInformationsProduit($prod["numProduit"]);
+
+					$partie = explode(".", $p["typeProduit"]);
+
 					$produit = array(
 						"numProduit" => $p["numProduit"],
 						"libelle" => $p["libelle"],
@@ -74,7 +79,8 @@
 						"prixTotal" => $p["prix"]* $prod["quantite"],
 						"sourcePetit" => $p["sourcePetit"],
 						"sourceMoyen" => $p["sourceMoyen"],
-						"sourceGrand" => $p["sourceGrand"]
+						"sourceGrand" => $p["sourceGrand"],
+						"estMenu" => (strcmp( $partie[0] , "menu") == 0)
 					);
                     //Ajout d'un tableau en 2 dimensions avec toutes les donnees
 					$produits[$prod["numProduit"]] = $produit;
