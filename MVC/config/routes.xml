@@ -37,6 +37,7 @@
 	<route url="/get-produits?-admin" controleur="admin" methode="getProduitAdmin"/>
 	<route url="/rechercher-pseudo" controleur="admin" methode="rechercherPseudo"/>
 	<route url="/deleteCommentaire" controleur="admin" methode="deleteCommentaire" />
+	<route url="/modifCommentaire" controleur="admin" methode="modifCommentaire" />
 
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
 	<route url="/404" vue="404"/>

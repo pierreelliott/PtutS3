@@ -307,6 +307,19 @@ $(function()
 		}
 	});
 
+	//Ouverture de la fenetre modale pour la modification du commentaire
+	$('#adminAvisModif').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var commentaire = button.data('commentaire');
+
+		var numAvis = button.data('numavis');
+
+		var modal = $(this);
+		modal.find('p').text("Commentaire :");
+		modal.find('textarea').text(commentaire);
+		modal.find('input').val(numAvis);
+	});
+
 	//Ouverture de la fenetre modale pour la supression du commentaire
 	$('#adminAvisConfirm').on('show.bs.modal', function(event){
 		var button = $(event.relatedTarget);
@@ -321,18 +334,4 @@ $(function()
 		modal.find('input').val(numAvis);
 	});
 
-	//Lorsque l'on clique sur la confirmation de supression du commentaire
-	$('.supprCommentaire').click(function(e)
-	{
-		var numAvis = $('.adminNumAvis').data('numavis');
-
-		console.log(numAvis);
-
-		$.post("/deleteCommentaire", {numAvis:numAvis}, function(data,status){
-
-		});
-
-		//console.console.log(numAvis);
-
-	});
 });
