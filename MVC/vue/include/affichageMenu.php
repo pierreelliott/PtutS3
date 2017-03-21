@@ -39,7 +39,7 @@
 						<p class="text-muted"><?php echo $produit["libelle"]; ?></p>
 					</div>
 					<div class="panel-body">
-						<img src="<?php echo $produit["sourceMoyen"]; ?>.png" alt="Image <?php echo $produit["libelle"] ?>" class="img-responsive" style="width:80px">
+						<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"] ?>" class="img-responsive" style="width:80px">
 					</div>
 				</a>
 			</div>

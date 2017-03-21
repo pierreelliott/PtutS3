@@ -26,13 +26,13 @@ insert into vote(NumAvis, NumUser, Vote)  values
 
 /* Table Image */
 insert into image(SourcePetit, SourceMoyen, SourceGrand) values
-("src/img/img001","src/img/img002","src/img/img003"),
-("src/img/img101","src/img/img102","src/img/img103"),
-("src/img/img201","src/img/img202","src/img/img203"),
-("src/img/img301","src/img/img302","src/img/img303"),
-("src/img/img401","src/img/img402","src/img/img403"),
-("src/img/img501","src/img/img502","src/img/img503"),
-("src/img/img601","src/img/img602","src/img/img603");
+("src/img/img001.png","src/img/img002.png","src/img/img003.png"),
+("src/img/img101.png","src/img/img102.png","src/img/img103.png"),
+("src/img/img201.png","src/img/img202.png","src/img/img203.png"),
+("src/img/img301.png","src/img/img302.png","src/img/img303.png"),
+("src/img/img401.png","src/img/img402.png","src/img/img403.png"),
+("src/img/img501.png","src/img/img502.png","src/img/img503.png"),
+("src/img/img601.png","src/img/img602.png","src/img/img603.png");
 
 
 

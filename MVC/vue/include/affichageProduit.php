@@ -29,11 +29,11 @@
 		<div class="media img-produit">
 			<a href="#produitModal" data-toggle="modal"
 						data-libelle="<?php echo $produit["libelle"]; ?>"
-						data-source-img="<?php echo $produit['sourceMoyen'].".png"; ?>"
+						data-source-img="<?php echo $produit['sourceMoyen']; ?>"
 						data-description="<?php echo $produit["description"]; ?>"
 						data-prix="<?php echo $produit["prix"]; ?>">
 				<div class="media-top">
-					<img src="<?php echo $produit["sourceMoyen"]; ?>.png" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail center-block">
+					<img src="<?php echo $produit["sourceMoyen"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="media-object img-thumbnail center-block">
 				</div>
 			</a>
 			<div class="media-body">
