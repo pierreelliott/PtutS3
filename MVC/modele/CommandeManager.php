@@ -136,6 +136,17 @@
             return $resultat['nombreProduit'];
         }
 
+        //Teste si la commande appartient à l'utilisateur
+        public function estSaCommande($pseudo, $numCommande)
+        {
+            $numUser = $this->user->getNumUser($pseudo);
+            $requete = $this->executerRequete('select numCommande from commande where numUser =? and numCommande = ?', array($numUser, $numCommande));
+            $return = $requete->fetch(PDO::FETCH_ASSOC);
+
+            return $return != false;
+
+        }
+
     }
 
 

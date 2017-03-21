@@ -42,6 +42,9 @@
 
 		public function afficherCommande()
 		{
+            //Si la commande lui appartient
+            //if($this->bdCommande->estSaCommande($_SESSION["utilisateur"]["pseudo"], $_GET["numCommande"]))
+
 			$resultat = $this->bdCommande->getInfosCommande($_GET["numCommande"]);
 
             //Tester la valeur de retour de la fonction getInfos Commande
