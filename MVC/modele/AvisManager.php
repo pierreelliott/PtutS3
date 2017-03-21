@@ -81,7 +81,7 @@
         public function deleteCommentaire($numAvis)
         {
             $requete = $this->executerRequete('update avis
-                                                set avis= ?
+                                                set avis = NULL
                                                 where numUser = ?', array($numAvis));
             return $requete;
         }
@@ -186,8 +186,9 @@
         {
             $requete = $this->executerRequete('delete from signalAvis where numAvis = ?', array($numAvis));
 
+            
             //Renvoit nb ligne effacé sinon une erreur
-            if($requete == 1)
+            if($requete >= 1)
                 return true;
             else
                 return false;

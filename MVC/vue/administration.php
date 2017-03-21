@@ -54,7 +54,14 @@
 
                     <!-- Onglet du tableau -->
                     <div class="tab-pane fade" id="avis">
-                        <?php include("vue/adminAvis.php"); ?>
+                        <?php if($tousAvis != false)
+                        {
+                            include("vue/adminAvis.php");
+                        }
+                        else {
+                            echo "<p class='jumbotron'>Aucun avis n'a été signalé</p>";
+                        }
+                         ?>
                     </div>
 					<div class="tab-pane fade" id="administrateurs">
 						<?php include("vue/administrateurs.php"); ?>

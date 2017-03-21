@@ -88,20 +88,25 @@
 
                 //On recupere tous les avis signaler
                 $tousAvisBD = $this->avis->getTousAvisSignaler();
+                if($tousAvisBD != false)
+                {
+                    foreach ($tousAvisBD as $avisBD) {
 
-                foreach ($tousAvisBD as $avisBD) {
-
-                    //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
-                    $avis = array('avis' => $avisBD['avis'],
-                                    'note' => $avisBD['note'],
-                                    'date'  => $avisBD['date'],
-                                    'numuser' =>  $avisBD['numAvis'],
-                                    'pseudo' => $this->user->getPseudo($avisBD['numAvis']),
-                                    'estCommente' => isset($avisBD['avis']) == true );
-                    //Ajout d'un tableau en 2 dimensions avec toutes les donnees
-                    $tousAvis[$avisBD['numAvis']] = $avis;
+                        //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
+                        $avis = array('avis' => $avisBD['avis'],
+                                        'note' => $avisBD['note'],
+                                        'date'  => $avisBD['date'],
+                                        'numuser' =>  $avisBD['numAvis'],
+                                        'pseudo' => $this->user->getPseudo($avisBD['numAvis']),
+                                        'estCommente' => isset($avisBD['avis']) == true );
+                        //Ajout d'un tableau en 2 dimensions avec toutes les donnees
+                        $tousAvis[$avisBD['numAvis']] = $avis;
+                    }
                 }
-                print_r($tousAvis);
+                else {
+                    $tousAvis = false;
+                }
+
 
 
 				$typesProduit = $this->produit->getTypesProduit(); // Utilisé dans la vue
@@ -236,6 +241,7 @@
                     $retour = $this->avis->deleteSignalements($_POST['numAvis']);
                 }
             }
+            header('Location: /administration');
         }
     }
 ?>

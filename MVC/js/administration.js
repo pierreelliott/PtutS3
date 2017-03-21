@@ -264,15 +264,7 @@ $(function()
 		});
 	});
 
-	//Ouverture de la fenetre modale pour la supression du commentaire
-	$('#adminAvisConfirm').on('show.bs.modal', function(event){
-		var button = $(event.relatedTarget);
-		var commentaire = 'Commentaire : ' + button.data('commentaire');
 
-		var modal = $(this);
-
-		modal.find('.modalCommentaire').text(commentaire);
-	});
 
 
 
@@ -315,16 +307,32 @@ $(function()
 		}
 	});
 
-	//Lorsque l'on clique sur la confirmation de supression du commentaire
-	$('.supprCommentaire').click(function(e))
-	{
-		var numAvis = $('#adminAvisConfirm').data('numAvis');
+	//Ouverture de la fenetre modale pour la supression du commentaire
+	$('#adminAvisConfirm').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var commentaire = 'Commentaire : ' + button.data('commentaire');
 
-		$.post("/deleteCommentaire", numAvis:numAvis, function(data,status){
+		var numAvis = button.data('numavis');
+
+
+		var modal = $(this);
+
+		modal.find('.modalCommentaire').text(commentaire);
+		modal.find('input').val(numAvis);
+	});
+
+	//Lorsque l'on clique sur la confirmation de supression du commentaire
+	$('.supprCommentaire').click(function(e)
+	{
+		var numAvis = $('.adminNumAvis').data('numavis');
+
+		console.log(numAvis);
+
+		$.post("/deleteCommentaire", {numAvis:numAvis}, function(data,status){
 
 		});
 
-		console.console.log(numAvis);
+		//console.console.log(numAvis);
 
-	}
+	});
 });
