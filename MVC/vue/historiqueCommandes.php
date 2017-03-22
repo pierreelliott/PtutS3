@@ -37,7 +37,7 @@
 							<p class="lead">Prix de la commande : <?php echo $commande["prix"];?> €</p>
                             <p class="lead">Type de la commande : <?php echo $commande["typeCommande"];?></p>
                             <p class="lead">
-                                <?php echo "<a href='/commande-{$commande['numCommande']}'> Afficher la commande</a>"?>
+                                <?php echo "<a class='text-primary' href='/commande-{$commande['numCommande']}'> Afficher la commande</a>"?>
                             </p>
 						</div>
 					</div>
