@@ -73,6 +73,16 @@
 						<div class="panel panel-default">
 							<div class="panel-body text-muted">
 								<div class="row">
+									<!--
+									<div class="col-sm-6">
+										<div class="desc-frame">
+											<legend>Paramètres actuels</legend>
+											<p>Utilisateur : <span class="text-info">echo paypal["utilisateur"]</span></p>
+											<p>Mot de passe : <span class="text-info">echo paypal["mdp"]</span></p>
+											<p>Signature : <span class="text-info">echo paypal["signature"]</span></p>
+										</div>
+									</div>
+									-->
 									<div class="col-sm-offset-3 col-sm-6">
 										<form method="post" action="/modifParamsPaypal" class="form">
 											<fieldset>

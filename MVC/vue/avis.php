@@ -5,7 +5,7 @@
 ?>
 <!-- ======== Début Code HTML ======== -->
     <div class="alert alert-danger hidden">
-      Vous avez déja signalé cet avis !!!
+      Vous avez déja signalé cet avis !
     </div>
 	<div class="row">
 		<div class="col-lg-offset-2 col-lg-8 site-wrapper">
@@ -14,12 +14,13 @@
 
                         <?php //Si il y a message d'erreur causé par les votes
                         if(isset($message))
-                        {
-                            echo "<div class='form-group has-error'>
-                                    <span class='help-block'>" . $message . "</span>
-                                </div>";
-                        }
-                        else {
+                        { ?>
+                            <div class='form-group has-error'>
+                                <span class='help-block'><?=$message?></span>
+								<a href="/connexion" class="btn btn-info">Se connecter</a>
+                            </div>
+
+                        <?php } else {
                             ?>
 					<h1>Donnez votre avis sur nos services</h1>
 
