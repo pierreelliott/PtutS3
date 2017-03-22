@@ -316,6 +316,9 @@
                 //On recupere les signalements
                 $signalements = $this->avis->getSignalements($_POST["numAvis"]);
 
+                //On passe le tableau en tableau à index numérique
+                $signalements = array_values($signalements);
+
                 //On encode les données en JSON recuperable en JavaScript
                 echo json_encode($signalements);
             }

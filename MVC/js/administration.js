@@ -349,8 +349,9 @@ $(function()
 		var button = $(event.relatedTarget);
 		var numAvis = button.data('numavis');
 
+		var modal = $(this);
 		//Appel en Ajax pour recuperer les signalements
-		$.post("/get-produits-admin",
+		$.post("/get-signalement",
 		{
 			isAjax: true,
 			numAvis:numAvis
@@ -358,9 +359,38 @@ $(function()
 		function(data, status)
 		{
 			var signalements = JSON.parse(data);
+
+			signalements.forEach(function(signal, index)
+			{
+				var code = "";
+				//Si la remarque est differente de null on fais cet affichage
+				if(signal.remarque != null)
+				{
+					var code = "<div class='row'>"+
+									"<div class='panel panel-default'>" +
+										"<div class='panel-body text-dark'>"+
+											"<p >Signalé par: "+ signal.pseudo +"</p>"+
+											"<p>Remarque: "+ signal.remarque +"</p>"+
+										"</div>"+
+									"</div>"+
+								"</div>"
+				}
+				else {
+					var code = "<div class='row'>"+
+									"<div class='panel panel-default'>" +
+										"<div class='panel-body text-dark'>"+
+											"<p >Signalé par: "+ signal.pseudo +"</p>"+
+										"</div>"+
+									"</div>"+
+								"</div>"
+				}
+
+				modal.find('.modal-body').append(code);
+			});
+
 		});
 
-		var modal = $(this);
+
 
 	});
 

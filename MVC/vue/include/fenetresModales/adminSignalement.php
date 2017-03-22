@@ -4,9 +4,6 @@
 		<h4 class="modal-title">Signalement sur cet avis</h4>
 	</div>
 	<div class="modal-body">
-        <p></p>
-		<input  type="hidden" name="numAvis" value="">
-    	<p name="remarque"></p>
 	</div>
 	<div class="modal-footer">
 		<button type="button" data-dismiss="modal" class="btn btn-success">Fermer</button>
