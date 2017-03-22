@@ -5,7 +5,7 @@
 	</div>
 	<div class="modal-body">
         <p class="modalCommentaire"></p>
-		<form method="post" action="/deleteCommentaire">
+		<form method="post" id="formConfirm" action="/deleteCommentaire">
 			<input  type="hidden" name="numAvis" value="">
 		</form>
 
@@ -13,7 +13,7 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 
-		<button type="submit"  class="btn btn-danger supprCommentaire">Supprimer<span class="glyphicon glyphicon-remove"></span></button>		
+		<button type="submit"  form="formConfirm" class="btn btn-danger supprCommentaire">Supprimer<span class="glyphicon glyphicon-remove"></span></button>		
 
 	</div>
 </div>

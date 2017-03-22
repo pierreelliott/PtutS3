@@ -128,7 +128,7 @@
                 isset($_POST['remarque']))
             {
                     //On recupere le commentaire de l'avis signale
-                    $avis = $this->getAvis($this->user->getPseudo($_POST['numAvis']));
+                    $avis = $this->avis->getAvis($this->user->getPseudo($_POST['numAvis']));
                     //On test qu'il n'est pas null
                     if($this->user->convertChaine($avis["avis"], 0) != null )
                     {
@@ -138,6 +138,7 @@
                     }
 
             }
+            header("Location: /avis");
 
         }
 

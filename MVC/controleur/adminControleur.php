@@ -89,8 +89,8 @@
                 //On recupere tous les avis signaler
                 $tousAvisBD = $this->avis->getTousAvisSignaler();
                 $tousAvis = array();
-               /* if($tousAvisBD != false)
-                {*/
+                if($tousAvisBD != false)
+                {
                 foreach ($tousAvisBD as $avisBD)
                 {
                     //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
@@ -107,10 +107,10 @@
                     //Ajout d'un tableau en 2 dimensions avec toutes les donnees
                     $tousAvis[$avisBD['numAvis']] = $avis;
                 }
-             /*   }
+                }
                 else {
                     $tousAvis = false;
-                }*/
+                }
 
 
 				$typesProduit = $this->produit->getTypesProduit(); // Utilisé dans la vue

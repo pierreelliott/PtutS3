@@ -5,13 +5,13 @@
 	</div>
 	<div class="modal-body">
         <p></p>
-		<form method="post" action="/modifCommentaire">
+		<form method="post" id="formModif" action="/modifCommentaire">
 			<input  type="hidden" name="numAvis" value="">
-        	<textarea name="commentaire"></textarea>
+        	<textarea class="vresize" name="commentaire"></textarea>
 		</form>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-		<button type="submit"  class="btn btn-danger supprCommentaire">Modifier<span class="glyphicon glyphicon-remove"></span></button>
+		<button type="submit" form="formModif" class="btn btn-danger supprCommentaire">Modifier<span class="glyphicon glyphicon-remove"></span></button>
 	</div>
 </div>

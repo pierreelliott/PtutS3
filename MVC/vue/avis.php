@@ -80,7 +80,7 @@
     <!-- Affichage de la fenetre modale du signalement -->
     <div class="modal fade" id="signalModal">
       <div class="modal-dialog">
-        <form method="post" id="formSignal">
+        <form method="post" id="formSignal" action="/signalAvis">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
@@ -104,7 +104,7 @@
               </div>
               <div class="modal-footer">
                 <div class="col-xs-4">
-                    <button type="button" id="btnSignal" class="btn btn-success">Signaler l'avis</button>
+                    <button type="submit" id="btnSignal" class="btn btn-success">Signaler l'avis</button>
                 </div>
               </div>
             </div>
