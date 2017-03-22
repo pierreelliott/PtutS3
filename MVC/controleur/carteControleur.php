@@ -35,6 +35,8 @@
 					continue;
 				}
 
+				// Pour permettre l'affiche des caractères comme '\n' en balise <br> (ça cause des problèmes donc je met ça en commmentaire en attendant)
+				//$carte[$keyMenu]["description"] = nl2br($carte[$keyMenu]["description"]);
 
 				$typeProduit = $this->bdd->getTypeProduit($produit["numProduit"]);
 
@@ -57,6 +59,8 @@
 					foreach($produitCompatibles as $keyProduit => $produitCompatible)
 					{
 						$menus[$keyMenu]["produits"][$keyProduit] = $this->bdd->getInformationsProduit($produitCompatible["numProduit2"]);
+						// Pour permettre l'affiche des caractères comme '\n' en balise <br> (ça cause des problèmes donc je met ça en commmentaire en attendant)
+						//$menus[$keyMenu]["produits"][$keyProduit]["description"] = nl2br($menus[$keyMenu]["produits"][$keyProduit]["description"]);
 					}
 				}
 				// La variable $menus est de la forme

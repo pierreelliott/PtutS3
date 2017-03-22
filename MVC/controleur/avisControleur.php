@@ -37,7 +37,7 @@
             //Creation du tableau qui va conteir tous les avis
             $tousAvis = array();
 
-            foreach ($tousAvisBD as $avisBD) {
+            foreach ($tousAvisBD as $keyAvis => $avisBD) {
 
                 //Creation d'un tableau pour stocker toutes les informations d'un avis + remplissage
                 $avis = array('avis' => $avisBD['avis'],
@@ -49,7 +49,9 @@
                                 'pseudo' => $this->user->getPseudo($avisBD['numUser']),
                                 'estCommente' => isset($avisBD['avis']) == true );
                 //Ajout d'un tableau en 2 dimensions avec toutes les donnees
-                $tousAvis[$avisBD['numUser']] = $avis;
+                $tousAvis[$keyAvis] = $avis;
+				// Pour permettre l'affiche des caractères comme '\n' en balise <br> (ça cause des problèmes donc je met ça en commmentaire en attendant)
+				//$tousAvis[$keyAvis]['avis'] = nl2br($tousAvis[$keyAvis]['avis']);
             }
             include_once("vue/avis.php");
         }
