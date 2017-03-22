@@ -1,4 +1,4 @@
-<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configs>
-	<paypal user="test.seller_api1.yopmail.com" mdp="CMASHX59W3RDVVKE" signature="AFcWxV21C7fd0v3bYYYRCpSSRl31AD3ZWGs6j9kywv41tSL0XrUzyrSf" />
+	<paypal user="test.seller_api1.yopmail.com" mdp="CMASHX59W3RDVVKE" signature="AFcWxV21C7fd0v3bYYYRCpSSRl31AD3ZWGs6j9kywv41tSL0XrUzyrSf"/>
 </configs>

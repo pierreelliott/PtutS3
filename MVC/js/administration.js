@@ -317,10 +317,8 @@ $(function()
 		modal.find('p').text(pseudo);
 		modal.find('#pseudoAdmin').val(pseudo);
 
-		console.log(typeUser);
-
 		var radio = modal.find('input[value=' + typeUser + ']').attr('checked', 'checked');
-	}
+	});
 
 	//Ouverture de la fenetre modale pour la modification du commentaire
 	$('#adminAvisModif').on('show.bs.modal', function(event){

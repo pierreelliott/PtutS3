@@ -286,19 +286,22 @@
             }
             header('Location: /administration');
         }
-		
+
 		public function modifierParametresPaypal()
 		{
-			if(isset($_POST["nomUserPaypal"], $_POST["mdpPaypal"], $_POST["signaturePaypal"])
+			if(isset($_POST["userPaypal"], $_POST["mdpPaypal"], $_POST["signaturePaypal"]))
 			{
 				$config = new \DOMDocument;
 				$config->load("config/config.xml");
-				$xmlParamsPaypal = $config->getElementsByTagName("paypal");
-				$xmlParamsPaypal->setAttribute("user", $_POST["UserPaypal"]);
+
+				$xmlParamsPaypal = $config->getElementsByTagName("paypal")[0];
+				$xmlParamsPaypal->setAttribute("user", $_POST["userPaypal"]);
 				$xmlParamsPaypal->setAttribute("mdp", $_POST["mdpPaypal"]);
 				$xmlParamsPaypal->setAttribute("signature", $_POST["signaturePaypal"]);
+
+				$config->save("config/config.xml");
 			}
-			
+
 			header("Location: /administration");
 		}
     }

@@ -19,6 +19,7 @@
 					<li><a href="#menus" data-toggle="tab">Menus</a></li>
                     <li><a href="#avis" data-toggle="tab">Avis</a></li>
 					<li><a href="#administrateurs" data-toggle="tab">Administrateurs</a></li>
+					<li><a href="#paypal" data-toggle="tab">Paypal</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="produits">
@@ -67,24 +68,24 @@
 						<?php include("vue/administrateurs.php"); ?>
 					</div>
 					<div class="tab-pane fade" id="paypal">
-						<!-- nom utilisateur api, mdp api, signature api, (version api) --> 
+						<!-- nom utilisateur api, mdp api, signature api, (version api) -->
 						<hr class="invisible-separator">
 						<div class="panel panel-default">
-							<div class="panel-body">
+							<div class="panel-body text-muted">
 								<div class="row">
 									<div class="col-sm-offset-3 col-sm-6">
 										<form method="post" action="/modifParamsPaypal" class="form">
 											<fieldset>
-												<legend>Modifier les paramètres de paypal</legend>
+												<legend class="text-muted">Modifier les paramètres de paypal</legend>
 												<label for="userPaypal" class="label-form">Utilisateur paypal (vendeur)</label>
 												<input type="text" id="userPaypal" name="userPaypal" class="form-control">
-												
+
 												<label for="mdpPaypal" class="label-form">mot de passe paypal</label>
 												<input type="text" id="mdpPaypal" name="mdpPaypal" class="form-control">
-												
+
 												<label for="signaturePaypal" class="label-form">Signature paypal</label>
 												<input type="text" id="signaturePaypal" name="signaturePaypal" class="form-control">
-												
+
 												<button type="submit" class="btn btn-primary">Valider les changement</button>
 											</fieldset>
 										</form>
