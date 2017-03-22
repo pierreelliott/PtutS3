@@ -144,7 +144,7 @@
                 //Supression des espaces inutiles en debut et fin de chaine
                 $remarque = $this->convertChaine($remarque, 1);
 
-                $requete = $this->executerRequete('insert into signalAvis(numAvis, numUser, remarque)
+                $requete = $this->executerRequete('insert into signalavis(numAvis, numUser, remarque)
                                                 values(?,?,?)',array($numAvis, $user, $remarque));
 
                 return true;
@@ -161,7 +161,7 @@
            //On recupere le NumUser associé
            $user = $this->um->getNumUser($pseudo);
 
-           $requete = $this->executerRequete('select numSignal from signalAvis where numAvis = ? and  NumUser = ?', array($numAvis, $user ));
+           $requete = $this->executerRequete('select numSignal from signalavis where numAvis = ? and  NumUser = ?', array($numAvis, $user ));
            $requete->fetch();
 
            return $requete;
@@ -171,7 +171,7 @@
         public function getTousAvisSignaler()
         {
             $requete = $this->executerRequete("select avis, note, DATE_FORMAT(date, '%d/%m/%Y') date, s.numAvis
-                                            from avis a left join signalAvis s
+                                            from avis a left join signalavis s
                                             on a.NumUser= s.numAvis
                                             where numSignal is NOT null");
 
@@ -183,7 +183,7 @@
         public function getSignalements($numAvis)
         {
             $requete = $this->executerRequete('select numAvis, pseudo, remarque
-                                               from signalAvis s join utilisateur u
+                                               from signalavis s join utilisateur u
                                                on s.numUser = u.numUser
                                                where numAvis = ?', array($numAvis));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -194,7 +194,7 @@
         //Supprime tous les signalements d'un avis
         public function deleteSignalements($numAvis)
         {
-            $requete = $this->executerRequete('delete from signalAvis where numAvis = ?', array($numAvis));
+            $requete = $this->executerRequete('delete from signalavis where numAvis = ?', array($numAvis));
 
 
             //Renvoit nb ligne effacé sinon une erreur
