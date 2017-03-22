@@ -13,7 +13,7 @@
 		</span>
         <span data-toggle="tooltip" data-placement="top" title="Voir les signalments">
            <button type="button" class="glyphicon glyphicon-eye-open btn btn-primary btn-admin"
-           data-toggle="modal" data-target="" ></button>
+           data-toggle="modal" data-target="#adminSignalement" data-numavis="<?php echo $avis['numuser']?>" ></button>
        </span>
     </div>
     <div class="panel-body">
