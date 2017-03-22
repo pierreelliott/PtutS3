@@ -66,6 +66,33 @@
 					<div class="tab-pane fade" id="administrateurs">
 						<?php include("vue/administrateurs.php"); ?>
 					</div>
+					<div class="tab-pane fade" id="paypal">
+						<!-- nom utilisateur api, mdp api, signature api, (version api) --> 
+						<hr class="invisible-separator">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-offset-3 col-sm-6">
+										<form method="post" action="/modifParamsPaypal" class="form">
+											<fieldset>
+												<legend>Modifier les paramètres de paypal</legend>
+												<label for="userPaypal" class="label-form">Utilisateur paypal (vendeur)</label>
+												<input type="text" id="userPaypal" name="userPaypal" class="form-control">
+												
+												<label for="mdpPaypal" class="label-form">mot de passe paypal</label>
+												<input type="text" id="mdpPaypal" name="mdpPaypal" class="form-control">
+												
+												<label for="signaturePaypal" class="label-form">Signature paypal</label>
+												<input type="text" id="signaturePaypal" name="signaturePaypal" class="form-control">
+												
+												<button type="submit" class="btn btn-primary">Valider les changement</button>
+											</fieldset>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

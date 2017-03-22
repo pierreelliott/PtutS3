@@ -167,7 +167,7 @@
 			}
 		}
 
-		function getProduitAdmin()
+		public function getProduitAdmin()
 		{
 			if(isset($_POST["isAjax"]) and $_POST["isAjax"])
 			{
@@ -217,7 +217,7 @@
 			}
 			else
 			{
-				header("Location: /");
+				header("Location: /404");
 			}
 		}
 
@@ -252,7 +252,7 @@
 			header("Location: /administration");
 		}
 
-        function deleteCommentaire()
+        public function deleteCommentaire()
         {
             //On verifie que l'utilisateur soit connecté et que c'est un administrateur
             if(isset($_SESSION["utilisateur"]["typeUser"]) and $_SESSION["utilisateur"]["typeUser"] == "ADMIN")
@@ -270,7 +270,7 @@
             header('Location: /administration');
         }
 
-        function modifCommentaire()
+        public function modifCommentaire()
         {
             //On verifie que l'utilisateur soit connecté et que c'est un administrateur
             if(isset($_SESSION["utilisateur"]["typeUser"]) and $_SESSION["utilisateur"]["typeUser"] == "ADMIN")
@@ -286,5 +286,20 @@
             }
             header('Location: /administration');
         }
+		
+		public function modifierParametresPaypal()
+		{
+			if(isset($_POST["nomUserPaypal"], $_POST["mdpPaypal"], $_POST["signaturePaypal"])
+			{
+				$config = new \DOMDocument;
+				$config->load("config/config.xml");
+				$xmlParamsPaypal = $config->getElementsByTagName("paypal");
+				$xmlParamsPaypal->setAttribute("user", $_POST["UserPaypal"]);
+				$xmlParamsPaypal->setAttribute("mdp", $_POST["mdpPaypal"]);
+				$xmlParamsPaypal->setAttribute("signature", $_POST["signaturePaypal"]);
+			}
+			
+			header("Location: /administration");
+		}
     }
 ?>

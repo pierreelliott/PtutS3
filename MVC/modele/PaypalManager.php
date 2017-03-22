@@ -6,18 +6,14 @@
         //Definit tout les parametre statique de l'URL
         public function construitUrl()
         {
+			$paramsPaypal = $this->getParametresAPI();
+			
             //Site de l'API Paypal
             $urlPaypal = "https://api-3t.sandbox.paypal.com/nvp?";
             //Version de l'API de paypal
             $version = "204.0";
-            //Compte Utilisateur du vendeur
-            $user = "test.seller_api1.yopmail.com";
-            //Mot de passe pour acceder à l'API
-            $pass = "CMASHX59W3RDVVKE";
-            //Signature de l'API
-            $signature = "AFcWxV21C7fd0v3bYYYRCpSSRl31AD3ZWGs6j9kywv41tSL0XrUzyrSf";
             //Concaténation pour avoir l'url de base
-            $urlPaypal = $urlPaypal.'VERSION='.$version.'&USER='.$user.'&PWD='.$pass.'&SIGNATURE='.$signature;
+            $urlPaypal = $urlPaypal.'VERSION='.$version.'&USER='.$paramsPaypal["user"].'&PWD='.$paramsPaypal["mdp"].'&SIGNATURE='.$paramsPaypal["signature"];
 
             return $urlPaypal;
         }
@@ -45,4 +41,21 @@
 
             return $listeParametres;
         }
+		
+		public function getParametresAPI()
+		{
+			$paramsPaypal = array();
+			$config = new \DOMDocument;
+			$config->load("config/config.xml");
+			$xmlParamsPaypal = $xml->getElementsByTagName("paypal");
+			
+			//Compte Utilisateur du vendeur
+			$paramsPaypal["user"] = $xmlParamsPaypal->getAttribute("user");
+			//Mot de passe pour acceder à l'API
+			$paramsPaypal["mdp"] = $xmlParamsPaypal->getAttribute("mdp");
+			//Signature de l'API
+			$paramsPaypal["signature"] = $xmlParamsPaypal->getAttribute("signature");
+			
+			return $paramsPaypal;
+		}
     }
