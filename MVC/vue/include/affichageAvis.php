@@ -36,7 +36,7 @@
 
 		<?php if($avis["estCommente"] == 1) { // Si il y a un commentaire
 		 ?>
-		<p class="text-dark text-left padding-left">Commentaire: <?php echo $avis['avis']; ?></p>
+		<p class="text-dark text-left padding-left"><?php echo $avis['avis']; ?></p>
 
 		<?php if(!isset($admin) || (isset($admin) && $admin == false)) { ?>
 
