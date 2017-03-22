@@ -40,6 +40,7 @@
 
 		<?php if(!isset($admin) || (isset($admin) && $admin == false)) { ?>
 
+		<?php if(isset($_SESSION["utilisateur"]["pseudo"])) { ?>
 		<hr class="invisible-separator border-top"/>
 		<div class="row">
 			<?php  //Si l'utilisateur est connecté
@@ -70,7 +71,7 @@
 			</div>
 		</div>
 		<?php
-			}
+		} }
 		} ?>
 	</div>
 </div>

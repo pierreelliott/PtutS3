@@ -107,7 +107,7 @@
         }
 
         //Recupere tous les avis avec un parametre falcultatif pour avoir le tableau trié
-        public function getTousAvis($critere = "NumUser", $ordre = "asc")
+        public function getTousAvis($critere = "date", $ordre = "desc")
         {
             if(isset($_SESSION["utilisateur"]["pseudo"]))
             {
