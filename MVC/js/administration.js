@@ -360,13 +360,20 @@ $(function()
 		{
 			var signalements = JSON.parse(data);
 
+			var code = "";
+
+			//Correspond au nombre de signalements
+			var nbSignal = 1;
 			signalements.forEach(function(signal, index)
 			{
-				var code = "";
+
 				//Si la remarque est differente de null on fais cet affichage
 				if(signal.remarque != null)
 				{
 					var code = "<div class='row'>"+
+									"<div class='panel-heading'>"+
+									"<p class='text-info'>Signalement n° : "+ nbSignal +"</p>"+
+									"</div>"+
 									"<div class='panel panel-default'>" +
 										"<div class='panel-body text-dark'>"+
 											"<p >Signalé par: "+ signal.pseudo +"</p>"+
@@ -377,6 +384,9 @@ $(function()
 				}
 				else {
 					var code = "<div class='row'>"+
+									"<div class='panel-heading'>"+
+									"<p class='text-info'>Signalement n° : "+ nbSignal +"</p>"+
+									"</div>"+
 									"<div class='panel panel-default'>" +
 										"<div class='panel-body text-dark'>"+
 											"<p >Signalé par: "+ signal.pseudo +"</p>"+
@@ -384,7 +394,7 @@ $(function()
 									"</div>"+
 								"</div>"
 				}
-
+				nbSignal ++;
 				modal.find('.modal-body').append(code);
 			});
 
