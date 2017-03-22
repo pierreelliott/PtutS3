@@ -113,15 +113,25 @@
 
 
   	<!-- Début fenêtres modales -->
+
+    <!-- Fenêtre modales de supression de commentaire d'avis -->
     <div class="modal fade" id="adminAvisConfirm">
 	    <div class="modal-dialog">
-	      	<?php include("vue/adminConfirm.php"); ?>
+	      	<?php include("vue/include/fenetresModales/adminConfirm.php"); ?>
 	    </div>
   	</div>
 
+    <!-- Fenêtre modales de modif de commentaire d'avis -->
     <div class="modal fade" id="adminAvisModif">
 	    <div class="modal-dialog">
-	      	<?php include("vue/adminModifCommentaire.php"); ?>
+	      	<?php include("vue/include/fenetresModales/adminModifCommentaire.php"); ?>
+	    </div>
+  	</div>
+
+    <!-- Fenêtre modales d'affichage des signalements d'avis -->
+    <div class="modal fade" id="adminSignalement">
+	    <div class="modal-dialog">
+	      	<?php include("vue/include/fenetresModales/adminSignalement.php"); ?>
 	    </div>
   	</div>
 

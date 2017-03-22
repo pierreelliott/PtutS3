@@ -99,7 +99,6 @@
                                     'date'  => $avisBD['date'],
                                     'numuser' =>  $avisBD['numAvis'],
                                     'pseudo' => $this->user->getPseudo($avisBD['numAvis']),
-                                    'signalement' => $this->avis->getSignalements($avisBD['numAvis']),
                                     'estCommente' => isset($avisBD['avis']) == true );
 
 
@@ -111,6 +110,7 @@
                 else {
                     $tousAvis = false;
                 }
+
 
 
 				$typesProduit = $this->produit->getTypesProduit(); // Utilisé dans la vue
@@ -195,6 +195,7 @@
 					$produits = $this->produit->recupererCarte();
 					foreach($produits as $key => $produit)
 					{
+                        //On enleve le produit si il n'est plus dispo
 						if($produit["prix"] < 0)
 						{
 							unset($produits[$key]);
@@ -203,6 +204,7 @@
 
 						$typeProduit = $this->produit->getTypeProduit($produit["numProduit"]);
 
+                        //Si c'est un menu on l'enleve
 						if($typeProduit == "menu")
 						{
 							unset($produits[$key]);
@@ -304,5 +306,22 @@
 
 			header("Location: /administration");
 		}
+
+        //Envoi les signalements d'un avis à JavaScript
+        public function getSignalements()
+        {
+            //On teste que il y a eu un appel ajax
+            if(isset($_POST["isAjax"]) and $_POST["isAjax"] and $_POST["numAvis"])
+            {
+                //On recupere les signalements
+                $signalements = $this->avis->getSignalements($_POST["numAvis"]);
+
+                //On encode les données en JSON recuperable en JavaScript
+                echo json_encode($signalements);
+            }
+            else {
+                header("Location: /404");
+            }
+        }
     }
 ?>

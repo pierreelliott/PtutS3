@@ -40,6 +40,7 @@
 	<route url="/deleteCommentaire" controleur="admin" methode="deleteCommentaire" />
 	<route url="/modifCommentaire" controleur="admin" methode="modifCommentaire" />
 	<route url="/modifParamsPaypal" controleur="admin" methode="modifierParametresPaypal" />
+	<route url="/get-signalement" controleur="admin" methode="getSignalements"/>
 
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
 	<route url="/404" vue="404"/>

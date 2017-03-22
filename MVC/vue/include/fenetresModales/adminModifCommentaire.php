@@ -12,6 +12,6 @@
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-		<button type="submit" form="formModif" class="btn btn-danger supprCommentaire">Modifier<span class="glyphicon glyphicon-remove"></span></button>
+		<button type="submit" form="formModif" class="btn btn-danger">Modifier<span class="glyphicon glyphicon-remove"></span></button>
 	</div>
 </div>

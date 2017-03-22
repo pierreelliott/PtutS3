@@ -182,8 +182,9 @@
 
         public function getSignalements($numAvis)
         {
-            $requete = $this->executerRequete('select numAvis, numUser, remarque
-                                               from signalAvis
+            $requete = $this->executerRequete('select numAvis, pseudo, remarque
+                                               from signalAvis s join utilisateur u
+                                               on s.numUser = u.numUser
                                                where numAvis = ?', array($numAvis));
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 

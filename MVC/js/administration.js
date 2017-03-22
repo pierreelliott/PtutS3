@@ -265,9 +265,6 @@ $(function()
 	});
 
 
-
-
-
 	// Lorsue l'on entre une valeur dans l'input de recherche
 	$('#rechercheUser').keyup(function(e)
 	{
@@ -345,6 +342,26 @@ $(function()
 
 		modal.find('.modalCommentaire').text(commentaire);
 		modal.find('input').val(numAvis);
+	});
+
+	//Ouverture de la fenetre modale pour l'affichage des signalements
+	$('#adminSignalement').on('show.bs.modal', function(event){
+		var button = $(event.relatedTarget);
+		var numAvis = button.data('numavis');
+
+		//Appel en Ajax pour recuperer les signalements
+		$.post("/get-produits-admin",
+		{
+			isAjax: true,
+			numAvis:numAvis
+		},
+		function(data, status)
+		{
+			var signalements = JSON.parse(data);
+		});
+
+		var modal = $(this);
+
 	});
 
 });
