@@ -1,6 +1,7 @@
 <?php
 
     require_once('modele/UserManager.php');
+	require_once('modele/ProduitManager.php');
 
     class produitFavorisControleur
     {
@@ -9,6 +10,7 @@
         public function __construct()
         {
             $this->um = new UserManager();
+			$this->produit = new ProduitManager();
         }
 
         //Affiche les produits favoris sans tester la connexion
@@ -18,8 +20,18 @@
 	            //Contient tous les produits favoris avec tous les détails
 	            $produitsFav = $this->um->getProduitsFavoris($_SESSION["utilisateur"]["pseudo"]);
 
+				foreach ($produitsFav as $key => $produit) {
+					$partie = explode(".", $produit["typeProduit"]);
+					$produitsFav[$key]["estMenu"] = (strcmp( $partie[0] , "menu") == 0);
+
+					$prod = $this->produit->getInformationsProduit($produit["numProduit"]);
+					$produitsFav[$key]["sourcePetit"] = $prod["sourcePetit"];
+					$produitsFav[$key]["sourceMoyen"] = $prod["sourceMoyen"];
+					$produitsFav[$key]["sourceGrand"] = $prod["sourceGrand"];
+				}
+
 				// Booléen pour savoir si $produitsFav est vide
-				$estVide = true;
+				$estVide = (count($produitsFav) == 0);
 
 				include_once("vue/produitsFavoris.php");
 			}

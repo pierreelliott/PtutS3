@@ -230,6 +230,28 @@
 			echo json_encode($pseudos);
 		}
 
+		public function modifAdmin()
+		{
+			if(isset($_POST["pseudoAdmin"]) && isset($_POST["typeUser"]))
+			{
+				$pseudo = $_POST["pseudoAdmin"];
+				$typeUser = $_POST["typeUser"];
+
+				switch($typeUser)
+				{
+					case "admin" :
+						$this->user->addAdmin($pseudo);
+						break;
+
+					case "user" :
+						$this->user->deleteAdmin($pseudo);
+						break;
+				}
+			}
+
+			header("Location: /administration");
+		}
+
         function deleteCommentaire()
         {
             //On verifie que l'utilisateur soit connecté et que c'est un administrateur

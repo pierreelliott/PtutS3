@@ -1,14 +1,20 @@
-<div class="col-lg-4 col-md-4 col-sm-4">
+<div class="col-sm-4">
 
-	<?php if(!isset($admin) || (isset($admin) && $admin == false)) { ?>
+	<?php if(!isset($admin) || (isset($admin) && $admin == false)) {
+		if(isset($_SESSION["utilisateur"]["pseudo"])) { ?>
 		<!-- Etoile pour les produits favoris
 	 			(cachée dans l'interface d'administration) -->
 	<div class="pull-left favori" onmouseover="hoverFavori()" onmouseout="outFavori()">
 		<a href="/produits-favoris-<?php echo $produit["numProduit"]?>">
+			<?php if(isset($produit["favori"]) && $produit["favori"] == true) { ?>
+			<span class="glyphicon glyphicon-star yellow"></span>
+			<?php } else { ?>
 			<span class="glyphicon glyphicon-star-empty yellow"></span>
+			<?php } ?>
 		</a>
 	</div>
-	<?php } ?>
+	<?php }
+	} ?>
 
 	<div id="<?php echo $produit["numProduit"]; ?>" class="panel panel-default panel-product">
 

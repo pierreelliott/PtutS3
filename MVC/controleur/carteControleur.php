@@ -1,16 +1,28 @@
 <?php
     include_once('modele/ProduitManager.php');
+	include_once('modele/UserManager.php');
 
     class carteControleur
     {
 		public function __construct()
 		{
           $this->bdd = new ProduitManager();
+		  $this->um = new UserManager();
 		}
 
 		public function carte()
 		{
 			$carte = $this->bdd->recupererCarte();
+
+			if(isset($_SESSION["utilisateur"]["pseudo"]))
+			{
+				foreach($carte as $keyProduit => $produit)
+				{
+					$produit["favori"] = $this->um->estFavoris($_SESSION["utilisateur"]["pseudo"],$produit["numProduit"]);
+					$carte[$keyProduit] = $produit;
+				}
+			}
+
 
 			$menus = array();
 			foreach($carte as $keyMenu => $produit)

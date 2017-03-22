@@ -136,7 +136,7 @@
         public function getProduitsFavoris($pseudo)
         {
             $user = $this->getNumUser($pseudo);
-            $resultat = $this->executerRequete('select numImage, description, prix, libelle, typeProduit
+            $resultat = $this->executerRequete('select p1.numProduit numProduit, numImage, description, prix, libelle, typeProduit
                                                 from produit p1 join preference p2
                                                 on p1.NUMPRODUIT = p2.NUMPRODUIT
                                                 where numUser= ? and prix > 0
