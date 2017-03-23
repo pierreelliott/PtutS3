@@ -34,10 +34,10 @@
 			}
 
 			// Si le type de produit n'existe pas dans la BD (possible uniquement si on ajoute un menu)
-			if(empty($this->executerRequete('select libelle from typeproduit where libelle = ?', array($typeProduit))->fetchAll(PDO::FETCH_ASSOC)))
+			if(empty($this->executerRequete('select libelle from typeProduit where libelle = ?', array($typeProduit))->fetchAll(PDO::FETCH_ASSOC)))
 			{
 				$typeProduit = 'Menu.'.$typeProduit;
-				$this->executerRequete('insert into typeproduit values (?)', array($typeProduit));
+				$this->executerRequete('insert into typeProduit values (?)', array($typeProduit));
 			}
 
 			// On considère qu'on a le $numImage
@@ -190,7 +190,7 @@
 
 		public function getTypesProduit()
 		{
-			$requete = $this->executerRequete('select libelle from typeproduit');
+			$requete = $this->executerRequete('select libelle from typeProduit');
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
 
 			$typesProduit = array();

@@ -25,7 +25,7 @@ drop table if exists utilisateur;
 
 drop table if exists vote;
 
-drop table if exists signalAvis;
+drop table if exists signalavis;
 
 SET foreign_key_checks = 1;
 
@@ -157,7 +157,7 @@ create table vote
    primary key (NUMAVIS, NUMUSER)
 );
 
-create table signalAvis
+create table signalavis
 (
     numSignal           int not null AUTO_INCREMENT,
     remarque            varchar(1024),
@@ -202,8 +202,8 @@ alter table vote add constraint FK_VOTE foreign key (NUMAVIS)
 alter table vote add constraint FK_VOTE2 foreign key (NUMUSER)
       references utilisateur (NUMUSER) on delete restrict on update restrict;
 
-alter table signalAvis add constraint FK_AVIS foreign key (NUMAVIS)
+alter table signalavis add constraint FK_AVIS foreign key (NUMAVIS)
       references avis (NUMUSER) on delete restrict on update restrict;
 
-alter table signalAvis add constraint FK_USER foreign key (NUMUSER)
+alter table signalavis add constraint FK_USER foreign key (NUMUSER)
       references utilisateur (NUMUSER) on delete restrict on update restrict;

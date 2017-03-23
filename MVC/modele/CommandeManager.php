@@ -92,7 +92,7 @@
         public function getInfosCommande($numCommande)
         {
             $requete = $this->executerRequete('select typeCommande, date, p.numProduit numProduit, description, quantite
-                                            from produit p join quantiteproduit q
+                                            from produit p join quantiteProduit q
                                             on p.NUMPRODUIT = q.NUMPRODUIT
                                             join commande c
                                             on c.NUMCOMMANDE= q.NUMCOMMANDE
@@ -106,7 +106,7 @@
         //Calcule prix total d'une commande
         public function getPrixTotalCommande($numCommande)
         {
-            $requete = $this->executerRequete('select quantite, prix from produit p join quantiteproduit q
+            $requete = $this->executerRequete('select quantite, prix from produit p join quantiteProduit q
                                                 on p.NUMPRODUIT = q.NUMPRODUIT
                                                 where numCommande = ?', array($numCommande));
 
@@ -128,7 +128,7 @@
 
         public function getNbProduit($numCommande)
         {
-            $requete = $this->executerRequete('select count(numProduit) nombreProduit from quantiteproduit
+            $requete = $this->executerRequete('select count(numProduit) nombreProduit from quantiteProduit
                                             where numCommande= ?', array($numCommande));
 
             $resultat = $requete->fetch();
