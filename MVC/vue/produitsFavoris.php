@@ -4,6 +4,12 @@
     ob_start();
 ?>
 <!-- ======== Début Code HTML ======== -->
+<!-- Popup d'information succès ajout produit -->
+<div class="alert alert-success hidden">
+  Produit correctement ajouté !
+</div>
+<!-- fin popup -->
+
 <div class="row">
 	<div class="col-lg-offset-2 col-lg-8 site-wrapper">
 		<!-- Si l'utilisateur n'a pas de produits favoris -->
@@ -42,7 +48,7 @@
 									<div class="col-sm-2">
 										<img src="<?php echo $produit["sourcePetit"]; ?>" alt="Image <?php echo $produit["libelle"]; ?>" class="img-responsive">
 									</div>
-									<div class="col-sm-10">
+									<div class="col-sm-8">
 										<div class="row">
 											<div class="col-sm-5">
 												<p><?php echo $produit["libelle"]; ?></p>
@@ -51,6 +57,11 @@
 												<p class="text-muted">Prix : <?php echo $produit["prix"]; ?> €</p>
 											</div>
 										</div>
+									</div>
+									<div class="col-sm-2">
+										<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-success btn-block btnAjout">
+											<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+										</button>
 									</div>
 								</div>
 							</li>
@@ -66,6 +77,11 @@
 									</div>
 									<div class="col-sm-5">
 										<p class="text-muted">Prix : <?php echo $produit["prix"]; ?> €</p>
+									</div>
+									<div class="col-sm-2">
+										<button type="button" data-action="ajout" data-produit="<?php echo $produit["numProduit"]; ?>" class="btn btn-success btn-block btnAjout">
+											<img title='Ajouter au panier' alt='Ajouter au panier' src='images/achat2.png'>
+										</button>
 									</div>
 								</div>
 								<div class="row">
