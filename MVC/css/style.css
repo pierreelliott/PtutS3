@@ -186,7 +186,7 @@ label
   color: black;
 }
 
-.alert
+.alert-float
 {
   position: fixed;
   right: 0;
