@@ -97,7 +97,7 @@ create table preference
 create table produit
 (
    NUMPRODUIT           int not null AUTO_INCREMENT,
-   NUMIMAGE             int not null,
+   NUMIMAGE             int,
    DESCRIPTION          varchar(512) not null,
    PRIX                 numeric(8,0) not null,
    TYPEPRODUIT          varchar(100) not null,
