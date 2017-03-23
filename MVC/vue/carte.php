@@ -5,7 +5,7 @@
 ?>
 <!-- ======== Début Code HTML ======== -->
   <!-- Popup d'information succès ajout produit -->
-  <div class="alert alert-success hidden">
+  <div class="alert alert-success hidden alert-float">
     Produit correctement ajouté !
   </div>
   <!-- fin popup -->

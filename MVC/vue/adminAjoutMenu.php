@@ -54,6 +54,9 @@
 				</div>
 				<div class="row">
 					<input type="hidden" id="lastNumProduitAjout" name="lastNumProduit" value="0">
+					<div class="alert alert-danger hidden">
+					  	Impossible de sélectionner deux fois le même produit
+					</div>
 					<div id="produitsAjout">
 
 					</div>

@@ -7,7 +7,10 @@ $(function()
 	var listeProduits = [];
 
 	// Ensemble des produits à mettre dans un menu
-	var produitsMenu = [];
+	var produitsMenuDiv = [];
+
+	// Ensemble des produits à ne pas sélectionner
+	var blackListProduit = [];
 
 	$.post("/get-produits-admin",
 	{
@@ -36,7 +39,7 @@ $(function()
 	{
 		$(this).find('input, textarea').val('');
 		$('.apercuImage').attr('src', '');
-		produitsMenu = [];
+		produitsMenuDiv = [];
 		$('#produitsAjout, #produitsModif').empty();
 	});
 
@@ -79,7 +82,7 @@ $(function()
 				produit.produits.forEach(function(prod, index)
 				{
 					// On ajoute le div contenant le select, l'input Qte et le bouton de suppression et on le stocke dans un tableau
-					produitsMenu[index] = $(
+					produitsMenuDiv[index] = $(
 						'<div class="col-lg-12">' +
 							'<div class="col-lg-8">' +
 								'<div class="form-group">' +
@@ -100,31 +103,65 @@ $(function()
 					).appendTo('#produitsModif');
 
 					// Liste des produits à ne pas afficher dans le select
-					var blackListProduit = Array.from(produit.produits, x => x.numProduit);
-					blackListProduit.splice(index, 1);
+					blackListProduit = Array.from(produit.produits, x => x.numProduit);
+					//blackListProduit.splice(index, 1);
+
+					var select = produitsMenuDiv[index].find('select');
 
 					// Ajout des produits dans des balises options
 					listeProduits.forEach(function(listeProd)
 					{
 						// Si le produit est dans la blacklist on ne l'ajoute pas
-						if(!blackListProduit.includes(listeProd.numProduit))
-						{
-							var select = produitsMenu[index].find('select');
+						//if(!blackListProduit.includes(listeProd.numProduit))
+						//{
 							select.append('<option value="' + listeProd.numProduit + '">' + listeProd.numProduit + '-' + listeProd.libelle + '</option>');
-							select.val(prod.numProduit);
-						}
+						//}
 					});
 
-					var oldValue = produitsMenu[index].find('select').val();
-					var oldLibelle = produitsMenu[index].find('select option[value="' + oldValue + '"]').text().split('-')[1];
+					select.val(prod.numProduit);
+					select.attr('oldValue', select.val());
 
-					produitsMenu[index].find('select').change(function(e)
+					//var oldValue = produitsMenuDiv[index].find('select').val();
+					//var oldLibelle = produitsMenuDiv[index].find('select option[value="' + oldValue + '"]').text().split('-')[1];
+
+					select.change(function(e)
 					{
 						var thisSelect = $(this);
+						var newValue = thisSelect.val();
+						//var indexSelect = thisSelect.index();
+						//console.log(indexSelect);
+						var oldValue = 0;
 
-						console.log(oldLibelle);
+					 	// on regarde si le select a une ancienne valeur
+					 	if (thisSelect.attr('oldValue') != null)
+						{
+					 		oldValue = thisSelect.attr('oldValue'); //on la recupere sinon 0
+					 	}
+						thisSelect.attr('oldValue', newValue);
+						//console.log(oldValue);
 
-						produitsMenu.forEach(function(div, index)
+						if(blackListProduit.includes(newValue))
+						{
+							var fenAlert = $('.alert');
+							fenAlert.removeClass('hidden')
+							setTimeout(function()
+							{
+								fenAlert.addClass('hidden');
+							}, 2500);
+
+							$(this).val(oldValue);
+						}
+						else
+						{
+							blackListProduit[blackListProduit.indexOf(oldValue)] = newValue;
+
+
+						}
+						console.log(blackListProduit);
+
+						//console.log(oldLibelle);
+						/*
+						produitsMenuDiv.forEach(function(div, index)
 						{
 							//console.log(div.find('select').val());
 							//console.log(thisSelect.val());
@@ -135,7 +172,7 @@ $(function()
 								div.find('select option[value="' + thisSelect.val() + '"]').remove();
 								div.find('select').append('<option value="' + oldValue + '">' + oldValue + '-' + oldLibelle + '</option>');
 							}
-						});
+						});*/
 					});
 
 					$('#supprProduitMenu' + index).click(function(e)
@@ -207,7 +244,7 @@ $(function()
 		});
   	});
 
-	//Lorsque l'on ajoute et modifie un commentaire
+	//Lorsque l'on ajoute et modifie un produit ou menu
 	$('#ajoutProduitMenu, #modifProduitMenu').click(function(e)
 	{
 		var bouton = $(this).attr('id').substr(0, 5);
@@ -265,7 +302,7 @@ $(function()
 	});
 
 
-	// Lorsue l'on entre une valeur dans l'input de recherche
+	// Lorsque l'on entre une valeur dans l'input de recherche
 	$('#rechercheUser').keyup(function(e)
 	{
 		var input = $(this);
@@ -367,7 +404,7 @@ $(function()
 			signalements.forEach(function(signal, index)
 			{
 
-				//Si la remarque est differente de null on fais cet affichage
+				//Si la remarque est differente de null on fait cet affichage
 				if(signal.remarque != null)
 				{
 					var code = "<div class='row'>"+
