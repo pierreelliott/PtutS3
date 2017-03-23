@@ -45,49 +45,50 @@
 		public function afficherCommande()
 		{
             //Si la commande lui appartient
-            //if($this->bdCommande->estSaCommande($_SESSION["utilisateur"]["pseudo"], $_GET["numCommande"]))
+            if($this->bdCommande->estSaCommande($_SESSION["utilisateur"]["pseudo"], $_GET["numCommande"]))
+            {
+                $commande = $this->bdCommande->getInfosCommande($_GET["numCommande"]);
 
-			$commande = $this->bdCommande->getInfosCommande($_GET["numCommande"]);
+                //Tester la valeur de retour de la fonction getInfos Commande
+    			if($commande != false)
+    			{
+                    //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
+                    $dateCommande = "null";
 
-            //Tester la valeur de retour de la fonction getInfos Commande
-			if($commande != false)
-			{
-                //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
-                $dateCommande = "null";
+                    foreach ($commande as $res) {
+                        $dateCommande = $res["date"];
+                    }
 
-                foreach ($commande as $res) {
-                    $dateCommande = $res["date"];
-                }
+        			$prixCommande = $this->bdCommande->getPrixTotalCommande($_GET["numCommande"]);
+                    //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
+                    $produits = array();
 
-    			$prixCommande = $this->bdCommande->getPrixTotalCommande($_GET["numCommande"]);
-                //Declaration de la variable dans ce bloc pour être trouvé dans l'inclusion de la vue
-                $produits = array();
+                    //Pour chaque produit dans la commande
+    				foreach($commande as $prod)
+    				{
+    					$p = $this->bdProduit->getInformationsProduit($prod["numProduit"]);
 
-                //Pour chaque produit dans la commande
-				foreach($commande as $prod)
-				{
-					$p = $this->bdProduit->getInformationsProduit($prod["numProduit"]);
+    					$partie = explode(".", $p["typeProduit"]);
 
-					$partie = explode(".", $p["typeProduit"]);
+    					$produit = array(
+    						"numProduit" => $p["numProduit"],
+    						"libelle" => $p["libelle"],
+    						"description" => $p["description"],
+    						"quantite" => $prod["quantite"],
+    						"prix" => $p["prix"],
+    						"prixTotal" => $p["prix"]* $prod["quantite"],
+    						"sourcePetit" => $p["sourcePetit"],
+    						"sourceMoyen" => $p["sourceMoyen"],
+    						"sourceGrand" => $p["sourceGrand"],
+    						"estMenu" => (strcmp( $partie[0] , "menu") == 0)
+    					);
+                        //Ajout d'un tableau en 2 dimensions avec toutes les donnees
+    					$produits[$prod["numProduit"]] = $produit;
+    				}
 
-					$produit = array(
-						"numProduit" => $p["numProduit"],
-						"libelle" => $p["libelle"],
-						"description" => $p["description"],
-						"quantite" => $prod["quantite"],
-						"prix" => $p["prix"],
-						"prixTotal" => $p["prix"]* $prod["quantite"],
-						"sourcePetit" => $p["sourcePetit"],
-						"sourceMoyen" => $p["sourceMoyen"],
-						"sourceGrand" => $p["sourceGrand"],
-						"estMenu" => (strcmp( $partie[0] , "menu") == 0)
-					);
-                    //Ajout d'un tableau en 2 dimensions avec toutes les donnees
-					$produits[$prod["numProduit"]] = $produit;
-				}
-
-				include_once("vue/commande.php");
-			}
+    				include_once("vue/commande.php");
+    			}
+            }
 			else
 			{
 				include_once("vue/404.php");

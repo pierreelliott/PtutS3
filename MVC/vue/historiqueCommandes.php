@@ -41,11 +41,10 @@
                             </p>
 						</div>
 					</div>
-				</div>
-			<?php
-					}
-				}
-			?>
+
+			<?php } ?>
+            </div>
+		<?php } ?>
 
 		</div>
 	</div>

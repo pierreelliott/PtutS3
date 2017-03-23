@@ -13,7 +13,6 @@ $(function()
 		},
 		function(data, status)
 		{
-			console.log(data);
 			infosPanier = JSON.parse(data);
 
 			if(infosPanier.panierVide === 1)
