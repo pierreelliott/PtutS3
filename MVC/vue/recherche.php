@@ -24,7 +24,7 @@
 		 <?php } else { ?>
 	      <ul class="nav nav-tabs">
 	        <li class="active"><a href="#produits" data-toggle="tab">Nos produits</a></li>
-	        <li><a data-toggle="tab" class="text-muted">Nos menus</a></li>
+	        <li><a data-toggle="tab" class="text-muted disabled">Nos menus</a></li>
 	      </ul>
 	      <div class="tab-content">
 			<!-- Affichage des produits seuls -->
