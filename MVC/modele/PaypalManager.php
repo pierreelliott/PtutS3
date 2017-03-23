@@ -7,7 +7,7 @@
         public function construitUrl()
         {
 			$paramsPaypal = $this->getParametresAPI();
-			
+
             //Site de l'API Paypal
             $urlPaypal = "https://api-3t.sandbox.paypal.com/nvp?";
             //Version de l'API de paypal
@@ -41,21 +41,21 @@
 
             return $listeParametres;
         }
-		
+
 		public function getParametresAPI()
 		{
 			$paramsPaypal = array();
 			$config = new \DOMDocument;
 			$config->load("config/config.xml");
-			$xmlParamsPaypal = $xml->getElementsByTagName("paypal");
-			
+			$xmlParamsPaypal = $config->getElementsByTagName("paypal")[0];
+
 			//Compte Utilisateur du vendeur
 			$paramsPaypal["user"] = $xmlParamsPaypal->getAttribute("user");
 			//Mot de passe pour acceder à l'API
 			$paramsPaypal["mdp"] = $xmlParamsPaypal->getAttribute("mdp");
 			//Signature de l'API
 			$paramsPaypal["signature"] = $xmlParamsPaypal->getAttribute("signature");
-			
+
 			return $paramsPaypal;
 		}
     }

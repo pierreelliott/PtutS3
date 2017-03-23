@@ -56,8 +56,7 @@
 									<button type="button" data-action="modification" data-produit="<?php echo $numProduit; ?>" data-qte="1" class="btn btn-xs btn-primary btn-qte-produit">+</button>
 								</div>
 								<div class="col-xs-2">
-									<p><?php echo $produit["prix"]*$produit["quantite"]; ?> €</p>
-									<!-- À gérer -->
+									<p class="prixNow"><?php echo $produit["prix"]*$produit["quantite"]; ?> €</p>
 								</div>
 								<div class="col-xs-1">
 									<button type="button" data-action="suppression" data-produit="<?php echo $numProduit; ?>" class="btn btn-xs btn-danger btn-qte-produit">&times;</button>

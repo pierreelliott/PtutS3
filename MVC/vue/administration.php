@@ -90,7 +90,7 @@
 												<label for="userPaypal" class="label-form">Utilisateur paypal (vendeur)</label>
 												<input type="text" id="userPaypal" name="userPaypal" class="form-control">
 
-												<label for="mdpPaypal" class="label-form">mot de passe paypal</label>
+												<label for="mdpPaypal" class="label-form">Mot de passe paypal</label>
 												<input type="text" id="mdpPaypal" name="mdpPaypal" class="form-control">
 
 												<label for="signaturePaypal" class="label-form">Signature paypal</label>

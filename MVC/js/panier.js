@@ -4,6 +4,7 @@ $(function()
 		var produit = $(this).data('produit');
 		var action = $(this).data('action');
 		var qte = $(this).data('qte');
+		var parentDiv = $(this).parents("div#"+ produit);
 		$.post('/get-infos-panier',
 		{
 			action: action,
@@ -13,6 +14,7 @@ $(function()
 		},
 		function(data, status)
 		{
+			console.log(data);
 			infosPanier = JSON.parse(data);
 
 			if(infosPanier.panierVide === 1)
@@ -29,17 +31,18 @@ $(function()
 					'</div>'
 				);
 			}
-
-			if(infosPanier.qtePanier === 0)
+			var qteProduit = parseInt(parentDiv.find(".qte").text().substr(11), 10);
+			if(qteProduit === 0)
 			{
 				$('#' + produit).remove();
 			}
 			else
 			{
-				$('#' + produit + ' .qte').text('Quantité : ' + infosPanier.qtePanier);
+				$('#' + produit + ' .qte').text('Quantité : ' + (qteProduit+qte));
+				parentDiv.find('.prixNow').text( (qteProduit+qte) * infosPanier.prixProduit+ ' €')
 			}
 
-			$('.prix').text('Prix du panier : ' + infosPanier.prixPanier + '€');
+			$('.prix').text('Prix du panier : ' + infosPanier.prixPanier + ' €');
 
 			$('#qtePanier').text(infosPanier.qtePanier);
 		});

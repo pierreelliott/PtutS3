@@ -84,7 +84,7 @@
 				$values["panierVide"] = $this->panier->estVide();
 				$values["prixPanier"] = $this->panier->getPrixPanier();
 				$values["qtePanier"] = $this->panier->getQteTotale();
-
+                $values["prixProduit"] = $this->produit->getInformationsProduit($_POST['produit'])['prix'];
 				echo json_encode($values);
 			}
 			else
