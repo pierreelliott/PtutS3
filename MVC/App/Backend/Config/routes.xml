@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
+<routes>
+	<route url="admin/" module="Accueil" action="index"/>
+	<!--
+	<route url="/carte" controleur="carte" methode="carte"/>
+	<route url="/connexion" controleur="connexion" methode="connexion"/>
+	<route url="/inscription" controleur="inscription" methode="inscription"/>
+	<route url="/deconnexion" controleur="deconnexion" methode="deconnexion"/>
+	<route url="/utilisateur" controleur="utilisateur" methode="afficherInfos"/>
+	<route url="/panier" controleur="panier" methode="afficherPanier"/>
+	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
+	<route url="/contact" vue="contact"/>
+	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
+	<route url="/modifPseudoUser" controleur="utilisateur" methode="modifierPseudo"/>
+
+	Produits favoris
+	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>
+	<route url="/produits-favoris-([0-9]+)" controleur="produitFavoris" methode="modifProduitFavoris" params="numProduit"/>
+
+	Avis !
+	<route url="/avis" controleur="avis" methode="afficherAvis" />
+	<route url="/add-avis" controleur="avis" methode="addAvis" />
+	<route url="/vote-([0-1])-([0-9]+)" controleur="avis" methode="vote" params="pouce,numAvis"/>
+	<route url="/signalAvis" controleur="avis" methode="signaler"/>
+
+	Commande
+	<route url="/historique-commandes" controleur="commande" methode="afficherHistorique"/>
+	<route url="/commande-([0-9]+)" controleur="commande" methode="afficherCommande" params="numCommande"/>
+
+	Paiement paypal !
+	<route url="/paiement" controleur="commande" methode="recapCommande"/>
+	<route url="/paiement-paypal" controleur="paypal" methode="paiementPaypal"/>
+	<route url="/annule-paypal" vue="annulePaypal"/>
+	<route url="/retour-paypal" controleur="paypal" methode="retourPaypal"/>
+
+	Administration
+	<route url="/administration(?:-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>
+	<route url="/get-produits?-admin" controleur="admin" methode="getProduitAdmin"/>
+	<route url="/rechercher-pseudo" controleur="admin" methode="rechercherPseudo"/>
+	<route url="/modifier-admin" controleur="admin" methode="modifAdmin" />
+	<route url="/deleteCommentaire" controleur="admin" methode="deleteCommentaire" />
+	<route url="/modifCommentaire" controleur="admin" methode="modifCommentaire" />
+	<route url="/modifParamsPaypal" controleur="admin" methode="modifierParametresPaypal" />
+	<route url="/get-signalement" controleur="admin" methode="getSignalements"/>
+
+	<route url="/recherche" controleur="recherche" methode="rechercher"/>
+	<route url="/404" vue="404"/>-->
+</routes>
