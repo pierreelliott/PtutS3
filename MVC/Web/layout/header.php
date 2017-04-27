@@ -41,8 +41,8 @@
 							//Si l'utilisateur est administrateur
 							if($user->getAttribute('typeUser') == 'ADMIN')
 							{
-								echo '<li class="divider"></li>'.
-								'<li><a href="/administration">Interface administrateur</a></li>\n';
+								echo '<li class="divider"></li>'.PHP_EOL.
+								'<li><a href="/administration">Interface administrateur</a></li>'.PHP_EOL;
 							}
 							?>
 							<li class="divider"></li>
