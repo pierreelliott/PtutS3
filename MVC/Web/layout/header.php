@@ -46,14 +46,14 @@
 							}
 							?>
 							<li class="divider"></li>
-							<li><a href="/disconnection">Déconnexion</a></li>
+							<li><a href="/disconnect">Déconnexion</a></li>
 						</ul>
 					</li>
 					<?php
 					}
 					else
 					{
-						echo '<li><a href="/connection">Connexion</a></li>';
+						echo '<li><a href="/connect">Connexion</a></li>';
 					}
 					?>
 					<li>

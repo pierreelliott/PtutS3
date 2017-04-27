@@ -1,13 +1,12 @@
 <div class="row">
 	<div class="col-lg-offset-3 col-lg-6 site-wrapper">
 		<div class="row">
-			<form action="/connection" method="post" name="login" accept-charset="utf-8">
+			<form action="/connect" method="post">
 				<fieldset>
 					<legend>Connexion à Sushinos</legend>
-					<input type="hidden" name="page" value="connexion"/>
 					<div class="row">
 						<div class="form-group has-error">
-							<?= $user->hasFlash() ? '<span class="help-block">' . $user->getFlash() . '</span>' : ''; ?>
+							<?= isset($message) ? '<span class="help-block">' . $message . '</span>' : ''; ?>
 						</div>
 					</div>
 					<div class="row">
@@ -37,7 +36,7 @@
 			</form>
 		</div>
 		<div class="row">
-			<p class="lead">Pas encore inscrit ? <a href="/inscription" class="text-info">Inscrivez-vous par ici</a> !</p>
+			<p class="lead">Pas encore inscrit ? <a href="/register" class="text-info">Inscrivez-vous par ici</a> !</p>
 		</div>
 	</div>
 </div>

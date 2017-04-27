@@ -3,8 +3,9 @@
 	<route url="/" module="Accueil" action="index"/>
 	<route url="/user" module="Utilisateur" action="index"/>
 	<route url="/connection-request" module="Utilisateur" action="connectionRequest"/>
-	<route url="/connection" module="Utilisateur" action="connection"/>
-	<route url="/disconnection" module="Utilisateur" action="disconnection"/>
+	<route url="/register" module="Utilisateur" action="registration"/>
+	<route url="/connect" module="Utilisateur" action="connection"/>
+	<route url="/disconnect" module="Utilisateur" action="disconnection"/>
 	<!--
 	<route url="/carte" controleur="carte" methode="carte"/>
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
