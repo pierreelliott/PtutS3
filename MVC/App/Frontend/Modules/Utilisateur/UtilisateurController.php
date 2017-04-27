@@ -56,7 +56,7 @@ class UtilisateurController extends Controller
             // Si la connexion a réussi (le tableau $resultat n'est pas vide)
             if(!empty($resultat))
             {
-				$user->setAuthenticated(true);
+				$user->setAuthenticated();
 				foreach($resultat as $attr => $value)
 				{
 					$user->setAttribute($attr, $value);
@@ -78,5 +78,18 @@ class UtilisateurController extends Controller
         }
 
 		$this->page->addVar('title', 'Se connecter');
+	}
+
+	function executeDisconnection(HTTPRequest $request)
+	{
+		// Suppression des variables de session et de la session
+		$_SESSION = array();
+		session_destroy();
+
+		// Suppression des cookies de connexion automatique
+		//setcookie("pseudo", "");
+		//setcookie("mdpHash", "");
+
+		header("Location: /");
 	}
 }

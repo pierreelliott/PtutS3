@@ -4,12 +4,10 @@
 	<route url="/user" module="Utilisateur" action="index"/>
 	<route url="/connection-request" module="Utilisateur" action="connectionRequest"/>
 	<route url="/connection" module="Utilisateur" action="connection"/>
+	<route url="/disconnection" module="Utilisateur" action="disconnection"/>
 	<!--
 	<route url="/carte" controleur="carte" methode="carte"/>
-	<route url="/connexion" controleur="connexion" methode="connexion"/>
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
-	<route url="/deconnexion" controleur="deconnexion" methode="deconnexion"/>
-	<route url="/utilisateur" controleur="utilisateur" methode="afficherInfos"/>
 	<route url="/panier" controleur="panier" methode="afficherPanier"/>
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>

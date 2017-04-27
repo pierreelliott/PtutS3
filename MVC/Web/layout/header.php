@@ -46,7 +46,7 @@
 							}
 							?>
 							<li class="divider"></li>
-							<li><a href="/deconnexion">Déconnexion</a></li>
+							<li><a href="/disconnection">Déconnexion</a></li>
 						</ul>
 					</li>
 					<?php
