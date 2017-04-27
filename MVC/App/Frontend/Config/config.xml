@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<defines>
+	<!-- DB -->
+	<define var="dbhost" value="localhost"/>
+	<define var="dbname" value="ptut"/>
+	<define var="dbuser" value="root"/>
+	<define var="dbpwd" value=""/>
+</defines>

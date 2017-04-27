@@ -1,0 +1,332 @@
+﻿/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 21 nov. 2016, 21:50:53
+    Author     : Axel
+*/
+
+body
+{
+    height: 100%;
+    background-image: url("../images/fond_index.jpg") ;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    background-size: cover; /* version standardisée */
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+h1
+{
+    text-align: center;
+}
+
+p
+{
+    text-align: center;
+}
+
+a
+{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:focus
+{
+    color: gray;
+    text-decoration: underline;
+}
+
+nav
+{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0px 0px 15px 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+form
+{
+    padding: 20px;
+}
+
+legend
+{
+    text-align: left;
+    color: white;
+}
+
+label
+{
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.footer-site
+{
+    text-align: center;
+    margin-top: 20px;
+    background-color: #222;
+    border: 1px solid;
+    border-width: 1px 0 0 0;
+    border-color: #080808;
+    border-radius: 0;
+    z-index: 1000;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.container
+{
+    height: 100%;
+    background-color: rgba(200, 200, 200, 0.25);
+}
+
+.site-wrapper
+{
+    /* ombre */
+    -moz-box-shadow: inset 0px 0px 200px 50px #343434;
+    -webkit-box-shadow: inset 0px 0px 200px 50px #343434;
+    -o-box-shadow: inset 0px 0px 200px 50px #343434;
+    box-shadow: inset 0px 0px 200px 50px #343434;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#343434, Direction=NaN, Strength=200);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background-color: rgba(52, 52, 52, 0.5);
+
+    /*min-height: 80%;*/
+
+    padding : 15px;
+    margin-top: 30vh;
+    margin-bottom: 30vh;
+
+}
+
+.help-block
+{
+    color: white;
+}
+
+.site-wrapper .btn
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.site-wrapper .input-group-btn .btn
+{
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 6px 12px;
+}
+
+#autoCompleteList {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#autoCompleteList li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+#autoCompleteList li a:hover {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+.navbar-right
+{
+    margin-right: 0;
+}
+
+/*
+.produit
+{
+	border: 1px solid black;
+	background-color: rgba(150, 150, 150, 0.5);
+	margin-top: 15px;
+}
+*/
+
+.produit-ligne-separateurs > *
+{
+	border-right: 1px solid black;
+}
+.produit-ligne-separateurs:last-child
+{
+	border-right: 0px solid black;
+}
+
+.carousel img
+{
+	width: 10vw;
+	height: auto;
+}
+
+.modal
+{
+  color: black;
+}
+
+.alert-float
+{
+  position: fixed;
+  right: 0;
+  margin-right: 15px;
+}
+
+.panel-footer
+{
+    background-color: #909090;
+}
+
+.panel-default
+{
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+/* Mise en forme d'une Image dans un panel */
+.img-produit{
+    padding: 0.5vw;
+}
+
+/* Premeire Panel qui affiche les colonnes dans l'historiqueCommande */
+.colonne-produit{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.colonne-produit .produit
+{
+    margin-top: 0px;
+}
+
+.colonne-produit p
+{
+    font-weight: bold;
+}
+
+/* Texte media-left dans historique Commande */
+.texte-commande{
+    padding-left: 2vh;
+}
+
+.site-wrapper .btn-admin
+{
+    margin-left: 1vw;
+}
+
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.file-upload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.btn-circle
+{
+	border-radius: 2em;
+}
+
+.vresize
+{
+	resize: vertical;
+}
+
+.menu-produit
+{
+	-moz-box-shadow: 0px -1px 5px 0px #656565;
+	-webkit-box-shadow: 0px -1px 5px 0px #656565;
+	-o-box-shadow: 0px -1px 5px 0px #656565;
+	box-shadow: 0px -1px 5px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=5);
+}
+
+.menu-produit-container
+{
+	padding-left: 1vw;
+	padding-right: 1vw;
+}
+
+.navbar-toggle
+{
+	padding-bottom: 5px;
+	border: 0;
+}
+
+.navbar-collapse.js-navbar-collapse.collapse, .navbar-collapse.js-navbar-collapse.collapsing
+{
+	overflow-y: visible;
+}
+
+.text-dark {
+	color: #333;
+}
+
+/* ==========================  Classe pour les notes avec étoile =========================== */
+
+.c-rating {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-rating__item {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 24px;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
+  height: 24px;
+  background: url("../images/stars.svg");
+  background-position: 0 0;
+  cursor: pointer;
+}
+
+.c-rating__item:hover,
+.c-rating__item.is-active {
+  background-position: -24px 0;
+}
+
+/* Change la couleur des glyphicon etoiles de bootstrap */
+.yellow
+{
+    color: #FBC100;
+}
+
+.italic {
+  font-style: italic;
+}
