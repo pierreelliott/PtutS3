@@ -11,7 +11,7 @@
 
 			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/carte">Carte</a></li>
+					<li><a href="/menu">Carte</a></li>
 					<li><a href="/avis">Avis des utilisateurs</a></li>
 					<li>
 						<form method="post" action="/recherche" class="navbar-form form-inline navbar-left">

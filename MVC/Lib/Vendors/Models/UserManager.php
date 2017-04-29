@@ -29,4 +29,12 @@ abstract class UserManager extends Manager
 	 * @return boolval true si l'inscription est réussie, false sinon
 	 */
 	abstract public function register($pseudo, $hashPwd, $lastName, $firstName, $mail, $phone, $streetNo, $streetName, $city, $postalCode);
+
+	/**
+	 * Méthode testant si un produit est favori pour un utilisateur
+	 * @param $userNo L'identifiant de l'utilisateur
+	 * @param $prodNo L'identifiant du produit
+	 * @return boolval true si le produit est favori de l'utilisateur, false sinon
+	 */
+	abstract public function isFavorite($userNo, $prodNo);
 }

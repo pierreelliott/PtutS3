@@ -6,8 +6,8 @@
 	<route url="/register" module="User" action="registration"/>
 	<route url="/connect" module="User" action="connection"/>
 	<route url="/disconnect" module="User" action="disconnection"/>
+	<route url="/menu" module="Sale" action="index"/>
 	<!--
-	<route url="/carte" controleur="carte" methode="carte"/>
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
 	<route url="/panier" controleur="panier" methode="afficherPanier"/>
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
