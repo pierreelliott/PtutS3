@@ -34,7 +34,7 @@
 						<a data-toggle="dropdown" href="#"><?= $user->getAttribute('pseudo') ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="/user">Mon compte</a></li>
-							<li><a href="/panier">Consulter panier</a></li>
+							<li><a href="/cart">Consulter panier</a></li>
 							<li><a href="/produits-favoris">Produits favoris</a></li>
 							<li><a href="/historique-commandes">Historique Commandes</a></li>
 							<?php
@@ -57,7 +57,7 @@
 					}
 					?>
 					<li>
-						<a href="/panier">
+						<a href="/cart">
 						<span class="glyphicon glyphicon-shopping-cart"></span>
 						<span id="qtePanier" class="badge">
 						<?php if(isset($_SESSION["nbProduit"]))

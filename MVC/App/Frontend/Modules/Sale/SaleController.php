@@ -72,4 +72,67 @@ class SaleController extends Controller
 
 		$this->page->addVar('title', 'La carte');
     }
+
+	public function executeCart(HTTPRequest $request)
+	{
+		$this->updateCart($request);
+
+		$cartManager = $this->managers->getManagerOf('Cart');
+
+		$this->page->addVar('estVide', $cartManager->isEmpty());
+
+		$produits = array();
+		foreach($_SESSION['panier'] as $numProduit => $prod)
+		{
+			$qte = $prod['quantite'];
+			$p = $this->managers->getManagerOf('Product')->getProductInformations($numProduit);
+
+			$produit = array(
+				'numProduit' => $p['numProduit'],
+				'libelle' => $p['libelle'],
+				'description' => $p['description'],
+				'quantite' => $qte,
+				'prix' => $p['prix'],
+				'prixTotal' => $p['prix']*$qte,
+				'sourcePetit' => $p['sourcePetit'],
+				'sourceMoyen' => $p['sourceMoyen'],
+				'sourceGrand' => $p['sourceGrand']
+			);
+
+			$produits[$numProduit] = $produit;
+		}
+
+		$quantiteTotale = $cartManager->getQuantity();
+		$prixTotal = $cartManager->getCartPrice();
+	    $_SESSION['prixPanier'] = $prixTotal;
+	}
+
+	private function updateCart(HTTPRequest $request)
+	{
+		if($request->getMethod() == 'POST')
+        {
+			$numProduit = $request->postData('produit');
+
+			switch($request->postData('action'))
+			{
+				case 'ajout':
+					$this->panier->addProduct($numProduit);
+					break;
+
+				case 'suppression':
+					$this->panier->deleteProduct($numProduit);
+					break;
+
+				case 'modification':
+					if($request->postExists('qte'))
+					{
+						$this->panier->modifyProduct($numProduit, $request->postData('qte'));
+					}
+					break;
+
+				default :
+					throw new Exception('L\'action demandée n\'est pas reconnue');
+			}
+        }
+	}
 }

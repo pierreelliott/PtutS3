@@ -2,8 +2,9 @@
 
 namespace LibPtut;
 
-session_start();
-// A voir
+if(session_status() == PHP_SESSION_NONE)
+	session_start();
+
 class User
 {
 	public function setAttribute($attr, $value)

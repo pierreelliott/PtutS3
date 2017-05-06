@@ -7,9 +7,9 @@
 	<route url="/connect" module="User" action="connection"/>
 	<route url="/disconnect" module="User" action="disconnection"/>
 	<route url="/menu" module="Sale" action="index"/>
+	<route url="/cart" module="Sale" action="cart"/>
 	<!--
 	<route url="/inscription" controleur="inscription" methode="inscription"/>
-	<route url="/panier" controleur="panier" methode="afficherPanier"/>
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/contact" vue="contact"/>
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>

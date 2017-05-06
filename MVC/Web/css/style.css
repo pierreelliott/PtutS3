@@ -72,15 +72,14 @@ label
 .footer-site
 {
     text-align: center;
-    margin-top: 20px;
     background-color: #222;
     border: 1px solid;
     border-width: 1px 0 0 0;
     border-color: #080808;
     border-radius: 0;
     z-index: 1000;
-    padding-left: 0;
-    margin-bottom: 0;
+    padding: 10px 0;
+    bottom: 0;
 }
 
 .container
