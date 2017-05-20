@@ -13,18 +13,20 @@ class UserController extends Controller
 
 		if($user->isAuthenticated())
 		{
-			$this->page->addVar('numUser', $user->getAttribute('numUsesr'));
-			$this->page->addVar('pseudo', $user->getAttribute('pseudo'));
-			$this->page->addVar('nom', $user->getAttribute('nom'));
-			$this->page->addVar('prenom', $user->getAttribute('prenom'));
-			$this->page->addVar('typeUser', $user->getAttribute('typeUser'));
-			$this->page->addVar('dateInscription', $user->getAttribute('dateInscription'));
-			$this->page->addVar('mail', $user->getAttribute('mail'));
-			$this->page->addVar('telephone', $user->getAttribute('telephone'));
-			$this->page->addVar('numRue', $user->getAttribute('numRue'));
-			$this->page->addVar('rue', $user->getAttribute('rue'));
-			$this->page->addVar('codePostal', $user->getAttribute('codePostal'));
-			$this->page->addVar('ville', $user->getAttribute('ville'));
+			$this->page->addVars(array(
+				'numUser' => $user->getAttribute('numUsesr'),
+				'pseudo' => $user->getAttribute('pseudo'),
+				'nom' => $user->getAttribute('nom'),
+				'prenom' => $user->getAttribute('prenom'),
+				'typeUser' => $user->getAttribute('typeUser'),
+				'dateInscription' => $user->getAttribute('dateInscription'),
+				'mail' => $user->getAttribute('mail'),
+				'telephone' => $user->getAttribute('telephone'),
+				'numRue' => $user->getAttribute('numRue'),
+				'rue' => $user->getAttribute('rue'),
+				'codePostal' => $user->getAttribute('codePostal'),
+				'ville' => $user->getAttribute('ville')
+			));
 		}
 		else
 		{

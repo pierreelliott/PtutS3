@@ -67,10 +67,12 @@ class SaleController extends Controller
 			*/
 		}
 
-		$this->page->addVar('carte', $carte);
-		$this->page->addVar('menus', $menus);
+		$this->page->addVars(array(
+            'carte' => $carte,
+            'menus' => $menus,
 
-		$this->page->addVar('title', 'La carte');
+		    'title' => 'La carte'
+        ));
     }
 
 	public function executeCart(HTTPRequest $request)
@@ -105,6 +107,8 @@ class SaleController extends Controller
 		$quantiteTotale = $cartManager->getQuantity();
 		$prixTotal = $cartManager->getCartPrice();
 	    $_SESSION['prixPanier'] = $prixTotal;
+
+        $this->page->addVar('title', 'Mon panier');
 	}
 
 	private function updateCart(HTTPRequest $request)

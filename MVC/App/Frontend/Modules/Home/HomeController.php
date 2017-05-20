@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function executeIndex(HTTPRequest $request)
     {
-		$this->page->addVar('title', 'Accueil - Sushinos');
+		$this->page->addVar('title', 'Accueil');
     }
 }
