@@ -32,7 +32,7 @@ class UserManagerPDO extends UserManager
         if(!$doublon)
         {
             $sql = 'insert into utilisateur(pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription)'
-                    . 'values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, 'USER', CURDATE())';
+                    . 'values(:pseudo, :mdp, :nom, :prenom, :mail, :tel, :numRue, :rue, :ville, :codePostal, \'USER\', CURDATE())';
 
 			$streetNo = trim($streetNo);
 			$streetName = trim($streetName);

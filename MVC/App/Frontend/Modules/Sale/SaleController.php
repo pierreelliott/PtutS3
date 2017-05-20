@@ -111,9 +111,9 @@ class SaleController extends Controller
 	{
 		if($request->getMethod() == 'POST')
         {
-			$numProduit = $request->postData('produit');
+			$numProduit = $request->request->get('produit');
 
-			switch($request->postData('action'))
+			switch($request->request->get('action'))
 			{
 				case 'ajout':
 					$this->panier->addProduct($numProduit);
@@ -124,14 +124,14 @@ class SaleController extends Controller
 					break;
 
 				case 'modification':
-					if($request->postExists('qte'))
+					if($request->request->has('qte'))
 					{
-						$this->panier->modifyProduct($numProduit, $request->postData('qte'));
+						$this->panier->modifyProduct($numProduit, $request->request->get('qte'));
 					}
 					break;
 
 				default :
-					throw new Exception('L\'action demandée n\'est pas reconnue');
+					throw new \Exception('L\'action demandée n\'est pas reconnue');
 			}
         }
 	}

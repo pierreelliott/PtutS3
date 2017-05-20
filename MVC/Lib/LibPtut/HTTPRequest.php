@@ -4,39 +4,26 @@ namespace LibPtut;
 
 class HTTPRequest extends ApplicationComponent
 {
-    public function cookieValue($key)
-    {
-        return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
-    }
+    public $query;
+    public $request;
+    public $cookies;
+    public $files;
+    public $server;
 
-    public function cookieExists($key)
+    public function __construct(Application $app)
     {
-        return isset($_COOKIE[$key]);
-    }
+        parent::__construct($app);
 
-    public function getData($key)
-    {
-        return isset($_GET[$key]) ? $_GET[$key] : null;
-    }
-
-    public function getExists($key)
-    {
-        return isset($_GET[$key]);
+        $this->query = new HTTPGet;
+        $this->request = new HTTPPost;
+        $this->cookies = new HTTPCookie;
+        $this->files = new HTTPFile;
+        $this->server = new HTTPServer;
     }
 
     public function getMethod()
     {
         return $_SERVER['REQUEST_METHOD'];
-    }
-
-    public function postData($key)
-    {
-        return isset($_POST[$key]) ? $_POST[$key] : null;
-    }
-
-    public function postExists($key)
-    {
-        return isset($_POST[$key]);
     }
 
     public function getRequestURI()

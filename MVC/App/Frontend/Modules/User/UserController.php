@@ -95,7 +95,7 @@ class UserController extends Controller
                 $this->page->addVar('message', 'Le numéro de téléphone doit avoir une forme valide');
                 $inscriptionValide = false;
             }
-			
+
             // Si les données de l'inscription sont valides on fait l'inscription
             if($inscriptionValide)
             {
@@ -121,9 +121,8 @@ class UserController extends Controller
 		if($request->getMethod() == 'POST')
         {
 			$user = $this->app->getUser();
-
-            $pseudo = htmlspecialchars($request->postData('pseudo'));
-            $mdpHash = sha1($request->postData('mdp'));
+            $pseudo = htmlspecialchars($request->request->get('pseudo'));
+            $mdpHash = sha1($request->request->get('mdp'));
 
 			// $resultat contient un tableau dont chaque élément est une ligne renvoyée sous forme de tableau
 			// $resultat est donc une matrice ne contenant qu'une ligne

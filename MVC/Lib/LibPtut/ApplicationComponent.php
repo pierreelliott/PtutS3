@@ -8,11 +8,11 @@ abstract class ApplicationComponent
 
     public function __construct(Application $app)
     {
-      $this->app = $app;
+        $this->app = $app;
     }
 
     public function getApplication()
     {
-      return $this->app;
+        return $this->app;
     }
 }

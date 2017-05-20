@@ -7,14 +7,19 @@ if(session_status() == PHP_SESSION_NONE)
 
 class User
 {
-	public function setAttribute($attr, $value)
+	public function hasAttribute($key)
+	{
+		return isset($_SESSION[$key]);
+	}
+
+	public function setAttribute($key, $value)
     {
-        $_SESSION[$attr] = $value;
+        $_SESSION[$key] = $value;
     }
 
-    public function getAttribute($attr)
+    public function getAttribute($key, $default = null)
     {
-        return isset($_SESSION[$attr]) ? $_SESSION[$attr] : null;
+        return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
     }
 
     public function hasFlash()

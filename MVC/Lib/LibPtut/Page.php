@@ -17,6 +17,14 @@ class Page extends ApplicationComponent
         $this->vars[$var] = $value;
     }
 
+    public function addVars(array $array)
+    {
+        foreach($array as $var => $value)
+        {
+            $this->addVar($var, $value);
+        }
+    }
+
     public function getGeneratedPage()
     {
         if (!file_exists($this->contentFile))
