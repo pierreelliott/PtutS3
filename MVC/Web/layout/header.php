@@ -36,7 +36,7 @@
 							<li><a href="/user">Mon compte</a></li>
 							<li><a href="/cart">Consulter panier</a></li>
 							<li><a href="/produits-favoris">Produits favoris</a></li>
-							<li><a href="/historique-commandes">Historique Commandes</a></li>
+							<li><a href="/commands">Historique Commandes</a></li>
 							<?php
 							//Si l'utilisateur est administrateur
 							if($user->getAttribute('typeUser') == 'ADMIN')

@@ -111,6 +111,11 @@ class SaleController extends Controller
         $this->page->addVar('title', 'Mon panier');
 	}
 
+    public function executeContact(HTTPRequest $request)
+    {
+        $this->page->addVar('title', 'Contactez-nous');
+    }
+
 	private function updateCart(HTTPRequest $request)
 	{
 		if($request->getMethod() == 'POST')

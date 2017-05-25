@@ -37,9 +37,9 @@ class ProductManagerPDO extends ProductManager
 		// Table compatibilite :
 		// Colonne 1 : $productNo ; colonne 2 : les produits compatibles
         $requete = $this->dao->prepare('select numProduit2 from compatibilite where numProduit = ?');
-		$resultat = $requete->execute(array($productNo));
+		$requete->execute(array($productNo));
 
-        $resultat =  $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $resultat = $requete->fetchAll(\PDO::FETCH_ASSOC);
 
         return $resultat;
 	}
