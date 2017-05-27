@@ -6,6 +6,7 @@ class Page extends ApplicationComponent
 {
     protected $contentFile;
     protected $vars = [];
+    protected $scripts = [];
 
     public function addVar($var, $value)
     {
@@ -25,6 +26,24 @@ class Page extends ApplicationComponent
         }
     }
 
+    public function addScript($script)
+    {
+        if (!is_string($script) || is_numeric($script) || empty($script))
+        {
+            throw new \InvalidArgumentException('Le chemin du script doit être une chaine de caractères non nulle');
+        }
+
+        array_push($this->scripts, $script);
+    }
+
+    public function addScripts(array $array)
+    {
+        foreach($array as $script)
+        {
+            $this->addVar($script);
+        }
+    }
+
     public function getGeneratedPage()
     {
         if (!file_exists($this->contentFile))
@@ -39,6 +58,13 @@ class Page extends ApplicationComponent
         ob_start();
             require($this->contentFile);
         $content = ob_get_clean();
+
+        ob_start();
+            foreach($this->scripts as $script)
+            {
+                echo '<script src="js/'.$script.'"></script>'.PHP_EOL;
+            }
+        $scripts = ob_get_clean();
 
         ob_start();
             require(__DIR__.'/../../Web/layout/layout.php');

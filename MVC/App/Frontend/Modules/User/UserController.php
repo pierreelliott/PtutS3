@@ -34,6 +34,8 @@ class UserController extends Controller
 		}
 
 		$this->page->addVar('title', 'Mon compte');
+
+		$this->page->addScript('utilisateur.js');
 	}
 
 	function executeConnectionRequest(HTTPRequest $request)

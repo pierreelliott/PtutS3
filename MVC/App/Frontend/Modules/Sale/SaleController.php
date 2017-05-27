@@ -73,6 +73,8 @@ class SaleController extends Controller
 
 		    'title' => 'La carte'
         ));
+
+        $this->page->addScript('carte.js');
     }
 
 	public function executeCart(HTTPRequest $request)
@@ -109,6 +111,8 @@ class SaleController extends Controller
 	    $_SESSION['prixPanier'] = $prixTotal;
 
         $this->page->addVar('title', 'Mon panier');
+
+        $this->page->addScript('panier.js');
 	}
 
     public function executeContact(HTTPRequest $request)

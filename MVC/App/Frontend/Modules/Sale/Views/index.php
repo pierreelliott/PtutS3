@@ -57,5 +57,3 @@
 		</div>
 	</div>
 </div>
-
-<!--<script src="js/carte.js"></script>-->
