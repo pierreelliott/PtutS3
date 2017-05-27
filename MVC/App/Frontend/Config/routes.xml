@@ -18,6 +18,7 @@
 	<!-- Module Payment -->
 	<route url="/commands" module="Payment" action="commands"/>
 	<route url="/command-([0-9]+)" module="Payment" action="command" params="commandNo"/>
+	<route url="/payment" module="Payment" action="payment"/>
 
 	<!--
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
@@ -51,5 +52,5 @@
 	<route url="/get-signalement" controleur="admin" methode="getSignalements"/>
 
 	<route url="/recherche" controleur="recherche" methode="rechercher"/>
-	<route url="/404" vue="404"/>-->
+	-->
 </routes>

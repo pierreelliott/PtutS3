@@ -60,7 +60,7 @@
 			<div class="row">
 				<?php if($user->isAuthenticated()) { ?>
 					<div class="col-lg-4 col-lg-offset-8">
-						<a class="btn btn-success btn-block" href="/paiement">Payer ma commande</a>
+						<a class="btn btn-success btn-block" href="/payment">Payer ma commande</a>
 					</div>
 				<?php } else { ?>
 					<div class="col-lg-6 col-lg-offset-6">

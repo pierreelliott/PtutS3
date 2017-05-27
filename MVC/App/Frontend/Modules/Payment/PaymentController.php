@@ -101,4 +101,32 @@ class PaymentController extends Controller
 			$this->app->getHttpResponse()->redirect404();
 		}
     }
+
+    public function executePayment(HTTPRequest $request)
+    {
+        $produits = array();
+        foreach($_SESSION['panier'] as $prod)
+        {
+            $p = $this->managers->getManagerOf('Product')->getProductInformations($prod['numProduit']);
+            $produit = array(
+                'numProduit' => $p['numProduit'],
+                'libelle' => $p['libelle'],
+                'description' => $p['description'],
+                'quantite' => $prod['quantite'],
+                'prix' => $p['prix'],
+                'prixTotal' => $p['prix']* $prod['quantite'],
+                'sourcePetit' => $p['sourcePetit'],
+                'sourceMoyen' => $p['sourceMoyen'],
+                'sourceGrand' => $p['sourceGrand']
+            );
+            $produits[$prod['numProduit']] = $produit;
+        }
+        $prixCommande = $_SESSION['prixPanier'];
+
+        $this->page->addvars(array(
+            'title' => 'Récapitulatif de la commande',
+            'produits' => $produits,
+            'prixCommande' => $prixCommande
+        ));
+    }
 }
