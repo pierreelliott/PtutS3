@@ -17,7 +17,8 @@
 
 	<!-- Module Payment -->
 	<route url="/commands" module="Payment" action="commands"/>
-	
+	<route url="/command-([0-9]+)" module="Payment" action="command" params="commandNo"/>
+
 	<!--
 	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
@@ -32,9 +33,6 @@
 	<route url="/add-avis" controleur="avis" methode="addAvis" />
 	<route url="/vote-([0-1])-([0-9]+)" controleur="avis" methode="vote" params="pouce,numAvis"/>
 	<route url="/signalAvis" controleur="avis" methode="signaler"/>
-
-	Commande
-	<route url="/commande-([0-9]+)" controleur="commande" methode="afficherCommande" params="numCommande"/>
 
 	Paiement paypal !
 	<route url="/paiement" controleur="commande" methode="recapCommande"/>

@@ -41,4 +41,64 @@ class PaymentController extends Controller
             'estVide' => (count($commandes) == 0)
         ));
     }
+
+    public function executeCommand(HTTPRequest $request)
+    {
+        $commandManager = $this->managers->getManagerOf('Command');
+
+        // Si la commande lui appartient
+        if($commandManager->isCommandOf($request->query->get('commandNo'), $this->app->getUser()->getAttribute('pseudo')))
+        {
+            $commande = $commandManager->getCommand($request->query->get('commandNo'));
+
+            // Tester la valeur de retour de la fonction getInfos Commande
+			if($commande)
+			{
+                $dateCommande = null;
+
+                foreach($commande as $res)
+                {
+                    $dateCommande = $res['date'];
+                }
+
+    			$prixCommande = $commandManager->getCommandPrice($request->query->get('commandNo'));
+
+                $produits = array();
+
+                // Pour chaque produit dans la commande
+				foreach($commande as $prod)
+				{
+					$p = $this->managers->getManagerOf('Product')->getProductInformations($prod['numProduit']);
+
+					$partie = explode('.', $p['typeProduit']);
+
+					$produit = array(
+						'numProduit' => $p['numProduit'],
+						'libelle' => $p['libelle'],
+						'description' => $p['description'],
+						'quantite' => $prod['quantite'],
+						'prix' => $p['prix'],
+						'prixTotal' => $p['prix']* $prod['quantite'],
+						'sourcePetit' => $p['sourcePetit'],
+						'sourceMoyen' => $p['sourceMoyen'],
+						'sourceGrand' => $p['sourceGrand'],
+						'estMenu' => (strcmp( $partie[0] , 'menu') == 0)
+					);
+                    // Ajout d'un tableau en 2 dimensions avec toutes les donnees
+					$produits[$prod['numProduit']] = $produit;
+				}
+
+				$this->page->addVars(array(
+                    'title' => 'Commande du '.$dateCommande,
+                    'dateCommande' => $dateCommande,
+                    'prixCommande' => $prixCommande,
+                    'produits' => $produits
+                ));
+			}
+        }
+		else
+		{
+			$this->app->getHttpResponse()->redirect404();
+		}
+    }
 }

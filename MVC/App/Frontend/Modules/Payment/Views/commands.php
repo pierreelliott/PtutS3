@@ -18,11 +18,11 @@
     						<h1>Commande du <?= $commande['date'] ?></h1>
     					</div>
     					<div class="panel-body text-dark">
-    						<p class="lead">Nombre de produits : <?= $commande["nbProduits"] ?></p>
-    						<p class="lead">Prix de la commande : <?= $commande["prix"] ?> &euro;</p>
-                            <p class="lead">Type de la commande : <?= $commande["typeCommande"] ?></p>
+    						<p class="lead">Nombre de produits : <?= $commande['nbProduits'] ?></p>
+    						<p class="lead">Prix de la commande : <?= $commande['prix'] ?> &euro;</p>
+                            <p class="lead">Type de la commande : <?= $commande['typeCommande'] ?></p>
                             <p class="lead">
-                                <?= '<a class="text-primary" href="/commande-'.$commande['numCommande'].'"> Afficher la commande</a>' ?>
+                                <?= '<a class="text-primary" href="/command-'.$commande['numCommande'].'"> Afficher la commande</a>' ?>
                             </p>
     					</div>
     				</div>

@@ -19,6 +19,20 @@ class CommandManagerPDO extends CommandManager
         return $resultat;
     }
 
+    public function getCommand($commandNo)
+    {
+        $sql = 'select typeCommande, date, p.numProduit numProduit, description, quantite
+                from produit p join quantiteProduit q
+                on p.NUMPRODUIT = q.NUMPRODUIT
+                join commande c
+                on c.NUMCOMMANDE= q.NUMCOMMANDE
+                where c.numCommande = ?';
+        $requete = $this->dao->prepare($sql);
+        $requete->execute(array($commandNo));
+
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getCommandPrice($commandNo)
     {
         $sql = 'select quantite, prix from produit p join quantiteProduit q
@@ -42,5 +56,13 @@ class CommandManagerPDO extends CommandManager
 
         // Gérer erreur
         return 0;
+    }
+
+    public function isCommandOf($commandNo, $userNo)
+    {
+        $requete = $this->dao->prepare('select numCommande from commande where numUser = ? and numCommande = ?');
+        $requete->execute(array($userNo, $commandNo));
+
+        return $requete->fetch(PDO::FETCH_ASSOC);
     }
 }
