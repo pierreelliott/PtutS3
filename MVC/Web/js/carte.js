@@ -6,7 +6,7 @@ $(function()
 		var produit = $(this).data('produit');
 		var action = $(this).data('action');
 		var qte = $(this).data('qte');
-		$.post('/get-infos-panier',
+		$.post('/get-cart-infos',
 		{
 			action: action,
 			produit: produit,
@@ -15,6 +15,7 @@ $(function()
 		},
 		function(data, status)
 		{
+			console.log(data);
 			// Faire une popup pour indiquer que le produit à bien été ajouté
 			var fenAlert = $('.alert');
 			fenAlert.removeClass('hidden')

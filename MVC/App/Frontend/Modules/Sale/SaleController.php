@@ -131,7 +131,7 @@ class SaleController extends Controller
 			$menus = array();
 			foreach($produits as $key => $produit)
 			{
-				if($produit["prix"] < 0)
+				if($produit['prix'] < 0)
 				{
 					unset($carte[$key]);
 					continue;
@@ -172,26 +172,47 @@ class SaleController extends Controller
         }
     }
 
+    public function executeCartInfos(HTTPRequest $request)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $this->updateCart($request);
+
+            $cartManager = $this->managers->getManagerOf('Cart');
+			$data = array();
+			$data['panierVide'] = $cartManager->isEmpty();
+			$data['prixPanier'] = $cartManager->getCartPrice();
+			$data['qtePanier'] = $cartManager->getQuantity();
+            $data['prixProduit'] = $this->managers->getManagerOf('Product')->getProductInformations($request->request->get('produit'))['prix'];
+			echo json_encode($data);
+        }
+        else
+        {
+            $this->app->getHttpResponse()->redirect404();
+        }
+    }
+
 	private function updateCart(HTTPRequest $request)
 	{
 		if($request->getMethod() == 'POST')
         {
 			$numProduit = $request->request->get('produit');
+            $cartManager = $this->managers->getManagerOf('Cart');
 
 			switch($request->request->get('action'))
 			{
 				case 'ajout':
-					$this->panier->addProduct($numProduit);
+					$cartManager->addProduct($numProduit);
 					break;
 
 				case 'suppression':
-					$this->panier->deleteProduct($numProduit);
+					$cartManager->deleteProduct($numProduit);
 					break;
 
 				case 'modification':
 					if($request->request->has('qte'))
 					{
-						$this->panier->modifyProduct($numProduit, $request->request->get('qte'));
+						$cartManager->modifyProduct($numProduit, $request->request->get('qte'));
 					}
 					break;
 

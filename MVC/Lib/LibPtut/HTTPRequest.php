@@ -30,4 +30,9 @@ class HTTPRequest extends ApplicationComponent
     {
         return $_SERVER['REQUEST_URI'];
     }
+
+    public function isXmlHttpRequest()
+    {
+        return $this->server->get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest';
+    }
 }

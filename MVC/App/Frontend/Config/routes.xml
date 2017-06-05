@@ -15,6 +15,7 @@
 	<route url="/cart" module="Sale" action="cart"/>
 	<route url="/contact" module="Sale" action="contact"/>
 	<route url="/search" module="Sale" action="search"/>
+	<route url="/get-cart-infos" module="Sale" action="cartInfos"/>
 
 	<!-- Module Payment -->
 	<route url="/commands" module="Payment" action="commands"/>
@@ -22,7 +23,6 @@
 	<route url="/payment" module="Payment" action="payment"/>
 
 	<!--
-	<route url="/get-infos-panier" controleur="panier" methode="getInfosPanier"/>
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
 	<route url="/modifPseudoUser" controleur="utilisateur" methode="modifierPseudo"/>
 

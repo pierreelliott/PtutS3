@@ -4,7 +4,7 @@
 		if($user->isAuthenticated()) { ?>
 		<!-- Etoile pour les produits favoris
 	 			(cachée dans l'interface d'administration) -->
-	<div class="pull-left favori" onmouseover="hoverFavori()" onmouseout="outFavori()">
+	<div class="pull-left favori">
 		<a href="/produits-favoris-<?= $produit['numProduit'] ?>">
 		<?php if(isset($produit['favori']) && $produit['favori'] == true) {
 			echo '<span class="glyphicon glyphicon-star yellow"></span>';
