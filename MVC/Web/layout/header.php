@@ -14,7 +14,7 @@
 					<li><a href="/menu">Carte</a></li>
 					<li><a href="/avis">Avis des utilisateurs</a></li>
 					<li>
-						<form method="post" action="/recherche" class="navbar-form form-inline navbar-left">
+						<form method="post" action="/search" class="navbar-form form-inline navbar-left">
 							<div class="input-group">
 								<input type="search" name="nomProduitRecherche" class="form-control" placeholder="Rechercher">
 								<span class="input-group-btn">

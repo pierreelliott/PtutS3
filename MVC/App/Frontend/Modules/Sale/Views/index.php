@@ -13,12 +13,11 @@
 			<!-- Affichage des produits seuls -->
 			<div class="tab-pane fade in active push" id="produits">
 				<hr class="invisible-separator"/>
-				<?php
-					foreach($carte as $produit)
-					{
-						include("include/affichageProduit.php");
-					}
-				?>
+				<?php foreach($produits as $produit) {
+
+					include("include/affichageProduit.php");
+
+				} ?>
 
 				<div class="modal fade" id="produitModal">
 					<div class="modal-dialog">
@@ -47,12 +46,11 @@
 			<!-- Affichage des menus -->
 			<div class="tab-pane fade" id="menus">
 				<hr class="invisible-separator"/>
-				<?php
-					foreach($menus as $menu)
-					{
-						include("include/affichageMenu.php");
-					}
-				?>
+				<?php foreach($menus as $menu) {
+
+					include("include/affichageMenu.php");
+
+				} ?>
 			</div>
 		</div>
 	</div>

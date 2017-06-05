@@ -27,4 +27,11 @@ abstract class ProductManager extends Manager
 	 * @return array Les informations du produit
 	 */
 	abstract public function getProductInformations($productNo);
+
+	/**
+	 * Méthode permettant de chercher les produits par rapport au nom du produit
+	 * @param $wording Libellé du produit
+	 * @return array La liste des produits correspondant aux critères de recherche
+	 */
+	abstract public function searchProduct($wording);
 }

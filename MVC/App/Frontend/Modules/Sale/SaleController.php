@@ -10,39 +10,39 @@ class SaleController extends Controller
     public function executeIndex(HTTPRequest $request)
     {
 		$productManager = $this->managers->getManagerOf('Product');
-		$carte = $productManager->getMenuCard();
+		$produits = $productManager->getMenuCard();
 
 		$user = $this->app->getUser();
 		if($user->isAuthenticated())
 		{
-			foreach($carte as $keyProduit => $produit)
+			foreach($produits as $keyProduit => $produit)
 			{
 				$produit['favori'] = $this->managers->getManagerOf('User')->isFavorite($user->getAttribute('numUser'), $produit['numProduit']);
-				$carte[$keyProduit] = $produit;
+				$produits[$keyProduit] = $produit;
 			}
 		}
 
 
 		$menus = array();
-		foreach($carte as $keyMenu => $produit)
+		foreach($produits as $keyMenu => $produit)
 		{
 			// Si le prix est négatif, on ne l'affichera pas
 			// (peu importe que que ce soit un produit seul ou un menu)
 			if($produit['prix'] < 0)
 			{
-				unset($carte[$keyMenu]);
+				unset($produits[$keyMenu]);
 				continue;
 			}
 
 			// Pour permettre l'affiche des caractères comme '\n' en balise <br> (ça cause des problèmes donc je met ça en commmentaire en attendant)
-			//$carte[$keyMenu]['description'] = nl2br($carte[$keyMenu]['description']);
+			//$produits[$keyMenu]['description'] = nl2br($produits[$keyMenu]['description']);
 
 			// On teste le type du produit pour savoir si c'est un menu
 			if(explode('.', $produit['typeProduit'])[0] == 'menu')
 			{
 				// Si le produit est un menu, on l'enlève de la carte et on l'ajoute au tableau des menus
 				$menus[$keyMenu] = $produit;
-				unset($carte[$keyMenu]);
+				unset($produits[$keyMenu]);
 
 				// On récupère les numéros des produits compatibles du menu (donc les produits contenus dans le menu)
 				$produitCompatibles = $productManager->getCompatibleProducts($produit['numProduit']); // C'est un tableau des numProduits2
@@ -68,7 +68,7 @@ class SaleController extends Controller
 		}
 
 		$this->page->addVars(array(
-            'carte' => $carte,
+            'produits' => $produits,
             'menus' => $menus,
 
 		    'title' => 'La carte'
@@ -118,6 +118,58 @@ class SaleController extends Controller
     public function executeContact(HTTPRequest $request)
     {
         $this->page->addVar('title', 'Contactez-nous');
+    }
+
+    public function executeSearch(HTTPRequest $request)
+    {
+        if($request->request->has('nomProduitRecherche'))
+		{
+			$produits = $this->managers->getManagerOf('Product')->searchProduct($request->request->get('nomProduitRecherche'));
+
+			$rechercheVide = empty($produits);
+
+			$menus = array();
+			foreach($produits as $key => $produit)
+			{
+				if($produit["prix"] < 0)
+				{
+					unset($carte[$key]);
+					continue;
+				}
+
+                // On teste le type du produit pour savoir si c'est un menu
+                if(explode('.', $produit['typeProduit'])[0] == 'menu')
+    			{
+    				// Si le produit est un menu, on l'enlève de la carte et on l'ajoute au tableau des menus
+    				$menus[$keyMenu] = $produit;
+    				unset($produits[$keyMenu]);
+
+    				// On récupère les numéros des produits compatibles du menu (donc les produits contenus dans le menu)
+    				$produitCompatibles = $productManager->getCompatibleProducts($produit['numProduit']); // C'est un tableau des numProduits2
+
+    				// Pour chaque numProduit compatible, on récupère les informations du produit
+    				foreach($produitCompatibles as $keyProduit => $produitCompatible)
+    				{
+    					$menus[$keyMenu]['produits'][$keyProduit] = $productManager->getProductInformations($produitCompatible['numProduit2']);
+    					// Pour permettre l'affiche des caractères comme '\n' en balise <br> (ça cause des problèmes donc je met ça en commmentaire en attendant)
+    					//$menus[$keyMenu]['produits'][$keyProduit]['description'] = nl2br($menus[$keyMenu]['produits'][$keyProduit]['description']);
+    				}
+    			}
+			}
+
+            $this->page->addVars(array(
+                'title' => 'Résultat de la recherche',
+
+                'produits' => $produits,
+                'menus' => $menus,
+                'rechercheVide' => $rechercheVide
+            ));
+            $this->page->addScript('carte.js');
+		}
+        else
+        {
+            $this->app->getHttpResponse()->redirect404();
+        }
     }
 
 	private function updateCart(HTTPRequest $request)

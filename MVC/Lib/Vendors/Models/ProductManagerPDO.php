@@ -52,4 +52,13 @@ class ProductManagerPDO extends ProductManager
 
 		return $requete->fetch(\PDO::FETCH_ASSOC);
 	}
+
+	public function searchProduct($wording)
+	{
+		$sql = 'select numProduit, libelle, description, typeProduit, prix, p.numImage numImage, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where libelle like ?';
+		$requete = $this->dao->prepare($sql);
+		$requete->execute(array("$wording%"));
+
+		return $requete->fetchAll(\PDO::FETCH_ASSOC);
+	}
 }

@@ -14,6 +14,7 @@
 	<route url="/menu" module="Sale" action="index"/>
 	<route url="/cart" module="Sale" action="cart"/>
 	<route url="/contact" module="Sale" action="contact"/>
+	<route url="/search" module="Sale" action="search"/>
 
 	<!-- Module Payment -->
 	<route url="/commands" module="Payment" action="commands"/>
@@ -50,7 +51,5 @@
 	<route url="/modifCommentaire" controleur="admin" methode="modifCommentaire" />
 	<route url="/modifParamsPaypal" controleur="admin" methode="modifierParametresPaypal" />
 	<route url="/get-signalement" controleur="admin" methode="getSignalements"/>
-
-	<route url="/recherche" controleur="recherche" methode="rechercher"/>
 	-->
 </routes>
