@@ -4,6 +4,8 @@ namespace App\Frontend\Modules\User;
 
 use \LibPtut\Controller;
 use \LibPtut\HTTPRequest;
+use \LibPtut\HTTPResponse;
+use \LibPtut\HTTPException;
 
 class UserController extends Controller
 {
@@ -11,36 +13,36 @@ class UserController extends Controller
 	{
 		$user = $this->app->getUser();
 
-		if($user->isAuthenticated())
+		if(!$user->isAuthenticated())
 		{
-			$this->page->addVars(array(
-				'numUser' => $user->getAttribute('numUsesr'),
-				'pseudo' => $user->getAttribute('pseudo'),
-				'nom' => $user->getAttribute('nom'),
-				'prenom' => $user->getAttribute('prenom'),
-				'typeUser' => $user->getAttribute('typeUser'),
-				'dateInscription' => $user->getAttribute('dateInscription'),
-				'mail' => $user->getAttribute('mail'),
-				'telephone' => $user->getAttribute('telephone'),
-				'numRue' => $user->getAttribute('numRue'),
-				'rue' => $user->getAttribute('rue'),
-				'codePostal' => $user->getAttribute('codePostal'),
-				'ville' => $user->getAttribute('ville')
-			));
-		}
-		else
-		{
-			$this->app->getHttpResponse()->redirect('/connection-request');
+			$response = new HTTPResponse;
+			$response->redirect('/connection-request');
 		}
 
-		$this->page->addVar('title', 'Mon compte');
-
-		$this->page->addScript('utilisateur.js');
+		return $this->renderView(null, array(
+			'title' => 'Mon compte',
+			'numUser' => $user->getAttribute('numUsesr'),
+			'pseudo' => $user->getAttribute('pseudo'),
+			'nom' => $user->getAttribute('nom'),
+			'prenom' => $user->getAttribute('prenom'),
+			'typeUser' => $user->getAttribute('typeUser'),
+			'dateInscription' => $user->getAttribute('dateInscription'),
+			'mail' => $user->getAttribute('mail'),
+			'telephone' => $user->getAttribute('telephone'),
+			'numRue' => $user->getAttribute('numRue'),
+			'rue' => $user->getAttribute('rue'),
+			'codePostal' => $user->getAttribute('codePostal'),
+			'ville' => $user->getAttribute('ville')
+		), array(
+			'utilisateur.js'
+		));
 	}
 
 	function executeConnectionRequest(HTTPRequest $request)
 	{
-		$this->page->addVar('title', 'Connexion nécessaire');
+		return $this->renderView(null, array(
+			'title' => 'Connexion nécessaire'
+		));
 	}
 
 	function executeRegistration(HTTPRequest $request)
@@ -48,6 +50,7 @@ class UserController extends Controller
 		if($request->getMethod() == 'POST')
         {
             $inscriptionValide = true;
+			$message = '';
 
             // On vérifie que l'utilisateur a entré quelque chose
             if
@@ -57,7 +60,7 @@ class UserController extends Controller
                 $_POST['email'] == '' or $_POST['tel'] == ''
 			)
             {
-                $this->page->addVar('message', 'Un ou plusieurs champs obligatoires ne sont pas remplis');
+                $message = 'Un ou plusieurs champs obligatoires ne sont pas remplis';
                 $inscriptionValide = false;
             }
 
@@ -82,21 +85,21 @@ class UserController extends Controller
             // On vérifie que les deux mots de passe sont identiques
             if($_POST['mdp'] != $_POST['mdpConfirm'])
             {
-                $this->page->addVar('message', 'Les deux mots de passe ne sont pas identiques. Veuillez ressaisir votre mot de passe');
+                $message = 'Les deux mots de passe ne sont pas identiques. Veuillez ressaisir votre mot de passe';
                 $inscriptionValide = false;
             }
 
             // On vérifie que l'email a une forme valide
             if(!preg_match('#[a-zA-Z0-9]+@[a-zA-Z]{2,}.[a-z]{2,4}#', $email))
             {
-                $this->page->addVar('message', 'L\'adresse email doit avoir une forme valide');
+                $message = 'L\'adresse email doit avoir une forme valide';
                 $inscriptionValide = false;
             }
 
             // On vérifie que le téléphone contient bien 10 chiffres
             if(!preg_match('#^0[1-9]([-. ]?[0-9]{2}){4}$#', $tel))
             {
-                $this->page->addVar('message', 'Le numéro de téléphone doit avoir une forme valide');
+                $message = 'Le numéro de téléphone doit avoir une forme valide';
                 $inscriptionValide = false;
             }
 
@@ -115,8 +118,13 @@ class UserController extends Controller
 					$user->setAttribute($attr, $value);
 				}
 
-				$this->app->getHttpResponse()->redirect('/');
+				$response = new HTTPResponse;
+				$response->redirect('/');
             }
+
+			return $this->renderView(null, array(
+				'message' => $message
+			));
         }
 	}
 
@@ -148,7 +156,8 @@ class UserController extends Controller
                     setcookie('mdpHash', $mdpHash);
                 }*/
 
-                $this->app->getHttpResponse()->redirect('/');
+                $response = new HTTPResponse;
+				$response->redirect('/');
             }
             else
             {
@@ -156,7 +165,9 @@ class UserController extends Controller
             }
         }
 
-		$this->page->addVar('title', 'Se connecter');
+		return $this->renderView(null, array(
+			'title' => 'Se connecter'
+		));
 	}
 
 	function executeDisconnection(HTTPRequest $request)
@@ -169,6 +180,7 @@ class UserController extends Controller
 		//setcookie('pseudo', '');
 		//setcookie('mdpHash', '');
 
-		header('Location: /');
+		$response = new HTTPResponse;
+		$response->redirect('/');
 	}
 }

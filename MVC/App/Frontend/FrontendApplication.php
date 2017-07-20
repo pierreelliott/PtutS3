@@ -3,6 +3,8 @@
 namespace App\Frontend;
 
 use \LibPtut\Application;
+use \LibPtut\HTTPException;
+use \App\Frontend\Modules\Errors\ErrorsController;
 
 class FrontendApplication extends Application
 {
@@ -16,9 +18,18 @@ class FrontendApplication extends Application
     public function run()
     {
         $controller = $this->getController();
-        $controller->execute();
-
-        $this->httpResponse->setPage($controller->getPage());
-        $this->httpResponse->send();
+        try
+        {
+            $this->httpResponse = $controller->execute($this->httpRequest);
+        }
+        catch (HTTPException $e)
+        {
+            $controller = new ErrorsController($this, 'Errors', $e->getStatusCode());
+            $this->httpResponse = $controller->execute($this->httpRequest);
+        }
+        finally
+        {
+            $this->httpResponse->send();
+        }
     }
 }

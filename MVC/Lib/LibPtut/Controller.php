@@ -6,8 +6,6 @@ class Controller extends ApplicationComponent
 {
     protected $action = '';
     protected $module = '';
-    protected $page = null;
-    protected $view = '';
 	protected $managers = null;
 
     public function __construct(Application $app, $module, $action)
@@ -20,14 +18,12 @@ class Controller extends ApplicationComponent
 		$pwd = $this->app->getConfig()->get('dbpwd');
 
 		$this->managers = new Managers('PDO', PDOFactory::getMySqlConnection($host, $dbname, $user, $pwd));
-        $this->page = new Page($app);
 
         $this->setModule($module);
         $this->setAction($action);
-        $this->setView($action);
     }
 
-    public function execute()
+    public function execute(HTTPRequest $request)
     {
         $method = 'execute'.ucfirst($this->action);
 
@@ -36,12 +32,7 @@ class Controller extends ApplicationComponent
             throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
         }
 
-        $this->$method($this->app->getHttpRequest());
-    }
-
-    public function getPage()
-    {
-        return $this->page;
+        return $this->$method($request);
     }
 
     public function setModule($module)
@@ -64,14 +55,39 @@ class Controller extends ApplicationComponent
         $this->action = $action;
     }
 
-    public function setView($view)
+    public function renderView($view = null, array $vars = array(), array $scripts = array())
     {
-        if (!is_string($view) || empty($view))
+        if($view == null || !is_string($view))
         {
-            throw new \InvalidArgumentException('La vue doit être une chaine de caractères valide');
+            $view = $this->action;
         }
 
-        $this->view = $view;
-        $this->page->setContentFile(__DIR__.'/../../App/'.$this->app->getName().'/Modules/'.$this->module.'/Views/'.$this->view.'.php');
+        $contentFile = __DIR__.'/../../App/'.$this->app->getName().'/Modules/'.$this->module.'/Views/'.$view.'.php';
+
+        if(!file_exists($contentFile))
+        {
+            throw new \RuntimeException('La vue '.$contentFile.' n\'existe pas');
+        }
+
+        $user = $this->app->getUser();
+
+        extract($vars);
+
+        ob_start();
+            require($contentFile);
+        $content = ob_get_clean();
+
+        ob_start();
+            foreach($scripts as $script)
+            {
+                echo '<script src="js/'.$script.'"></script>'.PHP_EOL;
+            }
+        $scripts = ob_get_clean();
+
+        ob_start();
+            require(__DIR__.'/../../Web/layout/layout.php');
+        $responseContent = ob_get_clean();
+
+        return new HTTPResponse($responseContent);
     }
 }

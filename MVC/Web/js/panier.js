@@ -5,7 +5,7 @@ $(function()
 		var action = $(this).data('action');
 		var qte = $(this).data('qte');
 		var parentDiv = $(this).parents("div#"+ produit);
-		$.post('/get-infos-panier',
+		$.post('/get-cart-infos',
 		{
 			action: action,
 			produit: produit,

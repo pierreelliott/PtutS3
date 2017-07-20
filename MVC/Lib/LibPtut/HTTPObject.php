@@ -2,9 +2,14 @@
 
 namespace LibPtut;
 
-abstract class HTTPObject
+class HTTPObject
 {
     protected $httpObject;
+
+    public function __construct(array $httpObject)
+    {
+        $this->httpObject = $httpObject;
+    }
 
     public function get($key, $default = null)
     {

@@ -14,21 +14,21 @@ class HTTPRequest extends ApplicationComponent
     {
         parent::__construct($app);
 
-        $this->query = new HTTPGet;
-        $this->request = new HTTPPost;
-        $this->cookies = new HTTPCookie;
-        $this->files = new HTTPFile;
-        $this->server = new HTTPServer;
+        $this->query = new HTTPObject($_GET);
+        $this->request = new HTTPObject($_POST);
+        $this->cookies = new HTTPObject($_COOKIE);
+        $this->files = new HTTPObject(isset($_FILE) ? $_FILE : array());
+        $this->server = new HTTPObject($_SERVER);
     }
 
     public function getMethod()
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return $this->server->get('REQUEST_METHOD');
     }
 
     public function getRequestURI()
     {
-        return $_SERVER['REQUEST_URI'];
+        return $this->server->get('REQUEST_URI');
     }
 
     public function isXmlHttpRequest()

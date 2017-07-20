@@ -4,6 +4,8 @@ namespace App\Frontend\Modules\Sale;
 
 use \LibPtut\Controller;
 use \LibPtut\HTTPRequest;
+use \LibPtut\HTTPResponse;
+use \LibPtut\HTTPException;
 
 class SaleController extends Controller
 {
@@ -67,14 +69,14 @@ class SaleController extends Controller
 			*/
 		}
 
-		$this->page->addVars(array(
+        return $this->renderView(null, array(
             'produits' => $produits,
             'menus' => $menus,
 
 		    'title' => 'La carte'
+        ), array(
+            'carte.js'
         ));
-
-        $this->page->addScript('carte.js');
     }
 
 	public function executeCart(HTTPRequest $request)
@@ -83,7 +85,7 @@ class SaleController extends Controller
 
 		$cartManager = $this->managers->getManagerOf('Cart');
 
-		$this->page->addVar('estVide', $cartManager->isEmpty());
+        $estVide = $cartManager->isEmpty();
 
 		$produits = array();
 		foreach($_SESSION['panier'] as $numProduit => $prod)
@@ -110,14 +112,21 @@ class SaleController extends Controller
 		$prixTotal = $cartManager->getCartPrice();
 	    $_SESSION['prixPanier'] = $prixTotal;
 
-        $this->page->addVar('title', 'Mon panier');
-
-        $this->page->addScript('panier.js');
+        return $this->renderView(null, array(
+            'title' => 'Mon panier',
+            'estVide' => $estVide,
+            'produits' => $produits,
+            'prixTotal' => $prixTotal
+        ), array(
+            'panier.js'
+        ));
 	}
 
     public function executeContact(HTTPRequest $request)
     {
-        $this->page->addVar('title', 'Contactez-nous');
+        return $this->renderView(null, array(
+            'title' => 'Contactez-nous'
+        ));
     }
 
     public function executeSearch(HTTPRequest $request)
@@ -157,18 +166,19 @@ class SaleController extends Controller
     			}
 			}
 
-            $this->page->addVars(array(
+            return $this->renderView(null, array(
                 'title' => 'Résultat de la recherche',
 
                 'produits' => $produits,
                 'menus' => $menus,
                 'rechercheVide' => $rechercheVide
+            ), array(
+                'carte.js'
             ));
-            $this->page->addScript('carte.js');
 		}
         else
         {
-            $this->app->getHttpResponse()->redirect404();
+            throw new HTTPException('404');
         }
     }
 
@@ -179,16 +189,18 @@ class SaleController extends Controller
             $this->updateCart($request);
 
             $cartManager = $this->managers->getManagerOf('Cart');
-			$data = array();
-			$data['panierVide'] = $cartManager->isEmpty();
-			$data['prixPanier'] = $cartManager->getCartPrice();
-			$data['qtePanier'] = $cartManager->getQuantity();
-            $data['prixProduit'] = $this->managers->getManagerOf('Product')->getProductInformations($request->request->get('produit'))['prix'];
-			echo json_encode($data);
+			$data = array(
+                'panierVide'  => $cartManager->isEmpty(),
+                'prixPanier'  => $cartManager->getCartPrice(),
+                'qtePanier'   => $cartManager->getQuantity(),
+                'prixProduit' => $this->managers->getManagerOf('Product')->getProductInformations($request->request->get('produit'))['prix']
+            );
+
+			return new HTTPResponse(json_encode($data));
         }
         else
         {
-            $this->app->getHttpResponse()->redirect404();
+            return new HTTPException('404');
         }
     }
 

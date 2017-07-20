@@ -2,9 +2,19 @@
 
 namespace LibPtut;
 
-class HTTPResponse extends ApplicationComponent
+class HTTPResponse
 {
-    private $page;
+    private $content;
+
+    public function __construct($content = '')
+    {
+        if(!is_string($content))
+        {
+            throw new \InvalidArgumentException('Le contenu doit être une chaîne de caractères valide');
+        }
+
+        $this->content = $content;
+    }
 
     public function addHeader($header)
     {
@@ -17,19 +27,9 @@ class HTTPResponse extends ApplicationComponent
         exit;
     }
 
-    public function redirect404()
-    {
-        $this->page = new Page($this->app);
-        $this->page->setContentFile(__DIR__.'/../../Errors/404.php');
-
-        $this->addHeader('HTTP/1.0 404 Not Found');
-
-        $this->send();
-    }
-
     public function send()
     {
-        exit($this->page->getGeneratedPage());
+        exit($this->content);
     }
 
     public function setCookie($name, $value = '', $expire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
@@ -37,8 +37,8 @@ class HTTPResponse extends ApplicationComponent
         setcookie($name, $value, $expire, $path, $domain, $secure, $httpOnly);
     }
 
-    public function setPage($page)
+    public function setContent($content)
     {
-        $this->page = $page;
+        $this->content = $content;
     }
 }

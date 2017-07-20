@@ -4,6 +4,8 @@ namespace App\Frontend\Modules\Payment;
 
 use \LibPtut\Controller;
 use \LibPtut\HTTPRequest;
+use \LibPtut\HTTPResponse;
+use \LibPtut\HTTPException;
 
 class PaymentController extends Controller
 {
@@ -35,7 +37,7 @@ class PaymentController extends Controller
             $commandes[$com['numCommande']] = $com;
         }
 
-		$this->page->addVars(array(
+        return $this->renderView(null, array(
             'title' => 'Historique des commandes',
             'commandes' => $commandes,
             'estVide' => (count($commandes) == 0)
@@ -88,7 +90,7 @@ class PaymentController extends Controller
 					$produits[$prod['numProduit']] = $produit;
 				}
 
-				$this->page->addVars(array(
+				return $this->renderView(null, array(
                     'title' => 'Commande du '.$dateCommande,
                     'dateCommande' => $dateCommande,
                     'prixCommande' => $prixCommande,
@@ -98,7 +100,7 @@ class PaymentController extends Controller
         }
 		else
 		{
-			$this->app->getHttpResponse()->redirect404();
+            throw new HTTPException('404');
 		}
     }
 
@@ -123,7 +125,7 @@ class PaymentController extends Controller
         }
         $prixCommande = $_SESSION['prixPanier'];
 
-        $this->page->addvars(array(
+        return $this->renderView(null, array(
             'title' => 'Récapitulatif de la commande',
             'produits' => $produits,
             'prixCommande' => $prixCommande

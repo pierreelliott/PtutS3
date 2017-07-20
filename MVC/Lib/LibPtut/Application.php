@@ -2,6 +2,8 @@
 
 namespace LibPtut;
 
+use \App\Frontend\Modules\Errors\ErrorsController;
+
 abstract class Application
 {
     protected $httpRequest;
@@ -13,7 +15,7 @@ abstract class Application
     public function __construct()
     {
         $this->httpRequest = new HTTPRequest($this);
-        $this->httpResponse = new HTTPResponse($this);
+        $this->httpResponse = new HTTPResponse();
         $this->name = '';
 		$this->user = new User;
 		$this->config = new Config($this);
@@ -80,7 +82,7 @@ abstract class Application
 			if ($e->getCode() == Router::NO_ROUTE)
 			{
 				// Si aucune route ne correspond, c'est que la page demandée n'existe pas.
-				$this->httpResponse->redirect404();
+				return new ErrorsController($this, 'Errors', '404');
 			}
 		}
 

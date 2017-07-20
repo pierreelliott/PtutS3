@@ -9,7 +9,7 @@
 		<meta name="author" content="PIETRAC Nicolas - Mathis SLIMANI - PE Thiboud - Axel BERTRAND - Thomas BROUTIER">
 		<link rel="icon" href="images/logo_onglet.png">
 
-		<title>Sushinos<?= isset($title) ? ' - '.$title : '' ?></title>
+		<title><?= isset($title) ? $title.' - ' : '' ?>Sushinos</title>
 
 		<?php require("bootstrapCss.php"); ?>
 
