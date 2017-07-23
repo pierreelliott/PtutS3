@@ -22,7 +22,7 @@ abstract class UserManager extends Manager
 	 * @param $firstName string Le prénom de l'utilisateur
 	 * @param $mail string L'adresse email de l'utilisateur
 	 * @param $phone string Le numéro de téléphone de l'utilisateur
-	 * @param $streetNo string Le numéro de rue
+	 * @param $streetNo int Le numéro de rue
 	 * @param $streetName string Le nom de la rue
 	 * @param $city string La ville
 	 * @param $postalCode string Le code postal
@@ -37,4 +37,11 @@ abstract class UserManager extends Manager
 	 * @return boolval true si le produit est favori de l'utilisateur, false sinon
 	 */
 	abstract public function isFavorite($userNo, $prodNo);
+
+	/**
+	 * Méthode permettant de récupérer les informations d'un utilisateur
+	 * @param $userNo L'identifiant de l'utilisateur
+	 * @return array Les informations de l'utilisateur
+	 */
+	abstract public function getInfos($userNo);
 }

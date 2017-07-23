@@ -9,6 +9,10 @@
 	<route url="/register" module="User" action="registration"/>
 	<route url="/connect" module="User" action="connection"/>
 	<route url="/disconnect" module="User" action="disconnection"/>
+	<route url="/advice" module="User" action="advice"/>
+	<route url="/add-advice" module="User" action="addAdvice"/>
+	<route url="/vote-([0-1])-([0-9]+)" module="User" action="vote" params="pouce,numAvis"/>
+	<route url="/report-advice" module="User" action="report"/>
 
 	<!-- Module Sale -->
 	<route url="/menu" module="Sale" action="index"/>
@@ -29,12 +33,6 @@
 	Produits favoris
 	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>
 	<route url="/produits-favoris-([0-9]+)" controleur="produitFavoris" methode="modifProduitFavoris" params="numProduit"/>
-
-	Avis !
-	<route url="/avis" controleur="avis" methode="afficherAvis" />
-	<route url="/add-avis" controleur="avis" methode="addAvis" />
-	<route url="/vote-([0-1])-([0-9]+)" controleur="avis" methode="vote" params="pouce,numAvis"/>
-	<route url="/signalAvis" controleur="avis" methode="signaler"/>
 
 	Paiement paypal !
 	<route url="/paiement" controleur="commande" methode="recapCommande"/>

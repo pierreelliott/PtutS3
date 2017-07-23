@@ -1,6 +1,5 @@
 $(function()
 {
-
     $('#signalModal').on('show.bs.modal', function (event)
     {
         var button = $(event.relatedTarget);
@@ -24,7 +23,7 @@ $(function()
         var numAvis = $("#numAvis").val();
         var remarque = $("#remarque").val();
 
-        $.post("/signalAvis",
+        $.post("/report-advice",
         {
             numAvis: numAvis,
             remarque: remarque

@@ -8,19 +8,19 @@ abstract class CartManager extends Manager
 {
 	/**
 	 * Méthode faisant la connexion d'un utilisateur et renvoyant ses informations
-	 * @param $prodNo string Le numéro du produit
+	 * @param $prodNo int Le numéro du produit
 	 */
 	abstract public function addProduct($prodNo);
 
 	/**
 	 * Méthode faisant l'inscription d'un utilisateur
-	 * @param $prodNo string Le numéro du produit
+	 * @param $prodNo int Le numéro du produit
 	 */
 	abstract public function deleteProduct($prodNo);
 
 	/**
 	 * Méthode testant si un produit est favori pour un utilisateur
-	 * @param $prodNo string Le numéro du produit
+	 * @param $prodNo int Le numéro du produit
 	 * @param $quantity int La quantité à modifier
 	 */
 	abstract public function modifyProduct($prodNo, $quantity);

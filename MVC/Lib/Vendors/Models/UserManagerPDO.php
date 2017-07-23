@@ -66,4 +66,13 @@ class UserManagerPDO extends UserManager
 
         return boolval($requete->fetch());
 	}
+
+	public function getInfos($userNo)
+	{
+		$sql = 'select nom, prenom, mdp, mail, ville, rue, codePostal, telephone, pseudo, numRue, dateInscription from utilisateur where numUser = ?';
+		$requete = $this->dao->prepare($sql);
+		$requete->execute(array($userNo));
+
+		return $requete->fetch(\PDO::FETCH_ASSOC);
+	}
 }

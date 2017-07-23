@@ -17,8 +17,8 @@
 				<img src="images/user.png" alt="Avatar" class="media-object img-circle" style="width:80px">
 			</div>
 			<div class="media-body">
-				<p class="text-left text-primary italic"><?php echo $avis['pseudo']; ?></p>
-				<p class="text-left text-muted small italic"> - Posté le <?php echo $avis['date']; ?></p>
+				<p class="text-left text-primary italic"><?= $avis['pseudo'] ?></p>
+				<p class="text-left text-muted small italic"> - Posté le <?= $avis['date'] ?></p>
 			</div>
 		</div>
 		<hr class="invisible-separator border-top"/>
@@ -36,37 +36,37 @@
 
 		<?php if($avis["estCommente"] == 1) { // Si il y a un commentaire
 		 ?>
-		<p class="text-dark text-left padding-left"><?php echo $avis['avis']; ?></p>
+		<p class="text-dark text-left padding-left"><?= $avis['avis'] ?></p>
 
 		<?php if(!isset($admin) || (isset($admin) && $admin == false)) { ?>
 
-		<?php if(isset($_SESSION["utilisateur"]["pseudo"])) { ?>
+		<?php if($user->isAuthenticated()) { ?>
 		<hr class="invisible-separator border-top"/>
 		<div class="row">
-			<?php  //Si l'utilisateur est connecté
-			if(!isset($message))
+			<?php  // Si l'utilisateur est connecté
+			if($message == null)
 			{ ?>
 				<div class="col-sm-1">
 					<!-- Lien vers la fenetre modale !-->
 					<a href='#signalModal'
 						data-toggle='modal'
-						data-num-avis="<?php echo $avis["numuser"]; ?>"
-						data-pseudo="<?php echo $avis["pseudo"]; ?>"
-						data-commentaire-avis="<?php echo $avis['avis']; ?>">
+						data-num-avis="<?= $avis["numuser"] ?>"
+						data-pseudo="<?= $avis["pseudo"] ?>"
+						data-commentaire-avis="<?= $avis['avis'] ?>">
 						<img src="images/signaler.png" alt="Signaler l'avis" class="img-responsive"/>
 					</a>
 				</div>
 			<?php } ?>
 			<div class="col-sm-offset-8 col-sm-1">
-				<a class="btn-primary btn" <?php echo "href='/vote-1-{$avis['numuser']}'"; ?>>
+				<a class="btn-primary btn" <?= "href='/vote-1-{$avis['numuser']}'" ?>>
 					<span class="glyphicon glyphicon-thumbs-up"></span>
-					<span class="badge"><?php echo $avis["pouceBleu"]; ?></span>
+					<span class="badge"><?= $avis["pouceBleu"] ?></span>
 				</a>
 			</div>
 			<div class="col-sm-1">
-				<a class="btn-danger btn" <?php echo "href='/vote-0-{$avis['numuser']}'"; ?>>
+				<a class="btn-danger btn" <?= "href='/vote-0-{$avis['numuser']}'" ?>>
 					<span class="glyphicon glyphicon-thumbs-down"></span>
-					<span class="badge"><?php echo $avis["pouceRouge"]; ?></span>
+					<span class="badge"><?= $avis["pouceRouge"] ?></span>
 				</a>
 			</div>
 		</div>

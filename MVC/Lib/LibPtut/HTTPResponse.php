@@ -16,6 +16,11 @@ class HTTPResponse
         $this->content = $content;
     }
 
+    public static function create($content = '')
+    {
+        return new static($content);
+    }
+
     public function addHeader($header)
     {
         header($header);

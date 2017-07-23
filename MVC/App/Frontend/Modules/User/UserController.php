@@ -21,7 +21,7 @@ class UserController extends Controller
 
 		return $this->renderView(null, array(
 			'title' => 'Mon compte',
-			'numUser' => $user->getAttribute('numUsesr'),
+			'numUser' => $user->getAttribute('numUser'),
 			'pseudo' => $user->getAttribute('pseudo'),
 			'nom' => $user->getAttribute('nom'),
 			'prenom' => $user->getAttribute('prenom'),
@@ -118,8 +118,7 @@ class UserController extends Controller
 					$user->setAttribute($attr, $value);
 				}
 
-				$response = new HTTPResponse;
-				$response->redirect('/');
+				HTTPResponse::create()->redirect('/');
             }
 
 			return $this->renderView(null, array(
@@ -156,8 +155,7 @@ class UserController extends Controller
                     setcookie('mdpHash', $mdpHash);
                 }*/
 
-                $response = new HTTPResponse;
-				$response->redirect('/');
+                HTTPResponse::create()->redirect('/');
             }
             else
             {
@@ -180,7 +178,153 @@ class UserController extends Controller
 		//setcookie('pseudo', '');
 		//setcookie('mdpHash', '');
 
-		$response = new HTTPResponse;
-		$response->redirect('/');
+		HTTPResponse::create()->redirect('/');
+	}
+
+	function executeAdvice(HTTPRequest $request)
+	{
+		$user = $this->app->getUser();
+		$adviceManager = $this->managers->getManagerOf('Advice');
+		$userAdvice = null;
+		$message = null;
+		//Si l'utilisateur est connecté
+		if($user->isAuthenticated())
+		{
+			// Teste si l'utilisateur a un avis
+			$userAdvice = $adviceManager->getAdvice($user->getAttribute('numUser'));
+		}
+		else
+		{
+			$message = "Vous devez vous connecter pour poster un avis";
+		}
+
+		$allAdvicesDB = $adviceManager->getAllAdvices();
+
+		// Création du tableau qui va contenir tous les avis
+		$allAdvices = array();
+
+		foreach ($allAdvicesDB as $keyAdvice => $adviceDB) {
+
+			// Création d'un tableau pour stocker toutes les informations d'un avis + remplissage
+			$advice = array(
+				'avis' => $adviceDB['avis'],
+				'note' => $adviceDB['note'],
+				'date'  => $adviceDB['date'],
+				'numuser' =>  $adviceDB['numUser'],
+				'pouceBleu' =>  $adviceManager->getPositiveVotes($adviceDB['numUser']),
+				'pouceRouge' => $adviceManager->getNegativeVotes($adviceDB['numUser']),
+				'pseudo' => $this->managers->getManagerOf('User')->getInfos($adviceDB['numUser'])['pseudo'],
+				'estCommente' => isset($adviceDB['avis'])
+			);
+			// Ajout d'un tableau en 2 dimensions avec toutes les données
+			$allAdvices[$keyAdvice] = $advice;
+			// Pour permettre l'affichage des caractères comme '\n' en balise <br> (ça cause des problèmes donc je mets ça en commmentaire en attendant)
+			// $allAdvices[$keyAdvice]['avis'] = nl2br($allAdvices[$keyAdvice]['avis']);
+		}
+
+		return $this->renderView(null, array(
+			'title' => 'Avis des utilisateurs du site',
+			'userAvis' => $userAdvice,
+			'tousAvis' => $allAdvices,
+			'message' => $message
+		), array(
+			'notes.js',
+			'avis.js',
+			'afficheNote.js'
+		));
+	}
+
+	function executeAddAdvice(HTTPRequest $request)
+	{
+		$erreur = null;
+
+		// Si l'utilisateur a posté quelque chose
+		if($request->getMethod() == 'POST')
+		{
+			// On récupère le pseudo
+			$userNo = $this->app->getUser()->getAttribute('numUser');
+
+			// On enlève les espaces inutiles du commentaire
+			$comment = trim($request->request->get('commentaire'));
+
+			$adviceManager = $this->managers->getManagerOf('Advice');
+
+			// Si l'utilisateur a déjà un avis
+			if($adviceManager->getAdvice($userNo) != false)
+			{
+				// Modification de l'avis
+				$adviceManager->editAdvice($request->request->get('commentaire'), $userNo, $request->request->get('note'));
+			}
+			else
+			{
+				// Ajout de l'avis
+				$adviceManager->addAdvice($request->request->get('commentaire'), $userNo, $request->request->get('note'));
+			}
+		}
+		else
+		{
+			$erreur = 'Vous n\'avez rien rempli';
+		}
+
+		HTTPResponse::create()->redirect('/advice');
+	}
+
+	function executeVote(HTTPRequest $request)
+	{
+		$user = $this->app->getUser();
+		// Teste si on a toutes les variables
+		if($request->query->has('pouce') && $request->query->has('numAvis') && $user->isAuthenticated())
+		{
+			$adviceManager = $this->managers->getManagerOf('Advice');
+			// On test si l'utilisateur n'a pas déjà voté pour cet avis
+			$vote = $adviceManager->hasVoted($request->query->get('numAvis'), $user->getAttribute('numUser'));
+			if($vote == -1)
+			{
+				// Si il n'en a pas on ajoute le vote
+				$resultat = $adviceManager->addVote($request->query->get('numAvis'), $request->query->get('pouce'), $user->getAttribute('numUser'));
+
+				// Si il vote pour un avis qui n'a pas de commentaire
+				if($resultat == false)
+				{
+					$erreur = "Vous ne pouvez voter pour cet avis car il n'a pas de commentaire";
+				}
+			}
+			// S'il en a déjà un
+			else {
+				// Si c'est le même vote
+				if($vote == $request->query->get('pouce'))
+				{
+					$adviceManager->deleteVote($request->query->get('numAvis'), $user->getAttribute('numUser'));
+				}
+				else
+				{
+					// Si ce n'est pas le même on modifie le vote
+					$adviceManager->editVote($request->query->get('numAvis'), $request->query->get('pouce'), $user->getAttribute('numUser'));
+				}
+			}
+		}
+
+		HTTPResponse::create()->redirect('/advice');
+	}
+
+	public function executeReport(HTTPRequest $request)
+	{
+		$user = $this->app->getUser();
+		// Teste si on a toutes les variables
+		if($request->getMethod() == 'POST' && $user->isAuthenticated())
+		{
+			$adviceManager = $this->managers->getManagerOf('Advice');
+			// On recupere le commentaire de l'avis signale
+			$advice = $adviceManager->getAdvice($user->getAttribute('numUser'));
+			// On test qu'il n'est pas null
+			if(trim($advice['avis']) == '')
+			{
+				 $doublon = $adviceManager->reportAdvice($request->request->get('numAvis'), $user->getAttribute('numUser'), $request->request->get('remarque'));
+				 // Si l'utillisateur a déjà signalé l'avis
+				 echo json_encode($doublon);
+			}
+		}
+
+		HTTPResponse::create()->redirect('/advice');
 	}
 }
