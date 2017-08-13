@@ -75,4 +75,30 @@ class UserManagerPDO extends UserManager
 
 		return $requete->fetch(\PDO::FETCH_ASSOC);
 	}
+
+	public function getFavoriteProducts($userNo)
+	{
+		$sql = 'select p1.numProduit numProduit, numImage, description, prix, libelle, typeProduit
+											from produit p1 join preference p2
+											on p1.NUMPRODUIT = p2.NUMPRODUIT
+											where numUser= ? and prix > 0
+											order by CLASSEMENT';
+		$requete = $this->dao->prepare($sql);
+		$requete->execute(array($userNo));
+
+		return $requete->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function addFavoriteProduct($userNo, $prodNo)
+	{
+		var_dump('test');
+		$requete = $this->dao->prepare('insert into preference(numUser, numProduit, classement) values(?, ?, 0)');
+		$requete->execute(array($userNo, $prodNo));
+	}
+
+	public function deleteFavoriteProduct($userNo, $prodNo)
+	{
+		$requete = $this->dao->prepare('delete from preference where numUser = ? and numProduit = ?');
+		$requete->execute(array($userNo, $prodNo));
+	}
 }

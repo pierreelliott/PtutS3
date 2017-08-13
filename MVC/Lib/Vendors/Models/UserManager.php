@@ -44,4 +44,27 @@ abstract class UserManager extends Manager
 	 * @return array Les informations de l'utilisateur
 	 */
 	abstract public function getInfos($userNo);
+
+	/**
+	 * Méthode récupérant les produits favoris d'un utilisateur
+	 * @param $userNo int L'identifiant de l'utilisateur
+	 * @return array Les informations des produits favoris de l'utilisateur
+	 */
+	abstract public function getFavoriteProducts($userNo);
+
+	/**
+	 * Méthode ajoutant un produit favori à un utilisateur
+	 * @param $userNo L'identifiant de l'utilisateur
+	 * @param $prodNo L'identifiant du produit
+	 * @return array Le résultat de la requête
+	 */
+	abstract public function addFavoriteProduct($userNo, $prodNo);
+
+	/**
+	 * Méthode supprimant un produit favori d'un utilisateur
+	 * @param $userNo L'identifiant de l'utilisateur
+	 * @param $prodNo L'identifiant du produit
+	 * @return array Le résultat de la requête
+	 */
+	abstract public function deleteFavoriteProduct($userNo, $prodNo);
 }

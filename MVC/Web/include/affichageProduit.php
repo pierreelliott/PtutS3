@@ -5,8 +5,8 @@
 		<!-- Etoile pour les produits favoris
 	 			(cachée dans l'interface d'administration) -->
 	<div class="pull-left favori">
-		<a href="/produits-favoris-<?= $produit['numProduit'] ?>">
-		<?php if(isset($produit['favori']) && $produit['favori'] == true) {
+		<a href="/favorite-products-<?= $produit['numProduit'] ?>">
+		<?php if(isset($produit['favori']) && $produit['favori']) {
 			echo '<span class="glyphicon glyphicon-star yellow"></span>';
 		} else {
 			echo '<span class="glyphicon glyphicon-star-empty yellow"></span>';

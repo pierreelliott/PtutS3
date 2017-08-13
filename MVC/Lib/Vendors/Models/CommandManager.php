@@ -28,6 +28,13 @@ abstract class CommandManager extends Manager
     abstract public function getCommandPrice($commandNo);
 
     /**
+     * Méthode permettant d'obtenir le nombre de produits dans la commande
+     * @param $commandNo int Le numéro de la commande
+     * @return int Le nombre de produit de la commande
+     */
+    abstract public function getNbProducts($commandNo);
+
+    /**
      * Méthode qui teste si la commande est celle de l'utilisateur
      * @param $commandNo int Le numéro de la commande
      * @param $userNo int Le numéro de l'utilisateur

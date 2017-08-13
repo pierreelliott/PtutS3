@@ -30,7 +30,7 @@ class CommandManagerPDO extends CommandManager
         $requete = $this->dao->prepare($sql);
         $requete->execute(array($commandNo));
 
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $requete->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getCommandPrice($commandNo)
@@ -58,11 +58,21 @@ class CommandManagerPDO extends CommandManager
         return 0;
     }
 
+    public function getNbProducts($commandNo)
+    {
+        $requete = $this->dao->prepare('select count(numProduit) nombreProduit from quantiteProduit where numCommande= ?');
+        $requete->execute(array($commandNo));
+
+        $resultat = $requete->fetch();
+
+        return $resultat['nombreProduit'];
+    }
+
     public function isCommandOf($commandNo, $userNo)
     {
         $requete = $this->dao->prepare('select numCommande from commande where numUser = ? and numCommande = ?');
         $requete->execute(array($userNo, $commandNo));
 
-        return $requete->fetch(PDO::FETCH_ASSOC);
+        return $requete->fetch(\PDO::FETCH_ASSOC);
     }
 }

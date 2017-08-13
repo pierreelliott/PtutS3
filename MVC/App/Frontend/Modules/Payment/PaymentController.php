@@ -19,9 +19,10 @@ class PaymentController extends Controller
         2ème les differentes colonne de la requete sql
         */
         $commandes = array();
+        $commandManager = $this->managers->getManagerOf('Command');
 
         //On recupere les commandes dans la base de données
-		$data = $this->managers->getManagerOf('Command')->getCommands($this->app->getUser()->getAttribute('numUser'));
+		$data = $commandManager->getCommands($this->app->getUser()->getAttribute('numUser'));
 
         foreach ($data as $d)
         {
@@ -29,8 +30,8 @@ class PaymentController extends Controller
                 'date'          => $d['date'],
                 'typeCommande'  => $d['typeCommande'],
                 'numCommande'   => $d['numCommande'],
-                'prix'          => $this->bdCommande->getPrixTotalCommande($d['numCommande']),
-                'nbProduits'    => $this->bdCommande->getNbProduit($d['numCommande'])
+                'prix'          => $commandManager->getCommandPrice($d['numCommande']),
+                'nbProduits'    => $commandManager->getNbProducts($d['numCommande'])
             );
 
             // Ajout de la commande dans le tableau final

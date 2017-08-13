@@ -307,7 +307,7 @@ class UserController extends Controller
 		HTTPResponse::create()->redirect('/advice');
 	}
 
-	public function executeReport(HTTPRequest $request)
+	function executeReport(HTTPRequest $request)
 	{
 		$user = $this->app->getUser();
 		// Teste si on a toutes les variables
@@ -326,5 +326,113 @@ class UserController extends Controller
 		}
 
 		HTTPResponse::create()->redirect('/advice');
+	}
+
+	function executeFavoriteProducts(HTTPRequest $request)
+	{
+		$user = $this->app->getUser();
+
+		if($user->isAuthenticated()) {
+			// Contient tous les produits favoris avec tous les détails
+			$favoriteProducts = $this->managers->getManagerOf('User')->getFavoriteProducts($user->getAttribute('numUser'));
+
+			foreach ($favoriteProducts as $key => $product) {
+				$partie = explode(".", $product["typeProduit"]);
+				$favoriteProducts[$key]["estMenu"] = (strcmp( $partie[0] , "menu") == 0);
+
+				$prod = $this->managers->getManagerOf('Product')->getProductInformations($product["numProduit"]);
+				$favoriteProducts[$key]["sourcePetit"] = $prod["sourcePetit"];
+				$favoriteProducts[$key]["sourceMoyen"] = $prod["sourceMoyen"];
+				$favoriteProducts[$key]["sourceGrand"] = $prod["sourceGrand"];
+			}
+
+			// Booléen pour savoir si $favoriteProducts est vide
+			$estVide = (count($favoriteProducts) == 0);
+
+			return $this->renderView(null, array(
+				'title' => 'Produits Favoris',
+				'estVide' => $estVide,
+				'produitsFav' => $favoriteProducts
+			), array(
+				'carte.js'
+			));
+		}
+
+		throw new HTTPException('404');
+	}
+
+	function executeEditFavoriteProducts(HTTPRequest $request)
+	{
+		$user = $this->app->getUser();
+
+		if($user->isAuthenticated())
+		{
+			var_dump($_GET);
+			$prodNo = $request->query->get('numProduit');
+			$userManager = $this->managers->getManagerOf('User');
+
+			var_dump('numUser : '.$user->getAttribute('numUser'));
+			var_dump('numProduit : '.$prodNo);
+			var_dump('get numProduit : '.$_GET['numProduit']);
+
+
+			// Teste si le produit est un produit favoris
+			if(!$userManager->isFavorite($user->getAttribute('numUser'), $prodNo))
+			{
+				$userManager->addFavoriteProduct($user->getAttribute('numUser'), $prodNo);
+			}
+			else
+			{
+				$userManager->deleteFavoriteProduct($user->getAttribute('numUser'), $prodNo);
+			}
+
+			HTTPResponse::create()->redirect('/menu');
+		}
+
+		throw new HTTPException('404');
+	}
+
+	function executeDeleteFavoriteProducts(HTTPRequest $request)
+	{
+		//Teste si l'utilsateur est connecté
+		if(isset($_SESSION["utilisateur"]["pseudo"]))
+		{
+			$prodNo = $_GET["numProduit"];
+
+			//Teste si le produit est un produit favoris
+			if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $prodNo) == true)
+			{
+				$resultat = $this->um->deleteProduitFavoris($_SESSION["utilisateur"]["pseudo"], $prodNo);
+			}
+			else
+			{
+				$erreur = "Impossible de supprimer ce produit car ce n'est pas un de vos produit favoris";
+			}
+		}
+		else {
+			include_once("vue/404.php");
+		}
+	}
+
+	function executeAddFavoriteProducts(HTTPRequest $request)
+	{
+		//Teste si l'utilsateur est connecté
+		if(isset($_SESSION["utilisateur"]["pseudo"]))
+		{
+			$prodNo = $_GET["numProduit"];
+
+			//Teste si le produit est n'est pas déjà un produit favoris
+			if($this->um->estFavoris($_SESSION["utilisateur"]["pseudo"], $prodNo) == false)
+			{
+				$resultat = $this->um->addProduitFavoris($_SESSION["utilisateur"]["pseudo"], $prodNo);
+			}
+			else
+			{
+				$erreur = "Impossible d'ajouter ce produit car il fait déjà parti vos produit favoris";
+			}
+		}
+		else {
+			include_once("vue/404.php");
+		}
 	}
 }
