@@ -13,6 +13,8 @@
 	<route url="/add-advice" module="User" action="addAdvice"/>
 	<route url="/vote-([0-1])-([0-9]+)" module="User" action="vote" params="pouce,numAvis"/>
 	<route url="/report-advice" module="User" action="report"/>
+	<route url="/favorite-products" module="User" action="favoriteProducts"/>
+	<route url="/favorite-products-([0-9]+)" module="User" action="editFavoriteProducts" params="numProduit"/>
 
 	<!-- Module Sale -->
 	<route url="/menu" module="Sale" action="index"/>
