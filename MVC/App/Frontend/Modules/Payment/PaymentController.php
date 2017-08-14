@@ -103,7 +103,7 @@ class PaymentController extends Controller
 		}
     }
 
-    public function executePayment(HTTPRequest $request)
+    public function executeCommandRecap(HTTPRequest $request)
     {
         $produits = array();
         foreach($_SESSION['panier'] as $prod)

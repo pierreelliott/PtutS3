@@ -26,7 +26,7 @@
 	<!-- Module Payment -->
 	<route url="/commands" module="Payment" action="commands"/>
 	<route url="/command-([0-9]+)" module="Payment" action="command" params="commandNo"/>
-	<route url="/payment" module="Payment" action="payment"/>
+	<route url="/command-recap" module="Payment" action="commandRecap"/>
 
 	<!--
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
