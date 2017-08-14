@@ -27,20 +27,13 @@
 	<route url="/commands" module="Payment" action="commands"/>
 	<route url="/command-([0-9]+)" module="Payment" action="command" params="commandNo"/>
 	<route url="/command-recap" module="Payment" action="commandRecap"/>
+	<route url="/paypal-payment" module="Payment" action="paypalPayment"/>
+	<route url="/paypal-return" module="Payment" action="paypalReturn"/>
+	<route url="/paypal-cancel" module="Payment" action="paypalCancel"/>
 
 	<!--
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
 	<route url="/modifPseudoUser" controleur="utilisateur" methode="modifierPseudo"/>
-
-	Produits favoris
-	<route url="/produits-favoris" controleur="produitFavoris" methode="afficherProduitFavoris"/>
-	<route url="/produits-favoris-([0-9]+)" controleur="produitFavoris" methode="modifProduitFavoris" params="numProduit"/>
-
-	Paiement paypal !
-	<route url="/paiement" controleur="commande" methode="recapCommande"/>
-	<route url="/paiement-paypal" controleur="paypal" methode="paiementPaypal"/>
-	<route url="/annule-paypal" vue="annulePaypal"/>
-	<route url="/retour-paypal" controleur="paypal" methode="retourPaypal"/>
 
 	Administration
 	<route url="/administration(?:-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>

@@ -75,4 +75,39 @@ class CommandManagerPDO extends CommandManager
 
         return $requete->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function addCommand($userNo, $products, $commandType)
+    {
+        $sql = 'select nom, prenom, mdp, mail, ville, rue, codePostal, telephone, pseudo, numRue, dateInscription from utilisateur where numUser = ?';
+		$requete = $this->dao->prepare($sql);
+		$requete->execute(array($userNo));
+		$user = $requete->fetch(\PDO::FETCH_ASSOC);
+
+        // A gérer en dehors du modèle juste avant de valider la commande
+        if
+        (
+            $commandType == 'Livraison' and
+            ($user['ville'] == null or $user['rue'] == null or $user['telephone'] == null or $user['numRue'] == null or $user['codePostal'] == null)
+        )
+        {
+            return false;
+        }
+
+        // Insertion dans la table Commande
+        $sql = 'insert into commande(rue, date, ville, numRue, codePostal, typeCommande, numUser) values(?, CURRENT_DATE(), ?, ?, ?, ?, ?)';
+        $requete = $this->dao->prepare($sql);
+        $requete->execute(array($user['rue'], $user['ville'], $user['numRue'], $user['codePostal'], $commandType, $userNo));
+
+        // Récupère le numCommande de la commande insérée
+        $numCommande = $this->dao->query('select max(numCommande) numCommande from commande');
+        $numCommande = $numCommande->fetch();
+
+        foreach($produits as $prod)
+        {
+            $requete = $this->dao->prepare('insert into quantiteProduit(numCommande, numProduit, quantite) values(?, ?, ?)');
+            $requete->execute(array($numCommande['numCommande'], $prod['numProduit'], $prod['quantite']));
+        }
+
+        return true;
+    }
 }

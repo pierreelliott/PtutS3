@@ -41,4 +41,13 @@ abstract class CommandManager extends Manager
      * @return boolval true si la commande appartient à l'utilisateur, false sinon
      */
     abstract public function isCommandOf($commandNo, $userNo);
+
+    /**
+     * Méthode permettant de créer une commande
+     * @param $userNo int Le numéro d'utilisateur
+     * @param $products array Tableau indexé à 2 dimensions : [i][numProduit] et [i][quantiteProduit]
+     * @param $commandType string Le type de la commande (Livraison ou à emporter)
+     * @return boolval True en cas de succès, false sinon
+     */
+    abstract public function addCommand($userNo, $products, $commandType);
 }
