@@ -20,16 +20,16 @@ class FrontendApplication extends Application
         $controller = $this->getController();
         try
         {
-            $this->httpResponse = $controller->execute($this->httpRequest);
+            $httpResponse = $controller->execute($this->httpRequest);
         }
         catch (HTTPException $e)
         {
             $controller = new ErrorsController($this, 'Errors', $e->getStatusCode());
-            $this->httpResponse = $controller->execute($this->httpRequest);
+            $httpResponse = $controller->execute($this->httpRequest);
         }
         finally
         {
-            $this->httpResponse->send();
+            $httpResponse->send();
         }
     }
 }

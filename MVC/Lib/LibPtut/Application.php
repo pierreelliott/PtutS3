@@ -15,7 +15,6 @@ abstract class Application
     public function __construct()
     {
         $this->httpRequest = new HTTPRequest($this);
-        $this->httpResponse = new HTTPResponse();
         $this->name = '';
 		$this->user = new User;
 		$this->config = new Config($this);
@@ -26,11 +25,6 @@ abstract class Application
     public function getHttpRequest()
     {
         return $this->httpRequest;
-    }
-
-    public function getHttpResponse()
-    {
-        return $this->httpResponse;
     }
 
     public function getName()
