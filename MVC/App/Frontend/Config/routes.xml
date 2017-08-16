@@ -31,18 +31,18 @@
 	<route url="/paypal-return" module="Payment" action="paypalReturn"/>
 	<route url="/paypal-cancel" module="Payment" action="paypalCancel"/>
 
+	<!-- Module Administration -->
+	<route url="/administration(?:-(add|edit|delete))?" module="Administration" action="index" params="action"/>
+	<route url="/get-products?-admin" module="Administration" action="productsAdmin"/>
+	<route url="/search-pseudo" module="Administration" action="searchPseudo"/>
+	<route url="/edit-admin" module="Administration" action="editAdmin"/>
+	<route url="/delete-comment" module="Administration" action="deleteComment"/>
+	<route url="/edit-comment" module="Administration" action="editComment"/>
+	<route url="/edit-paypal-params" module="Administration" action="editPaypalParameters"/>
+	<route url="/get-reports" module="Administration" methode="reports"/>
+
 	<!--
 	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
 	<route url="/modifPseudoUser" controleur="utilisateur" methode="modifierPseudo"/>
-
-	Administration
-	<route url="/administration(?:-(ajout|modification|suppression))?" controleur="admin" methode="administrer" params="action"/>
-	<route url="/get-produits?-admin" controleur="admin" methode="getProduitAdmin"/>
-	<route url="/rechercher-pseudo" controleur="admin" methode="rechercherPseudo"/>
-	<route url="/modifier-admin" controleur="admin" methode="modifAdmin" />
-	<route url="/deleteCommentaire" controleur="admin" methode="deleteCommentaire" />
-	<route url="/modifCommentaire" controleur="admin" methode="modifCommentaire" />
-	<route url="/modifParamsPaypal" controleur="admin" methode="modifierParametresPaypal" />
-	<route url="/get-signalement" controleur="admin" methode="getSignalements"/>
 	-->
 </routes>

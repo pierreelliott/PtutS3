@@ -101,4 +101,24 @@ class UserManagerPDO extends UserManager
 		$requete = $this->dao->prepare('delete from preference where numUser = ? and numProduit = ?');
 		$requete->execute(array($userNo, $prodNo));
 	}
+
+	public function getPseudosList($input)
+	{
+		$requete = $this->dao->prepare('select pseudo, typeUser from utilisateur where pseudo like ?');
+		$requete->execute(array("$input%"));
+
+		return $requete->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function addAdmin($userNo)
+    {
+        $requete = $this->dao->prepare('update utilisateur set typeUser = \'ADMIN\' where numUser = ?');
+		$requete->execute(array($userNo));
+    }
+
+    public function deleteAdmin($userNo)
+    {
+        $requete = $this->dao->prepare('update utilisateur set typeUser = \'USER\' where numUser = ?');
+		$requete->execute(array($userNo));
+    }
 }

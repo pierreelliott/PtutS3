@@ -5,7 +5,7 @@
 	</div>
 	<div class="modal-body">
         <p></p>
-		<form method="post" id="formModif" action="/modifCommentaire">
+		<form method="post" id="formModif" action="/edit-comment">
 			<input  type="hidden" name="numAvis" value="">
         	<textarea class="vresize" name="commentaire"></textarea>
 		</form>

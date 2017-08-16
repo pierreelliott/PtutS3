@@ -12,7 +12,7 @@ $(function()
 	// Ensemble des produits à ne pas sélectionner
 	var blackListProduit = [];
 
-	$.post("/get-produits-admin",
+	$.post("/get-products-admin",
 	{
 		isAjax: true
 	},
@@ -49,7 +49,7 @@ $(function()
 	{
 		var numProduit = $(this).data('num-produit');
 
-		$.post("/get-produit-admin",
+		$.post("/get-product-admin",
 		{
 			numProduitAdmin: numProduit,
 			isAjax: true
@@ -194,7 +194,7 @@ $(function()
 	{
 		var numProduit = $(this).data('num-produit');
 
-		$.post("/get-produit-admin",
+		$.post("/get-product-admin",
 		{
 			numProduitAdmin: numProduit,
 			isAjax: true
@@ -258,7 +258,7 @@ $(function()
 
 		$('#lastNumProduit' + bouton).val(nbProduits);
 
-		$.post("/get-produits-admin",
+		$.post("/get-products-admin",
 		{
 			isAjax: true
 		},
@@ -313,7 +313,7 @@ $(function()
 
 		if(inputValue !== "")
 		{
-			$.post('/rechercher-pseudo',
+			$.post('/search-pseudo',
 			{
 				input: inputValue
 			},
@@ -388,7 +388,7 @@ $(function()
 
 		var modal = $(this);
 		//Appel en Ajax pour recuperer les signalements
-		$.post("/get-signalement",
+		$.post("/get-reports",
 		{
 			isAjax: true,
 			numAvis:numAvis

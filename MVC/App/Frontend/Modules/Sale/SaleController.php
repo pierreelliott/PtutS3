@@ -40,7 +40,7 @@ class SaleController extends Controller
 			//$produits[$keyMenu]['description'] = nl2br($produits[$keyMenu]['description']);
 
 			// On teste le type du produit pour savoir si c'est un menu
-			if(explode('.', $produit['typeProduit'])[0] == 'menu')
+			if($productManager->isMenu($produit['numProduit']))
 			{
 				// Si le produit est un menu, on l'enlève de la carte et on l'ajoute au tableau des menus
 				$menus[$keyMenu] = $produit;

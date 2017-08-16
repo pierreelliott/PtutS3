@@ -67,4 +67,23 @@ abstract class UserManager extends Manager
 	 * @return array Le résultat de la requête
 	 */
 	abstract public function deleteFavoriteProduct($userNo, $prodNo);
+
+	/**
+	 * Méthode renvoyant une liste de pseudo en fonction d'une chaîne de caractères donnée en entrée
+	 * @param string $input La chaîne à utiliser pour la recherche de pseudos
+	 * @return array Un tableau contenant la liste des pseudos correspondant à la recherche
+	 */
+	abstract public function getPseudosList($input);
+
+	/**
+	 * Méthode passant un utilisateur en administrateur
+	 * @param $userNo L'identifiant de l'utilisateur
+	 */
+	abstract public function addAdmin($userNo);
+
+	/**
+	 * Méthode passant un administrateur en utilisateur
+	 * @param $userNo L'identifiant de l'utilisateur
+	 */
+	abstract public function deleteAdmin($userNo);
 }

@@ -11,7 +11,8 @@ class Config extends ApplicationComponent
 		if (!$this->vars)
 		{
 			$xml = new \DOMDocument;
-			$xml->load(__DIR__.'/../../App/'.$this->app->getName().'/Config/config.xml');
+			$filename = __DIR__.'/../../App/'.$this->app->getName().'/Config/config.xml';
+			$xml->load($filename);
 
 			$elements = $xml->getElementsByTagName('define');
 
@@ -27,5 +28,24 @@ class Config extends ApplicationComponent
 		}
 
 		return null;
+	}
+
+	public function set($var, $value)
+	{
+		$xml = new \DOMDocument;
+		$filename = __DIR__.'/../../App/'.$this->app->getName().'/Config/config.xml';
+		$xml->load($filename);
+
+		$elements = $xml->getElementsByTagName('define');
+
+		foreach ($elements as $element)
+		{
+			if($element->attributes->getNamedItem('var')->nodeValue == $var)
+			{
+				$element->attributes->getNamedItem('value')->nodeValue = $value;
+			}
+		}
+
+		$xml->save($filename);
 	}
 }

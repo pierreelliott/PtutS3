@@ -17,7 +17,7 @@ $(function()
 			console.log(data);
 			infosPanier = JSON.parse(data);
 
-			if(infosPanier.panierVide === 1)
+			if(infosPanier.panierVide === true)
 			{
 				$('.panier').html(
 					'<div class="row">' +
@@ -26,7 +26,7 @@ $(function()
 					'<hr/>' +
 					'<div class="row">' +
 						'<div class="col-lg-6 col-lg-offset-3">' +
-							'<a class="btn btn-success btn-block" href="/carte"><h2>Commander quelque chose !</h2></a>' +
+							'<a class="btn btn-success btn-block" href="/menu"><h2>Commander quelque chose !</h2></a>' +
 						'</div>' +
 					'</div>'
 				);

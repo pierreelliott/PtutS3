@@ -53,6 +53,13 @@ class ProductManagerPDO extends ProductManager
 		return $requete->fetch(\PDO::FETCH_ASSOC);
 	}
 
+	public function isMenu($productNo)
+	{
+		$productType = $this->getProductInformations($productNo)['typeProduit'];
+
+		return explode('.', strtolower($productType))[0] == 'menu';
+	}
+
 	public function searchProduct($wording)
 	{
 		$sql = 'select numProduit, libelle, description, typeProduit, prix, p.numImage numImage, sourcePetit, sourceMoyen, sourceGrand from produit p join image i on p.numImage = i.numImage where libelle like ?';
@@ -60,5 +67,24 @@ class ProductManagerPDO extends ProductManager
 		$requete->execute(array("$wording%"));
 
 		return $requete->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function getProductTypes()
+	{
+		$requete = $this->dao->query('select libelle from typeProduit');
+        $resultat = $requete->fetchAll(\PDO::FETCH_ASSOC);
+
+		$typesProduit = array();
+		foreach($resultat as $key => $typeProduit)
+		{
+			//Tableau contenant le type produit en 2 chaines
+            /*$partie = explode(".", $typeProduit["libelle"]);
+
+			$typeProduit["libelle"] = $partie[0];*/
+
+			$typesProduit[$key] = $typeProduit['libelle'];
+		}
+
+		return $typesProduit;
 	}
 }

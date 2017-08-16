@@ -12,12 +12,13 @@ class Controller extends ApplicationComponent
     {
         parent::__construct($app);
 
-		$host = $this->app->getConfig()->get('dbhost');
-		$dbname = $this->app->getConfig()->get('dbname');
-		$user = $this->app->getConfig()->get('dbuser');
-		$pwd = $this->app->getConfig()->get('dbpwd');
+        $config = $this->app->getConfig();
+        $host = $config->get('dbhost');
+        $dbname = $config->get('dbname');
+        $user = $config->get('dbuser');
+        $pwd = $config->get('dbpwd');
 
-		$this->managers = new Managers('PDO', PDOFactory::getMySqlConnection($host, $dbname, $user, $pwd));
+        $this->managers = new Managers('PDO', PDOFactory::getMySqlConnection($host, $dbname, $user, $pwd));
 
         $this->setModule($module);
         $this->setAction($action);

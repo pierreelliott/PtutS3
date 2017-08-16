@@ -102,4 +102,36 @@ abstract class AdviceManager extends Manager
      * @return boolval true en cas de succès, false sinon
      */
     abstract public function reportAdvice($adviceNo, $userNo, $remark);
+
+	/**
+     * Méthode permettant de récupérer tous les avis signalés
+     * @return array Un tableau avec tous les avis signalés
+     */
+    abstract public function getAllReportedAdvices();
+
+	/**
+	 * Méthode modifiant le commentaire d'un avis
+	 * @param $adviceNo int L'identifiant de l'avis
+	 * @param string Le nouveau commentaire
+	 */
+	abstract public function editComment($adviceNo, $comment);
+
+	/**
+	 * Méthode supprimant les signalements d'un avis
+	 * @param $adviceNo int L'identifiant de l'avis
+	 */
+	abstract public function deleteComment($adviceNo);
+
+	/**
+	 * Méthode supprimant les signalements d'un avis
+	 * @param $adviceNo int L'identifiant de l'avis
+	 */
+	abstract public function deleteReports($adviceNo);
+
+	/**
+	 * Méthode récupérant tous les signalements d'un avis
+	 * @param $adviceNo int L'identifiant de l'avis
+	 * @return array Un tableau contenant tous les signalements de l'avis
+	 */
+	abstract public function getReports($adviceNo);
  }

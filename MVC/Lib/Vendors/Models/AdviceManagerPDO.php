@@ -50,7 +50,7 @@ class AdviceManagerPDO extends AdviceManager
 		$requete = $this->dao->prepare('select numUser from avis where numUser in (select numUser from utilisateur where numUser = ?)');
 		$requete->execute(array($userNo));
 
-		if(!$requete->fetchAll(PDO::FETCH_ASSOC))
+		if(!$requete->fetchAll(\PDO::FETCH_ASSOC))
 		{
 			$comment = trim($comment);
 
@@ -149,9 +149,48 @@ class AdviceManagerPDO extends AdviceManager
 
 			return true;
 		}
-		else {
-			// L'utilisateur a déjà deposé un signalement sur cet avis
+		else
+		{
+			// L'utilisateur a déjà déposé un signalement sur cet avis
 			return false;
 		}
+	}
+
+	public function getAllReportedAdvices()
+	{
+		$sql = 'select avis, note, DATE_FORMAT(date, \'%d/%m/%Y\') date, s.numAvis from avis a left join signalavis s on a.NumUser= s.numAvis where numSignal is NOT null';
+		$requete = $this->dao->query($sql);
+
+        return $requete->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function editComment($adviceNo, $comment)
+	{
+		$requete = $this->dao->prepare('update avis set avis = ? where numUser = ?');
+		$requete(array($comment, $adviceNo));
+	}
+
+	public function deleteComment($adviceNo)
+	{
+		$requete = $this->dao->prepare('update avis set avis = NULL where numUser = ?');
+		$requete->execute(array($adviceNo));
+	}
+
+	public function deleteReports($adviceNo)
+	{
+		$requete = $this->dao->prepare('delete from signalavis where numAvis = ?');
+		$requete->execute(array($adviceNo));
+
+        // Renvoit nombre de lignes effacées sinon une erreur
+        return ($requete >= 1);
+	}
+
+	public function getReports($adviceNo)
+	{
+		$sql = 'select numAvis, pseudo, remarque from signalavis s join utilisateur u on s.numUser = u.numUser where numAvis = ?';
+		$requete = $this->executerRequete($sql);
+		$requete->execute(array($adviceNo));
+
+        return $requete->fetchAll(\PDO::FETCH_ASSOC);
 	}
 }
