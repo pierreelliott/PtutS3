@@ -6,7 +6,7 @@ class UserManagerPDO extends UserManager
 {
 	public function connect($pseudo, $hashPwd)
 	{
-		$sql = 'select numUser, pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, dateInscription from utilisateur where pseudo = :pseudo and mdp = :mdpHash;';
+		$sql = 'select numUser, pseudo, mdp, nom, prenom, mail, telephone, numRue, rue, ville, codePostal, typeUser, date_format(dateInscription, \'%d/%m/%Y\') dateInscription from utilisateur where pseudo = :pseudo and mdp = :mdpHash';
 		$params = array(
 			'pseudo' => $pseudo,
 			'mdpHash' => $hashPwd
@@ -121,6 +121,15 @@ class UserManagerPDO extends UserManager
         $requete = $this->dao->prepare('update utilisateur set typeUser = \'USER\' where numUser = ?');
 		$requete->execute(array($userNo));
     }
+
+	public function checkDuplicate($pseudo)
+	{
+		$requete = $this->dao->prepare('select pseudo from utilisateur where pseudo = ?');
+		$requete->execute(array($pseudo));
+        $resultat = $requete->fetchAll(\PDO::FETCH_ASSOC);
+
+		return boolval($resultat);
+	}
 
 	public function setUserInfos($userNo, array $infos)
 	{

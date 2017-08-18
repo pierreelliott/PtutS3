@@ -419,13 +419,11 @@ class UserController extends Controller
 		{
 			$newPseudo = htmlspecialchars($request->request->get('pseudo'));
 
-			try
+			$userManager = $this->managers->getManagerOf('User');
+
+			if(!$userManager->checkDuplicate($newPseudo))
 			{
-				$this->managers->getManagerOf('User')->setUserInfos($request->request->get('numUser'), array('pseudo' => $newPseudo));
-			}
-			catch (Exception $e)
-			{
-				$erreur = 'Ce pseudo est déjà utilisé';
+				$userManager->setUserInfos($request->request->get('numUser'), array('pseudo' => $newPseudo));
 			}
 		}
 

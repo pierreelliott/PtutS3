@@ -88,6 +88,13 @@ abstract class UserManager extends Manager
 	abstract public function deleteAdmin($userNo);
 
 	/**
+	 * Méthode testant la présence d'un pseudo dans la base
+	 * @param $pseudo string Le pseudo de l'utilisateur
+	 * @return boolval True si le pseudo existe déjà, false sinon
+	 */
+	abstract public function checkDuplicate($pseudo);
+
+	/**
 	 * Méthode permettant de modifier les informations d'un utilisateur
 	 * @param $userNo int L'identifiant de l'utilisateur
  	 * @param $infos array Un tableau associatif dont les clés sont les champs à modifier
