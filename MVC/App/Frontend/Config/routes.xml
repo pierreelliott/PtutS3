@@ -15,6 +15,8 @@
 	<route url="/report-advice" module="User" action="report"/>
 	<route url="/favorite-products" module="User" action="favoriteProducts"/>
 	<route url="/favorite-products-([0-9]+)" module="User" action="editFavoriteProducts" params="numProduit"/>
+	<route url="/edit-user-password" module="User" action="editPassword"/>
+	<route url="/edit-user-pseudo" module="User" action="editPseudo"/>
 
 	<!-- Module Sale -->
 	<route url="/menu" module="Sale" action="index"/>
@@ -40,9 +42,4 @@
 	<route url="/edit-comment" module="Administration" action="editComment"/>
 	<route url="/edit-paypal-params" module="Administration" action="editPaypalParameters"/>
 	<route url="/get-reports" module="Administration" methode="reports"/>
-
-	<!--
-	<route url="/modifMdpUser" controleur="utilisateur" methode="modifierMdp"/>
-	<route url="/modifPseudoUser" controleur="utilisateur" methode="modifierPseudo"/>
-	-->
 </routes>

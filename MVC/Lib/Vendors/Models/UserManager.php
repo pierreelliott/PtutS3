@@ -32,15 +32,15 @@ abstract class UserManager extends Manager
 
 	/**
 	 * Méthode testant si un produit est favori pour un utilisateur
-	 * @param $userNo L'identifiant de l'utilisateur
-	 * @param $prodNo L'identifiant du produit
+	 * @param $userNo int L'identifiant de l'utilisateur
+	 * @param $prodNo int L'identifiant du produit
 	 * @return boolval true si le produit est favori de l'utilisateur, false sinon
 	 */
 	abstract public function isFavorite($userNo, $prodNo);
 
 	/**
 	 * Méthode permettant de récupérer les informations d'un utilisateur
-	 * @param $userNo L'identifiant de l'utilisateur
+	 * @param $userNo int L'identifiant de l'utilisateur
 	 * @return array Les informations de l'utilisateur
 	 */
 	abstract public function getInfos($userNo);
@@ -54,36 +54,44 @@ abstract class UserManager extends Manager
 
 	/**
 	 * Méthode ajoutant un produit favori à un utilisateur
-	 * @param $userNo L'identifiant de l'utilisateur
-	 * @param $prodNo L'identifiant du produit
+	 * @param $userNo int L'identifiant de l'utilisateur
+	 * @param $prodNo int L'identifiant du produit
 	 * @return array Le résultat de la requête
 	 */
 	abstract public function addFavoriteProduct($userNo, $prodNo);
 
 	/**
 	 * Méthode supprimant un produit favori d'un utilisateur
-	 * @param $userNo L'identifiant de l'utilisateur
-	 * @param $prodNo L'identifiant du produit
+	 * @param $userNo int L'identifiant de l'utilisateur
+	 * @param $prodNo int L'identifiant du produit
 	 * @return array Le résultat de la requête
 	 */
 	abstract public function deleteFavoriteProduct($userNo, $prodNo);
 
 	/**
 	 * Méthode renvoyant une liste de pseudo en fonction d'une chaîne de caractères donnée en entrée
-	 * @param string $input La chaîne à utiliser pour la recherche de pseudos
+	 * @param $input string La chaîne à utiliser pour la recherche de pseudos
 	 * @return array Un tableau contenant la liste des pseudos correspondant à la recherche
 	 */
 	abstract public function getPseudosList($input);
 
 	/**
 	 * Méthode passant un utilisateur en administrateur
-	 * @param $userNo L'identifiant de l'utilisateur
+	 * @param $userNo int L'identifiant de l'utilisateur
 	 */
 	abstract public function addAdmin($userNo);
 
 	/**
 	 * Méthode passant un administrateur en utilisateur
-	 * @param $userNo L'identifiant de l'utilisateur
+	 * @param $userNo int L'identifiant de l'utilisateur
 	 */
 	abstract public function deleteAdmin($userNo);
+
+	/**
+	 * Méthode permettant de modifier les informations d'un utilisateur
+	 * @param $userNo int L'identifiant de l'utilisateur
+ 	 * @param $infos array Un tableau associatif dont les clés sont les champs à modifier
+ 	 * (ex : array('numRue' => $numRue, 'rue' => $rue) pour modifier le numéro de rue et la rue)
+	 */
+	abstract public function setUserInfos($userNo, array $infos);
 }

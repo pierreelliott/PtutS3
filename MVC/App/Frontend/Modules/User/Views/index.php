@@ -15,7 +15,7 @@
 							<div class="col-sm-6">
 								<div id="divPseudo">
 									<span id="affichePseudo" class="text-left text-primary italic"><?= $pseudo ?></span>
-									<form method="post" action="/modifPseudoUser" id="formModifPseudo" style="display: inline">
+									<form method="post" action="/edit-user-pseudo" id="formModifPseudo" style="display: inline">
 										<input type="hidden" id="numUser" name="numUser" value="<?= $numUser ?>">
 										<input type="text" id="pseudo" name="pseudo" value="<?= $pseudo ?>" class="form-control hidden" style="display: inline; width: auto">
 									</form>
@@ -51,9 +51,9 @@
 										<h4 class="modal-title">Modifier mon mot de passe</h4>
 									</div>
 									<div class="modal-body">
-										<form method="post" action="/modifMdpUser" id="modifMdp">
+										<form method="post" action="/edit-user-password" id="modifMdp">
 											<fieldset>
-												<input type="hidden" id="pseudoModifMdp" name="pseudoModifMdp" value="<?= $pseudo ?>">
+												<input type="hidden" id="userNo" name="userNo" value="<?= $numUser ?>">
 												<div class="form-group">
 													<label for="oldMdp" class="label-form">Ancien mot de passe</label>
 													<input type="password" id="oldMdp" name="oldMdp" class="form-control">

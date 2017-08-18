@@ -194,7 +194,7 @@ class UserController extends Controller
 		}
 		else
 		{
-			$message = "Vous devez vous connecter pour poster un avis";
+			$message = 'Vous devez vous connecter pour poster un avis';
 		}
 
 		$allAdvicesDB = $adviceManager->getAllAdvices();
@@ -285,7 +285,7 @@ class UserController extends Controller
 				// Si il vote pour un avis qui n'a pas de commentaire
 				if($resultat == false)
 				{
-					$erreur = "Vous ne pouvez voter pour cet avis car il n'a pas de commentaire";
+					$erreur = 'Vous ne pouvez voter pour cet avis car il n\'a pas de commentaire';
 				}
 			}
 			// S'il en a déjà un
@@ -340,13 +340,13 @@ class UserController extends Controller
 		$favoriteProducts = $this->managers->getManagerOf('User')->getFavoriteProducts($user->getAttribute('numUser'));
 
 		foreach ($favoriteProducts as $key => $product) {
-			$partie = explode(".", $product["typeProduit"]);
-			$favoriteProducts[$key]["estMenu"] = (strcmp( $partie[0] , "menu") == 0);
+			$partie = explode('.', $product['typeProduit']);
+			$favoriteProducts[$key]['estMenu'] = (strcmp( $partie[0] , 'menu') == 0);
 
-			$prod = $this->managers->getManagerOf('Product')->getProductInformations($product["numProduit"]);
-			$favoriteProducts[$key]["sourcePetit"] = $prod["sourcePetit"];
-			$favoriteProducts[$key]["sourceMoyen"] = $prod["sourceMoyen"];
-			$favoriteProducts[$key]["sourceGrand"] = $prod["sourceGrand"];
+			$prod = $this->managers->getManagerOf('Product')->getProductInformations($product['numProduit']);
+			$favoriteProducts[$key]['sourcePetit'] = $prod['sourcePetit'];
+			$favoriteProducts[$key]['sourceMoyen'] = $prod['sourceMoyen'];
+			$favoriteProducts[$key]['sourceGrand'] = $prod['sourceGrand'];
 		}
 
 		// Booléen pour savoir si $favoriteProducts est vide
@@ -384,5 +384,51 @@ class UserController extends Controller
 		}
 
 		HTTPResponse::create()->redirect('/menu');
+	}
+
+	public function executeEditPassword(HTTPRequest $request)
+	{
+		if
+		(
+			$request->request->has('userNo') and $request->request->has('oldMdp') and
+			$request->request->has('newMdp') and $request->request->has('confirmNewMdp')
+		)
+		{
+			$userNo = $request->request->get('userNo');
+			$oldMdp = sha1($request->request->get('oldMdp'));
+			$newMdp = $request->request->get('newMdp');
+			$confirmNewMdp = $request->request->get('confirmNewMdp');
+
+			$userManager = $this->managers->getManagerOf('User');
+
+			// On récupère le mot de passe
+			$checkMdp = $userManager->getInfos($userNo)['mdp'];
+
+			if($checkMdp == $oldMdp && $newMdp == $confirmNewMdp)
+			{
+				$userManager->setUserInfos($userNo, array('mdp' => sha1($newMdp)));
+			}
+		}
+
+		HTTPResponse::create()->redirect('/user');
+	}
+
+	public function executeEditPseudo(HTTPRequest $request)
+	{
+		if($request->request->has('pseudo') && $request->request->has('numUser'))
+		{
+			$newPseudo = htmlspecialchars($request->request->get('pseudo'));
+
+			try
+			{
+				$this->managers->getManagerOf('User')->setUserInfos($request->request->get('numUser'), array('pseudo' => $newPseudo));
+			}
+			catch (Exception $e)
+			{
+				$erreur = 'Ce pseudo est déjà utilisé';
+			}
+		}
+
+		HTTPResponse::create()->redirect('/user');
 	}
 }

@@ -121,4 +121,35 @@ class UserManagerPDO extends UserManager
         $requete = $this->dao->prepare('update utilisateur set typeUser = \'USER\' where numUser = ?');
 		$requete->execute(array($userNo));
     }
+
+	public function setUserInfos($userNo, array $infos)
+	{
+		$setPseudo = $setMdp = $setNumRue = $setRue = $setVille = $setCodePostal = '';
+
+		if($infos != null && !empty($infos))
+		{
+			$cpt = 1;
+			foreach($infos as $key => $info)
+			{
+				$setVariable = 'set'.ucfirst($key);
+				$$setVariable = '';
+
+				if($cpt > 1)
+				{
+					$$setVariable = ', ';
+				}
+
+				$$setVariable .= $key.' = :'.$key;
+
+				$cpt++;
+			}
+
+			$infos['numUser'] = $userNo;
+
+			$sql = 'update utilisateur set '.$setPseudo . $setMdp . $setNumRue . $setRue . $setVille . $setCodePostal.' where numUser = :numUser';
+			$requete = $this->dao->prepare($sql);
+			$requete->execute($infos);
+			$_SESSION = array_merge($_SESSION, $infos);
+		}
+	}
 }
