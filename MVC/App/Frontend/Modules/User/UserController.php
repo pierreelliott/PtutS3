@@ -46,6 +46,8 @@ class UserController extends Controller
 
 	public function executeRegistration(HTTPRequest $request)
 	{
+		$user = $this->app->getUser();
+
 		if($request->getMethod() == 'POST')
         {
             $inscriptionValide = true;
@@ -105,7 +107,6 @@ class UserController extends Controller
             // Si les données de l'inscription sont valides on fait l'inscription
             if($inscriptionValide)
             {
-				$user = $this->app->getUser();
                 $mdpHash = sha1($_POST['mdp']);
                 $this->managers->getManagerOf('User')->register($pseudo, $mdpHash, $nom, $prenom, $email, $tel, $_POST['numRue'], $rue, $ville, $codePostal);
 
@@ -120,10 +121,12 @@ class UserController extends Controller
 				HTTPResponse::create()->redirect('/');
             }
 
-			return $this->renderView(null, array(
-				'message' => $message
-			));
-        }
+			$user->setFlash($message);
+		}
+
+		return $this->renderView(null, array(
+			'title' => 'Inscription'
+		));
 	}
 
 	public function executeConnection(HTTPRequest $request)
@@ -158,7 +161,7 @@ class UserController extends Controller
             }
             else
             {
-                $message = 'Pseudo ou mot de passe incorrects';
+                $user->setFlash('Pseudo ou mot de passe incorrects');
             }
         }
 
@@ -185,8 +188,7 @@ class UserController extends Controller
 		$user = $this->app->getUser();
 		$adviceManager = $this->managers->getManagerOf('Advice');
 		$userAdvice = null;
-		$message = null;
-		//Si l'utilisateur est connecté
+		// Si l'utilisateur est connecté
 		if($user->isAuthenticated())
 		{
 			// Teste si l'utilisateur a un avis
@@ -194,7 +196,7 @@ class UserController extends Controller
 		}
 		else
 		{
-			$message = 'Vous devez vous connecter pour poster un avis';
+			$user->setFlash('Vous devez vous connecter pour poster un avis');
 		}
 
 		$allAdvicesDB = $adviceManager->getAllAdvices();
@@ -224,8 +226,7 @@ class UserController extends Controller
 		return $this->renderView(null, array(
 			'title' => 'Avis des utilisateurs du site',
 			'userAvis' => $userAdvice,
-			'tousAvis' => $allAdvices,
-			'message' => $message
+			'tousAvis' => $allAdvices
 		), array(
 			'notes.js',
 			'avis.js',
@@ -235,13 +236,13 @@ class UserController extends Controller
 
 	public function executeAddAdvice(HTTPRequest $request)
 	{
-		$erreur = null;
+		$user = $this->app->getUser();
 
 		// Si l'utilisateur a posté quelque chose
 		if($request->getMethod() == 'POST')
 		{
 			// On récupère le pseudo
-			$userNo = $this->app->getUser()->getAttribute('numUser');
+			$userNo = $user->getAttribute('numUser');
 
 			// On enlève les espaces inutiles du commentaire
 			$comment = trim($request->request->get('commentaire'));
@@ -262,7 +263,7 @@ class UserController extends Controller
 		}
 		else
 		{
-			$erreur = 'Vous n\'avez rien rempli';
+			$user->setFlash('Vous n\'avez rien rempli');
 		}
 
 		HTTPResponse::create()->redirect('/advice');
@@ -285,7 +286,7 @@ class UserController extends Controller
 				// Si il vote pour un avis qui n'a pas de commentaire
 				if($resultat == false)
 				{
-					$erreur = 'Vous ne pouvez voter pour cet avis car il n\'a pas de commentaire';
+					$user->setFlash('Vous ne pouvez pas voter pour cet avis car il n\'a pas de commentaire');
 				}
 			}
 			// S'il en a déjà un
@@ -318,9 +319,9 @@ class UserController extends Controller
 			// On test qu'il n'est pas null
 			if(trim($advice['avis']) == '')
 			{
-				 $doublon = $adviceManager->reportAdvice($request->request->get('numAvis'), $user->getAttribute('numUser'), $request->request->get('remarque'));
-				 // Si l'utillisateur a déjà signalé l'avis
-				 echo json_encode($doublon);
+				$doublon = $adviceManager->reportAdvice($request->request->get('numAvis'), $user->getAttribute('numUser'), $request->request->get('remarque'));
+				// Si l'utillisateur a déjà signalé l'avis
+				echo json_encode($doublon);
 			}
 		}
 
@@ -339,7 +340,8 @@ class UserController extends Controller
 		// Contient tous les produits favoris avec tous les détails
 		$favoriteProducts = $this->managers->getManagerOf('User')->getFavoriteProducts($user->getAttribute('numUser'));
 
-		foreach ($favoriteProducts as $key => $product) {
+		foreach ($favoriteProducts as $key => $product)
+		{
 			$partie = explode('.', $product['typeProduit']);
 			$favoriteProducts[$key]['estMenu'] = (strcmp( $partie[0] , 'menu') == 0);
 
@@ -406,7 +408,9 @@ class UserController extends Controller
 
 			if($checkMdp == $oldMdp && $newMdp == $confirmNewMdp)
 			{
-				$userManager->setUserInfos($userNo, array('mdp' => sha1($newMdp)));
+				$newMdpHash = sha1($newMdp);
+				$userManager->setUserInfos($userNo, array('mdp' => $newMdpHash));
+				$user->setAttribute('mdp', $newMdpHash);
 			}
 		}
 
@@ -424,6 +428,7 @@ class UserController extends Controller
 			if(!$userManager->checkDuplicate($newPseudo))
 			{
 				$userManager->setUserInfos($request->request->get('numUser'), array('pseudo' => $newPseudo));
+				$user->setAttribute('pseudo', $newPseudo);
 			}
 		}
 

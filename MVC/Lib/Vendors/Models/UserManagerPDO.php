@@ -158,7 +158,6 @@ class UserManagerPDO extends UserManager
 			$sql = 'update utilisateur set '.$setPseudo . $setMdp . $setNumRue . $setRue . $setVille . $setCodePostal.' where numUser = :numUser';
 			$requete = $this->dao->prepare($sql);
 			$requete->execute($infos);
-			$_SESSION = array_merge($_SESSION, $infos);
 		}
 	}
 }

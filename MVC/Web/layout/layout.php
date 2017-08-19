@@ -18,6 +18,11 @@
 	<body>
 		<?php
 			require("header.php");
+
+			if($user->hasFlash())
+			{
+				echo '<div class="toast">'.$user->getFlash().'</div>';
+			}
 		?>
 
 		<div class="container-fluid">
